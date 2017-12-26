@@ -206,7 +206,9 @@ void imageManager::render(string strKey, HDC hdc, int destX, int destY)
 }
 
 void imageManager::render(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
-{
+{  //test입니다.
+	//아아아아아아아아아
+	//아아앙아아아아앙
 	image* img = findImage(strKey);
 	if (img) img->render(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
 }

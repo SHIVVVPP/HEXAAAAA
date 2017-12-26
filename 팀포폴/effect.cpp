@@ -13,7 +13,7 @@ effect::effect()
 
 effect::~effect()
 {
-
+	
 }
 
 HRESULT effect::init(image* effectImage, int frameW, int frameH, int fps, float elapsedTime)
