@@ -13,7 +13,7 @@ worldMap::~worldMap()
 
 HRESULT worldMap::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void worldMap::release()

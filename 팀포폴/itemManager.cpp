@@ -13,7 +13,7 @@ itemManager::~itemManager()
 
 HRESULT itemManager::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void itemManager::release()

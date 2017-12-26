@@ -14,6 +14,7 @@ player::~player()
 
 HRESULT player::init()	   
 {
+	return S_OK;
 }
 void player::release()	   
 {

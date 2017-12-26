@@ -13,7 +13,7 @@ enemyManager::~enemyManager()
 
 HRESULT enemyManager::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void enemyManager::release()

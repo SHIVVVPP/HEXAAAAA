@@ -13,7 +13,7 @@ objectManager::~objectManager()
 
 HRESULT objectManager::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void objectManager::release()

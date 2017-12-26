@@ -13,7 +13,7 @@ NPCManager::~NPCManager()
 
 HRESULT NPCManager::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void NPCManager::release()

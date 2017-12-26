@@ -13,7 +13,7 @@ stage::~stage()
 
 HRESULT stage::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void stage::release()

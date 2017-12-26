@@ -13,7 +13,7 @@ town::~town()
 
 HRESULT town::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void town::release()
