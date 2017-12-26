@@ -46,6 +46,48 @@
     <Filter Include="2DFramework\effect">
       <UniqueIdentifier>{32b0348d-0ccf-4e9a-a7af-ea333b0115d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight">
+      <UniqueIdentifier>{34054f8c-2542-43ad-80e5-f43a419860f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\player">
+      <UniqueIdentifier>{5be9d02c-8d50-4393-a3b1-0e6ca3735078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\scene">
+      <UniqueIdentifier>{ae133adc-cc89-462e-bc92-e60bda9b765a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ItemManager">
+      <UniqueIdentifier>{f85fdb16-3f0d-4afe-8d47-8af1adfb72d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\EnemyManager">
+      <UniqueIdentifier>{182224ec-0e03-46d3-ac39-15756acfd5df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager">
+      <UniqueIdentifier>{00b72239-61c8-4eeb-b4bf-3c8246b60164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\NPCManager">
+      <UniqueIdentifier>{faead990-188d-4054-94c5-181a2b052da9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ItemManager\items">
+      <UniqueIdentifier>{204ba78d-ed0c-4703-9974-f1fe5d532bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\EnemyManager\Enemies">
+      <UniqueIdentifier>{3e7c673a-c6a1-44a1-be44-300ed064f0bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\NPCManager\NPCs">
+      <UniqueIdentifier>{84551a6f-f08a-4c27-82dd-92fbfe907ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects">
+      <UniqueIdentifier>{068dc59f-26b2-4197-9db1-00fcb4873e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\scene\stage">
+      <UniqueIdentifier>{1531806a-c773-48c8-a5ac-ef6b3613144d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\scene\WorldMap">
+      <UniqueIdentifier>{b24d4e71-821a-4f12-bb2f-3535c1a72ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\scene\Town">
+      <UniqueIdentifier>{f712c0ce-c267-42b3-9552-5dae0eb0a933}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -117,6 +159,30 @@
     <ClInclude Include="cameraManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="itemManager.h">
+      <Filter>shovelKnight\ItemManager</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>shovelKnight\EnemyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCManager.h">
+      <Filter>shovelKnight\NPCManager</Filter>
+    </ClInclude>
+    <ClInclude Include="objectManager.h">
+      <Filter>shovelKnight\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="town.h">
+      <Filter>shovelKnight\scene\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="worldMap.h">
+      <Filter>shovelKnight\scene\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>shovelKnight\scene\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>shovelKnight\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -172,6 +238,30 @@
     </ClCompile>
     <ClCompile Include="cameraManager.cpp">
       <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="itemManager.cpp">
+      <Filter>shovelKnight\ItemManager</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>shovelKnight\EnemyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCManager.cpp">
+      <Filter>shovelKnight\NPCManager</Filter>
+    </ClCompile>
+    <ClCompile Include="objectManager.cpp">
+      <Filter>shovelKnight\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="town.cpp">
+      <Filter>shovelKnight\scene\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="worldMap.cpp">
+      <Filter>shovelKnight\scene\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="stage.cpp">
+      <Filter>shovelKnight\scene\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>shovelKnight\player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
