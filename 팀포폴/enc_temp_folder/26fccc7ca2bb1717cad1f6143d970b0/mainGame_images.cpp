@@ -46,12 +46,7 @@ void mainGame::setImages()
 
 	IMAGEMANAGER->addFrameImage("OnOff", "./image/UI/OPTION/on_off.bmp", 148, 56, 2, 1, true, RGB(255, 0, 255));
 
-
-
-	//------------------------------------------------------
-	//**************아이템 이미지*********************
-	//------------------------------------------------------
-
+	//아이템 이미지
 	//인벤 이미지들.
 	IMAGEMANAGER->addImage("cursor", "./image/inventory/invencursor.bmp", 133, 133, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0, 0, 5380, 693, 5, 1, true, RGB(255, 0, 255));
