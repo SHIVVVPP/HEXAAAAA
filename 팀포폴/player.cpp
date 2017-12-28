@@ -58,6 +58,7 @@ HRESULT player::init()
 	//_ani = KEYANIMANAGER->findAnimation()
 
 	_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
+
 	return S_OK;
 }
 void player::release()
