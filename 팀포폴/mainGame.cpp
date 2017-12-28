@@ -26,7 +26,8 @@ HRESULT mainGame::init()			//초기화 함수
 	setImages();
 	sys = new system_option;
 	sys->init();
-
+	_player = new player;
+	_player->init();
 
 	return S_OK;
 }
@@ -42,6 +43,7 @@ void mainGame::update()				//연산 함수
 {
 	gameNode::update();
 	sys->update();
+	_player->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -50,7 +52,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	sys->render();
-
+	_player->render();
 
 	//==================== 건들지마라 =======================
 	//TIMEMANAGER->render(getMemDC());
