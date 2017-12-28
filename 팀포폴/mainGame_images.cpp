@@ -46,7 +46,18 @@ void mainGame::setImages()
 
 	IMAGEMANAGER->addFrameImage("OnOff", "./image/UI/OPTION/on_off.bmp", 148, 56, 2, 1, true, RGB(255, 0, 255));
 
-	//아이템 이미지
+	//6. Player
+	IMAGEMANAGER->addFrameImage("playerWalk", "./image/character/playerWalk.bmp", 1500, 500, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerLadder", "./image/character/playerLadder.bmp", 250, 750, 1, 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerIdle", "./image/character/playerIdle.bmp", 250, 250, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerHitted", "./image/character/playerHitted.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
+
+	//------------------------------------------------------
+	//**************아이템 이미지*********************
+	//------------------------------------------------------
+
 	//인벤 이미지들.
 	IMAGEMANAGER->addImage("cursor", "./image/inventory/invencursor.bmp", 133, 133, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0,0,5380, 693, 5, 1, true, RGB(255, 0, 255));
@@ -54,7 +65,12 @@ void mainGame::setImages()
 
 	//아이템 이미지
 	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
+
+	//마을, NPC 이미지ㅛ    
+	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	//------------------------------------------------------
 	//------------------------------------------------------
 }
+	

@@ -29,22 +29,35 @@ HRESULT player::init()
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 
 	int rightIdle[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightIdle", "playerIdle", rightIdle, 1, 6, true);
 	int leftIdle[] = { 1 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftIdle", "playerIdle", leftIdle, 1, 6, true);
 	int rightMove[] = { 0,1,2,3,4,5 };
-	int leftMove[] = { 6,7,8,9,10 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightMove", "playerWalk", rightMove, 6, 6, true);
+	int leftMove[] = { 6,7,8,9,10,11 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftMove", "playerWalk", leftMove, 6, 6, true);
 	//int jumpIdle[] = 
 	int rightAttack[] = { 0,1,2,3 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAttack", rightAttack, 4, 6, true);
 	int leftAttack[] = { 4,5,6,7 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAttack", leftAttack, 4, 6, true);
 	int leftDownAttack[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftDownAttack", "playerDownAttack", leftDownAttack, 1, 6, true);
 	int rightDownAttack[] = { 1 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightDownAttack", "playerDownAttack", rightDownAttack, 1, 6, true);
 	int rightHitted[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightHitted", "playerHitted", rightHitted, 1, 6, true);
 	int leftHitted[] = { 1 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftHitted", "playerHitted", leftHitted, 1, 6, true);
 	int leftClimb[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftClimb", "playerClimb", leftClimb, 1, 6, true);
 	int rightClimb[] = { 1 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightClimb", "playerClimb", rightClimb, 1, 6, true);
 	int edgeClimb[] = { 2 };
-
+	KEYANIMANAGER->addArrayFrameAnimation("playerEdgeClimb", "playerClimb", rightClimb, 1, 6, true);
 	//_ani = KEYANIMANAGER->findAnimation()
 
+	_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
 	return S_OK;
 }
 void player::release()
@@ -52,6 +65,7 @@ void player::release()
 }
 void player::update()
 {
+
 }
 void player::render()
 {
