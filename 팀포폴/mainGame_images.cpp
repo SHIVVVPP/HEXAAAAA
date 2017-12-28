@@ -9,12 +9,12 @@ void mainGame::setImages()
 	//------------------------------------------------------
 
 	//1. OPTION_MAIN
-	IMAGEMANAGER->addImage("option_main_background", "/image/UI/OPTION/option_main.bmp", 821, 514, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("back", "/image/UI/OPTION/main_back.bmp", 408, 55, 3, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("main_audio", "/image/UI/OPTION/main_audio.bmp", 486, 55, 3, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("main_controls", "/image/UI/OPTION/main_controls.bmp", 717, 56, 3, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("main_game", "/image/UI/OPTION/main_game.bmp", 408, 55, 3, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("main_video", "/image/UI/OPTION/main_video.bmp", 486, 55, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("option_main_background", "./image./ui/option/option_main.bmp", 821, 514, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("back", "./image./ui/option/main_back.bmp", 408, 55, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("main_audio", "/image/ui/option/main_audio.bmp", 486, 55, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("main_controls", "/image/ui/option/main_controls.bmp", 717, 56, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("main_game", "/image/ui/option/main_game.bmp", 408, 55, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("main_video", "/image/ui/option/main_video.bmp", 486, 55, 3, 1, true, RGB(255, 0, 255));
 	
 	//2. OPTION_CONTROLS
 	IMAGEMANAGER->addImage("option_controls_background", "/image/UI/OPTION/option_controls.bmp", 821, 514, false, RGB(255, 0, 255));
