@@ -25,7 +25,7 @@
 #include "iniDataManager.h"
 #include "cameraManager.h"
 #include "keyAniManager.h"
-
+#include "sceneManager.h"
 
 using namespace std;
 using namespace HEXA_UTIL;
@@ -52,6 +52,7 @@ using namespace HEXA_UTIL;
 #define TXTDATA txtData::getSingleton()
 #define INIDATA iniDataManager::getSingleton()
 #define CAMERAMANAGER cameraManager::getSingleton()
+#define SCENEMANAGER sceneManager::getSingleton()
 
 //=============================================================
 // ## 17.10.18 ## Macro ##

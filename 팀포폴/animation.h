@@ -52,5 +52,7 @@ public:
 	inline int getFrameWidth(void) { return _frameWidth; }
 	inline int getFrameHeight(void) { return _frameHeight; }
 
+	DWORD getPlayIndex() { return _nowPlayIndex; }
+	void setPlayIndex(DWORD index) { _nowPlayIndex = index; }
 };
 

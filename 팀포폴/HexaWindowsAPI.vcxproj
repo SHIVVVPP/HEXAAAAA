@@ -104,6 +104,7 @@
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="option_video.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="stdafx.cpp">

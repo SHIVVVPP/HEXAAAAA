@@ -213,6 +213,9 @@
     <ClInclude Include="keyAniManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -318,6 +321,9 @@
       <Filter>shovelKnight\scene\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="keyAniManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneManager.cpp">
       <Filter>2DFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
