@@ -88,6 +88,9 @@
     <Filter Include="shovelKnight\scene\Town">
       <UniqueIdentifier>{f712c0ce-c267-42b3-9552-5dae0eb0a933}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\scene\System">
+      <UniqueIdentifier>{7329ff17-665f-450f-af6c-84b976fbc7cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -183,6 +186,9 @@
     <ClInclude Include="player.h">
       <Filter>shovelKnight\player</Filter>
     </ClInclude>
+    <ClInclude Include="system.h">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -262,6 +268,12 @@
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>shovelKnight\player</Filter>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="mainGame_images.cpp">
+      <Filter>MainGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
