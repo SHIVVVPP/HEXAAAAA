@@ -93,6 +93,11 @@
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="objectManager.h" />
+    <ClInclude Include="option.h" />
+    <ClInclude Include="option_audio.h" />
+    <ClInclude Include="option_controls.h" />
+    <ClInclude Include="option_game.h" />
+    <ClInclude Include="option_video.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -101,7 +106,7 @@
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="system.h" />
+    <ClInclude Include="system_option.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
@@ -126,6 +131,11 @@
     <ClCompile Include="mainGame_images.cpp" />
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="objectManager.cpp" />
+    <ClCompile Include="option.cpp" />
+    <ClCompile Include="option_audio.cpp" />
+    <ClCompile Include="option_controls.cpp" />
+    <ClCompile Include="option_game.cpp" />
+    <ClCompile Include="option_video.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="soundManager.cpp" />
@@ -134,7 +144,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="system.cpp" />
+    <ClCompile Include="system_option.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="town.cpp" />
