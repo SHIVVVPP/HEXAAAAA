@@ -18,7 +18,7 @@ HRESULT option::init()
 	tagOptions* temp;
 	temp = new tagOptions;
 	temp->image = IMAGEMANAGER->findImage("back");
-	temp->_connectedOption = OPTION_MAIN;
+	temp->_connectedOption = OPTION_OUT;
 	_vOptions.push_back(temp);
 	
 	temp = new tagOptions;

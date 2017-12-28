@@ -31,6 +31,11 @@ void system_option::release()
 void system_option::update()
 {
 	_currentOption->update();
+
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+	{
+
+	}
 }
 
 void system_option::render()
