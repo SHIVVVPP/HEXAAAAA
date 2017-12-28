@@ -59,6 +59,11 @@ void mainGame::setImages()
 
 	//아이템 이미지
 	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
+
+	//마을, NPC 이미지
+	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
+
 	//------------------------------------------------------
 	//------------------------------------------------------
 }
+	
