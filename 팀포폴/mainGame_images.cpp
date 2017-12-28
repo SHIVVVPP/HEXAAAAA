@@ -49,11 +49,12 @@ void mainGame::setImages()
 	//아이템 이미지
 	//인벤 이미지들.
 	IMAGEMANAGER->addImage("cursor", "./image/inventory/invencursor.bmp", 133, 133, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0, 0, 5380, 693, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0,0,5380, 693, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("inventory", "./image/inventory/inventory.bmp", 0, 0, 2152, 693, 2, 1, true, RGB(255, 0, 255));
 
 	//아이템 이미지
 	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	//------------------------------------------------------
 	//------------------------------------------------------
 }
