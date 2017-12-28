@@ -24,6 +24,8 @@
 #include "effectManager.h"
 #include "iniDataManager.h"
 #include "cameraManager.h"
+#include "keyAniManager.h"
+
 
 using namespace std;
 using namespace HEXA_UTIL;
@@ -44,6 +46,7 @@ using namespace HEXA_UTIL;
 #define KEYMANAGER keyManager::getSingleton()
 #define IMAGEMANAGER imageManager::getSingleton()
 #define TIMEMANAGER timeManager::getSingleton()
+#define KEYANIMANAGER keyAniManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define EFFECTMANAGER effectManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
