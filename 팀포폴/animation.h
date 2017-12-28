@@ -4,6 +4,9 @@
 typedef void(*CALLBACK_FUNCTION)(void);
 typedef void(*CALLBACK_FUNCTION_PARAMETER)(void*);
 
+//보이드 포인터는 뭐든지 가르킬 수 가 있다 
+//언뜻 편해보이지만 형이 void이기 때문에 꼭 자료형을 선언을 해줘야한다
+
 class animation
 {
 public:
@@ -26,6 +29,10 @@ private:
 	DWORD		_nowPlayIndex;
 	BOOL		_play;
 
+	void*						_obj;
+	CALLBACK_FUNCTION			_callbackFunction;
+	CALLBACK_FUNCTION_PARAMETER _callbackFunctionParameter;
+
 public:
 	animation();
 	~animation();
@@ -35,10 +42,18 @@ public:
 
 	//디폴트 애니메이션 재생
 	void setDefPlayFrame(BOOL reverse = FALSE, BOOL loop = FALSE);
+	void setDefPlayFrame(BOOL reverse, BOOL loop, CALLBACK_FUNCTION cbFunction);
+	void setDefPlayFrame(BOOL reverse, BOOL loop, CALLBACK_FUNCTION_PARAMETER cbFunction, void* obj);
+
 	//배열로 애니메이션 재생(원하는 프레임 번호 넣을수있다)
 	void setPlayFrame(int* playArr, int arrLen, BOOL loop = FALSE);
+	void setPlayFrame(int* playArr, int arrLen, BOOL loop, CALLBACK_FUNCTION cbFunction);
+	void setPlayFrame(int* playArr, int arrLen, BOOL loop, CALLBACK_FUNCTION_PARAMETER cbFunction, void* obj);
+
 	//구간 애니메이션 재생(ex : 2 ~ 8번만 혹은 9 ~ 1번만)
 	void setPlayFrame(int start, int end, BOOL reverse = FALSE, BOOL loop = FALSE);
+	void setPlayFrame(int start, int end, BOOL reverse, BOOL loop, CALLBACK_FUNCTION cbFunction);
+	void setPlayFrame(int start, int end, BOOL reverse, BOOL loop, CALLBACK_FUNCTION_PARAMETER cbFunction, void* obj);
 
 	//프레임 재생 속도 셋팅
 	void setFPS(int framePerSec);
@@ -55,7 +70,5 @@ public:
 	inline int getFrameWidth(void) { return _frameWidth; }
 	inline int getFrameHeight(void) { return _frameHeight; }
 
-	DWORD getPlayIndex() { return _nowPlayIndex; }
-	void setPlayIndex(DWORD index) { _nowPlayIndex = index; }
 };
 
