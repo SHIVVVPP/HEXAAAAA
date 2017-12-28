@@ -44,7 +44,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("video_resulution", "/image/UI/OPTION/video_resulution.bmp", 870, 55, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("video_screenScale", "/image/UI/OPTION/video_screenscale.bmp", 1023, 56, 3, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addFrmaeImage("OnOff", "/image/UI/OPTION/on_off.bmp", 148, 56, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("OnOff", "/image/UI/OPTION/on_off.bmp", 148, 56, 2, 1, true, RGB(255, 0, 255));
 
 	//------------------------------------------------------
 	//------------------------------------------------------
