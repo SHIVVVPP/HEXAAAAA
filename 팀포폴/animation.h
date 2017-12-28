@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 
+typedef void(*CALLBACK_FUNCTION)(void);
+typedef void(*CALLBACK_FUNCTION_PARAMETER)(void*);
+
 class animation
 {
 public:
