@@ -189,7 +189,22 @@
     <ClInclude Include="player.h">
       <Filter>shovelKnight\player</Filter>
     </ClInclude>
-    <ClInclude Include="system.h">
+    <ClInclude Include="option_video.h">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="option_audio.h">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="option_controls.h">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="option_game.h">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="option.h">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="system_option.h">
       <Filter>shovelKnight\scene\System</Filter>
     </ClInclude>
     <ClInclude Include="inventory.h">
@@ -278,11 +293,26 @@
     <ClCompile Include="player.cpp">
       <Filter>shovelKnight\player</Filter>
     </ClCompile>
-    <ClCompile Include="system.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClCompile>
     <ClCompile Include="mainGame_images.cpp">
       <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="option_video.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="option_game.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="option_controls.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="option_audio.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="option.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="system_option.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
     </ClCompile>
     <ClCompile Include="inventory.cpp">
       <Filter>shovelKnight\scene\Inventory</Filter>
