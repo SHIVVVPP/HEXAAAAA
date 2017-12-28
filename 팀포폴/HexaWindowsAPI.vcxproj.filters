@@ -91,6 +91,9 @@
     <Filter Include="shovelKnight\scene\System">
       <UniqueIdentifier>{7329ff17-665f-450f-af6c-84b976fbc7cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\scene\Inventory">
+      <UniqueIdentifier>{a0eb4474-c5a7-489b-88aa-982559b8c94d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -186,23 +189,11 @@
     <ClInclude Include="player.h">
       <Filter>shovelKnight\player</Filter>
     </ClInclude>
-    <ClInclude Include="option_video.h">
+    <ClInclude Include="system.h">
       <Filter>shovelKnight\scene\System</Filter>
     </ClInclude>
-    <ClInclude Include="option_audio.h">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClInclude>
-    <ClInclude Include="option_controls.h">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClInclude>
-    <ClInclude Include="option_game.h">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClInclude>
-    <ClInclude Include="option.h">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClInclude>
-    <ClInclude Include="system_option.h">
-      <Filter>shovelKnight\scene\System</Filter>
+    <ClInclude Include="inventory.h">
+      <Filter>shovelKnight\scene\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,26 +275,14 @@
     <ClCompile Include="player.cpp">
       <Filter>shovelKnight\player</Filter>
     </ClCompile>
+    <ClCompile Include="system.cpp">
+      <Filter>shovelKnight\scene\System</Filter>
+    </ClCompile>
     <ClCompile Include="mainGame_images.cpp">
       <Filter>MainGame</Filter>
     </ClCompile>
-    <ClCompile Include="option_video.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClCompile>
-    <ClCompile Include="option_game.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClCompile>
-    <ClCompile Include="option_controls.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClCompile>
-    <ClCompile Include="option_audio.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClCompile>
-    <ClCompile Include="option.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
-    </ClCompile>
-    <ClCompile Include="system_option.cpp">
-      <Filter>shovelKnight\scene\System</Filter>
+    <ClCompile Include="inventory.cpp">
+      <Filter>shovelKnight\scene\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
