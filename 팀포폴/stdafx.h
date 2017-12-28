@@ -37,8 +37,8 @@ using namespace HEXA_UTIL;
 #define WINNAME		(LPTSTR)(TEXT("Hexa API"))
 #define WINSTARTX	50
 #define WINSTARTY	50
-#define WINSIZEX	1600	
-#define WINSIZEY	900
+#define WINSIZEX	1920	
+#define WINSIZEY	1080
 
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 

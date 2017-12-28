@@ -13,8 +13,8 @@ inventory::~inventory()
 
 HRESULT inventory::init()
 {
-	_invenItem = new inventoryItem;
-
+	_invenRelic = new inventoryRelic;
+	_invenGear = new inventoryGear;
 	_invenImage = IMAGEMANAGER->findImage("invenOpen");
 	_invenImage->setX(WINSIZEX / 2);
 	_invenImage->setY(WINSIZEY / 2);
@@ -66,9 +66,14 @@ void inventory::update()
 			_cursorPoint = CURSORPOINT0; //커서위치 0으로(첫번째 위치로) 다시 저장함.
 			_relic = false;
 
-			for (_invenItem->getViRelic() = _invenItem->getVRelic().begin(); _invenItem->getViRelic() != _invenItem->getVRelic().end(); ++_invenItem->getViRelic())
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
 			{
-				_invenItem->getViRelic()->_isRelic = false;
+				_invenRelic->getViRelic()->_isRelic = false;
+			}
+
+			for (_invenGear->getViGear() = _invenGear->getVGear().begin(); _invenGear->getViGear() != _invenGear->getVGear().end(); ++_invenGear->getViGear())
+			{
+				_invenGear->getViGear()->_isGear = true;
 			}
 		}
 		else if (_invenani->getPlayIndex() == 1 || !_invenani->getPlayIndex() == 0)
@@ -76,9 +81,14 @@ void inventory::update()
 			_invenani->setPlayIndex(0);  //프레임넘버 바꾸기
 			_cursorPoint = CURSORPOINT0; //커서위치 0으로(첫번째 위치로) 다시 저장함. 
 			_relic = true;
-			for (_invenItem->getViRelic() = _invenItem->getVRelic().begin(); _invenItem->getViRelic() != _invenItem->getVRelic().end(); ++_invenItem->getViRelic())
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
 			{
-				_invenItem->getViRelic()->_isRelic = true;
+				_invenRelic->getViRelic()->_isRelic = true;
+			}
+
+			for (_invenGear->getViGear() = _invenGear->getVGear().begin(); _invenGear->getViGear() != _invenGear->getVGear().end(); ++_invenGear->getViGear())
+			{
+				_invenGear->getViGear()->_isGear = false;
 			}
 		}
 	}
@@ -95,7 +105,9 @@ void inventory::update()
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 		{
-			_invenItem->init("firelod", Relics0, true, true);
+			_invenRelic->init("firelod", Relics0, true, true);
+			_invenRelic->init("tangtangball", Relics1, true, true);
+			_invenGear->init("shovel", Gear0, false, true);
 		}
 	}
 
@@ -109,7 +121,8 @@ void inventory::render()
 
 	Rectangle(getMemDC(), _checkRect.left, _checkRect.top, _checkRect.right, _checkRect.bottom);
 
-	_invenItem->render();
+	_invenRelic->render();
+	_invenGear->render();
 }
 
 void inventory::cursorMove()
@@ -234,42 +247,42 @@ void inventory::invenScene()
 }
 
 
-inventoryItem::inventoryItem()
+inventoryRelic::inventoryRelic()
 {
 }
 
-inventoryItem::~inventoryItem()
+inventoryRelic::~inventoryRelic()
 {
 }
 
-HRESULT inventoryItem::init(const char* imageName, int itemNum, bool isrelic, bool isGet)
+HRESULT inventoryRelic::init(const char* imageName, int itemNum, bool isrelic, bool isGet)
 {
-	_imageName = imageName;
+	_RelicName = imageName;
 	_isGet = isGet;
 
-	tagRelics Item;
-	ZeroMemory(&Item, sizeof(tagRelics));
-	Item._image = IMAGEMANAGER->findImage(_imageName);
-	Item._x = Item._image->getCenterX();
-	Item._y = Item._image->getCenterY();
-	Item._itemNum = itemNum;
-	Item._isRelic = isrelic;
-	Item._rc = RectMake(Item._x, Item._y, Item._image->getWidth() / 2, Item._image->getHeight() / 2);
+	tagRelics Relic;
+	ZeroMemory(&Relic, sizeof(tagRelics));
+	Relic._image = IMAGEMANAGER->findImage(_RelicName);
+	Relic._x = Relic._image->getCenterX();
+	Relic._y = Relic._image->getCenterY();
+	Relic._itemNum = itemNum;
+	Relic._isRelic = isrelic;
+	Relic._rc = RectMake(Relic._x, Relic._y, Relic._image->getWidth() / 2, Relic._image->getHeight() / 2);
 
-	_vRelic.push_back(Item);
+	_vRelic.push_back(Relic);
 	return S_OK;
 }
 
-void inventoryItem::release()
+void inventoryRelic::release()
 {
 }
 
-void inventoryItem::update()
+void inventoryRelic::update()
 {
 
 }
 
-void inventoryItem::render()
+void inventoryRelic::render()
 {
 	for (_viRelic = _vRelic.begin(); _viRelic != _vRelic.end(); ++_viRelic)
 	{
@@ -292,11 +305,81 @@ void inventoryItem::render()
 		{
 			if (_viRelic->_isRelic == true)RectangleMake(getMemDC(), _viRelic->_x + (_viRelic->_rc.right - _viRelic->_rc.left) / 2, _viRelic->_y + (_viRelic->_rc.bottom - _viRelic->_rc.top) / 2,
 				_viRelic->_image->getWidth() / 2, _viRelic->_image->getHeight() / 2);
-		}
 
+		}
 		if (_viRelic->_isRelic == true) _viRelic->_image->render(getMemDC(), _viRelic->_x, _viRelic->_y);
 	}
+
+	
 }
 
+inventoryGear::inventoryGear()
+{
+}
 
+inventoryGear::~inventoryGear()
+{
+}
+
+HRESULT inventoryGear::init(const char * imageName, int itemNum, bool isGear, bool isGet)
+{
+	_GearName = imageName;
+	_isGet = isGet;
+	tagGear Gear;
+	ZeroMemory(&Gear, sizeof(tagGear));
+	Gear._image = IMAGEMANAGER->findImage(_GearName);
+	Gear._x = Gear._image->getCenterX();
+	Gear._y = Gear._image->getCenterY();
+	Gear._itemNum = itemNum;
+	Gear._isGear = isGear;
+	Gear._rc = RectMake(Gear._x, Gear._y, Gear._image->getWidth() / 2, Gear._image->getHeight() / 2);
+
+	_vGear.push_back(Gear);
+	return S_OK;
+}
+
+void inventoryGear::release()
+{
+}
+
+void inventoryGear::update()
+{
+}
+
+void inventoryGear::render()
+{
+	for (_viGear = _vGear.begin(); _viGear != _vGear.end(); ++_viGear)
+	{
+		switch (_viGear->_itemNum)
+		{
+		case Gear0:
+			_viGear->_x = 300;
+			_viGear->_y = 280;
+			break;
+		case Gear1:
+			_viGear->_x = 450;
+			_viGear->_y = 280;
+			break;
+		case Gear2:
+			_viGear->_x = 600;
+			_viGear->_y = 280;
+			break;
+		case Gear3:
+			_viGear->_x = 750;
+			_viGear->_y = 280;
+			break;
+		case Gear4:
+			_viGear->_x = 900;
+			_viGear->_y = 280;
+			break;
+		}
+		if (KEYMANAGER->isToggleKey(VK_F1))
+		{
+			if (_viGear->_isGear == true)RectangleMake(getMemDC(), _viGear->_x + (_viGear->_rc.right - _viGear->_rc.left) / 2, _viGear->_y + (_viGear->_rc.bottom - _viGear->_rc.top) / 2,
+				_viGear->_image->getWidth() / 2, _viGear->_image->getHeight() / 2);
+
+		}
+		if (_viGear->_isGear == true)_viGear->_image->render(getMemDC(), _viGear->_x, _viGear->_y);
+	}
+}
 
