@@ -110,7 +110,7 @@ void inventory::update()
 			_invenGear->init("shovel", Gear0, false, true);
 		}
 	}
-
+	_invenRelic->update();
 }
 
 void inventory::render()
@@ -123,6 +123,19 @@ void inventory::render()
 
 	_invenRelic->render();
 	_invenGear->render();
+
+	if (_relic)
+	{
+		switch (_cursorPoint)
+		{
+		case CURSORPOINT0:
+			TXTDATA->render("firelod.txt", getMemDC(), 300, 300, 200, 200, 10);
+			break;
+		case CURSORPOINT1:
+			TXTDATA->render("tangtangball.txt", getMemDC(), 300, 500, 200, 200, 8);
+			break;
+		}
+	}
 }
 
 void inventory::cursorMove()
@@ -279,7 +292,9 @@ void inventoryRelic::release()
 
 void inventoryRelic::update()
 {
-
+	//vector<string> vStr;
+	//vStr = TXTDATA->txtLoad("firelod.txt");
+	//vStr = TXTDATA->txtLoad("tangtangball.txt");
 }
 
 void inventoryRelic::render()
@@ -291,10 +306,12 @@ void inventoryRelic::render()
 		case Relics0:
 			_viRelic->_x = 300;
 			_viRelic->_y = 240;
+			
 			break;
 		case Relics1:
 			_viRelic->_x = 450;
 			_viRelic->_y = 240;
+			
 			break;
 		case Relics2:
 			_viRelic->_x = 600;
@@ -309,8 +326,6 @@ void inventoryRelic::render()
 		}
 		if (_viRelic->_isRelic == true) _viRelic->_image->render(getMemDC(), _viRelic->_x, _viRelic->_y);
 	}
-
-	
 }
 
 inventoryGear::inventoryGear()
