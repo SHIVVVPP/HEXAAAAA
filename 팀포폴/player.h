@@ -73,9 +73,13 @@ public:
 	static void downAttack(void* obj);
 
 
-	/////////// 캐릭터의 상태에 메인상테에 따른 접근자, 설정자 
+	/////////// 캐릭터의 메인상태 접근자, 설정자 
 	PLAYERMAINCONDITION getPlayerMainCondition(void) { return _playerMainCondition; }
 	void setPlayerMainCondition(PLAYERMAINCONDITION condition) { _playerMainCondition = condition; }
+
+	//////////// 캐릭터의 서브상태 접근자 설정자
+	PLAYERSUBCONDITION getPlayerSubCondition(void) { return _playerSubCondition; }
+	void setPlayerSubCondition(PLAYERSUBCONDITION condition) { _playerSubCondition = condition; }
 
 
 	////////  플레이어 충돌렉트 접근자 설정자

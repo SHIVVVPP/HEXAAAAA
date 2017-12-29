@@ -4,6 +4,38 @@
 void mainGame::setImages()
 {
 
+	
+
+	//------------------------------------------------------
+	//**************플레이어 이미지*********************
+	//------------------------------------------------------
+	//6. Player
+	IMAGEMANAGER->addFrameImage("playerWalk", "./image/character/playerWalk.bmp", 1500, 500, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerClimb", "./image/character/playerLadder.bmp", 250, 750, 1, 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerIdle", "./image/character/playerIdle.bmp", 250, 250, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerHitted", "./image/character/playerHitted.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
+
+	//------------------------------------------------------
+	//**************아이템 이미지*********************
+	//------------------------------------------------------
+
+	//인벤 이미지들.
+	IMAGEMANAGER->addImage("cursor", "./image/inventory/invencursor.bmp", 133, 133, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0,0,5380, 693, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("inventory", "./image/inventory/inventory.bmp", 0, 0, 2152, 693, 2, 1, true, RGB(255, 0, 255));
+
+	//아이템 이미지
+	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("shovel", "./image/inventory/shovel.bmp", 133, 133, true, RGB(0, 0, 0));
+	//마을, NPC 이미지ㅛ    
+	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
+	//------------------------------------------------------
+	//------------------------------------------------------
+
 	//------------------------------------------------------
 	//**************옵션창 사용되는 이미지*********************
 	//------------------------------------------------------
@@ -15,10 +47,10 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("main_controls", "./image/UI/OPTION/main_controls.bmp", 717, 56, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("main_game", "./image/UI/OPTION/main_game.bmp", 408, 55, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("main_video", "./image/UI/OPTION/main_video.bmp", 486, 55, 3, 1, true, RGB(255, 0, 255));
-	
+
 	//2. OPTION_CONTROLS
 	IMAGEMANAGER->addImage("option_controls_background", "./image/UI/OPTION/option_controls.bmp", 821, 514, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("controls_editController", "./image/UI/OPTION/controls_editcontroller.bmp", 1246, 56,3,1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("controls_editController", "./image/UI/OPTION/controls_editcontroller.bmp", 1246, 56, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("controls_editKeyBoard", "./image/UI/OPTION/controls_editkeyboard.bmp", 1101, 56, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("controls_relicInputType", "./image/UI/OPTION/controls_relicinputtype.bmp", 1332, 55, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("controls_relicInputType_options", "./image/UI/OPTION/controls_relicinputtype_select.bmp", 460, 55, 2, 1, true, RGB(255, 0, 255));
@@ -49,10 +81,11 @@ void mainGame::setImages()
 	//6. Player
 	IMAGEMANAGER->addFrameImage("playerWalk", "./image/character/playerWalk.bmp", 1500, 500, 6, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("playerClimb", "./image/character/playerLadder.bmp", 250, 750, 1, 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerIdle", "./image/character/playerIdle.bmp", 250, 250, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerIdle", "./image/character/playerIdle.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("playerHitted", "./image/character/playerHitted.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 
 	//------------------------------------------------------
 	//**************아이템 이미지*********************
