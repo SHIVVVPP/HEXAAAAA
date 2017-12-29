@@ -89,11 +89,13 @@ void option_controls::render()
 	{
 		if (_vSelection[i]->_selectCondition == SELECT_OFF)
 		{
-			_vSelection[i]->image->frameRender(getMemDC(), WINSIZEX / 2 - _background->getWidth() / 2 + 550, WINSIZEY / 2 - _background->getHeight() / 2 + 61 + 41 * _vSelection[i]->_connectedSelectOption, 1, 0);
+			_vSelection[i]->image->frameRender(getMemDC(), WINSIZEX / 2 - _background->getWidth() / 2 + 550, WINSIZEY / 2 - _background->getHeight() / 2 + 63 + 41 * _vSelection[i]->_connectedSelectOption, 1, 0);
 		}
 		else if (_vSelection[i]->_selectCondition == SELECT_ON)
 		{
-			_vSelection[i]->image->frameRender(getMemDC(), WINSIZEX / 2 - _background->getWidth() / 2 + 550, WINSIZEY / 2 - _background->getHeight() / 2 + 61 + 41 * _vSelection[i]->_connectedSelectOption, 0, 0);
+			_vSelection[i]->image->frameRender(getMemDC(), WINSIZEX / 2 - _background->getWidth() / 2 + 550, WINSIZEY / 2 - _background->getHeight() / 2 + 63 + 41 * _vSelection[i]->_connectedSelectOption, 0, 0);
 		}
 	}
+
+	
 }

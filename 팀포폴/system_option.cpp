@@ -76,6 +76,7 @@ void system_option::update()
 		break;
 		}
 	}
+
 }
 
 void system_option::render()
