@@ -36,17 +36,10 @@ void system_option::update()
 	{
 		switch (_currentOption->getConnectedOption())
 		{
-				/*OPTION_OUT,
-				OPTION_MAIN,
-				OPTION_GAME,
-				OPTION_CONTROLS,
-				OPTION_AUDIO,
-				OPTION_VIDEO,
-				OPTION_SELECT,
-				OPTION_PROGRESS,
-				OPTION_NONE,*/
 		case OPTION_OUT:
-			
+			//option_out-> ¿É¼ÇÃ¢ ²ô±â
+
+
 		break;
 		case OPTION_MAIN:
 			SAFE_RELEASE(_currentOption);
@@ -74,6 +67,7 @@ void system_option::update()
 			_currentOption->init();
 		break;
 		case OPTION_SELECT:
+			_currentOption->setSelectCondition();
 		break;
 		case OPTION_PROGRESS:
 		break;
