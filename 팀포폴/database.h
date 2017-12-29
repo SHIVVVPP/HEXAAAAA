@@ -62,6 +62,5 @@ public:
 	void setSystemData_music_volume(DATABASE_CLASS kind, float value);
 	void setSystemData_sound_volume(DATABASE_CLASS kind, float value);
 	//Á¢±ÙÀÚ
-	element_system getSystemData(DATABASE_CLASS kind) { return	arrElement_sys; }
 };
 
