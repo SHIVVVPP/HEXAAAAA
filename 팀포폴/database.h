@@ -15,6 +15,7 @@ enum DATABASE_CLASS
 
 class element_system
 {
+public:
 	//game
 	bool pause_on_lost_focus;
 	bool show_feats;
@@ -25,42 +26,45 @@ class element_system
 	float sound_volume;
 	
 
-	element_system() {};
+	element_system() 
+	{ 
+		pause_on_lost_focus = false;
+		show_feats = false;
+		relic_input_type = false;
+		music_volume = 0.5f;
+		sound_volume = 0.5f;
+	};
 	~element_system() {};
 };
 
 class database : public singletonBase<database>
 {
 private:
-	//시스템 정보
-	typedef vector<string> arrElements;
-	typedef vector<string>::iterator iterElements;
-
-	typedef map<string, element_system*> arrElement_sys;
-	typedef map<string, element_system*>::iterator iterElement_sys;
+	typedef vector<string> vString;
+	typedef vector<string>::iterator viString;
 
 private:
-	arrElement_sys _mSysElement;
-	
+	element_system* sys_element;
+
 
 
 public:
 	database();
 	~database();
 
+
 	HRESULT init();
 	void release();
-
-	void loadDataBase(DATABASE_CLASS kind);
-
-
-//SYSTEM 관련
-	//설정자
-	void setSystemData_pause_on_lost_focus(DATABASE_CLASS kind, bool state);
-	void setSystemData_show_feats(DATABASE_CLASS kind, bool state);
-	void setSystemData_relic_input_type(DATABASE_CLASS kind, bool state);
-	void setSystemData_music_volume(DATABASE_CLASS kind, float value);
-	void setSystemData_sound_volume(DATABASE_CLASS kind, float value);
+	
+//시스템
 	//접근자
+	element_system* getElement_system() { return sys_element; }
+	//설정자
+	void setSys_pauseOnLostFocus(bool state) { sys_element->pause_on_lost_focus = state; }
+	void setSys_showFeats(bool state) { sys_element->show_feats = state; }
+	void setSys_relicInputType(bool state) { sys_element->relic_input_type = state; }
+	void setSys_musicVolume(float value) { sys_element->music_volume = value; }
+	void setSys_soundVolume(float value) { sys_element->sound_volume = value; }
+	
 };
 

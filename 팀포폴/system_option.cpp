@@ -71,6 +71,9 @@ void system_option::update()
 		break;
 		case OPTION_PROGRESS:
 		break;
+		case OPTION_DEFAULTSET:
+			_currentOption->setDefault();
+		break;
 		case OPTION_NONE:
 			
 		break;

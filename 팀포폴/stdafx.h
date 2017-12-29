@@ -26,6 +26,7 @@
 #include "cameraManager.h"
 #include "keyAniManager.h"
 #include "sceneManager.h"
+#include "database.h"
 
 using namespace std;
 using namespace HEXA_UTIL;
@@ -53,6 +54,8 @@ using namespace HEXA_UTIL;
 #define INIDATA iniDataManager::getSingleton()
 #define CAMERAMANAGER cameraManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
+#define DATABASE database::getSingleton()
+
 
 //=============================================================
 // ## 17.10.18 ## Macro ##
