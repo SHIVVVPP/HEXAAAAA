@@ -44,16 +44,13 @@ struct tagGear
 	int _itemNum;
 	bool _isGear;
 };
-class inventoryItem : public gameNode
+class inventoryRelic : public gameNode
 {
 private:
 	vector<tagRelics> _vRelic; //인벤 내 유물 아이템 
 	vector<tagRelics>::iterator _viRelic; //인벤 내  유물 아이템
-	vector<tagGear> _vGear; //인벤 내 기어 아이템
-	vector<tagGear>::iterator _viGear;
 private:
 	const char* _RelicName;
-	const char* _GearName;
 
 	bool _isGet;
 public:
@@ -66,18 +63,35 @@ public:
 	vector<tagRelics> &getVRelic() { return _vRelic; }
 	vector<tagRelics>::iterator &getViRelic() { return _viRelic; }
 
-	
-	vector<tagGear> &getVGear() { return _vGear; }
-	vector<tagGear>::iterator &getViGear() { return _viGear; }
-
-	inventoryItem();
-	~inventoryItem();
+	inventoryRelic();
+	~inventoryRelic();
 };
 
+class inventoryGear : public gameNode
+{
+private:
+	vector<tagGear> _vGear; //인벤 내 기어 아이템
+	vector<tagGear>::iterator _viGear;
+private:
+	const char* _GearName;
+
+	bool _isGet;
+public:
+	HRESULT init(const char* imageName, int itemNum, bool isGear, bool isGet);
+	void release();
+	void update();
+	void render();
+
+	vector<tagGear> &getVGear() { return _vGear; }
+	vector<tagGear>::iterator &getViGear() { return _viGear; }
+	inventoryGear();
+	~inventoryGear();
+};
 class inventory : public gameNode
 {
 private:
-	inventoryItem* _invenItem;
+	inventoryRelic* _invenRelic;
+	inventoryGear* _invenGear;
 	RECT _checkRect; //아이템 확인용 렉트.
 					 //이하 커서조작용 변수들
 	RECT _cursorRect; //커서의 렉트

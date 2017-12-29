@@ -11,7 +11,16 @@ enum OPTIONS
 	OPTION_CONTROLS,
 	OPTION_AUDIO,
 	OPTION_VIDEO,
-	
+	OPTION_SELECT,
+	OPTION_PROGRESS,
+	OPTION_NONE,
+};
+
+enum SELECT
+{
+	SELECT_ON,
+	SELECT_OFF,
+	SELECT_NONE,
 };
 
 struct tagOptions
@@ -20,7 +29,7 @@ struct tagOptions
 	animation* _ani;
 	bool isSelected;
 	OPTIONS _connectedOption;
-
+	SELECT _selectCondition;
 };
 
 
@@ -46,6 +55,8 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	OPTIONS getConnectedOption() { return _vOptions[_currentIndex]->_connectedOption; }
 
 };
 
