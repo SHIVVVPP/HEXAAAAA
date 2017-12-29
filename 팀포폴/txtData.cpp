@@ -112,6 +112,8 @@ void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width
 
 	CloseHandle(file);
 
+	//SetBkMode(hdc, TRANSPARENT);
+
 	RECT _rc = RectMake(x, y, width, height); //넣을좌표
 
 	DrawText(hdc, str, outputNum, &_rc, DT_WORDBREAK); //출력위치.

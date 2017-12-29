@@ -107,7 +107,13 @@ void inventory::update()
 		{
 			_invenRelic->init("firelod", Relics0, true, true);
 			_invenRelic->init("tangtangball", Relics1, true, true);
+			_invenRelic->init("fishingrod", Relics2, true, true);
+
 			_invenGear->init("shovel", Gear0, false, true);
+			_invenGear->init("armor", Gear1, false, true);
+			_invenGear->init("healthcap", Gear2, false, true);
+			_invenGear->init("invenMealTickets", Gear3, false, true);
+			_invenGear->init("invenMusicSheet", Gear4, false, true);
 		}
 	}
 	_invenRelic->update();
@@ -129,10 +135,27 @@ void inventory::render()
 		switch (_cursorPoint)
 		{
 		case CURSORPOINT0:
-			TXTDATA->render("firelod.txt", getMemDC(), 300, 300, 200, 200, 10);
+
+			HFONT font, oldFont;
+			
+			font = CreateFont(20, 0, 0, 0, 600, 0, 0, 0, DEFAULT_CHARSET,
+				OUT_STRING_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("./text/PressStart2P.ttf"));
+			oldFont = (HFONT)SelectObject(getMemDC(), font);
+			
+			SetTextColor(getMemDC(), RGB(125, 125, 255)); //125,125,255 = ÇÏ´Ã»ö.
+			DeleteObject(font);
+			DeleteObject(oldFont);
+			
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				if(_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelod.txt", getMemDC(), 300, 600, 800, 100, 10);
+			}
 			break;
 		case CURSORPOINT1:
-			TXTDATA->render("tangtangball.txt", getMemDC(), 300, 500, 200, 200, 8);
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangball.txt", getMemDC(), 300, 700, 200, 200, 8);
+			}
 			break;
 		}
 	}
@@ -292,9 +315,7 @@ void inventoryRelic::release()
 
 void inventoryRelic::update()
 {
-	//vector<string> vStr;
-	//vStr = TXTDATA->txtLoad("firelod.txt");
-	//vStr = TXTDATA->txtLoad("tangtangball.txt");
+	
 }
 
 void inventoryRelic::render()

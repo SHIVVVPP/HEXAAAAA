@@ -70,6 +70,11 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("healthcap", "./image/inventory/healthcap.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("invenMusicSheet", "./image/inventory/invenmusicsheet.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("invenMealTickets", "./image/inventory/mealtickets.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("armor", "./image/inventory/shovelarmor.bmp", 133, 133, true, RGB(0, 0, 0));
 	//------------------------------------------------------
 	//------------------------------------------------------
 
