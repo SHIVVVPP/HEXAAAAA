@@ -29,8 +29,8 @@ HRESULT option_audio::init()
 
 	tagProgressBar* tempP;
 	tempP = new tagProgressBar;
-	tempP->_image = IMAGEMANAGER->findImage("audio_progressBar");
-	tempP->_max = tempP->_image->getWidth();
+	tempP->_image = IMAGEMANAGER->findImage("audio_progressValue");
+	tempP->_max = IMAGEMANAGER->findImage("audio_progressBar")->getWidth();
 	tempP->_value = 0.5f;
 	_vProgress.push_back(tempP);
 
@@ -44,8 +44,8 @@ HRESULT option_audio::init()
 
 
 	tempP = new tagProgressBar;
-	tempP->_image = IMAGEMANAGER->findImage("audio_progressBar");
-	tempP->_max = tempP->_image->getWidth();
+	tempP->_image = IMAGEMANAGER->findImage("audio_progressValue");
+	tempP->_max = IMAGEMANAGER->findImage("audio_progressBar")->getWidth();
 	tempP->_value = 0.5f;
 	_vProgress.push_back(tempP);
 
@@ -90,6 +90,24 @@ void option_audio::release()
 void option_audio::update()
 {
 	option::update();
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+	{
+		if (_vOptions[_currentIndex]->_connectedOption == OPTION_PROGRESS)
+		{
+			if (_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value > 0)
+				_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value -= 0.05f;
+		}
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+	{
+		if (_vOptions[_currentIndex]->_connectedOption == OPTION_PROGRESS)
+		{
+			if (_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value < 1)
+				_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value += 0.05f;
+		}
+	}
 }
 
 void option_audio::render()
@@ -102,6 +120,8 @@ void option_audio::render()
 		if (_vOptions[i]->_connectedOption == OPTION_PROGRESS)
 		{
 			IMAGEMANAGER->findImage("audio_progressBar")->render(getMemDC(), WINSIZEX / 2 + _background->getWidth() / 2 - 215, WINSIZEY / 2 - _background->getHeight() / 2 + 78 + 41 * i);
+			int k = _vOptions[i]->_connectedSelectOption;
+			_vProgress[k]->_image->render(getMemDC(), WINSIZEX / 2 + _background->getWidth() / 2 - 215 + _vProgress[k]->_max*_vProgress[k]->_value, WINSIZEY / 2 - _background->getHeight() / 2 + 78 + 41 * i);
 		}
 	}
 
