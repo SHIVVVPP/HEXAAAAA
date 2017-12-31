@@ -45,6 +45,7 @@ class player : public gameNode
 	int _currentMP;
 	int _playerGold;
 	int _equipmentRelic;
+	int _dir;
 	float _speed;
 	float _jumpPower;
 	float _gravity;

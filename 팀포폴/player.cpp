@@ -40,6 +40,7 @@ HRESULT player::init()
 	_speed = 5.0f;
 	_jumpPower = 5.0f;
 	_gravity = 0.2f;
+	_dir = 1;
 	//_probeY = 0;
 	_repulsivePower = 3.0f;     // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
 	_frictionalPower = 0.2f;	// 반발력을 서서히 삭감시키기 위한 마찰력
@@ -54,10 +55,14 @@ HRESULT player::init()
 	KEYANIMANAGER->addArrayFrameAnimation("playerRightMove", "playerWalk", rightMove, 6, 8, true);
 	int leftMove[] = { 6,7,8,9,10,11 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftMove", "playerWalk", leftMove, 6, 8, true);
-	int rightJump[] = { 0 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerRightJump", "playerJump", rightJump, 1, 8, true);
-	int leftJump[] = { 1 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerLefttJump", "playerJump", leftJump, 1, 8, true);
+	int rightJumpUp[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightJumpUp", "playerJump", rightJumpUp, 1, 8, true);
+	int rightJumpDown[] = { 1 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightJumpDown", "playerJump", rightJumpDown, 1, 8, true);
+	int leftJumpUp[] = { 2 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpUp", "playerJump", leftJumpUp, 1, 8, true);
+	int leftJumpDown[] = { 3 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpDown", "playerJump", leftJumpDown, 1, 8, true);
 	int rightAttack[] = { 0,1,2,3 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttack, 4, 8, true);
 	int leftAttack[] = { 4,5,6,7 };
@@ -80,7 +85,6 @@ HRESULT player::init()
 	
 	_image = IMAGEMANAGER->findImage("playerIdle");
 	_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
-	//_image = IMAGEMANAGER->findImage()
 	return S_OK;
 }
 void player::release()
@@ -88,38 +92,105 @@ void player::release()
 }
 void player::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
-	{
-		_playerMainCondition = PLAYER_RIGHT_MOVE;
+	
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			if (_isJump )
+			{
+				if (_playerMainCondition == PLAYER_DOWN_ATTACK)
+				{
+					_playerMainCondition = PLAYER_DOWN_ATTACK;
+				}
+				else if (_playerMainCondition != PLAYER_DOWN_ATTACK)
+				{
+					_playerMainCondition = PLAYER_RIGHT_JUMP;
+				}
+				_dir = 1;
+			}
+			if (!_isJump)
+			{
+				_playerMainCondition = PLAYER_RIGHT_MOVE;
+				_dir = 1;
+				_image = IMAGEMANAGER->findImage("playerWalk");
+				_ani = KEYANIMANAGER->findAnimation("playerRightMove");
+				_ani->start();
+			}
 		
-		_image = IMAGEMANAGER->findImage("playerWalk");
-		_ani = KEYANIMANAGER->findAnimation("playerRightMove");
-		_ani->start();
-	}
-	else if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-	{
-		_ani->stop();
-		_playerMainCondition = PLAYER_RIGHT_IDLE;
-		_image = IMAGEMANAGER->findImage("playerIdle");
-		_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
-		_ani->start();
-	}
+		}
+		else if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		{
+			if (_isJump && _playerMainCondition != PLAYER_DOWN_ATTACK)
+			{
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+			}
+			else if (!_isJump)
+			{
+				_ani->stop();
+				_playerMainCondition = PLAYER_RIGHT_IDLE;
+				_image = IMAGEMANAGER->findImage("playerIdle");
+				_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
+				_ani->start();
+			}
+		
+		}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			if (_isJump)
+			{
+				_playerMainCondition = PLAYER_LEFT_JUMP;
+				_dir = -1;
+			}
+			else if (!_isJump)
+			{
+				_playerMainCondition = PLAYER_LEFT_MOVE;
+				_dir = -1;
+				_image = IMAGEMANAGER->findImage("playerWalk");
+				_ani = KEYANIMANAGER->findAnimation("playerLeftMove");
+				_ani->start();
+			}
+			
+		}
+		else if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		{
+			if (_isJump)
+			{
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+			}
+			else if (!_isJump)
+			{
+				_ani->stop();
+				_playerMainCondition = PLAYER_LEFT_IDLE;
+				_image = IMAGEMANAGER->findImage("playerIdle");
+				_ani = KEYANIMANAGER->findAnimation("playerLeftIdle");
+				_ani->start();
+			}
+			
+		}
+	
+	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 	{
-		_playerMainCondition = PLAYER_LEFT_MOVE;
-		_image = IMAGEMANAGER->findImage("playerWalk");
-		_ani = KEYANIMANAGER->findAnimation("playerLeftMove");
-		_ani->start();
+		if (_isJump)
+		{
+			_playerMainCondition = PLAYER_DOWN_ATTACK;
+			_image = IMAGEMANAGER->findImage("playerDownAtk");
+
+			switch (_dir)
+			{
+			case 1:
+				_ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
+				
+				break;
+
+			case -1:
+				_ani = KEYANIMANAGER->findAnimation("playerLeftDownAttack");
+				
+				break;
+			}
+			_ani->start();
+		}
 	}
-	else if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
-	{
-		_ani->stop();
-		_playerMainCondition = PLAYER_LEFT_IDLE;
-		_image = IMAGEMANAGER->findImage("playerIdle");
-		_ani = KEYANIMANAGER->findAnimation("playerLeftIdle");
-		_ani->start();
-	}
+	
 	if (KEYMANAGER->isOnceKeyDown(VK_UP) && _playerSubCondition == PLAYER_LADDER)
 	{
 		_playerMainCondition = PLAYER_LEFT_CLIMB;
@@ -131,18 +202,60 @@ void player::update()
 	{
 		_ani->stop();
 	}
-
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE) && _isJump == false)
-	{
-		if (_playerMainCondition == PLAYER_RIGHT_IDLE || _playerMainCondition == PLAYER_RIGHT_MOVE)
+	/////// 플레이어 점프 상태 관련
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE) && _isJump == false) 
+	{	//// 우측 보는 상태로 점프 키
+		if (_playerMainCondition == PLAYER_RIGHT_IDLE )
 		{
-			_playerMainCondition = PLAYER_RIGHT_JUMP;
+			_ani->stop();
+			_playerMainCondition = PLAYER_IDLE_JUMP;
 			_image = IMAGEMANAGER->findImage("playerJump");
-			_ani = KEYANIMANAGER->findAnimation("playerRightJump");
+			_ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
 			_ani->start();
 		}
-		if (_playerMainCondition == PLAYER_LEFT_IDLE || _playerMainCondition == PLAYER_LEFT_MOVE)	_playerMainCondition = PLAYER_LEFT_JUMP;
+		//// 우측으로 달리면서 점프
+		if (_playerMainCondition == PLAYER_RIGHT_MOVE)
+		{
+			_ani->stop();
+			_playerMainCondition = PLAYER_RIGHT_JUMP;
+			_image = IMAGEMANAGER->findImage("playerJump");
+			_ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
+			_ani->start();
+		}
+		//// 좌측 보는 상태로 점프키
+		if (_playerMainCondition == PLAYER_LEFT_IDLE) 
+		{
+			_ani->stop();
+			_playerMainCondition = PLAYER_IDLE_JUMP;
+			_image = IMAGEMANAGER->findImage("playerJump");
+			_ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
+			_ani->start();
+		}	
+		//// 좌측으로 달리면서 점프
+		if (_playerMainCondition == PLAYER_LEFT_MOVE)
+		{
+			_ani->stop();
+			_playerMainCondition = PLAYER_LEFT_JUMP;
+			_image = IMAGEMANAGER->findImage("playerJump");
+			_ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
+			_ani->start();
+		}
 		_isJump = true;
+	}
+	if (_isJump)
+	{
+		switch (_dir)
+		{
+		case 1 :
+			if (_jumpPower >= 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
+			else if (_jumpPower < 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpDown");
+			break;
+
+		case -1:
+			if (_jumpPower >= 0) _ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
+			else if (_jumpPower < 0) _ani = KEYANIMANAGER->findAnimation("playerLeftJumpDown");
+			break;
+		}
 	}
 
 	
