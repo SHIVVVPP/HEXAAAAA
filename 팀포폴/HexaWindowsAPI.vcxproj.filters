@@ -94,6 +94,9 @@
     <Filter Include="shovelKnight\scene\Inventory">
       <UniqueIdentifier>{a0eb4474-c5a7-489b-88aa-982559b8c94d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\dataBase">
+      <UniqueIdentifier>{facfae0c-d8ad-4315-9f62-74c7252aaf0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -216,6 +219,9 @@
     <ClInclude Include="sceneManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="database.h">
+      <Filter>MainGame\dataBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -325,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="sceneManager.cpp">
       <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="database.cpp">
+      <Filter>MainGame\dataBase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -31,7 +31,7 @@ HRESULT option_audio::init()
 	tempP = new tagProgressBar;
 	tempP->_image = IMAGEMANAGER->findImage("audio_progressValue");
 	tempP->_max = IMAGEMANAGER->findImage("audio_progressBar")->getWidth();
-	tempP->_value = 0.5f;
+	tempP->_value = DATABASE->getElement_system()->music_volume;
 	_vProgress.push_back(tempP);
 
 
@@ -46,12 +46,12 @@ HRESULT option_audio::init()
 	tempP = new tagProgressBar;
 	tempP->_image = IMAGEMANAGER->findImage("audio_progressValue");
 	tempP->_max = IMAGEMANAGER->findImage("audio_progressBar")->getWidth();
-	tempP->_value = 0.5f;
+	tempP->_value = DATABASE->getElement_system()->sound_volume;
 	_vProgress.push_back(tempP);
 
 	temp = new tagOptions;
 	temp->image = IMAGEMANAGER->findImage("audio_setToDefault");
-	temp->_connectedOption = OPTION_SELECT;
+	temp->_connectedOption = OPTION_DEFAULTSET;
 	temp->_connectedSelectOption = 0;
 	_vOptions.push_back(temp);
 
@@ -96,7 +96,19 @@ void option_audio::update()
 		if (_vOptions[_currentIndex]->_connectedOption == OPTION_PROGRESS)
 		{
 			if (_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value > 0)
-				_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value -= 0.05f;
+			{
+				if (_currentIndex == 1)
+				{
+					DATABASE->setSys_musicVolume(DATABASE->getElement_system()->music_volume - 0.05f);
+					_vProgress[_vOptions[1]->_connectedSelectOption]->_value = DATABASE->getElement_system()->music_volume;
+				}
+				else if (_currentIndex == 2)
+				{
+					DATABASE->setSys_soundVolume(DATABASE->getElement_system()->sound_volume - 0.05f);
+					_vProgress[_vOptions[2]->_connectedSelectOption]->_value = DATABASE->getElement_system()->sound_volume;
+				}
+
+			}
 		}
 	}
 
@@ -105,9 +117,21 @@ void option_audio::update()
 		if (_vOptions[_currentIndex]->_connectedOption == OPTION_PROGRESS)
 		{
 			if (_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value < 1)
-				_vProgress[_vOptions[_currentIndex]->_connectedSelectOption]->_value += 0.05f;
+			{
+				if (_currentIndex == 1)
+				{
+					DATABASE->setSys_musicVolume(DATABASE->getElement_system()->music_volume + 0.05f);
+					_vProgress[_vOptions[1]->_connectedSelectOption]->_value = DATABASE->getElement_system()->music_volume;
+				}
+				else if (_currentIndex == 2)
+				{
+					DATABASE->setSys_soundVolume(DATABASE->getElement_system()->sound_volume+ 0.05f);
+					_vProgress[_vOptions[2]->_connectedSelectOption]->_value = DATABASE->getElement_system()->sound_volume;
+				}
+			}
 		}
 	}
+
 }
 
 void option_audio::render()
@@ -121,9 +145,21 @@ void option_audio::render()
 		{
 			IMAGEMANAGER->findImage("audio_progressBar")->render(getMemDC(), WINSIZEX / 2 + _background->getWidth() / 2 - 215, WINSIZEY / 2 - _background->getHeight() / 2 + 78 + 41 * i);
 			int k = _vOptions[i]->_connectedSelectOption;
+			if(k == 0)
 			_vProgress[k]->_image->render(getMemDC(), WINSIZEX / 2 + _background->getWidth() / 2 - 215 + _vProgress[k]->_max*_vProgress[k]->_value, WINSIZEY / 2 - _background->getHeight() / 2 + 78 + 41 * i);
+			else if (k == 1)
+				_vProgress[k]->_image->render(getMemDC(), WINSIZEX / 2 + _background->getWidth() / 2 - 215 + _vProgress[k]->_max*_vProgress[k]->_value, WINSIZEY / 2 - _background->getHeight() / 2 + 78 + 41 * i);
 		}
 	}
 
 
+}
+
+
+void option_audio::setDefault()
+{
+	DATABASE->setSys_musicVolume(0.5f);
+	_vProgress[0]->_value = DATABASE->getElement_system()->music_volume;
+	DATABASE->setSys_soundVolume(0.5f);
+	_vProgress[1]->_value = DATABASE->getElement_system()->sound_volume;
 }

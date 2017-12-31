@@ -13,6 +13,7 @@ enum OPTIONS
 	OPTION_VIDEO,
 	OPTION_SELECT,
 	OPTION_PROGRESS,
+	OPTION_DEFAULTSET,
 	OPTION_NONE,
 };
 
@@ -82,6 +83,8 @@ public:
 
 		}
 	}
+
+	virtual void setDefault();
 
 };
 

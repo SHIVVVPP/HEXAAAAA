@@ -129,3 +129,7 @@ void option::render()
 		_vOptions[i]->image->aniRender(getMemDC(), WINSIZEX / 2 - _background->getWidth() / 2 + 10, WINSIZEY / 2 - _background->getHeight() / 2 + 64 + 41 * i,_vOptions[i]->_ani);
 	}
 }
+
+void option::setDefault()
+{
+}
