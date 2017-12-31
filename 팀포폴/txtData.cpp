@@ -28,9 +28,8 @@ void txtData::txtSave(const char* saveFileName, vector<string> vStr)
 {
 	HANDLE file;
 
-	char str[128];
 	DWORD write;
-
+	char str[1025];
 	strncpy_s(str, 128, vectorArrayCombine(vStr), 126);
 
 	file = CreateFile(saveFileName, GENERIC_WRITE, 0, NULL,
@@ -44,8 +43,8 @@ void txtData::txtSave(const char* saveFileName, vector<string> vStr)
 
 char* txtData::vectorArrayCombine(vector<string> vArray)
 {
-	char str[128];
-
+	
+	char str[1025];
 	ZeroMemory(str, sizeof(str));
 	
 	for ( int i = 0; i < vArray.size(); i++ )
@@ -59,18 +58,20 @@ char* txtData::vectorArrayCombine(vector<string> vArray)
 }
 
 
+
+
 //Load
 vector<string> txtData::txtLoad(const char* loadFileName)
 {
 	HANDLE file;
-
-	char str[128];
+	char str[1025];
+	
 	DWORD read;
 
 	file = CreateFile(loadFileName, GENERIC_READ, 0, NULL,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	ReadFile(file, str, 128, &read, NULL);
+	ReadFile(file, str, 1025, &read, NULL);
 
 	CloseHandle(file);
 
@@ -80,7 +81,7 @@ vector<string> txtData::txtLoad(const char* loadFileName)
 vector<string> txtData::charArraySeparation(char charArray[])
 {
 	vector<string> vArray;
-
+	char str[1025];
 	char* temp;
 	char* separator = ",";
 	char* token;
@@ -94,4 +95,26 @@ vector<string> txtData::charArraySeparation(char charArray[])
 	}
 
 	return vArray;
+}
+
+void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width, float height, int outputNum)
+{
+	HANDLE file;
+
+	DWORD read;
+
+	char str[1025];
+
+	file = CreateFile(loadFileName, GENERIC_READ, 0, NULL,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	ReadFile(file, str, 1025, &read, NULL);
+
+	CloseHandle(file);
+
+	//SetBkMode(hdc, TRANSPARENT);
+
+	RECT _rc = RectMake(x, y, width, height); //넣을좌표
+
+	DrawText(hdc, str, outputNum, &_rc, DT_WORDBREAK); //출력위치.
 }

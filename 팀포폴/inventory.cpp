@@ -107,10 +107,16 @@ void inventory::update()
 		{
 			_invenRelic->init("firelod", Relics0, true, true);
 			_invenRelic->init("tangtangball", Relics1, true, true);
+			_invenRelic->init("fishingrod", Relics2, true, true);
+
 			_invenGear->init("shovel", Gear0, false, true);
+			_invenGear->init("armor", Gear1, false, true);
+			_invenGear->init("healthcap", Gear2, false, true);
+			_invenGear->init("invenMealTickets", Gear3, false, true);
+			_invenGear->init("invenMusicSheet", Gear4, false, true);
 		}
 	}
-
+	_invenRelic->update();
 }
 
 void inventory::render()
@@ -123,6 +129,36 @@ void inventory::render()
 
 	_invenRelic->render();
 	_invenGear->render();
+
+	if (_relic)
+	{
+		switch (_cursorPoint)
+		{
+		case CURSORPOINT0:
+
+			HFONT font, oldFont;
+			
+			font = CreateFont(20, 0, 0, 0, 600, 0, 0, 0, DEFAULT_CHARSET,
+				OUT_STRING_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("./text/PressStart2P.ttf"));
+			oldFont = (HFONT)SelectObject(getMemDC(), font);
+			
+			SetTextColor(getMemDC(), RGB(125, 125, 255)); //125,125,255 = ÇÏ´Ã»ö.
+			DeleteObject(font);
+			DeleteObject(oldFont);
+			
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				if(_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelod.txt", getMemDC(), 300, 600, 800, 100, 10);
+			}
+			break;
+		case CURSORPOINT1:
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangball.txt", getMemDC(), 300, 700, 200, 200, 8);
+			}
+			break;
+		}
+	}
 }
 
 void inventory::cursorMove()
@@ -279,7 +315,7 @@ void inventoryRelic::release()
 
 void inventoryRelic::update()
 {
-
+	
 }
 
 void inventoryRelic::render()
@@ -291,10 +327,12 @@ void inventoryRelic::render()
 		case Relics0:
 			_viRelic->_x = 300;
 			_viRelic->_y = 240;
+			
 			break;
 		case Relics1:
 			_viRelic->_x = 450;
 			_viRelic->_y = 240;
+			
 			break;
 		case Relics2:
 			_viRelic->_x = 600;
@@ -309,8 +347,6 @@ void inventoryRelic::render()
 		}
 		if (_viRelic->_isRelic == true) _viRelic->_image->render(getMemDC(), _viRelic->_x, _viRelic->_y);
 	}
-
-	
 }
 
 inventoryGear::inventoryGear()

@@ -22,6 +22,8 @@ animation::~animation()
 
 HRESULT animation::init(int totalW, int totalH, int frameW, int frameH)
 {
+	_frameList.clear();
+
 	_frameWidth = frameW;
 	int _frameNumWidth = totalW / _frameWidth;
 

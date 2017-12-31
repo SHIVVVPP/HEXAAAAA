@@ -26,6 +26,7 @@
 #include "cameraManager.h"
 #include "keyAniManager.h"
 #include "sceneManager.h"
+#include "database.h"
 
 using namespace std;
 using namespace HEXA_UTIL;
@@ -37,8 +38,8 @@ using namespace HEXA_UTIL;
 #define WINNAME		(LPTSTR)(TEXT("Hexa API"))
 #define WINSTARTX	50
 #define WINSTARTY	50
-#define WINSIZEX	1920	
-#define WINSIZEY	1080
+#define WINSIZEX	1600
+#define WINSIZEY	900
 
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
@@ -53,6 +54,8 @@ using namespace HEXA_UTIL;
 #define INIDATA iniDataManager::getSingleton()
 #define CAMERAMANAGER cameraManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
+#define DATABASE database::getSingleton()
+
 
 //=============================================================
 // ## 17.10.18 ## Macro ##
