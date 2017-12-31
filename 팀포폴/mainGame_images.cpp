@@ -102,6 +102,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("invenMusicSheet", "./image/inventory/invenmusicsheet.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("invenMealTickets", "./image/inventory/mealtickets.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("armor", "./image/inventory/shovelarmor.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("potion", "./image/inventory/potion.bmp", 38, 46, true, RGB(255, 0, 255));
 	//------------------------------------------------------
 	//------------------------------------------------------
 

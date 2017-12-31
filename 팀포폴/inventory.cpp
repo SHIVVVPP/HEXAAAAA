@@ -53,8 +53,8 @@ void inventory::update()
 	if (_invenani->getPlayIndex() >= _invenImage->getMaxFrameX())
 	{
 		_invenImage = IMAGEMANAGER->findImage("inventory");
-		_invenImage->setX(WINSIZEX / 2 - 740);
-		_invenImage->setY(WINSIZEY / 2 - 470);
+		_invenImage->setX(WINSIZEX / 2 - 550);
+		_invenImage->setY(WINSIZEY / 2 - 350);
 		if (_invenani->getPlayIndex() >= 3)_invenani->stop();
 	}
 
@@ -99,8 +99,6 @@ void inventory::update()
 	}
 	else if (_cursorAlpha == 0 && _count % 60 == 0) _cursorAlpha = 255;
 
-	cursorMove();
-
 	if (PtInRect(&_checkRect, _ptMouse))
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
@@ -116,7 +114,8 @@ void inventory::update()
 			_invenGear->init("invenMusicSheet", Gear4, false, true);
 		}
 	}
-	_invenRelic->update();
+
+	cursorMove();
 }
 
 void inventory::render()
@@ -129,36 +128,7 @@ void inventory::render()
 
 	_invenRelic->render();
 	_invenGear->render();
-
-	if (_relic)
-	{
-		switch (_cursorPoint)
-		{
-		case CURSORPOINT0:
-
-			HFONT font, oldFont;
-			
-			font = CreateFont(20, 0, 0, 0, 600, 0, 0, 0, DEFAULT_CHARSET,
-				OUT_STRING_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("./text/PressStart2P.ttf"));
-			oldFont = (HFONT)SelectObject(getMemDC(), font);
-			
-			SetTextColor(getMemDC(), RGB(125, 125, 255)); //125,125,255 = 하늘색.
-			DeleteObject(font);
-			DeleteObject(oldFont);
-			
-			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
-			{
-				if(_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelod.txt", getMemDC(), 300, 600, 800, 100, 10);
-			}
-			break;
-		case CURSORPOINT1:
-			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
-			{
-				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangball.txt", getMemDC(), 300, 700, 200, 200, 8);
-			}
-			break;
-		}
-	}
+	draw();
 }
 
 void inventory::cursorMove()
@@ -169,34 +139,34 @@ void inventory::cursorMove()
 		{
 		case CURSORPOINT0:
 			_center.x = 300;
-			_center.y = 240;
+			_center.y = 250;
 			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) _cursorPoint = CURSORPOINT5;
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) _cursorPoint = CURSORPOINT1;
 			break;
 		case CURSORPOINT1:
 			_center.x = 450;
-			_center.y = 240;
+			_center.y = 250;
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) _cursorPoint = CURSORPOINT0;
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) _cursorPoint = CURSORPOINT2;
 			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) _cursorPoint = CURSORPOINT6;
 			break;
 		case CURSORPOINT2:
 			_center.x = 600;
-			_center.y = 240;
+			_center.y = 250;
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) _cursorPoint = CURSORPOINT1;
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) _cursorPoint = CURSORPOINT3;
 			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) _cursorPoint = CURSORPOINT7;
 			break;
 		case CURSORPOINT3:
 			_center.x = 750;
-			_center.y = 240;
+			_center.y = 250;
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) _cursorPoint = CURSORPOINT2;
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) _cursorPoint = CURSORPOINT4;
 			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) _cursorPoint = CURSORPOINT8;
 			break;
 		case CURSORPOINT4:
 			_center.x = 900;
-			_center.y = 240;
+			_center.y = 250;
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) _cursorPoint = CURSORPOINT3;
 			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) _cursorPoint = CURSORPOINT9;
 			break;
@@ -277,6 +247,125 @@ void inventory::cursorMove()
 	_cursorRect = RectMakeCenter(_center.x, _center.y, _cursor->getWidth(), _cursor->getHeight());
 }
 
+void inventory::draw()
+{
+	if (_relic)
+	{
+		for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+		{
+			if (_invenRelic->getViRelic()->_isRelic == true)IMAGEMANAGER->findImage("potion")->render(getMemDC(), 700, 730);
+		}
+	
+		switch (_cursorPoint)
+		{
+		case CURSORPOINT0:
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				SetTextColor(getMemDC(), RGB(125, 125, 255));
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelod.txt", getMemDC(), 370, 600, 800, 100, 10);
+				SetTextColor(getMemDC(), RGB(255, 255, 255));
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelodex.txt", getMemDC(), 380, 650, 800, 100, 22);
+	
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelodmana.txt", getMemDC(), 370, 740, 800, 100, 2);
+			}
+			break;
+		case CURSORPOINT1:
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				SetTextColor(getMemDC(), RGB(125, 125, 255));
+				if (_invenRelic->getViRelic()->_isRelic == true && Relics1)TXTDATA->render("./text/tangtangball.txt", getMemDC(), 370, 600, 800, 200, 13);
+	
+				SetTextColor(getMemDC(), RGB(255, 255, 255));
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangballex.txt", getMemDC(), 380, 650, 800, 200, 37);
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangballmana.txt", getMemDC(), 370, 740, 800, 200, 2);
+			}
+			break;
+		case CURSORPOINT2:
+			for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+			{
+				SetTextColor(getMemDC(), RGB(125, 125, 255));
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/rod.txt", getMemDC(), 370, 600, 800, 200, 12);
+				SetTextColor(getMemDC(), RGB(255, 255, 255));
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/rodex.txt", getMemDC(), 380, 650, 800, 200, 37);
+				if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/rodmana.txt", getMemDC(), 370, 740, 800, 200, 2);
+			}
+			break;
+		}
+	}
+
+	//if (_relic)
+	//{
+	//	for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+	//	{
+	//		if (_invenRelic->getViRelic()->_isRelic == true)IMAGEMANAGER->findImage("potion")->render(getMemDC(), 700, 730);
+	//	}
+	//
+	//	for (_invenRelic->getViRelic() = _invenRelic->getVRelic().begin(); _invenRelic->getViRelic() != _invenRelic->getVRelic().end(); ++_invenRelic->getViRelic())
+	//	{
+	//		switch (_invenRelic->getViRelic()->_itemNum && _cursorPoint)
+	//		{
+	//		case Relics0: case CURSORPOINT0:
+	//			SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelod.txt", getMemDC(), 370, 600, 800, 100, 10);
+	//			SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelodex.txt", getMemDC(), 380, 650, 800, 100, 22);
+	//
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/firelodmana.txt", getMemDC(), 370, 740, 800, 100, 2);
+	//			break;
+	//		case Relics1: case CURSORPOINT1:
+	//			SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangball.txt", getMemDC(), 370, 600, 800, 200, 13);
+	//
+	//			SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangballex.txt", getMemDC(), 380, 650, 800, 200, 37);
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/tangtangballmana.txt", getMemDC(), 370, 740, 800, 200, 2);
+	//			break;
+	//		case Relics2: case CURSORPOINT2:
+	//			SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/rod.txt", getMemDC(), 370, 600, 800, 200, 12);
+	//			SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/rodex.txt", getMemDC(), 380, 650, 800, 200, 37);
+	//			if (_invenRelic->getViRelic()->_isRelic == true)TXTDATA->render("./text/rodmana.txt", getMemDC(), 370, 740, 800, 200, 2);
+	//			break;
+	//		}
+	//	}
+	//}
+
+	if (!_relic)
+	{
+		for (_invenGear->getViGear() = _invenGear->getVGear().begin(); _invenGear->getViGear() != _invenGear->getVGear().end(); ++_invenGear->getViGear())
+		{
+			switch (_invenGear->getViGear()->_itemNum && _cursorPoint)
+			{
+			case Gear0 : case  CURSORPOINT0:
+				SetTextColor(getMemDC(), RGB(125, 125, 255));
+				if (_invenGear->getViGear()->_isGear == true) TXTDATA->render("./text/shovel.txt", getMemDC(), 370, 500, 800, 200, 12);
+				SetTextColor(getMemDC(), RGB(255, 255, 255));
+				if (_invenGear->getViGear()->_isGear == true) TXTDATA->render("./text/shovelex.txt", getMemDC(), 370, 550, 800, 200, 52);
+				break;
+			case Gear1: case CURSORPOINT1:
+				SetTextColor(getMemDC(), RGB(125, 125, 255));
+				if (_invenGear->getViGear()->_isGear == true) TXTDATA->render("./text/armor.txt", getMemDC(), 370, 500, 800, 200, 14);
+				SetTextColor(getMemDC(), RGB(255, 255, 255));
+				if (_invenGear->getViGear()->_isGear == true) TXTDATA->render("./text/armorex.txt", getMemDC(), 370, 550, 800, 200, 40);
+				break;
+			case Gear2: case CURSORPOINT2:
+				SetTextColor(getMemDC(), RGB(125, 125, 255));
+				if (_invenGear->getViGear()->_isGear == true) TXTDATA->render("./text/shovel.txt", getMemDC(), 370, 500, 800, 200, 12);
+				SetTextColor(getMemDC(), RGB(255, 255, 255));
+				if (_invenGear->getViGear()->_isGear == true) TXTDATA->render("./text/shovelex.txt", getMemDC(), 370, 550, 800, 200, 52);
+				break;
+			//case CURSORPOINT2:
+			//	break;
+			//case CURSORPOINT3:
+			//	break;
+			//case CURSORPOINT4:
+			//	break;
+			}
+		}
+	}
+}
+
 void inventory::invenScene()
 {
 	SCENEMANAGER->changeScene("인벤토리");
@@ -326,17 +415,15 @@ void inventoryRelic::render()
 		{
 		case Relics0:
 			_viRelic->_x = 300;
-			_viRelic->_y = 240;
-			
+			_viRelic->_y = 250;
 			break;
 		case Relics1:
 			_viRelic->_x = 450;
-			_viRelic->_y = 240;
-			
+			_viRelic->_y = 250;
 			break;
 		case Relics2:
 			_viRelic->_x = 600;
-			_viRelic->_y = 240;
+			_viRelic->_y = 250;
 			break;
 		}
 		if (KEYMANAGER->isToggleKey(VK_F1))
@@ -361,6 +448,7 @@ HRESULT inventoryGear::init(const char * imageName, int itemNum, bool isGear, bo
 {
 	_GearName = imageName;
 	_isGet = isGet;
+	//_itemNum = itemNum;
 	tagGear Gear;
 	ZeroMemory(&Gear, sizeof(tagGear));
 	Gear._image = IMAGEMANAGER->findImage(_GearName);
@@ -371,6 +459,7 @@ HRESULT inventoryGear::init(const char * imageName, int itemNum, bool isGear, bo
 	Gear._rc = RectMake(Gear._x, Gear._y, Gear._image->getWidth() / 2, Gear._image->getHeight() / 2);
 
 	_vGear.push_back(Gear);
+
 	return S_OK;
 }
 
@@ -392,10 +481,10 @@ void inventoryGear::render()
 			_viGear->_x = 300;
 			_viGear->_y = 280;
 			break;
-		case Gear1:
-			_viGear->_x = 450;
-			_viGear->_y = 280;
-			break;
+		//case Gear1:
+		//	_viGear->_x = 450;
+		//	_viGear->_y = 280;
+		//	break;
 		case Gear2:
 			_viGear->_x = 600;
 			_viGear->_y = 280;
@@ -413,7 +502,6 @@ void inventoryGear::render()
 		{
 			if (_viGear->_isGear == true)RectangleMake(getMemDC(), _viGear->_x + (_viGear->_rc.right - _viGear->_rc.left) / 2, _viGear->_y + (_viGear->_rc.bottom - _viGear->_rc.top) / 2,
 				_viGear->_image->getWidth() / 2, _viGear->_image->getHeight() / 2);
-
 		}
 		if (_viGear->_isGear == true)_viGear->_image->render(getMemDC(), _viGear->_x, _viGear->_y);
 	}
