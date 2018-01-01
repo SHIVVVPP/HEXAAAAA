@@ -37,6 +37,19 @@ public:
 	~element_system() {};
 };
 
+class element_player
+{
+public:
+	int player_HP;
+	int player_MaxHP;
+	int player_MP;
+	int player_Gold;
+
+	element_player() {};
+	~element_player() {};
+
+};
+
 class database : public singletonBase<database>
 {
 private:
@@ -45,6 +58,9 @@ private:
 
 private:
 	element_system* sys_element;
+
+	element_player* player_current_element; //현재 플레이어의 정보
+	element_player* player_save_element; // 세이브 포인트시 플레이어의 정보
 
 
 
@@ -55,9 +71,9 @@ public:
 
 	HRESULT init();
 	void release();
-	
-//시스템
-	//접근자
+
+	//시스템
+		//접근자
 	element_system* getElement_system() { return sys_element; }
 	//설정자
 	void setSys_pauseOnLostFocus(bool state) { sys_element->pause_on_lost_focus = state; }
@@ -65,6 +81,26 @@ public:
 	void setSys_relicInputType(bool state) { sys_element->relic_input_type = state; }
 	void setSys_musicVolume(float value) { sys_element->music_volume = value; }
 	void setSys_soundVolume(float value) { sys_element->sound_volume = value; }
-	
+
+
+	//플레이어
+	element_player* getCurrentPlayerInfo() { return player_current_element; }
+	element_player* getPresentPlayerInfo() { return player_save_element; }
+
+	void setPlayer_currentInfo(int HP, int max, int MP, int Gold)
+	{
+		player_current_element->player_HP = HP;
+		player_current_element->player_MaxHP = max;
+		player_current_element->player_MP = MP;
+		player_current_element->player_Gold = Gold;
+	}
+
+	void setPlayer_savePoint(int HP, int max, int MP, int Gold)
+	{
+		player_save_element->player_HP = HP;
+		player_current_element->player_MaxHP = max;
+		player_save_element->player_MP = MP;
+		player_save_element->player_Gold = Gold;
+	}
 };
 
