@@ -32,6 +32,7 @@ struct tagRelics
 	RECT _rc;	  //인벤 내의 아이템의 렉트 (커서와의 렉트충돌로 선택여부 확인)
 	float _x, _y; //인벤 아이템의 좌표.
 	int _itemNum;
+	int _textPos;
 	bool _isRelic;
 	//아이템 소지 여부.
 };
@@ -42,6 +43,7 @@ struct tagGear
 	RECT _rc;
 	float _x, _y;
 	int _itemNum;
+	int _textPos;
 	bool _isGear;
 };
 class inventoryRelic : public gameNode
@@ -74,7 +76,7 @@ private:
 	vector<tagGear>::iterator _viGear;
 private:
 	const char* _GearName;
-	int _itemNum;
+
 	bool _isGet;
 public:
 	HRESULT init(const char* imageName, int itemNum, bool isGear, bool isGet);
@@ -85,7 +87,7 @@ public:
 	vector<tagGear> &getVGear() { return _vGear; }
 	vector<tagGear>::iterator &getViGear() { return _viGear; }
 
-	int getItemNum() { return _itemNum; }
+
 	inventoryGear();
 	~inventoryGear();
 };
@@ -95,6 +97,7 @@ private:
 	inventoryRelic* _invenRelic;
 	inventoryGear* _invenGear;
 	RECT _checkRect; //아이템 확인용 렉트.
+	RECT _checkRect2;
 					 //이하 커서조작용 변수들
 	RECT _cursorRect; //커서의 렉트
 	POINT _center; //커서 중심좌표
