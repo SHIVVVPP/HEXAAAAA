@@ -58,8 +58,6 @@ void ui::update()
 		_playerHP++;
 		_gold += 10;
 	}
-
-
 }
 
 void ui::render()
