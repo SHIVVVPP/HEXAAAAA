@@ -1,11 +1,11 @@
 #pragma once
 #include "gameNode.h"
 
-class player;
-
 class stage : public gameNode
 {
-	player* _player;
+private
+	pixelMap* _pm;
+   
 
 public:
 	stage();
@@ -16,7 +16,7 @@ public:
 	void update();
 	void render();
 
-	void addressLinkWithPlayer(player* p) { _player = p; }
-
+	pixelMap();
+	~pixelMap();
 };
 
