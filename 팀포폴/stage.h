@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #include "gameNode.h"
 
 class stage : public gameNode

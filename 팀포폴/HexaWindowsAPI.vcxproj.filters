@@ -273,6 +273,9 @@
     <ClInclude Include="gard.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
+    <ClInclude Include="objects.h">
+      <Filter>shovelKnight\ObjectManager\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -433,6 +436,9 @@
     </ClCompile>
     <ClCompile Include="gard.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="objects.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
