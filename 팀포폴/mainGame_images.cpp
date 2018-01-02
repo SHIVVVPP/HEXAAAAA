@@ -4,39 +4,6 @@
 void mainGame::setImages()
 {
 
-	
-
-	//------------------------------------------------------
-	//**************플레이어 이미지*********************
-	//------------------------------------------------------
-	//6. Player
-	IMAGEMANAGER->addFrameImage("playerWalk", "./image/character/playerWalk.bmp", 1500, 500, 6, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerClimb", "./image/character/playerLadder.bmp", 250, 750, 1, 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerIdle", "./image/character/playerIdle.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerHitted", "./image/character/playerHitted.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 500, 500, 2, 2, true, RGB(255, 0, 255));
-
-	//------------------------------------------------------
-	//**************아이템 이미지*********************
-	//------------------------------------------------------
-
-	//인벤 이미지들.
-	IMAGEMANAGER->addImage("cursor", "./image/inventory/invencursor.bmp", 133, 133, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0,0,5380, 693, 5, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("inventory", "./image/inventory/inventory.bmp", 0, 0, 2152, 693, 2, 1, true, RGB(255, 0, 255));
-
-	//아이템 이미지
-	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("shovel", "./image/inventory/shovel.bmp", 133, 133, true, RGB(0, 0, 0));
-	//마을, NPC 이미지ㅛ    
-	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
-
-	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
-	//------------------------------------------------------
-	//------------------------------------------------------
-
 	//------------------------------------------------------
 	//**************옵션창 사용되는 이미지*********************
 	//------------------------------------------------------
@@ -48,10 +15,10 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("main_controls", "./image/UI/OPTION/main_controls.bmp", 717, 56, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("main_game", "./image/UI/OPTION/main_game.bmp", 408, 55, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("main_video", "./image/UI/OPTION/main_video.bmp", 486, 55, 3, 1, true, RGB(255, 0, 255));
-
+	
 	//2. OPTION_CONTROLS
 	IMAGEMANAGER->addImage("option_controls_background", "./image/UI/OPTION/option_controls.bmp", 821, 514, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("controls_editController", "./image/UI/OPTION/controls_editcontroller.bmp", 1246, 56, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("controls_editController", "./image/UI/OPTION/controls_editcontroller.bmp", 1246, 56,3,1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("controls_editKeyBoard", "./image/UI/OPTION/controls_editkeyboard.bmp", 1101, 56, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("controls_relicInputType", "./image/UI/OPTION/controls_relicinputtype.bmp", 1332, 55, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("controls_relicInputType_options", "./image/UI/OPTION/controls_relicinputtype_select.bmp", 460, 55, 2, 1, true, RGB(255, 0, 255));
@@ -79,56 +46,48 @@ void mainGame::setImages()
 
 	IMAGEMANAGER->addFrameImage("OnOff", "./image/UI/OPTION/on_off.bmp", 148, 56, 2, 1, true, RGB(255, 0, 255));
 
-	
-
-	//------------------------------------------------------
-	//**************아이템 이미지*********************
-	//------------------------------------------------------
-
+	//아이템 이미지
 	//인벤 이미지들.
 	IMAGEMANAGER->addImage("cursor", "./image/inventory/invencursor.bmp", 133, 133, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0,0,5380, 693, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("invenOpen", "./image/inventory/inven.bmp", 0, 0, 5380, 693, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("inventory", "./image/inventory/inventory.bmp", 0, 0, 2152, 693, 2, 1, true, RGB(255, 0, 255));
 
 	//아이템 이미지
 	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("shovel", "./image/inventory/shovel.bmp", 133, 133, true, RGB(0, 0, 0));
-	//마을, NPC 이미지ㅛ    
-	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
-
-	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 90, 34, 2, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/바드흥겨운음악.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/마법사아가씨믹스.bmp", 0, 0, 7875, 225, 46, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
-
-	IMAGEMANAGER->addFrameImage("염소", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
-
-	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("healthcap", "./image/inventory/healthcap.bmp", 133, 133, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("invenMusicSheet", "./image/inventory/invenmusicsheet.bmp", 133, 133, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("invenMealTickets", "./image/inventory/mealtickets.bmp", 133, 133, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("armor", "./image/inventory/shovelarmor.bmp", 133, 133, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("potion", "./image/inventory/potion.bmp", 38, 46, true, RGB(255, 0, 255));
 	//------------------------------------------------------
 	//------------------------------------------------------
 
-	//------------------------------------------------------
-	//**************UI 이미지*********************
-	//------------------------------------------------------
-	IMAGEMANAGER->addImage("UI_basic", "./image./UI/ui/main_ui.bmp", 1600, 71, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("UI_worldMap", "./image./UI./ui./worldMap_ui.bmp", 1600, 192, false, RGB(255, 0, 255));
+	//몬스터 이미지
 
-	IMAGEMANAGER->addFrameImage("ui_playerHP", "./image/UI/ui/hp_icon.bmp", 102, 34, 3, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("number", "./image/UI/ui/number.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("number_blue", "./image/UI/ui/number_blue.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("슬라임", "슬라임.bmp",
+		200, 272,
+		4, 4, true, RGB(255, 0, 255));
 
-	//------------------------------------------------------
-	//------------------------------------------------------
+	IMAGEMANAGER->addFrameImage("레드비틀", "레드비틀.bmp",
+		260, 160,
+		4, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("노란용", "노란드래곤2.bmp",
+		5790, 990,
+		12, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("초록용", "초록색용.bmp",
+		277, 639,
+		3, 8, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("해골", "스켈레톤.bmp",
+		580, 3060,
+		4, 24, true, RGB(255, 0, 255));
 
 
+	IMAGEMANAGER->addFrameImage("해골", "스켈레톤.bmp",
+		580, 3060,
+		4, 24, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("보스", "검은삽기사.bmp",
+		1500, 11125,
+		6, 50, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("임시배경", "임시배경입니다.bmp", 1280, 720, true, RGB(255, 0, 255));
+////////////////////////////////////////////////////////////////
 }
-	

@@ -14,7 +14,7 @@
     <ProjectGuid>{1DFC11EA-FEF8-4657-8F70-D7904DFABE34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HexaWindowsAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -79,13 +79,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="blueSlime.h" />
+    <ClInclude Include="boss.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
-    <ClInclude Include="database.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="greenDragon.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
@@ -104,9 +107,11 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="redBeetle.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
+    <ClInclude Include="skeleton.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stdafx.h" />
@@ -116,18 +121,21 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="town.h" />
     <ClInclude Include="txtData.h" />
-    <ClInclude Include="ui.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="worldMap.h" />
+    <ClInclude Include="yellowDragon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="blueSlime.cpp" />
+    <ClCompile Include="boss.cpp" />
     <ClCompile Include="cameraManager.cpp" />
-    <ClCompile Include="database.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="greenDragon.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
@@ -146,7 +154,9 @@
     <ClCompile Include="option_video.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="redBeetle.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="skeleton.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -158,10 +168,10 @@
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="town.cpp" />
     <ClCompile Include="txtData.cpp" />
-    <ClCompile Include="ui.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="worldMap.cpp" />
+    <ClCompile Include="yellowDragon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

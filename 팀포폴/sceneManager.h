@@ -4,7 +4,6 @@
 #include <map>
 
 class gameNode;
-class player;
 
 class sceneManager : public singletonBase<sceneManager>
 {
@@ -30,8 +29,8 @@ public:
 	gameNode* addScene(string sceneName, gameNode* scene);
 	gameNode* addLoadingScene(string loadingSceneName, gameNode* scene);
 
-	HRESULT changeScene(string sceneName, player* p);
-	HRESULT changeScene(string sceneName, string loadingSceneName, player* p);
+	HRESULT changeScene(string sceneName);
+	HRESULT changeScene(string sceneName, string loadingSceneName);
 
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 	sceneManager();
