@@ -45,6 +45,7 @@ public:
 	void setRightNpc(bool _isRight);		// 움직이는 npc
 	void removeNpc(int arrNum);
 
+	void collision();
 	
 	vector<NPC*> getVnpc() { return _vNPC; }
 	vector<NPC*>::iterator getVinpc() { return _viNPC; }

@@ -21,8 +21,8 @@ HRESULT player::init()
 	//IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 500, 500, 2, 2, true, RGB(255, 0, 255));
-	_Relic = new bullet;
-	_Relic->init("파볼", 100, 800);
+	/*_Relic = new bullet;
+	_Relic->init("파볼", 100, 800);*/
 	_currentRelic = FIRELOD;
 	_bulletAngle = PI;
 	_playerMainCondition = PLAYER_RIGHT_IDLE;
@@ -484,7 +484,7 @@ void player::update()
 	
 	KEYANIMANAGER->update();
 
-	usage();
+	//usage();
 	_Relic->update();
 }
 

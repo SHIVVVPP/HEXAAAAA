@@ -38,7 +38,7 @@ void town::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_F2)) {
 		_isvisible = false;
 	}
-
+	
 
 }
 
@@ -57,18 +57,6 @@ void town::render()
 		townPix->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	_NPCM->render();
+	//TextOut(getMemDC(), 50, 50, str, strlen(str));
 }
 
-void town::collision()
-{
-	RECT temp;								//충돌을 위한 렉트
-
-	for (int i = 0; i<_NPCM->getVnpc().max_size(); i++)
-	{
-		 if (PtInRect(&_NPCM->getVnpc()[i]->getimgRC(),_ptMouse)) {
-			 _NPCM->getVnpc()[i]->Converstion(-1);
-
-		}
-
-	}
-}

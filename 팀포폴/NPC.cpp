@@ -53,6 +53,9 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 	_tolkX = Talkposition.x;																										//대화위치 x
 	_tolkY = Talkposition.y;																										//대화위치 y
 	_tolkCout = 0;																													//토크출력시간;
+	
+	_istolk = false;																												//토크 출력 컨트롤 불값
+
 	return S_OK;
 }
 void NPC::release()
@@ -74,8 +77,11 @@ void NPC::render()
 
 	}
 	_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
-	SetTextColor(getMemDC(), RGB(255, 255, 255));
-	TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, -1);
+	if (_istolk) 
+	{
+		SetTextColor(getMemDC(), RGB(255, 255, 255));
+		TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, -1, 15);
+	}
 }
 void NPC::Move(bool _isMvoe, bool _isRight)
 {
@@ -96,5 +102,6 @@ void NPC::Move(bool _isMvoe, bool _isRight)
 void NPC::Converstion(int tolkCount)
 {
 	_tolkCout = tolkCount;
+	_istolk = true;
 	
 }

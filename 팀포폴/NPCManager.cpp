@@ -27,6 +27,7 @@ void NPCManager::update()
 		(*_viNPC)->update();
 		++_viNPC;
 	}
+	collision();
 // npc의 무대값;
 	/*for (int i = 0; i < _vNPC.max_size(); i++) {
 		if ((*_viNPC)->getisMove()) 
@@ -115,5 +116,23 @@ void NPCManager::removeNpc(int arrNum)
 {
 	SAFE_DELETE(_vNPC[arrNum]);
 	_vNPC.erase(_vNPC.begin() + arrNum);
+}
+
+void NPCManager::collision()
+{
+
+	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end(); )
+	{
+		if (PtInRect(&(*_viNPC)->getimgRC(), _ptMouse))
+		{
+			(*_viNPC)->Converstion(-1);
+			//sprintf(str, "왜 트루?");
+		}
+		else
+		{
+			(*_viNPC)->setisTolk(false);
+		}
+
+	}
 }
 

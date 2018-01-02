@@ -22,7 +22,7 @@ protected:
 	
 	bool		_isMove;			//움직이냐?
 	bool		_isRight;			//오른쪽이냐?
-	bool		_istolk;			//
+	bool		_istolk;			//토크 준비
 	
 
 	const char* fileName;			//텍스트 파일 이름 저장
@@ -44,5 +44,7 @@ public:
 	RECT getimgRC() { return _imgrc; }
 	bool getisMove() { return _isMove; }
 	bool getisRight() { return _isRight; }
+	bool getisTolk() { return _istolk; }
+	void setisTolk(bool istolk) { _istolk = istolk; }
 };
 

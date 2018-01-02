@@ -383,7 +383,7 @@ void inventory::draw()
 
 		for (int i = 0; i < _invenRelic->getVRelic().size(); ++i)
 		{
-			RECT temp;
+			/*RECT temp;
 			if (IntersectRect(&temp, &_cursorRect, &_invenRelic->getVRelic()[i]._rc))
 			{
 				if (_invenRelic->getVRelic()[i]._textPos == 0)
@@ -412,69 +412,69 @@ void inventory::draw()
 					TXTDATA->render("./text/fishingrod/rodex.txt", getMemDC(), 380, 650, 800, 200, 37);
 					TXTDATA->render("./text/fishingrod/rodmana.txt", getMemDC(), 370, 740, 800, 200, 2);
 				}
-			}
+			}*/
 		}
 	}
 
 	if (!_relic)
 	{
-		for (int i = 0; i < _invenGear->getVGear().size(); ++i)
-		{
-			RECT temp;
-			if (IntersectRect(&temp, &_invenGear->getVGear()[i]._rc, &_cursorRect))
-			{
-				if (_invenGear->getVGear()[i]._textPos == 0)
-				{
-					SetTextColor(getMemDC(), RGB(125, 125, 255));
-					TXTDATA->render("./text/shovel/shovel.txt", getMemDC(), 370, 500, 800, 200, 12);
-					SetTextColor(getMemDC(), RGB(255, 255, 255));
-					TXTDATA->render("./text/shovel/shovelex.txt", getMemDC(), 370, 550, 800, 200, 52);
-				}
+	//	for (int i = 0; i < _invenGear->getVGear().size(); ++i)
+	//	{
+	//		RECT temp;
+	//		if (IntersectRect(&temp, &_invenGear->getVGear()[i]._rc, &_cursorRect))
+	//		{
+	//			if (_invenGear->getVGear()[i]._textPos == 0)
+	//			{
+	//				SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//				TXTDATA->render("./text/shovel/shovel.txt", getMemDC(), 370, 500, 800, 200, 12);
+	//				SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//				TXTDATA->render("./text/shovel/shovelex.txt", getMemDC(), 370, 550, 800, 200, 52);
+	//			}
 
-				if (_invenGear->getVGear()[i]._textPos == 1)
-				{
-					SetTextColor(getMemDC(), RGB(125, 125, 255));
-					TXTDATA->render("./text/armor/armor.txt", getMemDC(), 370, 500, 800, 200, 14);
-					SetTextColor(getMemDC(), RGB(255, 255, 255));
-					TXTDATA->render("./text/armor/armorex.txt", getMemDC(), 370, 550, 800, 200, 40);
-				}
+	//			if (_invenGear->getVGear()[i]._textPos == 1)
+	//			{
+	//				SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//				TXTDATA->render("./text/armor/armor.txt", getMemDC(), 370, 500, 800, 200, 14);
+	//				SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//				TXTDATA->render("./text/armor/armorex.txt", getMemDC(), 370, 550, 800, 200, 40);
+	//			}
 
-				if (_invenGear->getVGear()[i]._textPos == 2)
-				{
-					SetTextColor(getMemDC(), RGB(125, 125, 255));
-					TXTDATA->render("./text/healthcap/healthcap.txt", getMemDC(), 370, 500, 800, 200, 16);
-					SetTextColor(getMemDC(), RGB(255, 255, 255));
-					TXTDATA->render("./text/healthcap/healthcapex.txt", getMemDC(), 340, 550, 800, 200, 16);
+	//			if (_invenGear->getVGear()[i]._textPos == 2)
+	//			{
+	//				SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//				TXTDATA->render("./text/healthcap/healthcap.txt", getMemDC(), 370, 500, 800, 200, 16);
+	//				SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//				TXTDATA->render("./text/healthcap/healthcapex.txt", getMemDC(), 340, 550, 800, 200, 16);
 
-					//여기다가 조건문을 걸어서 체력 업그레이드 시 , 출력되는 텍스트를 교환.
-					TXTDATA->render("./text/healthcap/healthcapnum.txt", getMemDC(), 600, 550, 800, 200, 2);
-				}
-				if (_invenGear->getVGear()[i]._textPos == 3)
-				{
-					SetTextColor(getMemDC(), RGB(125, 125, 255));
-					TXTDATA->render("./text/mealticket/mealticket.txt", getMemDC(), 370, 500, 800, 200, 12);
-					SetTextColor(getMemDC(), RGB(255, 255, 255));
-					TXTDATA->render("./text/mealticket/mealticketex.txt", getMemDC(), 340, 550, 800, 200, 12);
+	//				//여기다가 조건문을 걸어서 체력 업그레이드 시 , 출력되는 텍스트를 교환.
+	//				TXTDATA->render("./text/healthcap/healthcapnum.txt", getMemDC(), 600, 550, 800, 200, 2);
+	//			}
+	//			if (_invenGear->getVGear()[i]._textPos == 3)
+	//			{
+	//				SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//				TXTDATA->render("./text/mealticket/mealticket.txt", getMemDC(), 370, 500, 800, 200, 12);
+	//				SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//				TXTDATA->render("./text/mealticket/mealticketex.txt", getMemDC(), 340, 550, 800, 200, 12);
 
-					TXTDATA->render("./text/mealticket/exex.txt", getMemDC(), 380, 650, 800, 200, 45);
-					
-					//여기다가 조건문을 걸어서 체력 업그레이드 시 , 출력되는 텍스트를 교환.
-					TXTDATA->render("./text/mealticket/mealticketnum.txt", getMemDC(), 540, 550, 800, 200, 2);
-				}
-				if (_invenGear->getVGear()[i]._textPos == 4)
-				{
-					SetTextColor(getMemDC(), RGB(125, 125, 255));
-					TXTDATA->render("./text/musicsheet/musicsheet.txt", getMemDC(), 370, 500, 800, 200, 12);
-					SetTextColor(getMemDC(), RGB(255, 255, 255));
-					TXTDATA->render("./text/musicsheet/musicsheetex.txt", getMemDC(), 290, 550, 800, 200, 10);
-					TXTDATA->render("./text/musicsheet/musicsheetexex.txt", getMemDC(), 340, 600, 800, 200, 10);
-					TXTDATA->render("./text/musicsheet/musicsheetexexex.txt", getMemDC(), 390, 700, 800, 200, 38);
-					//여기다가 조건문을 걸어서 체력 업그레이드 시 , 출력되는 텍스트를 교환.
-					TXTDATA->render("./text/musicsheet/musicsheetreturn.txt", getMemDC(), 460, 550, 800, 200, 4);
-					TXTDATA->render("./text/musicsheet/musicsheetpos.txt", getMemDC(), 520, 600, 800, 200, 2);
-				}
-			}
-		}
+	//				TXTDATA->render("./text/mealticket/exex.txt", getMemDC(), 380, 650, 800, 200, 45);
+	//				
+	//				//여기다가 조건문을 걸어서 체력 업그레이드 시 , 출력되는 텍스트를 교환.
+	//				TXTDATA->render("./text/mealticket/mealticketnum.txt", getMemDC(), 540, 550, 800, 200, 2);
+	//			}
+	//			if (_invenGear->getVGear()[i]._textPos == 4)
+	//			{
+	//				SetTextColor(getMemDC(), RGB(125, 125, 255));
+	//				TXTDATA->render("./text/musicsheet/musicsheet.txt", getMemDC(), 370, 500, 800, 200, 12);
+	//				SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//				TXTDATA->render("./text/musicsheet/musicsheetex.txt", getMemDC(), 290, 550, 800, 200, 10);
+	//				TXTDATA->render("./text/musicsheet/musicsheetexex.txt", getMemDC(), 340, 600, 800, 200, 10);
+	//				TXTDATA->render("./text/musicsheet/musicsheetexexex.txt", getMemDC(), 390, 700, 800, 200, 38);
+	//				//여기다가 조건문을 걸어서 체력 업그레이드 시 , 출력되는 텍스트를 교환.
+	//				TXTDATA->render("./text/musicsheet/musicsheetreturn.txt", getMemDC(), 460, 550, 800, 200, 4);
+	//				TXTDATA->render("./text/musicsheet/musicsheetpos.txt", getMemDC(), 520, 600, 800, 200, 2);
+	//			}
+	//		}
+	//	}
 	}
 }
 
