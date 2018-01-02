@@ -16,6 +16,8 @@ private:
 	static gameNode* _currentScene;
 	static gameNode* _loadingScene;
 	static gameNode* _readyScene;
+	static gameNode* _preScene;
+
 
 	mapSceneList _mSceneList;
 	mapSceneList _mLoadingSceneList;
@@ -32,6 +34,7 @@ public:
 
 	HRESULT changeScene(string sceneName, player* p);
 	HRESULT changeScene(string sceneName, string loadingSceneName, player* p);
+	HRESULT returnScene();
 
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 	sceneManager();
