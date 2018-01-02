@@ -4,6 +4,7 @@
 #include "inventory.h"
 #include "stage.h"
 #include "player.h"	
+#include "ui.h"
 
 class mainGame : public gameNode
 {
@@ -13,6 +14,7 @@ private:
 	//system_option* sys;
 	gameNode * _inventory;
 	gameNode* _stage;
+	ui* _ui;
 
 public:
 	virtual HRESULT init();			

@@ -102,9 +102,22 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("invenMusicSheet", "./image/inventory/invenmusicsheet.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("invenMealTickets", "./image/inventory/mealtickets.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("armor", "./image/inventory/shovelarmor.bmp", 133, 133, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("potion", "./image/inventory/potion.bmp", 38, 46, true, RGB(255, 0, 255));
 	//------------------------------------------------------
 	//------------------------------------------------------
 
-	
+	//------------------------------------------------------
+	//**************UI ÀÌ¹ÌÁö*********************
+	//------------------------------------------------------
+	IMAGEMANAGER->addImage("UI_basic", "./image./UI/ui/main_ui.bmp", 1600, 71, false, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("ui_playerHP", "./image/UI/ui/hp_icon.bmp", 102, 34, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("number", "./image/UI/ui/number.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("number_blue", "./image/UI/ui/number_blue.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
+
+	//------------------------------------------------------
+	//------------------------------------------------------
+
+
 }
 	
