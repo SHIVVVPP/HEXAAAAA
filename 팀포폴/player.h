@@ -10,14 +10,16 @@ enum PLAYERMAINCONDITION       // 케릭터의 메인 상태값 설정을 위한 이넘문
 	PLAYER_LEFT_JUMP,			  // 왼쪽 점프
 	PLAYER_RIGHT_MOVE,			  // 오른쪽 이동
 	PLAYER_LEFT_MOVE,			  // 왼쪽 이동
-	PLAYER_RIGHT_CLIMB,			  // 사다리 타는중 오른쪽 누른상태
-	PLAYER_LEFT_CLIMB,			  // 사다리 타는중 왼쪽키 누른상태
-	PLAYER_CLIMB_EDGE,			  // 사다리 상단 끝자락에 걸친상태
+	PLAYER_UP_CLIMB,			  // 사다리 타는중 오른쪽 누른상태
+	PLAYER_DOWN_CLIMB,			  // 사다리 타는중 왼쪽키 누른상태
+	PLAYER_EDGE_CLIMB,			  // 사다리 상단 끝자락에 걸친상태
 	PLAYER_RIGHT_ATTACK,		  // 오른쪽 공격 
 	PLAYER_RIGHT_JUMP_ATTACK,	  // 오른쪽 점프공격
 	PLAYER_LEFT_ATTACK,			  // 왼쪽 공격 
 	PLAYER_LEFT_JUMP_ATTACK,	  // 왼쪽 점프공격
 	PLAYER_DOWN_ATTACK,			  // 아래 공격
+	PLAYER_RIGHT_DOWN_ATTACK,
+	PLAYER_LEFT_DOWN_ATTACK,
 	PLAYER_RIGHT_HITTED,		  // 오른쪽에서의 피격
 	PLAYER_LEFT_HITTED,			  // 왼쪽에서의 피격
 	PLAYER_DEAD,				  // 죽음
@@ -61,6 +63,8 @@ public:
 	player();
 	~player();
 
+	RECT LadderRC;
+	RECT enemyRC;
 
 	HRESULT init();
 	void release();

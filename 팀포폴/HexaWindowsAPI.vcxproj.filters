@@ -97,6 +97,9 @@
     <Filter Include="MainGame\dataBase">
       <UniqueIdentifier>{facfae0c-d8ad-4315-9f62-74c7252aaf0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\UI">
+      <UniqueIdentifier>{c55661d9-8477-47f9-a178-91ceef11a3c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -222,6 +225,9 @@
     <ClInclude Include="database.h">
       <Filter>MainGame\dataBase</Filter>
     </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>shovelKnight\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -334,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="database.cpp">
       <Filter>MainGame\dataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>shovelKnight\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
