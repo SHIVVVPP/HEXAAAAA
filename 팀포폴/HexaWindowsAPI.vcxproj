@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="bullet.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="database.h" />
@@ -117,11 +118,13 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="town.h" />
     <ClInclude Include="txtData.h" />
+    <ClInclude Include="ui.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="worldMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="effect.cpp" />
@@ -146,10 +149,12 @@
     <ClCompile Include="option_game.cpp" />
     <ClCompile Include="option_video.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="player_usage.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage.cpp" />
+    <ClCompile Include="stage_background.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -159,6 +164,7 @@
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="town.cpp" />
     <ClCompile Include="txtData.cpp" />
+    <ClCompile Include="ui.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="worldMap.cpp" />

@@ -96,6 +96,16 @@ void mainGame::setImages()
 	//마을, NPC 이미지ㅛ    
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 90, 34, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/바드흥겨운음악.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/마법사아가씨믹스.bmp", 0, 0, 7875, 225, 46, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("염소", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("healthcap", "./image/inventory/healthcap.bmp", 133, 133, true, RGB(0, 0, 0));
@@ -106,6 +116,46 @@ void mainGame::setImages()
 	//------------------------------------------------------
 	//------------------------------------------------------
 
-	
+	//------------------------------------------------------
+	//**************UI 이미지*********************
+	//------------------------------------------------------
+	IMAGEMANAGER->addImage("UI_basic", "./image./UI/ui/main_ui.bmp", 1600, 71, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("UI_worldMap", "./image./UI./ui./worldMap_ui.bmp", 1600, 192, false, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("ui_playerHP", "./image/UI/ui/hp_icon.bmp", 102, 34, 3, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("number", "./image/UI/ui/number.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("number_blue", "./image/UI/ui/number_blue.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
+
+	//------------------------------------------------------
+	//------------------------------------------------------
+
+	//------------------------------------------------------
+	//**************백그라운드 이미지*********************
+	//------------------------------------------------------
+
+	IMAGEMANAGER->addImage("필드배경", "./background/background.bmp", 27007, 5291, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("픽셀배경", "./background/piexlground.bmp", 27007, 5291, false, RGB(0, 255, 0 ));
+
+	//------------------------------------------------------
+	//------------------------------------------------------
+
+	//------------------------------------------------------
+	//**************오브젝트 이미지*********************
+	//------------------------------------------------------
+	IMAGEMANAGER->addFrameImage("파볼", "./image/object/fireball.bmp", 120, 40, 3, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("파랑범프히트", "./object/blueBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("노랑범프히트", "./object/yellowBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("빨강범프히트", "./object/radBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("방울", "./object/bubble.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("큰모래파괴", "./object/dirtblock_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("작은모래파괴", "./object/dirtblock_small_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("세이브체크", "./object/challengGoal_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+
+	//------------------------------------------------------
+	//------------------------------------------------------
+
+
+
 }
 	

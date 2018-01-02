@@ -4,6 +4,7 @@
 #include <map>
 
 class gameNode;
+class player;
 
 class sceneManager : public singletonBase<sceneManager>
 {
@@ -15,6 +16,8 @@ private:
 	static gameNode* _currentScene;
 	static gameNode* _loadingScene;
 	static gameNode* _readyScene;
+	static gameNode* _preScene;
+
 
 	mapSceneList _mSceneList;
 	mapSceneList _mLoadingSceneList;
@@ -29,8 +32,9 @@ public:
 	gameNode* addScene(string sceneName, gameNode* scene);
 	gameNode* addLoadingScene(string loadingSceneName, gameNode* scene);
 
-	HRESULT changeScene(string sceneName);
-	HRESULT changeScene(string sceneName, string loadingSceneName);
+	HRESULT changeScene(string sceneName, player* p);
+	HRESULT changeScene(string sceneName, string loadingSceneName, player* p);
+	HRESULT returnScene();
 
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 	sceneManager();
