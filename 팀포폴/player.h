@@ -58,6 +58,8 @@ class player : public gameNode
 	float _repulsivePower;      // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
 	float _frictionalPower;		// 반발력을 서서히 삭감시키기 위한 마찰력
 	bool _isJump;
+	int prevCondition1;
+	int prevCondition2;
 
 	bullet* _Relic;
 	int _currentRelic;
@@ -92,6 +94,13 @@ public:
 	PLAYERSUBCONDITION getPlayerSubCondition(void) { return _playerSubCondition; }
 	void setPlayerSubCondition(PLAYERSUBCONDITION condition) { _playerSubCondition = condition; }
 
+	///////////  플레이어 이미지 설정자
+	void setPlayerImage(image* ima) { _image = ima; }
+	void setPlayerAni(animation* ani) { _ani = ani; }
+
+	image* getPlayerImage(void) { return _image; }
+	animation* getPlayerAni(void) { return _ani; }
+
 
 	////////  플레이어 충돌렉트 접근자 설정자
 	RECT getPlayerRect() { return _playerRC; }
@@ -125,6 +134,10 @@ public:
 	int getEquipRelic() { return _equipmentRelic; }
 	void setEquipRelic(int relicValue) { _equipmentRelic = relicValue; }
 
+
+	// 점프여부
+
+	bool getIsJump() { return _isJump; }
 };
 
 
