@@ -71,11 +71,14 @@ public:
 	void update();
 	void render();
 
+	void collisonAttack(RECT* obj);
+	void collisonHitted(RECT* obj);
+
 	static void rightAttack(void* obj);
 	static void leftAttack(void* obj);
 	static void rightJumpAttack(void* obj);
 	static void leftJumpAttack(void* obj);
-	static void downAttack(void* obj);
+	//static void downAttack(void* obj);
 
 
 	/////////// 캐릭터의 메인상태 접근자, 설정자 
