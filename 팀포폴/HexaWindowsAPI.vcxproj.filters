@@ -344,5 +344,8 @@
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
     </ClCompile>
+    <ClCompile Include="stage_background.cpp">
+      <Filter>shovelKnight\scene\stage</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

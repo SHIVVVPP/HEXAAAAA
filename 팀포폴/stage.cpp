@@ -28,3 +28,7 @@ void stage::update()
 void stage::render()
 {
 }
+
+void stage::stageBackgroundSet(int roomNumber)
+{
+}
