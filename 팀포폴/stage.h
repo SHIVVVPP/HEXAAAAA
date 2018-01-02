@@ -4,6 +4,7 @@
 class stage : public gameNode
 {
 private:
+	
    
 
 public:
