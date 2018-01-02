@@ -116,7 +116,7 @@ void ui::render_Gold()
 }
 
 void ui::render_HP()
-{//268 816
+{//268 816 ??????? ¿Ã∞‘ ππø©
 	int maxHpPlace = 0;
 	int HpPlace = 0;
 
