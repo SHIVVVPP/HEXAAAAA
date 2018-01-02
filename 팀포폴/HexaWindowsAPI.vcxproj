@@ -98,6 +98,7 @@
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="objectManager.h" />
+    <ClInclude Include="objects.h" />
     <ClInclude Include="option.h" />
     <ClInclude Include="option_audio.h" />
     <ClInclude Include="option_controls.h" />
@@ -143,6 +144,7 @@
     <ClCompile Include="mainGame_images.cpp" />
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="objectManager.cpp" />
+    <ClCompile Include="objects.cpp" />
     <ClCompile Include="option.cpp" />
     <ClCompile Include="option_audio.cpp" />
     <ClCompile Include="option_controls.cpp" />

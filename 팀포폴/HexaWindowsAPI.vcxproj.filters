@@ -237,6 +237,9 @@
     <ClInclude Include="item.h">
       <Filter>shovelKnight\ItemManager\items</Filter>
     </ClInclude>
+    <ClInclude Include="objects.h">
+      <Filter>shovelKnight\ObjectManager\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>shovelKnight\ItemManager\items</Filter>
+    </ClCompile>
+    <ClCompile Include="objects.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -144,10 +144,47 @@ void mainGame::setImages()
 	//------------------------------------------------------
 	IMAGEMANAGER->addFrameImage("파볼", "./image/object/fireball.bmp", 120, 40, 3, 1, true, RGB(255, 0, 255));
 
+
 	//------------------------------------------------------
 	//------------------------------------------------------
 
 
+	//오브젝트 젬
+	IMAGEMANAGER->addImage("bluedia", "./image/object/bigdia.bmp", 60, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("reddia", "./image/object/smalldia.bmp", 48, 41, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("bluegem", "./image/object/bluegem", 32, 33, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("greengem", "./image/object/greegem.bmp", 26, 38, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("smalljew", "./image/object/sjewel.bmp", 17, 20, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("yellowgem", "./image/object/yellowgem.bmp", 37, 28, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addImage("skull", "./image/object/skull.bmp", 48, 44, true, RGB(255, 0, 255));
+	//픽업 이펙트
+	IMAGEMANAGER->addFrameImage("sparkle", "./image/object/pickupSparkle.bmp", 42, 14, 3, 1, true, RGB(255, 0, 255));
+
+	//음식
+	IMAGEMANAGER->addImage("chicken", "./image/object/chicken.bmp", 120, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("food", "./image/object/foods.bmp", 120, 75, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("platter", "./image/object/platter.bmp", 138, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("halfedplatter", "./image/object/halfedplatter.bmp", 125, 125, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("halfedplatter2", "./image/object/halfedplatter2.bmp", 90, 90, true, RGB(255, 0, 255));
+
+	//광맥
+	IMAGEMANAGER->addFrameImage("dirtpile", "./image/object/dirtpile.bmp", 660, 60, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("digclod1", "./image/object/digclod1.bmp", 40, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("digclod2", "./image/object/digclod2.bmp", 64, 64, true, RGB(255, 0, 255));
+
+	//블록
+	IMAGEMANAGER->addImage("dirtblock", "./image/object/dirtblock.bmp", 128, 128, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("dirtblocksmall", "./image/object/dirtblock_small.bmp", 58, 58, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("dirtblockeffect", "./image/object/dirtblock_effect.bmp", 540, 148, 3,1,true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("dirtblockeffect2", "./image/object/dirtblock_small_effect.bmp", 320, 72, 3,1,true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("movingrock", "./image/object/moving_block.bmp", 192, 64, true, RGB(255, 0, 255));
+	//부서지는 지형
+	IMAGEMANAGER->addImage("leftfakehead", "./image/object/fakehead_left.bmp",66, 192, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("rightfakehead", "./image/object/fakehead_right.bmp", 66, 192, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("leftfakeline", "./image/object/fakeline_left.bmp", 64, 192, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("rightfakeline", "./image/object/fakeline_right.bmp", 64, 192, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("leftfaketail", "./image/object/faketail_left.bmp", 64, 192, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("rightfaketail", "./image/object/faketail_right.bmp", 64, 192, true, RGB(255, 0, 255));
 }
 	
