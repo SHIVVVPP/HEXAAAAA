@@ -96,6 +96,16 @@ void mainGame::setImages()
 	//¸¶À», NPC ÀÌ¹ÌÁö¤Ë    
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 90, 34, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/¹Ùµå³ë¸».bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/¹Ùµåfirst.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/¹ÙµåÈï°Ü¿îÀ½¾Ç.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/¸¶¹ý»ç¾Æ°¡¾¾¹Í½º.bmp", 0, 0, 7875, 225, 46, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("¸ô¸®", "./image/town/¸ô¸®.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("¿°¼Ò", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("healthcap", "./image/inventory/healthcap.bmp", 133, 133, true, RGB(0, 0, 0));
@@ -110,6 +120,7 @@ void mainGame::setImages()
 	//**************UI ÀÌ¹ÌÁö*********************
 	//------------------------------------------------------
 	IMAGEMANAGER->addImage("UI_basic", "./image./UI/ui/main_ui.bmp", 1600, 71, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("UI_worldMap", "./image./UI./ui./worldMap_ui.bmp", 1600, 192, false, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("ui_playerHP", "./image/UI/ui/hp_icon.bmp", 102, 34, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("number", "./image/UI/ui/number.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));

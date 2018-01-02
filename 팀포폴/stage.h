@@ -1,7 +1,12 @@
 #pragma once
 #include "gameNode.h"
+
 class stage : public gameNode
 {
+private:
+
+   
+
 public:
 	stage();
 	~stage();
@@ -10,5 +15,6 @@ public:
 	void release();
 	void update();
 	void render();
+
 };
 
