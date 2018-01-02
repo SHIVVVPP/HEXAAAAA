@@ -30,8 +30,8 @@ HRESULT mainGame::init()			//초기화 함수
 	_player = new player;
 	_player->init();*/
 
-	//sys = new system_option;
-	//sys->init();
+	sys = new system_option;
+	sys->init();
 
 	SCENEMANAGER->addScene("스테이지", new stage);
 	SCENEMANAGER->addScene("인벤토리", new inventory);
@@ -54,7 +54,7 @@ void mainGame::update()				//연산 함수
 {
 	gameNode::update();
 	//sys->update();
-	SCENEMANAGER->update();
+	//SCENEMANAGER->update();
 	//_player->update();
 	
 	//_ui->update();
@@ -66,7 +66,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	//sys->render();
-	SCENEMANAGER->render();
+	//SCENEMANAGER->render();
 
 	//_player->render();
 
