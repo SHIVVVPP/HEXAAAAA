@@ -480,7 +480,7 @@ void inventory::draw()
 
 void inventory::invenScene()
 {
-	//SCENEMANAGER->changeScene("인벤토리");
+	//SCENEMANAGER->changeScene("인벤토리",_player);
 }
 
 
