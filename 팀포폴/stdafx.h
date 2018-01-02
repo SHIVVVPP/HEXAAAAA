@@ -36,8 +36,8 @@ using namespace HEXA_UTIL;
 //=====================================
 
 #define WINNAME		(LPTSTR)(TEXT("Hexa API"))
-#define WINSTARTX	50
-#define WINSTARTY	50
+#define WINSTARTX	0
+#define WINSTARTY	0
 #define WINSIZEX	1600
 #define WINSIZEY	900
 

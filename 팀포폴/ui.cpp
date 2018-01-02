@@ -58,9 +58,8 @@ void ui::update()
 		_playerHP++;
 		_gold += 10;
 	}
-
-
 }
+
 
 void ui::render()
 {
@@ -78,6 +77,7 @@ void ui::render()
 
 	render_Gold();
 	render_HP();
+	render_MP();
 }
 
 void ui::render_Gold()
@@ -116,7 +116,7 @@ void ui::render_Gold()
 }
 
 void ui::render_HP()
-{//268 816
+{//268 816 ??????? ¿Ã∞‘ ππø©
 	int maxHpPlace = 0;
 	int HpPlace = 0;
 
@@ -165,4 +165,26 @@ void ui::render_HP()
 
 void ui::render_bossHP()
 {
+}
+
+void ui::render_MP()
+{
+	//360 39
+	if (_style == UI_STAGE || _style == UI_TOWN)
+	{
+		int p = _playerMP;
+		int k = 0;
+		int i = 0;
+		for (int j = 1; j <= _playerMP; j *= 10)
+		{
+			i++;
+		}
+
+		while (p != 0)
+		{
+			IMAGEMANAGER->findImage("number_blue")->frameRender(getMemDC(), 360 + 30 * (i - 1) - 30 * k, 36, p % 10, 0);
+			p /= 10;
+			k++;
+		}
+	}
 }

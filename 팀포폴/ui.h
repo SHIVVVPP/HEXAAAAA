@@ -33,6 +33,8 @@ public:
 	void render_Gold();
 	void render_HP();
 	void render_bossHP();
+	void render_MP();
+
 
 };
 

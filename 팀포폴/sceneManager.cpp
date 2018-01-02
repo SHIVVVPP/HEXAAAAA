@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "sceneManager.h"
 #include "gameNode.h"
+#include "player.h"
 
 
 sceneManager::sceneManager()
@@ -79,7 +80,7 @@ gameNode* sceneManager::addLoadingScene(string loadingSceneName, gameNode* scene
 	return scene;
 }
 
-HRESULT sceneManager::changeScene(string sceneName)
+HRESULT sceneManager::changeScene(string sceneName, player* p)
 {
 	mapSceneIter find = _mSceneList.find(sceneName);
 
@@ -90,13 +91,14 @@ HRESULT sceneManager::changeScene(string sceneName)
 	{
 		if (_currentScene)_currentScene->release();
 		_currentScene = find->second;
+		_currentScene->addressLinkWithPlayer(p);
 
 		return S_OK;
 	}
 	return E_FAIL;
 }
 
-HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName)
+HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName, player* p)
 {
 	mapSceneIter find = _mSceneList.find(sceneName);
 
@@ -105,7 +107,7 @@ HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName)
 
 	mapSceneIter findLoading = _mLoadingSceneList.find(loadingSceneName);
 
-	if (find == _mLoadingSceneList.end()) return changeScene(loadingSceneName);
+	if (find == _mLoadingSceneList.end()) return changeScene(loadingSceneName, p);
 
 	if (SUCCEEDED(find->second->init()))
 	{
