@@ -39,7 +39,7 @@ HRESULT mainGame::init()			//초기화 함수
 	SCENEMANAGER->changeScene("인벤토리");*/
 
 	_ui = new ui;
-	_ui->init(UI_WORLDMAP);
+	_ui->init(UI_STAGE);
 	return S_OK;
 }
 
