@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "bullet.h"
 
 enum PLAYERMAINCONDITION       // 케릭터의 메인 상태값 설정을 위한 이넘문
 {
@@ -58,7 +59,9 @@ class player : public gameNode
 	float _frictionalPower;		// 반발력을 서서히 삭감시키기 위한 마찰력
 	bool _isJump;
 
-
+	bullet* _Relic;
+	int _currentRelic;
+	float _bulletAngle;
 public:
 	player();
 	~player();
@@ -70,7 +73,7 @@ public:
 	void release();
 	void update();
 	void render();
-
+	void usage();
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
 
@@ -124,3 +127,22 @@ public:
 
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+enum
+{
+	FIRELOD,
+	ORB,
+	FISHINGROD
+};
