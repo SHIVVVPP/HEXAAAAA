@@ -1,14 +1,24 @@
 #pragma once
 #include "gameNode.h"
 #include "system_option.h"
-#include "enemyManager.h"
+#include "inventory.h"
+#include "stage.h"
+#include "player.h"	
+#include "ui.h"
+#include "town.h"
 
 class mainGame : public gameNode
 {
 private:
+	//RECT rc;
 	system_option* sys;
-	enemyManager* _em;
-
+	player* _player;
+	town*	_town;
+	//system_option* sys;
+	gameNode * _inventory;
+	gameNode* _stage;
+	ui* _ui;
+	
 public:
 	virtual HRESULT init();			
 	virtual void release();			

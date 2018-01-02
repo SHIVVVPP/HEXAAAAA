@@ -13,6 +13,7 @@ objectManager::~objectManager()
 
 HRESULT objectManager::init()
 {
+	
 	return S_OK;
 }
 
