@@ -30,16 +30,16 @@ HRESULT mainGame::init()			//초기화 함수
 	_player = new player;
 	_player->init();*/
 
-	//sys = new system_option;
-	//sys->init();
+	sys = new system_option;
+	sys->init();
 
-	/*SCENEMANAGER->addScene("스테이지", new stage);
+	SCENEMANAGER->addScene("스테이지", new stage);
 	SCENEMANAGER->addScene("인벤토리", new inventory);
 	
-	SCENEMANAGER->changeScene("인벤토리");*/
+	SCENEMANAGER->changeScene("인벤토리");
 
-	_ui = new ui;
-	_ui->init(UI_STAGE);
+	//_ui = new ui;
+	//_ui->init(UI_STAGE);
 	return S_OK;
 }
 
@@ -57,7 +57,7 @@ void mainGame::update()				//연산 함수
 	//SCENEMANAGER->update();
 	//_player->update();
 	
-	_ui->update();
+	//_ui->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -70,7 +70,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 	//_player->render();
 
-	_ui->render();
+	//_ui->render();
 	
 	//==================== 건들지마라 =======================
 	//TIMEMANAGER->render(getMemDC());

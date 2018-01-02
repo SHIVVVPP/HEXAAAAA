@@ -126,6 +126,9 @@ void inventory::update()
 		}
 	}
 	cursorMove();
+
+	_invenRelic->update();
+	_invenGear->update();
 }
 
 void inventory::render()
@@ -497,12 +500,12 @@ HRESULT inventoryRelic::init(const char* imageName, int itemNum, bool isrelic, b
 	tagRelics Relic;
 	ZeroMemory(&Relic, sizeof(tagRelics));
 	Relic._image = IMAGEMANAGER->findImage(_RelicName);
-	Relic._x = Relic._image->getCenterX();
-	Relic._y = Relic._image->getCenterY();
+	Relic._x = Relic._image->getX();
+	Relic._y = Relic._image->getY();
 	Relic._itemNum = itemNum;
 	Relic._isRelic = isrelic;
 	Relic._textPos = 0;
-	Relic._rc = RectMake(Relic._x, Relic._y, Relic._image->getWidth() / 2, Relic._image->getHeight() / 2);
+	Relic._rc = RectMake(Relic._x, Relic._y, Relic._image->getWidth()/4, Relic._image->getHeight()/4);
 
 	_vRelic.push_back(Relic);
 	return S_OK;
@@ -514,7 +517,10 @@ void inventoryRelic::release()
 
 void inventoryRelic::update()
 {
-	
+	for (_viRelic = _vRelic.begin(); _viRelic != _vRelic.end(); ++_viRelic)
+	{
+		_viRelic->_rc = RectMake(_viRelic->_x, _viRelic->_y, _viRelic->_image->getWidth() / 4, _viRelic->_image->getHeight() / 4);
+	}
 }
 
 void inventoryRelic::render()
@@ -544,12 +550,13 @@ void inventoryRelic::render()
 		}
 		if (KEYMANAGER->isToggleKey(VK_F1))
 		{
-			if (_viRelic->_isRelic == true)RectangleMake(getMemDC(), _viRelic->_x + (_viRelic->_rc.right - _viRelic->_rc.left) / 2, _viRelic->_y + (_viRelic->_rc.bottom - _viRelic->_rc.top) / 2,
-				_viRelic->_image->getWidth() / 2, _viRelic->_image->getHeight() / 2);
+			//if (_viRelic->_isRelic == true)RectangleMake(getMemDC(), _viRelic->_x + (_viRelic->_rc.right - _viRelic->_rc.left) / 2, _viRelic->_y + (_viRelic->_rc.bottom - _viRelic->_rc.top) / 2,
+			//	_viRelic->_image->getWidth() / 2, _viRelic->_image->getHeight() / 2);
+			Rectangle(getMemDC(), _viRelic->_rc.left, _viRelic->_rc.top, _viRelic->_rc.right, _viRelic->_rc.bottom);
 		}
-		if (_viRelic->_isRelic == true) _viRelic->_image->render(getMemDC(), _viRelic->_x, _viRelic->_y);
+		if (_viRelic->_isRelic == true) _viRelic->_image->render(getMemDC(), _viRelic->_x , _viRelic->_y );
 
-		_viRelic->_rc = RectMake(_viRelic->_x, _viRelic->_y, _viRelic->_image->getWidth() / 2, _viRelic->_image->getHeight() / 2);
+		//Rectangle(getMemDC(), _viRelic->_rc.left, _viRelic->_rc.top, _viRelic->_rc.right, _viRelic->_rc.bottom);
 	}
 }
 
@@ -568,12 +575,12 @@ HRESULT inventoryGear::init(const char * imageName, int itemNum, bool isGear, bo
 	tagGear Gear;
 	ZeroMemory(&Gear, sizeof(tagGear));
 	Gear._image = IMAGEMANAGER->findImage(_GearName);
-	Gear._x = Gear._image->getCenterX();
-	Gear._y = Gear._image->getCenterY();
+	Gear._x = Gear._image->getX();
+	Gear._y = Gear._image->getY();
 	Gear._itemNum = itemNum;
 	Gear._isGear = isGear;
 	Gear._textPos = 0;
-	Gear._rc = RectMake(Gear._x, Gear._y, Gear._image->getWidth()/2, Gear._image->getHeight()/2);
+	Gear._rc = RectMake(Gear._x, Gear._y, Gear._image->getWidth()/4, Gear._image->getHeight()/4);
 
 	_vGear.push_back(Gear);
 
@@ -586,6 +593,10 @@ void inventoryGear::release()
 
 void inventoryGear::update()
 {
+	for (_viGear = _vGear.begin(); _viGear != _vGear.end(); ++_viGear)
+	{
+		_viGear->_rc = RectMake(_viGear->_x, _viGear->_y, _viGear->_image->getWidth() / 4, _viGear->_image->getHeight() / 4);
+	}
 }
 
 void inventoryGear::render()
@@ -628,14 +639,12 @@ void inventoryGear::render()
 		}
 		if (KEYMANAGER->isToggleKey(VK_F1))
 		{
-			if (_viGear->_isGear == true)RectangleMake(getMemDC(), _viGear->_x + (_viGear->_rc.right - _viGear->_rc.left) / 2, _viGear->_y + (_viGear->_rc.bottom - _viGear->_rc.top) / 2,
-				_viGear->_image->getWidth() / 2, _viGear->_image->getHeight() / 2);
+			//if (_viGear->_isGear == true)RectangleMake(getMemDC(), _viGear->_x + (_viGear->_rc.right - _viGear->_rc.left) / 2, _viGear->_y + (_viGear->_rc.bottom - _viGear->_rc.top) / 2,
+			//	_viGear->_image->getWidth() / 2, _viGear->_image->getHeight() / 2);
 
 			Rectangle(getMemDC(), _viGear->_rc.left, _viGear->_rc.top, _viGear->_rc.right, _viGear->_rc.bottom);
 		}
 		if (_viGear->_isGear == true)_viGear->_image->render(getMemDC(), _viGear->_x, _viGear->_y);
-
-		_viGear->_rc = RectMake(_viGear->_x, _viGear->_y, _viGear->_image->getWidth() / 2, _viGear->_image->getHeight() / 2);
 	}
 }
 
