@@ -167,13 +167,13 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("골드바1", "./object/goldbar1.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("골드바2", "./object/goldbar2.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addFrameImage("파랑범프히트", "./object/blueBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("노랑범프히트", "./object/yellowBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("빨강범프히트", "./object/radBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("방울", "./object/bubble.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("큰모래파괴", "./object/dirtblock_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("작은모래파괴", "./object/dirtblock_small_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("세이브체크", "./object/challengGoal_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("파랑범프히트", "./object/blueBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("노랑범프히트", "./object/yellowBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("빨강범프히트", "./object/radBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("방울", "./object/bubble.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("큰모래파괴", "./object/dirtblock_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("작은모래파괴", "./object/dirtblock_small_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("세이브체크", "./object/challengGoal_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
 
 	//------------------------------------------------------
 	//------------------------------------------------------
