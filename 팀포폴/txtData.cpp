@@ -97,7 +97,7 @@ vector<string> txtData::charArraySeparation(char charArray[])
 	return vArray;
 }
 
-void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width, float height, int outputNum)
+void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width, float height, int outputNum , int fontSize)
 {
 	HANDLE file;
 
@@ -116,7 +116,7 @@ void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width
 
 	HFONT font, oldFont;
 
-	font = CreateFont(40, 0, 0, 0, 600, 0, 0, 0, DEFAULT_CHARSET,
+	font = CreateFont(fontSize, 0, 0, 0, 600, 0, 0, 0, DEFAULT_CHARSET,
 		OUT_STRING_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("./text/PressStart2P.ttf"));
 	oldFont = (HFONT)SelectObject(hdc, font);
 

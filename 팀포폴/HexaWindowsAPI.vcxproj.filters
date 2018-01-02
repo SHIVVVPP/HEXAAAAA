@@ -234,6 +234,9 @@
     <ClInclude Include="bullet.h">
       <Filter>MainGame\bullet</Filter>
     </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>shovelKnight\ItemManager\items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -355,6 +358,12 @@
     </ClCompile>
     <ClCompile Include="bullet.cpp">
       <Filter>MainGame\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_background.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>shovelKnight\ItemManager\items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
