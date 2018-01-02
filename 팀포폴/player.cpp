@@ -56,7 +56,7 @@ HRESULT player::init()
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftIdle", "playerIdle", leftIdle, 1, 6, true);
 	int rightMove[] = { 0,1,2,3,4,5 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerRightMove", "playerWalk", rightMove, 6, 8, true);
-	int leftMove[] = { 6,7,8,9,10,11 };
+	int leftMove[] = {11,10,9,8,7,6 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftMove", "playerWalk", leftMove, 6, 8, true);
 	int rightJumpUp[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerRightJumpUp", "playerJump", rightJumpUp, 1, 8, true);
@@ -68,7 +68,7 @@ HRESULT player::init()
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpDown", "playerJump", leftJumpDown, 1, 8, true);
 	int rightAttack[] = { 0,1,2,3 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttack, 4, 10, true);
-	int leftAttack[] = { 4,5,6,7 };
+	int leftAttack[] = {7,6,5,4 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttack, 4, 8, true);
 	int leftDownAttack[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftDownAttack", "playerDownAtk", leftDownAttack, 1, 8, true);
