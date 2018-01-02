@@ -222,6 +222,9 @@
     <ClInclude Include="database.h">
       <Filter>MainGame\dataBase</Filter>
     </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>shovelKnight\ItemManager\items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -334,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="database.cpp">
       <Filter>MainGame\dataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>shovelKnight\ItemManager\items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
