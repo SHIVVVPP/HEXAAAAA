@@ -96,17 +96,20 @@ void mainGame::setImages()
 	//¸¶À», NPC ÀÌ¹ÌÁö¤Ë    
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("townPix", "./image/town/townPiximage.bmp", 8137, 900, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("backsideimg", "./image/town/backsidetown.bmp", 8137, 900, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 90, 34, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/¹Ùµå³ë¸».bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/¹Ùµåfirst.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/¹ÙµåÈï°Ü¿îÀ½¾Ç.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/¸¶¹ý»ç¾Æ°¡¾¾¹Í½º.bmp", 0, 0, 7875, 225, 46, 1, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("¸¶¹ý»ç", "./image/town/¸¶¹ý»ç¾Æ°¡¾¾¹Í½º.bmp", 0, 0, 7584, 225, 48, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("¸ô¸®", "./image/town/¸ô¸®.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
-	
+
+	IMAGEMANAGER->addFrameImage("Áüµç ³²ÀÚ", "./image/town/bagFellaMove.bmp", 0, 0, 427, 360, 2, 2, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addFrameImage("¿°¼Ò", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("¸¶¹ý»ç", "./image/town/¸¶¹ý»ç¾Æ°¡¾¾¹Í½º.bmp", 7875, 255, 45, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("¸¶¹ý»ç", "./image/town/¸¶¹ý»ç¾Æ°¡¾¾¹Í½º.bmp", 7668, 225, 46, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("¿ä¸®»ç", "./image/town/À½½ÄÁ¡ÁÖÀÎ±â»Ý.bmp", 797, 300, 4, 1, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));

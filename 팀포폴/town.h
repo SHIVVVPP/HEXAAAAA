@@ -7,6 +7,7 @@ class town :public gameNode
 private:
 	image* townimage;
 	image* townPix;
+	image* backsideimg;
 	NPCManager* _NPCM;
 
 	RECT _table;			// ÁßÁ¡ x = 2770, y= 530

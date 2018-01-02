@@ -18,7 +18,12 @@ protected:
 	int			_tolkX;				//대화 포지션x
 	int			_tolkY;				//대화 포지션y
 	int         _tolkCout;			//토크 카운트;
+	int			NpcSpeed;
+	
+	bool		_isMove;			//움직이냐?
 	bool		_isRight;			//오른쪽이냐?
+	bool		_istolk;			//
+	
 
 	const char* fileName;			//텍스트 파일 이름 저장
 
@@ -27,15 +32,17 @@ public:
 	NPC();
 	~NPC();
 
-	//			이미지 이름		이미지의 좌표			 대화 파일				대화 위치			대화박스 위치   npc의 움직임
-	HRESULT init(const char * ImageName, POINT position, const char* _fileName, POINT Talkposition, POINT TalkBox, bool isRight);
+	//			이미지 이름		이미지의 좌표			 대화 파일				대화 위치			대화박스 위치   npc의 움직이니?	npc의 방향	
+	HRESULT init(const char * ImageName, POINT position, const char* _fileName, POINT Talkposition, POINT TalkBox, bool isMove,bool isRight);
 	void release();
 	void update();
 	void render();
-	virtual void Move(bool _isRight);
+	virtual void Move(bool _isMvoe, bool _isRight);
 	virtual void Converstion(int tolkCount);
 
 
-	RECT getimgRC() {	return _imgrc;	}
+	RECT getimgRC() { return _imgrc; }
+	bool getisMove() { return _isMove; }
+	bool getisRight() { return _isRight; }
 };
 

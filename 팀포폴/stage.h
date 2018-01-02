@@ -3,9 +3,8 @@
 
 class stage : public gameNode
 {
-private
-	pixelMap* _pm;
-   
+private:
+	
 
 public:
 	stage();
@@ -16,7 +15,6 @@ public:
 	void update();
 	void render();
 
-	pixelMap();
-	~pixelMap();
+
 };
 

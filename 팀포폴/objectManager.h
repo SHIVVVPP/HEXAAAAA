@@ -4,7 +4,7 @@
 class objectManager : public gameNode
 {
 
-private
+private:
 
 	RECT _challengeGoal;
 	RECT _dirtblock;
