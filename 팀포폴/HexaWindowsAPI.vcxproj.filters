@@ -270,6 +270,9 @@
     <ClInclude Include="deerLady.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
+    <ClInclude Include="gard.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -426,6 +429,9 @@
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="deerLady.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="gard.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
   </ItemGroup>

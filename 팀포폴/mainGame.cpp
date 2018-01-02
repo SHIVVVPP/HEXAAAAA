@@ -40,16 +40,15 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//_ui = new ui;
 	//_ui->init(UI_STAGE);
-	CAMERAMANAGER->setBackground(8137, 900);
+	/*CAMERAMANAGER->setBackground(8137, 900);
 	CAMERAMANAGER->setStartBackground(0, 0);
 
 	_town = new town;
 	_town->init();
-	STARTX = 0; 
-	STARTY = 0;
+	
 	rc = RectMake(WINSIZEX / 2, WINSIZEX / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&rc);
+	CAMERAMANAGER->setCameraAim(&rc);*/
 	return S_OK;
 }
 
@@ -64,17 +63,21 @@ void mainGame::update()				//연산 함수
 {
 	gameNode::update();
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
 		rc.left += 5;
 		rc.right += 5;
 	}
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) {
+		rc.left -= 5;
+		rc.right -= 5;
+	}*/
 	
 	//sys->update();
 	//SCENEMANAGER->update();
 	//_player->update();
 	
 	//_ui->update();
-	_town->update();
+	//_town->update();
 
 }
 
@@ -90,8 +93,8 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 	//_ui->render();
 	
-	_town->render();
-	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	//_town->render();
+	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	//==================== 건들지마라 =======================
 	//TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);

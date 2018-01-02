@@ -14,6 +14,7 @@
 #include"Sepp.h"
 #include"waterGirl.h"
 #include"Wizard.h"
+#include"gard.h"
 
 class NPCManager : public gameNode
 {
@@ -29,8 +30,8 @@ private:
 	float _x;								//Npc 지정 X죄표
 	float _y;								//Npc 지정 Y좌표
 
-	int _rndInt;							//랜덤한 수를 뽑기 위한 INT
-
+	int a;							//랜덤한 수를 뽑기 위한 INT
+	char str[128];
 public:
 	NPCManager();
 	~NPCManager();

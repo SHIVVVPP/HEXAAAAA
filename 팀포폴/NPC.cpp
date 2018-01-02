@@ -12,13 +12,17 @@ NPC::~NPC()
 
 }
 
-HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName, POINT Talkposition, POINT TalkBox,bool isMove ,bool isRight)	//npc의 이미지 이름 , npc의 위치,npc의 대화파일 이름, 대화 위치 , 대화 박스 , npc의 움직임
+HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName, bool isMove ,bool isRight)	//npc의 이미지 이름 , npc의 위치,npc의 대화파일 이름, 대화 위치 , 대화 박스 , npc의 움직임
 {
 	_Npcimage = IMAGEMANAGER->findImage(ImageName);																					//npc의 이미지불러오기
 	_imgrc = RectMake(position.x, position.y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());								//npc의 렉트 생성
 
 	_aniNpc = new animation;																										//애니메이션 선언
 	_aniNpc->init(_Npcimage->getWidth(), _Npcimage->getHeight(), _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());			//애니메이션 초기화
+
+	_conversaion = IMAGEMANAGER->findImage("conversationRect");
+	_tolkBox = RectMakeCenter(WINSIZEX/2, 97, _conversaion->getWidth(), _conversaion->getHeight());
+
 	if (!isMove) {
 		_aniNpc->setDefPlayFrame(false, true);																							//
 	}
@@ -48,10 +52,10 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 	_isMove = isMove;																												//움직이는 npc니?
 	_isRight = isRight;																												//시작하는 좌표가 오른쪽이냐
 	fileName = _fileName;																											//파일 이름 저장
-	_tolkboxX = TalkBox.x;																											//토크박스x
-	_tolkboxY = TalkBox.y;																											//토크박스y
-	_tolkX = Talkposition.x;																										//대화위치 x
-	_tolkY = Talkposition.y;																										//대화위치 y
+	_tolkboxX = 1540;																											//토크박스x
+	_tolkboxY = 160;																											//토크박스y
+	_tolkX = 235;																										//대화위치 x
+	_tolkY = 50;																										//대화위치 y
 	_tolkCout = 0;																													//토크출력시간;
 	
 	_istolk = false;																												//토크 출력 컨트롤 불값
@@ -64,7 +68,6 @@ void NPC::release()
 }
 void NPC::update()
 {
-	/*if (KEYMANAGER->isStayKeyDown('E'))*/
 	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
 
 	Move(_isMove,_isRight);
@@ -72,15 +75,23 @@ void NPC::update()
 }
 void NPC::render()
 {
-	if (KEYMANAGER->isToggleKey('F1')) {
+	if (KEYMANAGER->isToggleKey(VK_F1)) {
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
 
 	}
+//	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
 	_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
+	
+	
 	if (_istolk) 
-	{
+	{	
+		HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
+		Rectangle(getMemDC(), _tolkBox.left, _tolkBox.top, _tolkBox.right, _tolkBox.bottom);
+		FillRect(getMemDC(), &_tolkBox, brush);
+		DeleteObject(brush);
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
-		TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, -1, 15);
+		TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+		_conversaion->render(getMemDC());
 	}
 }
 void NPC::Move(bool _isMvoe, bool _isRight)
@@ -97,6 +108,7 @@ void NPC::Move(bool _isMvoe, bool _isRight)
 			_x = _LeftStartMoveX;
 			_x += NpcSpeed;
 		}
+		//RectMake(_x, _y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
 	}
 }
 void NPC::Converstion(int tolkCount)

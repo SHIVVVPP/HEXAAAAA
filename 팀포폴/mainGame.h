@@ -10,7 +10,7 @@
 class mainGame : public gameNode
 {
 private:
-	RECT rc;
+	//RECT rc;
 	system_option* sys;
 	player* _player;
 	town*	_town;
@@ -18,8 +18,7 @@ private:
 	gameNode * _inventory;
 	gameNode* _stage;
 	ui* _ui;
-	int STARTX;
-	int STARTY;
+	
 public:
 	virtual HRESULT init();			
 	virtual void release();			

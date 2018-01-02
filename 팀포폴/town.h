@@ -15,7 +15,7 @@ private:
 
 	bool _isvisible;		//픽셀이미지 보이게 하는 불값;
 
-	char str[128];
+
 public:
 	town();
 	~town();

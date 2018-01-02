@@ -18,8 +18,9 @@ HRESULT town::init()
 	backsideimg = IMAGEMANAGER->findImage("backsideimg");
 	_NPCM = new NPCManager;								//
 	_NPCM->init();
-	_NPCM->setNpc();
+	
 	_NPCM->setLeftNpc(false);
+	_NPCM->setNpc();
 	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
 	_isvisible = false;
 	return S_OK;
@@ -54,7 +55,7 @@ void town::render()
 	}
 	else {
 		Rectangle(getMemDC(), _table.left, _table.top, _table.right, _table.bottom);
-		townPix->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+		//townPix->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	_NPCM->render();
 	//TextOut(getMemDC(), 50, 50, str, strlen(str));
