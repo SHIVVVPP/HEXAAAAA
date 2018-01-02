@@ -129,6 +129,56 @@ void mainGame::setImages()
 	//------------------------------------------------------
 	//------------------------------------------------------
 
+	//------------------------------------------------------
+	//**************백그라운드 이미지*********************
+	//------------------------------------------------------
+
+	IMAGEMANAGER->addImage("필드배경", "./background/background.bmp", 27007, 5291, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("픽셀배경", "./background/piexlground.bmp", 27007, 5291, false, RGB(0, 255, 0 ));
+
+	//------------------------------------------------------
+	//------------------------------------------------------
+
+	//------------------------------------------------------
+	//**************오브젝트 이미지*********************
+	//------------------------------------------------------
+
+	IMAGEMANAGER->addImage("무더기파편1", "./object/dirtdust1.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("무더기파편2", "./object/dirtdust2.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("무더기", "./object/dirtpile1.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("무더기", "./object/dirtpile2.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("무더기", "./object/dirtpile3.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("무더기", "./object/dirtpile4.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("무더기", "./object/dirtpile5.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("벽무더기", "./object/digclod1.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("돌덩이", "./object/digclod2.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("세이브포인트", "./object/challengeGoal.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("큰모래", "./object/dirtblock.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("작은모래", "./object/dirtblock_small.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("파랑펌프", "./object/blueBump.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("노랑펌프", "./object/yellowBump.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("빨강배경", "./object/radBump.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("스몰젬", "./object/smallgem.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("블루젬", "./object/bluegem.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("그린젬", "./object/greengem.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("핑크젬", "./object/pinkgem.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("레드젬", "./object/radgem.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("골드바1", "./object/goldbar1.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("골드바2", "./object/goldbar2.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("파랑범프히트", "./object/blueBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("노랑범프히트", "./object/yellowBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("빨강범프히트", "./object/radBump_hit.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("방울", "./object/bubble.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("큰모래파괴", "./object/dirtblock_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("작은모래파괴", "./object/dirtblock_small_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("세이브체크", "./object/challengGoal_effect.bmp", 0, 0, 0, 0, false, RGB(255, 0, 255));
+
+	//------------------------------------------------------
+	//------------------------------------------------------
+
+
 
 }
 	
