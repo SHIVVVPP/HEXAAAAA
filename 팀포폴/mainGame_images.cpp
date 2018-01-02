@@ -75,12 +75,12 @@ void mainGame::setImages()
 		277, 639,
 		3, 8, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addFrameImage("ÇØ°ñ", "½ºÄÌ·¹Åæ.bmp",
+	IMAGEMANAGER->addFrameImage("ÇØ°ñ", "½ºÄÌ·¹Åæ¿Ï¼º.bmp",
 		580, 3060,
 		4, 24, true, RGB(255, 0, 255));
 
 
-	IMAGEMANAGER->addFrameImage("ÇØ°ñ", "½ºÄÌ·¹Åæ.bmp",
+	IMAGEMANAGER->addFrameImage("ÇØ°ñ", "½ºÄÌ·¹Åæ¿Ï¼º.bmp",
 		580, 3060,
 		4, 24, true, RGB(255, 0, 255));
 

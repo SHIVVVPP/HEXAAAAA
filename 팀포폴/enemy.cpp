@@ -26,6 +26,7 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 
 	_imageName = IMAGEMANAGER->findImage(imageName);
 
+	slowFrameCounter = 0;
 	frameCounter = 0;
 	_index = 0;
 
@@ -39,15 +40,18 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 
 	
 	
-	
+	_attackChance = false;
 
 	centerX = position.x;			//개체 x좌표
 	centerY = position.y;			//개체 Y좌표
 
 	_rc = RectMakeCenter(centerX, centerY, _imageName->getFrameWidth(), _imageName->getFrameHeight());  //이미지 기준 렉트
 
-	_collisionRc = RectMakeCenter((centerX + _rcPlaceX), (centerY + _rcPlaceY), _rcX, _rcY);			//충돌렉트									//충돌 렉트
+	_collisionRc = RectMakeCenter((centerX + _rcPlaceX), (centerY + _rcPlaceY), _rcX, _rcY);			//충돌렉트		
 
+	_detectRc = RectMakeCenter(centerX, centerY, 150, 500);
+																										
+	_attackRc = RectMake(centerX, centerY, 0, 0);
 																							
 
 	reflectJumpPower = 5.0f;   //플레이어에게 넘겨줄 점프 파워 정보
@@ -55,7 +59,8 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 	_hitCounter = hitCounter;
 
 	_probeX  = centerX;
-	_probeY = (centerY + _rc.bottom - _rc.top )/ 2;
+
+	_probeY = (centerY + _rc.bottom - _rc.top ) / 2;
 
 	return S_OK;
 }
@@ -110,6 +115,8 @@ void enemy::update()
 
 	_rc = RectMakeCenter(centerX, centerY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
+	_detectRc = RectMakeCenter(centerX, centerY, 150, 500);												//감지범위 렉트 업데이트
+
 	_probeX = centerX ;
 	_probeY = (centerY + _rc.bottom - _rc.top) / 2;
 
@@ -126,13 +133,18 @@ void enemy::render()
 
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		Rectangle(getMemDC(), _collisionRc.left, _collisionRc.top, _collisionRc.right, _collisionRc.bottom);
+		Rectangle(getMemDC(), _collisionRc.left, _collisionRc.top, _collisionRc.right, _collisionRc.bottom);			//메인렉트
 
-		Rectangle(getMemDC(), _subCollisionRc.left, _subCollisionRc.top, _subCollisionRc.right, _subCollisionRc.bottom);
+		Rectangle(getMemDC(), _subCollisionRc.left, _subCollisionRc.top, _subCollisionRc.right, _subCollisionRc.bottom);	//서브렉트
+
+		Rectangle(getMemDC(), _attackRc.left, _attackRc.top, _attackRc.right, _attackRc.bottom);			//공격렉트
 	}
 
 
 }
+
+
+
 
 void enemy::slimeFameMove()
 {
@@ -238,7 +250,7 @@ void enemy::greenDragonFrameMove()
 void enemy::yellowDragonFrameMove()
 {
 	frameCounter++;
-	if (frameCounter % 30 == 0)
+	if (frameCounter % 10 == 0)
 	{
 
 		if (_monsterDirection == leftStand)
@@ -289,6 +301,126 @@ void enemy::yellowDragonFrameMove()
 
 void enemy::skeletonFrameMove()
 {
+	frameCounter++;
+	slowFrameCounter++;
+
+	if (frameCounter % 10 == 0)
+	{
+		if (_monsterDirection == rightStand)
+		{
+			_currentFrameY = 0;
+			_currentFrameX = 0;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == rightMove)
+		{
+			_currentFrameY = 1;
+			if (_currentFrameX >= 3)_currentFrameX = -1;
+			_currentFrameX++;
+
+			frameCounter = 0;
+		}
+
+
+		if (_monsterDirection == rightAttack)
+		{
+			_currentFrameY = 5;
+			if (_currentFrameX < 1)
+			{
+				_currentFrameX++;
+
+				_attackRc = RectMake(centerX, _rc.top + 30, 80, 70);	
+			}
+			else
+			{
+				_attackRc = RectMake(centerX, centerY, 0 , 0);
+			}
+			frameCounter = 0;
+		}
+
+
+		if (_monsterDirection == rightSpawn)
+		{
+			_currentFrameY = 10;
+			if (_currentFrameX < 3)_currentFrameX++;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftStand)
+		{
+			_currentFrameY = 11;
+			_currentFrameX = 3;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftMove)
+		{
+			_currentFrameY = 12;
+
+			if (_currentFrameX <= 0) _currentFrameX = 4;
+
+			_currentFrameX--;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftAttack)
+		{
+			_currentFrameY = 15;
+			if (_currentFrameX > 2)
+			{
+				_currentFrameX--;
+
+				_attackRc = RectMake(centerX - 80, _rc.top + 30, 80, 70);
+			}
+			else
+			{
+				_attackRc = RectMake(centerX, centerY, 0, 0);
+			}
+			
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftSpawn)
+		{
+			_currentFrameY = 21;
+			if (_currentFrameX > 0) _currentFrameX--;
+			frameCounter = 0;
+		}
+	}
+
+////////////////////////////////////////////////////////////느리게 돌아가는 프레임
+	if (slowFrameCounter % 30 == 0)
+	{
+		if (_monsterDirection == rightBackStep)
+		{
+			_currentFrameY = 3;
+			if (_currentFrameX < 1)_currentFrameX++;
+			
+			slowFrameCounter = 0;
+		}
+
+		if (_monsterDirection == leftBackStep)
+		{
+			_currentFrameY = 14;
+
+			if (_currentFrameX > 2) _currentFrameX--;
+			
+
+			slowFrameCounter = 0;
+		}
+
+
+	}
+		
+
+	_imageName->setFrameX(_currentFrameX);
+	_imageName->setFrameY(_currentFrameY);
 }
 
 void enemy::bossFrameMove()
@@ -326,7 +458,7 @@ void enemy::bossFrameMove()
 			frameCounter = 0;
 		}
 
-		if (_monsterDirection = rightJumpAttack)
+		if (_monsterDirection == rightJumpAttack)
 		{
 			_currentFrameY = 5;
 
@@ -380,7 +512,17 @@ void enemy::bossFrameMove()
 		{
 			_currentFrameY = 25;
 
-			if (_currentFrameX <= 5)_currentFrameX = 7;
+			if (_currentFrameX <= 5)_currentFrameX = 6;
+			_currentFrameX--;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftMove)
+		{
+			_currentFrameY = 35;
+
+			if (_currentFrameX <= 0)_currentFrameX = 6;
 			_currentFrameX--;
 
 			frameCounter = 0;
@@ -409,27 +551,61 @@ void enemy::bossFrameMove()
 			_currentFrameY = 30;
 
 
-			if (_currentFrameX <= 3)_currentFrameX = 7;
+			if (_currentFrameX <= 3)_currentFrameX = 6;
 			_currentFrameX--;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftAttack)
+		{
+			_currentFrameY = 36;
+
+
+			if (_currentFrameX <= 3)_currentFrameX = 6;
+			_currentFrameX--;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftDead)
+		{
+			_currentFrameY = 41;
+
+
+			if (_currentFrameX <= 2)_currentFrameX = 6;
+			_currentFrameX--;
+
+			frameCounter = 0;
+		}
+
+		if (_monsterDirection == leftDamaged)
+		{
+			_currentFrameY = 44;
+
+
+			_currentFrameX = 6;
 
 			frameCounter = 0;
 		}
 
 
 
-		
+
 	}
 
-	
+
 
 
 	_imageName->setFrameX(_currentFrameX);
 	_imageName->setFrameY(_currentFrameY);
 }
 
+
+
 void enemy::generalMove()
 {
-	for (int i = _probeY - 50; i < _probeY + 50; ++i)
+	for (int i = _probeY - 10; i < _probeY + 20; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("임시배경")->getMemDC(), centerX, i);
 
@@ -446,49 +622,47 @@ void enemy::generalMove()
 	///////
 	if (_monsterDirection == leftMove)
 	{
-		for (int i = _probeX - 50; i < _probeX; ++i)
+
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("임시배경")->getMemDC(), _rc.left, centerY + (_rc.bottom - _rc.top) / 2 + 1);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if (!(r == 0 && g == 255 && b == 0))
 		{
-			COLORREF color = GetPixel(IMAGEMANAGER->findImage("임시배경")->getMemDC(), i, centerY + (_rc.bottom - _rc.top) / 2 + 50);
-
-			int r = GetRValue(color);
-			int g = GetGValue(color);
-			int b = GetBValue(color);
-
-			if (!(r == 0 && g == 255 && b == 0))
+			//exit(0);
+			if (_monsterDirection == leftMove)
 			{
 				//exit(0);
-				if (_monsterDirection == leftMove)
-				{
-					//exit(0);
-					_monsterDirection = rightMove;
-				}	
-				break;
+				_monsterDirection = rightMove;
 			}
+
 		}
+
 	}
 
 	if (_monsterDirection == rightMove)
 	{
 		//exit(0);
-		for (int i = _probeX ; i < _probeX + 50; ++i)
+
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("임시배경")->getMemDC(), _rc.right, centerY + (_rc.bottom - _rc.top) / 2 + 1);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if (!(r == 0 && g == 255 && b == 0))
 		{
-			COLORREF color = GetPixel(IMAGEMANAGER->findImage("임시배경")->getMemDC(), i, centerY + (_rc.bottom - _rc.top) / 2 + 50);
-
-			int r = GetRValue(color);
-			int g = GetGValue(color);
-			int b = GetBValue(color);
-
-			if (!(r == 0 && g == 255 && b == 0))
+			//exit(0);
+			if (_monsterDirection == rightMove)
 			{
 				//exit(0);
-				if (_monsterDirection == rightMove)
-				{
-					//exit(0);
-					_monsterDirection = leftMove;
-				}
-				break;
+				_monsterDirection = leftMove;
 			}
-		}	
+
+		}
+
 	}
 
 	if (_monsterDirection == rightMove)

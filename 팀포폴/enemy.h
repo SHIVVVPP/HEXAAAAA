@@ -23,7 +23,7 @@ enum monsterDirection
 	rightRangeAttack ,
 	leftRangeAttack ,
 	rightDamaged ,
-	leftDamaged
+	leftDamaged 
 };
 
 class enemy : public gameNode
@@ -35,6 +35,8 @@ protected:
 	RECT _rc;
 	RECT _collisionRc;
 	RECT _subCollisionRc;
+	RECT _detectRc;
+	RECT _attackRc;
 	int _hitCounter;			//히트카운터 맞을횟수
 	int centerX, centerY;		//좌표 x, y
 	int _rcX, _rcY;				//충돌렉트 크기
@@ -43,6 +45,7 @@ protected:
 	float reflectJumpPower;
 
 	int frameCounter;
+	int slowFrameCounter;
 	int _index = 0;
 	int _currentFrameX, _currentFrameY;
 
@@ -52,6 +55,8 @@ protected:
 	animation* _monsterMotion;
 
 	int _monsterDirection;
+
+	bool _attackChance;
 
 
 public:
@@ -76,6 +81,7 @@ public:
 	void yellowDragonFrameMove();
 	void skeletonFrameMove();
 	void bossFrameMove();
+	void detecting();
 
 
 
@@ -91,6 +97,9 @@ public:
 	inline int getHitCounter() { return _hitCounter; }				//맞은횟수 히트카운터 접근자
 	inline RECT getCollsionRect() { return _collisionRc; }            //몬스터 충돌rc 접근자
 	inline RECT getSubCollsionRect() { return _subCollisionRc; }	  //몬스터 서브 충돌rc 접근자	
+	inline RECT getAttackRect() { return _attackRc; }
+	inline RECT getDetectRect() { return _detectRc; }
+
 	inline float getCounterJumpPower() { return reflectJumpPower; }   //몬스터 점프 아래 공격시 플레이어가 가지는 점프파워
 	inline int getMonsetrDirection() { return _monsterDirection; }	  //몬스터 상태 접근자
 //	void* getMotion() { return _monsterMotion; }

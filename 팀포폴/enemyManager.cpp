@@ -2,12 +2,15 @@
 #include "enemyManager.h"
 
 
+
+
 enemyManager::enemyManager()
 {
 }
 enemyManager::~enemyManager()
 {
 }
+
 
 
 HRESULT enemyManager::init()
@@ -30,12 +33,15 @@ void enemyManager::update()
 		(*_viRedBeetle)->update();
 		(*_viRedBeetle)->redbeetleFrameMove();
 		(*_viRedBeetle)->generalMove();
+	
 
 	}
 
 	for (_viSkeleton = _vSkeleton.begin(); _viSkeleton != _vSkeleton.end(); ++_viSkeleton)
 	{
 		(*_viSkeleton)->update();
+		(*_viSkeleton)->skeletonFrameMove();
+		(*_viSkeleton)->generalMove();
 		
 	}
 
@@ -43,6 +49,7 @@ void enemyManager::update()
 	{
 		(*_viGreenDragon)->update();
 		(*_viGreenDragon)->greenDragonFrameMove();
+		(*_viGreenDragon)->generalMove();
 		
 	}
 
@@ -56,15 +63,24 @@ void enemyManager::update()
 	{
 		(*_viBlueSlime)->update();
 		(*_viBlueSlime)->slimeFameMove();
+		(*_viBlueSlime)->generalMove();
 		//(*_viBlueSlime)->slimeAni();
 	}
 
+	for (_viBoss = _vBoss.begin(); _viBoss != _vBoss.end(); ++_viBoss)
+	{
+		(*_viBoss)->update();
+		(*_viBoss)->bossFrameMove();
+
+	
+	}
 	//////////////////////////////////////////////////////////
 	if (KEYMANAGER->isOnceKeyDown('Q'))setRedBeetle();
 	if (KEYMANAGER->isOnceKeyDown('W'))setSkeleton();
 	if (KEYMANAGER->isOnceKeyDown('E'))setBlueSlime();
 	if (KEYMANAGER->isOnceKeyDown('R'))setGreenDragon();
 	if (KEYMANAGER->isOnceKeyDown('T'))setYellowDragon();
+	if (KEYMANAGER->isOnceKeyDown('Y'))setBoss();
 	///////////////////////////////////////////////////////////
 
 
@@ -98,6 +114,12 @@ void enemyManager::render()
 	{
 		(*_viBlueSlime)->render();
 	}
+
+	for (_viBoss = _vBoss.begin(); _viBoss != _vBoss.end(); ++_viBoss)
+	{
+		(*_viBoss)->render();
+
+	}
 }
 
 
@@ -127,7 +149,7 @@ void enemyManager::setGreenDragon()
 			enemy* _greenDragon;
 			_greenDragon = new greenDragon;
 
-			_greenDragon->init("초록용", PointMake(WINSIZEX / 2 - 100, WINSIZEY / 2), 3, 50, 50, 0, 0);
+			_greenDragon->init("초록용", PointMake(WINSIZEX / 2 - 100, WINSIZEY / 2 + 200), 3, 50, 50, 0, 0);
 
 			_vGreenDragon.push_back(_greenDragon);
 		}
@@ -143,7 +165,7 @@ void enemyManager::setBlueSlime()
 			enemy* _slime;
 			_slime = new blueSlime;
 
-			_slime->init("슬라임", PointMake(WINSIZEX / 2, WINSIZEY / 2), 2, 50, 50, 0, 10);
+			_slime->init("슬라임", PointMake(WINSIZEX / 2, WINSIZEY / 2 + 200), 2, 50, 50, 0, 10);
 
 			_vBlueSlime.push_back(_slime);
 		}
@@ -159,7 +181,7 @@ void enemyManager::setSkeleton()
 			enemy* _skeleton;
 			_skeleton = new skeleton;
 
-			_skeleton->init("해골", PointMake(WINSIZEX / 2 + 100, WINSIZEY / 2), 3, 50, 70, 0, 0);
+			_skeleton->init("해골", PointMake(WINSIZEX / 2 + 100, WINSIZEY / 2 + 200), 3, 50, 70, 0, 0);
 
 			_vSkeleton.push_back(_skeleton);
 		}
@@ -175,10 +197,40 @@ void enemyManager::setYellowDragon()
 			enemy* _yellowDragon;
 			_yellowDragon = new yellowDragon;
 
-			_yellowDragon->init("노란용", PointMake(WINSIZEX / 2 + 200, WINSIZEY / 2), 7, 50, 50, 0, 0, 50, 50, 0, 0);
+			_yellowDragon->init("노란용", PointMake(WINSIZEX / 2 + 200, WINSIZEY / 2 + 200), 7, 50, 50, 0, 0, 50, 50, 0, 0);
 
 			_vYellowDragon.push_back(_yellowDragon);
 		}
+	}
+}
+
+void enemyManager::attackPlayer()
+{
+	//for (_viSkeleton = _vSkeleton.begin(); _viSkeleton != _vSkeleton.end(); ++_viSkeleton)
+	//{
+	//	RECT temp;
+	//	if (IntersectRect(&temp, &(*_viSkeleton)->getDetectRect(), &_player->getPlayerRect())
+	//	{
+	//	
+	//	}
+	//	
+	//}
+}
+
+void enemyManager::setBoss()
+{
+	for (int i = 0; i < 1; i++)
+	{
+		for (int j = 0; j < 1; j++)
+		{
+			enemy* _boss;
+			_boss = new boss;
+
+			_boss->init("보스", PointMake(WINSIZEX / 2 - 200, WINSIZEY / 2 + 200), 1, 60, 35, 0, 0);
+
+			_vBoss.push_back(_boss);
+		}
+
 	}
 }
 

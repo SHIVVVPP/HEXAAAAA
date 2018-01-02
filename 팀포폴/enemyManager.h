@@ -14,6 +14,7 @@
 #include <vector>
 
 
+
 class enemyManager : gameNode
 {
 private:
@@ -21,6 +22,8 @@ private:
 	typedef vector<enemy*>::iterator viEnemy;
 
 	int generalFrameCounter;
+
+	
 
 public:
 
@@ -42,6 +45,7 @@ public:
 	vEnemy		 _vBoss;
 	viEnemy		 _viBoss;
 
+
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
@@ -52,6 +56,11 @@ public:
 	void setBlueSlime();
 	void setSkeleton();
 	void setYellowDragon();
+
+
+	void attackPlayer();
+
+	void setBoss();
 
 	void frameMove();
 	void killSomething(int arrNum);
