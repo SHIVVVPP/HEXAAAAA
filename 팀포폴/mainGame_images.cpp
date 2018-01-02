@@ -110,6 +110,7 @@ void mainGame::setImages()
 	//**************UI ÀÌ¹ÌÁö*********************
 	//------------------------------------------------------
 	IMAGEMANAGER->addImage("UI_basic", "./image./UI/ui/main_ui.bmp", 1600, 71, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("UI_worldMap", "./image./UI./ui./worldMap_ui.bmp", 1600, 192, false, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("ui_playerHP", "./image/UI/ui/hp_icon.bmp", 102, 34, 3, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("number", "./image/UI/ui/number.bmp", 300, 29, 10, 1, true, RGB(255, 0, 255));
