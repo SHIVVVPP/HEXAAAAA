@@ -21,8 +21,10 @@ HRESULT player::init()
 	//IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 500, 500, 2, 2, true, RGB(255, 0, 255));
-	
-
+	_Relic = new bullet;
+	_Relic->init("ÆÄº¼", 100, 800);
+	_currentRelic = FIRELOD;
+	_bulletAngle = PI;
 	_playerMainCondition = PLAYER_RIGHT_IDLE;
 	_playerSubCondition = PLAYER_NOTHING;
 	
@@ -68,10 +70,10 @@ HRESULT player::init()
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpUp", "playerJump", leftJumpUp, 1, 8, true);
 	int leftJumpDown[] = { 3 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpDown", "playerJump", leftJumpDown, 1, 8, true);
-	int rightAttack[] = { 0,1,2,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttack, 4, 10, true);
-	int leftAttack[] = {7,6,5,4 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttack, 4, 8, true);
+	int rightAttackarr[] = { 0,1,2,3 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttackarr, 4, 15, false ,rightAttack, this);
+	int leftAttackarr[] = {7,6,5,4 };
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttackarr, 4, 15, false ,leftAttack, this);
 	int leftDownAttack[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftDownAttack", "playerDownAtk", leftDownAttack, 1, 8, true);
 	int rightDownAttack[] = { 1 };
@@ -334,10 +336,20 @@ void player::update()
 	case PLAYER_RIGHT_IDLE:
 		_image = IMAGEMANAGER->findImage("playerIdle");
 		_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
+		if (_isJump)
+		{
+			_y -= _jumpPower;
+			_jumpPower -= _gravity;
+		}
 		break;
 	case PLAYER_LEFT_IDLE:
 		_image = IMAGEMANAGER->findImage("playerIdle");
 		_ani = KEYANIMANAGER->findAnimation("playerLeftIdle");
+		if (_isJump)
+		{
+			_y -= _jumpPower;
+			_jumpPower -= _gravity;
+		}
 		break;
 	case PLAYER_IDLE_JUMP:
 		_y -= _jumpPower;
@@ -387,12 +399,27 @@ void player::update()
 		break;
 	case PLAYER_RIGHT_JUMP_ATTACK:
 		_attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
+		if (_isJump)
+		{
+			_y -= _jumpPower;
+			_jumpPower -= _gravity;
+		}
 		break;
 	case PLAYER_LEFT_ATTACK:
 		_attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
+		if (_isJump)
+		{
+			_y -= _jumpPower;
+			_jumpPower -= _gravity;
+		}
 		break;
 	case PLAYER_LEFT_JUMP_ATTACK:
 		_attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
+		if (_isJump)
+		{
+			_y -= _jumpPower;
+			_jumpPower -= _gravity;
+		}
 		break;
 	case PLAYER_DOWN_ATTACK:
 		_y -= _jumpPower;
@@ -457,13 +484,13 @@ void player::update()
 	
 	KEYANIMANAGER->update();
 
-	
+	usage();
+	_Relic->update();
 }
 
 
 void player::render()
 {
-
 	Rectangle(getMemDC(), LadderRC.left, LadderRC.top, LadderRC.right, LadderRC.bottom);
 	Rectangle(getMemDC(), enemyRC.left, enemyRC.top, enemyRC.right, enemyRC.bottom);
 
@@ -478,7 +505,7 @@ void player::render()
 	TextOut(getMemDC(), 100, 200, str1, strlen(str1));
 
 	
-
+	_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		Rectangle(getMemDC(), _imageRC.left, _imageRC.top, _imageRC.right, _imageRC.bottom);
@@ -539,12 +566,45 @@ void player::collisonHitted(RECT * obj)
 	}
 }
 
-void player::rightAttack(void * obj)
+void player::rightAttack(void* obj)
 {
+	player* p = (player*)obj;
+
+	if (!p->getIsJump())
+	{
+		p->setPlayerMainCondition(PLAYER_RIGHT_IDLE);
+		p->setPlayerImage(IMAGEMANAGER->findImage("playerIdle"));
+		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerRightIdle"));
+		p->getPlayerAni()->start();
+	}
+	else
+	{
+		p->setPlayerMainCondition(PLAYER_IDLE_JUMP);
+		p->setPlayerImage(IMAGEMANAGER->findImage("playerJump"));
+		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerRightJumpDown"));
+		p->getPlayerAni()->start();
+	}
 }
 
 void player::leftAttack(void * obj)
 {
+	player* p = (player*)obj;
+
+	if (!p->getIsJump())
+	{
+		p->setPlayerMainCondition(PLAYER_LEFT_IDLE);
+		p->setPlayerImage(IMAGEMANAGER->findImage("playerIdle"));
+		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerLeftIdle"));
+		p->getPlayerAni()->start();
+	}
+	
+	else 
+	{
+		p->setPlayerMainCondition(PLAYER_IDLE_JUMP);
+		p->setPlayerImage(IMAGEMANAGER->findImage("playerJump"));
+		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerLeftJumpDown"));
+		p->getPlayerAni()->start();
+	}
 }
 
 void player::rightJumpAttack(void * obj)

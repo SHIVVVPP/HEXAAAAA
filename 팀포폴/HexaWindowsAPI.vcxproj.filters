@@ -100,6 +100,9 @@
     <Filter Include="shovelKnight\UI">
       <UniqueIdentifier>{c55661d9-8477-47f9-a178-91ceef11a3c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\bullet">
+      <UniqueIdentifier>{4adaacb7-51ae-4e72-8b6c-a5fd250d1614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -228,6 +231,9 @@
     <ClInclude Include="ui.h">
       <Filter>shovelKnight\UI</Filter>
     </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>MainGame\bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -344,8 +350,11 @@
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
     </ClCompile>
-    <ClCompile Include="stage_background.cpp">
-      <Filter>shovelKnight\scene\stage</Filter>
+    <ClCompile Include="player_usage.cpp">
+      <Filter>shovelKnight\player</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>MainGame\bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
