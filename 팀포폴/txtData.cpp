@@ -124,5 +124,5 @@ void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width
 	DeleteObject(oldFont);
 	RECT _rc = RectMake(x, y, width, height); //넣을좌표
 
-	DrawText(hdc, str, outputNum, &_rc, DT_LEFT | DT_WORDBREAK); //출력위치.
+	DrawText(hdc, str, outputNum, &_rc, DT_CENTER | DT_WORDBREAK); //출력위치.
 }
