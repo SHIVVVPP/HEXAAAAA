@@ -228,14 +228,50 @@
     <ClInclude Include="ui.h">
       <Filter>shovelKnight\UI</Filter>
     </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="bagFella.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Bard.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="goatician.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="genericKnight.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="hedgeFarmer.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="maiden.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Merchant.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Molly.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Sepp.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="waterGirl.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="deerLady.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="winMain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="gameNode.cpp">
       <Filter>2DFramework</Filter>
     </ClCompile>
@@ -343,6 +379,54 @@
     </ClCompile>
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="bagFella.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Bard.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="genericKnight.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="goatician.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="hedgeFarmer.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="maiden.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Merchant.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Molly.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sepp.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="waterGirl.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="deerLady.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
