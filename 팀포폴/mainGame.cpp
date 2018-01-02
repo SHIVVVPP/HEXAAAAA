@@ -25,10 +25,10 @@ HRESULT mainGame::init()			//초기화 함수
 	gameNode::init(true);
 	setImages();
 
-	/*
+	
 
 	_player = new player;
-	_player->init();*/
+	//_player->init();
 
 	sys = new system_option;
 	sys->init();
@@ -36,7 +36,7 @@ HRESULT mainGame::init()			//초기화 함수
 	SCENEMANAGER->addScene("스테이지", new stage);
 	SCENEMANAGER->addScene("인벤토리", new inventory);
 	
-	SCENEMANAGER->changeScene("인벤토리");
+	SCENEMANAGER->changeScene("인벤토리",_player);
 
 	//_ui = new ui;
 	//_ui->init(UI_STAGE);
