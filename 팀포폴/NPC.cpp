@@ -12,7 +12,7 @@ NPC::~NPC()
 
 }
 
-HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName, bool isMove ,bool isRight)	//npc의 이미지 이름 , npc의 위치,npc의 대화파일 이름, 대화 위치 , 대화 박스 , npc의 움직임
+HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller)
 {
 	_Npcimage = IMAGEMANAGER->findImage(ImageName);																					//npc의 이미지불러오기
 	_imgrc = RectMake(position.x, position.y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());								//npc의 렉트 생성
@@ -23,10 +23,12 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 	_conversaion = IMAGEMANAGER->findImage("conversationRect");
 	_tolkBox = RectMakeCenter(WINSIZEX/2, 97, _conversaion->getWidth(), _conversaion->getHeight());
 
+
+
 	if (!isMove) {
 		_aniNpc->setDefPlayFrame(false, true);																							//
 	}
-	else {
+	/*else {
 		if (isRight) 
 		{
 			int arrAni[] = { 0, 1 };
@@ -37,7 +39,7 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 			int arrAni[] = { 3, 2 };
 			_aniNpc->setPlayFrame(arrAni, 2, true);
 		}
-	}
+	}*/
 	_aniNpc->setFPS(1);																												//애니메이션 속도
 	_aniNpc->start();
 
@@ -51,15 +53,20 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 
 	_isMove = isMove;																												//움직이는 npc니?
 	_isRight = isRight;																												//시작하는 좌표가 오른쪽이냐
+	_isMoreConverstion = ismoreConversation;																					    //대화가 더있니?
+	_isSaller = isSaller;																										    //NPC가 판매자니
 	fileName = _fileName;																											//파일 이름 저장
-	_tolkboxX = 1540;																											//토크박스x
-	_tolkboxY = 160;																											//토크박스y
-	_tolkX = 235;																										//대화위치 x
-	_tolkY = 50;																										//대화위치 y
+	fileName2 = _fileName2;																											//파일 이름 저장
+	_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());
+	_tolkboxX = 1540;																												//토크박스x
+	_tolkboxY = 160;																												//토크박스y
+	_tolkX = 235;																													//대화위치 x
+	_tolkY = 50;																													//대화위치 y
 	_tolkCout = 0;																													//토크출력시간;
 	
+	conversationCount = 0;
 	_istolk = false;																												//토크 출력 컨트롤 불값
-
+	_isYes = false;																													//처음은 NO;
 	return S_OK;
 }
 void NPC::release()
@@ -90,7 +97,25 @@ void NPC::render()
 		FillRect(getMemDC(), &_tolkBox, brush);
 		DeleteObject(brush);
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
-		TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+		if(!_isMoreConverstion) 	TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+		else {
+			if(conversationCount == 0)		TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			else 
+			{
+				_tolkMaxsize = TXTDATA->textSize(fileName2, getMemDC());
+				TXTDATA->render(fileName2, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			}
+		}
+		if(_isMoreConverstion && _isSaller){
+			if (conversationCount == 0)
+			{
+				TXTDATA->render(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			}
+			else if (conversationCount == 1) 
+			{
+				TXTDATA->render(fileName2, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			}
+		}
 		_conversaion->render(getMemDC());
 	}
 }
@@ -108,12 +133,13 @@ void NPC::Move(bool _isMvoe, bool _isRight)
 			_x = _LeftStartMoveX;
 			_x += NpcSpeed;
 		}
-		//RectMake(_x, _y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
+	
 	}
 }
 void NPC::Converstion(int tolkCount)
 {
 	_tolkCout = tolkCount;
 	_istolk = true;
+	
 	
 }

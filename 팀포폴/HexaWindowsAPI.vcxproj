@@ -83,6 +83,7 @@
     <ClInclude Include="Bard.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
+    <ClInclude Include="Crown.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="deerLady.h" />
     <ClInclude Include="dirtpile.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="bagFella.cpp" />
     <ClCompile Include="Bard.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="Crown.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="deerLady.cpp" />
     <ClCompile Include="dirtpile.cpp" />

@@ -297,6 +297,9 @@
     <ClInclude Include="moveblock.h">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
     </ClInclude>
+    <ClInclude Include="Crown.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="moveblock.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

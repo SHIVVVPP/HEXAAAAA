@@ -93,7 +93,7 @@ void mainGame::setImages()
 	//아이템 이미지
 	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("shovel", "./image/inventory/shovel.bmp", 133, 133, true, RGB(0, 0, 0));
-	//마을, NPC 이미지ㅛ    
+	//마을, NPC 이미지    
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("townPix", "./image/town/townPiximage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("backsideimg", "./image/town/backsidetown.bmp", 8137, 900, true, RGB(255, 0, 255));
@@ -112,6 +112,13 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("요리사", "./image/town/음식점주인기쁨.bmp", 797, 300, 4, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("hedgeFarmer", "./image/town/hedgeFarmer1-1.bmp", 436, 180, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("guard", "./image/town/guard.bmp", 308, 200, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("광대", "./image/town/Merchant.bmp", 339, 150, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("선택된YES", "./image/inventory/SelectYes.bmp", 130, 61, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택안된YES", "./image/inventory/NotSelectYes.bmp", 107, 43, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택된NO", "./image/inventory/SelectNo.bmp", 98, 61, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택안된NO", "./image/inventory/NotSelectNO.bmp", 75, 36, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("안삼", "./image/inventory/Done.bmp", 79, 23, true, RGB(0, 0, 0));
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));

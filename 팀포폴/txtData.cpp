@@ -126,3 +126,23 @@ void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width
 
 	DrawText(hdc, str, outputNum, &_rc, DT_CENTER | DT_WORDBREAK); //출력위치.
 }
+
+int  txtData::textSize(const char* loadFileName, HDC hdc) {
+	
+	HANDLE file;
+
+	DWORD  dwTotalSize = 0;
+
+	
+
+	BOOL bResult;
+
+	file = CreateFile(loadFileName, GENERIC_READ, 0, NULL,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	dwTotalSize = GetFileSize(file, 0);
+	CloseHandle(file);
+
+
+	return dwTotalSize;
+}
