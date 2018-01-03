@@ -84,6 +84,7 @@ void stage::setStageBackgroundInfo()
 	temp._height = temp._roomImage->getHeight();
 	_mRoom.insert(make_pair("1", temp));
 
+
 	temp._roomImage = IMAGEMANAGER->findImage("back2");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack2");
 	temp._leftX = IMAGEMANAGER->findImage("back1")->getWidth();
@@ -261,4 +262,8 @@ tagRoomInfo stage::findRoomInfo(string strkey)
 	miRoom key = _mRoom.find(strkey);
 
 	return key->second;
+}
+
+void stage::setCameraObject()
+{
 }
