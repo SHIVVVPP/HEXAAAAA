@@ -11,7 +11,7 @@
 class mainGame : public gameNode
 {
 private:
-	//RECT rc;
+	RECT rc;
 	system_option* sys;
 	player* _player;
 	town*	_town;

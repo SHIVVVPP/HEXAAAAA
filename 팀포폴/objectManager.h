@@ -6,9 +6,11 @@
 #include "dirtpile.h"
 #include "moveblock.h"
 #include <vector>
+
 class objectManager : public gameNode
 {
 private:
+	
 	typedef vector<objects*> vO;
 	typedef vector<objects*> viO;
 private:

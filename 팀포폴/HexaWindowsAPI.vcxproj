@@ -83,8 +83,11 @@
     <ClInclude Include="Bard.h" />
     <ClInclude Include="blueSlime.h" />
     <ClInclude Include="boss.h" />
+    <ClInclude Include="bubble.h" />
+    <ClInclude Include="bullet.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
+    <ClInclude Include="Crown.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="deerLady.h" />
     <ClInclude Include="dirtpile.h" />
@@ -123,6 +126,7 @@
     <ClInclude Include="option_game.h" />
     <ClInclude Include="option_video.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="player_usage.h" />
     <ClInclude Include="potion.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -155,7 +159,10 @@
     <ClCompile Include="Bard.cpp" />
     <ClCompile Include="blueSlime.cpp" />
     <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="bubble.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="Crown.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="deerLady.cpp" />
     <ClCompile Include="dirtpile.cpp" />
@@ -195,6 +202,7 @@
     <ClCompile Include="option_game.cpp" />
     <ClCompile Include="option_video.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="player_usage.cpp" />
     <ClCompile Include="potion.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="redBeetle.cpp" />

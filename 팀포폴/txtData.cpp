@@ -126,3 +126,54 @@ void txtData::render(const char* loadFileName,HDC hdc, int x, int y, float width
 
 	DrawText(hdc, str, outputNum, &_rc, DT_CENTER | DT_WORDBREAK); //출력위치.
 }
+
+void txtData::NPCrender(const char * loadFileName, HDC hdc, int x, int y, float width, float height, int outputNum, int fontSize)
+{
+	HANDLE file;
+
+	DWORD read;
+
+	char str[1025];
+
+	file = CreateFile(loadFileName, GENERIC_READ, 0, NULL,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	ReadFile(file, str, 1025, &read, NULL);
+
+	CloseHandle(file);
+
+	SetBkMode(hdc, TRANSPARENT);
+
+	HFONT font, oldFont;
+
+	font = CreateFont(fontSize, 0, 0, 0, 600, 0, 0, 0, DEFAULT_CHARSET,
+		OUT_STRING_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("./text/PressStart2P.ttf"));
+	oldFont = (HFONT)SelectObject(hdc, font);
+
+	DeleteObject(font);
+	DeleteObject(oldFont);
+	RECT _rc = RectMake(x, y, width, height); //넣을좌표
+
+	DrawText(hdc, str, outputNum, &_rc, DT_LEFT | DT_WORDBREAK); //출력위치.
+
+}
+
+int  txtData::textSize(const char* loadFileName, HDC hdc) {
+	
+	HANDLE file;
+
+	DWORD  dwTotalSize = 0;
+
+	
+
+	BOOL bResult;
+
+	file = CreateFile(loadFileName, GENERIC_READ, 0, NULL,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	dwTotalSize = GetFileSize(file, 0);
+	CloseHandle(file);
+
+
+	return dwTotalSize;
+}

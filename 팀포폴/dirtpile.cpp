@@ -10,6 +10,7 @@ dirtpile::dirtpile()
 
 	_picked = false;
 	_canLand = false;
+	//_isHit = false;
 }
 
 

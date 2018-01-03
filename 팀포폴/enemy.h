@@ -43,6 +43,9 @@ protected:
 	int _subRcX, _subRcY;		//서브충돌렉트 크기
 	int _rcPlaceX, _rcPlaceY, _subRcPlaceX, _subRcPlaceY; //충돌렉트와 서브충돌렉트 좌표 수정
 	float reflectJumpPower;
+	float _jumpPower;
+	float _gravity;
+	float _speed;
 
 	int frameCounter;
 	int slowFrameCounter;
@@ -81,7 +84,12 @@ public:
 	void yellowDragonFrameMove();
 	void skeletonFrameMove();
 	void bossFrameMove();
-	void detecting();
+
+	void bubbleFrameMove();
+	void bubbleMove();
+
+
+//	void detecting();
 
 
 
@@ -96,6 +104,9 @@ public:
 
 	inline int getFrameX() { return _currentFrameX; }				//x프레임 접근자
 	inline int getFrameY() { return _currentFrameY; }				//y프레임 접근자
+
+	inline int getJumpPower() { return _jumpPower; }
+	inline int getGravity() {return _gravity;}
 
 	inline int getHitCounter() { return _hitCounter; }				//맞은횟수 히트카운터 접근자
 	inline RECT getCollsionRect() { return _collisionRc; }            //몬스터 충돌rc 접근자

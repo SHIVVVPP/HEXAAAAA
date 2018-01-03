@@ -30,8 +30,8 @@ HRESULT mainGame::init()			//초기화 함수
 	_player = new player;
 	_player->init();*/
 
-	_player = new player;
-	_player->init();
+	//_player = new player;
+	//_player->init();
 
 	//sys = new system_option;
 	//sys->init();
@@ -43,21 +43,18 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//_ui = new ui;
 	//_ui->init(UI_STAGE);
-	/*CAMERAMANAGER->setBackground(8137, 900);
+	CAMERAMANAGER->setBackground(8137, 900);
 	CAMERAMANAGER->setStartBackground(0, 0);
 
 	_town = new town;
 	_town->init();
 	
-	rc = RectMake(WINSIZEX / 2, WINSIZEX / 2, 50, 50);
+	rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&rc);*/
+	CAMERAMANAGER->setCameraAim(&rc);
 
-	/*_objectManager = new objectManager;
-	_objectManager->init();*/
-
-	SCENEMANAGER->addScene("stage", new stage);
-	SCENEMANAGER->changeScene("stage", _player);
+	//_objectManager = new objectManager;
+	//_objectManager->init();
 	return S_OK;
 }
 
@@ -72,21 +69,21 @@ void mainGame::update()				//연산 함수
 {
 	gameNode::update();
 
-	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
 		rc.left += 5;
 		rc.right += 5;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) {
 		rc.left -= 5;
 		rc.right -= 5;
-	}*/
+	}
 	
 	//sys->update();
-	SCENEMANAGER->update();
+	//SCENEMANAGER->update();
 	//_player->update();
 	
 	//_ui->update();
-	//_town->update();
+	_town->update();
 	//_objectManager->update();
 }
 
@@ -96,13 +93,13 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	//sys->render();
-	SCENEMANAGER->render();
+	//SCENEMANAGER->render();
 
 	//_player->render();
 
 	//_ui->render();
 	
-	//_town->render();
+	_town->render();
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	//_objectManager->render();
 	//==================== 건들지마라 =======================

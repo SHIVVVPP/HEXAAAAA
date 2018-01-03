@@ -9,6 +9,7 @@ moveblock::moveblock()
 	_canLand = true;
 	_hang = false;
 	_picked = false;
+	//_isHit = false;
 }
 
 
