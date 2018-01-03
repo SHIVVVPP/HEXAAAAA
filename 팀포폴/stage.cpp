@@ -41,6 +41,7 @@ void stage::release()
 
 void stage::update()
 {
+
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 6;
@@ -71,12 +72,13 @@ void stage::update()
 	}
 	//_player->update();
 }
-		_rc.top -= 3;
-		_rc.bottom -= 3;
-	}*/
-	pixelCollison();
-	_player->update();
-}
+//		_rc.top -= 3;
+//		_rc.bottom -= 3;
+//	}*/
+//	pixelCollison();
+//	_player->update();
+//	
+//}
 
 void stage::render()
 {
