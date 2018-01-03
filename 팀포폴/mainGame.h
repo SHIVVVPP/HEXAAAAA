@@ -7,6 +7,7 @@
 #include "ui.h"
 #include "town.h"
 
+#include "objectManager.h"
 class mainGame : public gameNode
 {
 private:
@@ -18,7 +19,7 @@ private:
 	gameNode * _inventory;
 	gameNode* _stage;
 	ui* _ui;
-	
+	objectManager* _objectManager;
 public:
 	virtual HRESULT init();			
 	virtual void release();			

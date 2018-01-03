@@ -237,5 +237,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("rightfakeline", "./image/object/fakeline_right.bmp", 64, 192, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("leftfaketail", "./image/object/faketail_left.bmp", 64, 192, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("rightfaketail", "./image/object/faketail_right.bmp", 64, 192, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("ladder", "./image/object/ladder.bmp", 72, 461, true, RGB(255, 0, 255));
 }
 	
