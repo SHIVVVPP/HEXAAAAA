@@ -8,7 +8,7 @@ private:
 	typedef vector<objects*> vO;
 	typedef vector<objects*> viO;
 private:
-
+	vO _vgem;
 	RECT _challengeGoal;
 	RECT _dirtblock;
 	RECT _dirtblock_small;
