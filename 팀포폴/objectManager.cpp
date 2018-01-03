@@ -14,7 +14,11 @@ objectManager::~objectManager()
 HRESULT objectManager::init()
 {
 	setPosition();
-	
+	_hitcount = 9;
+	for (int i = 0; i < _vgem.size(); i++)
+	{
+		_vgem[i]->_canHit = true;
+	}
 	return S_OK;
 }
 
@@ -36,45 +40,68 @@ void objectManager::update()
 
 	for (int i = 0; i < _vgem.size(); i++)
 	{
-		if (_vgem[i]->getisHit())_vgem[i]->update();
+		_vgem[i]->update();
 	}
 
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
 		for (int j = 0; j < _vgem.size(); j++)
 		{
-			if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) //충돌 추가로 넣기 한대쳤을떄
+			if (_vgem[j]->_canHit)
 			{
-				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
+				if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) //충돌 추가로 넣기 한대쳤을떄
 				{
-					_vgem[0]->setisHit(true);
-					_vdirtpile[i]->getAni()->setPlayIndex(1);
-				}
-				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
-				{
-					_vdirtpile[i]->getAni()->setPlayIndex(2);
-					//_vgem[j]->setisHit(true);
-				}
-				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
-				{
-					_vdirtpile[i]->getAni()->setPlayIndex(3);
-				}
-				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
-				{
-					_vdirtpile[i]->getAni()->setPlayIndex(4);
-				}
-				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
-				{
-					_vdirtpile.erase(_vdirtpile.begin());
-				}
-			}
+					if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
+					{
+						_vdirtpile[i]->getAni()->setPlayIndex(1);
+						_hitcount = 4;
+					}
+					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
+					{
+						_hitcount = 3;
+						_vdirtpile[i]->getAni()->setPlayIndex(2);
+					}
+					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
+					{
+						_hitcount = 2;
+						_vdirtpile[i]->getAni()->setPlayIndex(3);
+					}
+					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
+					{
+						_hitcount = 1;
+						_vdirtpile[i]->getAni()->setPlayIndex(4);
+					}
+					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
+					{
+						_hitcount = 0;
+					}
 
-			if (_vgem[0]->getisHit() == true)
-			{
-				//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
-				_vgem[1]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
-				_vgem[3]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
-				_vgem[2]->setisHit(false);
+					switch (_hitcount)
+					{
+					case 0:
+						//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
+						_vgem[j]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+						_vdirtpile.erase(_vdirtpile.begin());
+						break;
+					case 1:
+						//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
+						_vgem[j]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+						break;
+					case 2:
+						//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
+						_vgem[j]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+						break;
+					case 3:
+						//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
+						_vgem[j]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+						break;
+					case 4:
+						//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
+						_vgem[0]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+						_vgem[1]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+						break;
+					}
+				}
 			}
 		}
 		break;
@@ -114,19 +141,19 @@ void objectManager::setPosition()
 	
 	//
 	_obj = new gem;
-	_obj->init("reddia", 10,false);
+	_obj->init("reddia", 10);
 	_vgem.push_back(_obj);
 	//
 	_obj = new gem;
-	_obj->init("bluegem", 20,false);
+	_obj->init("bluegem", 20);
 	_vgem.push_back(_obj);
 	//
 	_obj = new gem;
-	_obj->init("greengem", 30,false);
+	_obj->init("greengem", 30);
 	_vgem.push_back(_obj);
 	//
 	_obj = new gem;
-	_obj->init("smalljew", 30,false);
+	_obj->init("smalljew", 30);
 	_vgem.push_back(_obj);
 
 	_obj = new ladder;

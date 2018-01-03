@@ -18,6 +18,8 @@ private:
 	vO _vladder;
 	vO _vmoveblock;
 	vO _vdirtpile;
+
+	int _hitcount;
 public:
 	objectManager();
 	~objectManager();
