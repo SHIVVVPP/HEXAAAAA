@@ -17,6 +17,10 @@
 #define C_OBJECT_MOVE 0
 #define C_OBJECT_MOVE2 1
 
+//오브젝트 충돌 타입
+#define C_OBJECT_TO_NEXT 0
+#define C_OBJECT_TO_PRE 1
+
 
 //이펙트
 //#define EFFECT_POWF 0
@@ -42,6 +46,9 @@ typedef struct tagCameraObject
 	bool moveFinish;
 	bool toNext;
 	int prevP;
+
+	//팀포폴전용
+	string num;
 
 	tagCameraObject()
 	{
@@ -145,9 +152,9 @@ public:
 	tagRect nextCameraLimit;
 	tagRect prevCameraLimit;
 	RECT* _aim;*/
-	void  addCameraObject(bool vertical,bool senceside,int objectType, int nextCameraCondition, RECT rc, POINT prevLimit, POINT nextLimit, RECT* aim, bool left_top);
+	void  addCameraObject(bool vertical,bool senceside,int objectType, int nextCameraCondition, RECT rc, POINT prevLimit, POINT nextLimit, RECT* aim, bool left_top,string connectN);
 	void cameraObjectRender(HDC hdc);
-	void cameraOCollision(RECT rc);
+	string cameraOCollision(RECT rc, string me);
 	void cameraObjectClear() { _vO.clear(); }
 
 };

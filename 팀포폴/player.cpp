@@ -33,8 +33,8 @@ HRESULT player::init()
 	enemyRC = RectMakeCenter(900, WINSIZEY / 2, 100, 100);
 	
 	
-	_x = WINSIZEX / 2;
-	_y = WINSIZEY / 2;
+	_x = 100;
+	_y = 3100;
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
@@ -48,7 +48,7 @@ HRESULT player::init()
 	_jumpPower = 11.0f;
 	_gravity = 0.45f;
 	_dir = 1;
-	//_probeY = 0;
+	_probeY = 0;
 	_repulsivePower = 3.0f;     // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
 	_frictionalPower = 0.2f;	// 반발력을 서서히 삭감시키기 위한 마찰력
 	_isJump = false;
@@ -483,7 +483,7 @@ void player::update()
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	
 	KEYANIMANAGER->update();
-
+	//pixelCollison();
 	//usage();
 	//_Relic->update();
 }
@@ -494,7 +494,7 @@ void player::render()
 	Rectangle(getMemDC(), LadderRC.left, LadderRC.top, LadderRC.right, LadderRC.bottom);
 	Rectangle(getMemDC(), enemyRC.left, enemyRC.top, enemyRC.right, enemyRC.bottom);
 
-	_image->aniRender(getMemDC(), _imageRC.left, _imageRC.top, _ani);
+	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _imageRC.left), CAMERAMANAGER->CameraRelativePointY( _imageRC.top), _ani);
 
 	char str[128];
 	sprintf(str, "케릭터 메인상태값 : %d", _playerMainCondition);
@@ -591,31 +591,6 @@ void player::collisonObject(int objType, int objValue)
 	}
 }
 
-void player::pixelCollison()
-{
-	COLORREF color;
-	int r, g, b;
-
-	// 머리 충돌판정
-	if (_jumpPower >=0)
-	{
-		_probeY = _playerRC.top;
-
-		color = GetPixel(getMemDC(), _x, _probeY);
-
-		r = GetRValue(color);
-		g = GetGValue(color);
-		b = GetBValue(color);
-
-	//	if ()
-	}
-
-	else if (_jumpPower < 0)
-	{
-		_probeY = _playerRC.bottom;
-
-	}
-}
 
 void player::rightAttack(void* obj)
 {

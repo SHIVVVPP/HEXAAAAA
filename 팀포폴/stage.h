@@ -7,11 +7,14 @@ class player;
 
 struct tagRoomInfo
 {
+	string myKey;
 	int _index;
 	int _leftX, _topY;
 	int _width, _height;
 	image* _roomImage;
 	image* _pixelColImage;
+	vector<string> _vConnectedRoom;
+
 	
 };
 
@@ -50,4 +53,5 @@ public:
 
 	void  AddressLinkWithPlayer(player* _p) { _player = _p; }
 
+	void pixelCollison();
 };
