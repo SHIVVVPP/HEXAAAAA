@@ -1,6 +1,8 @@
- #pragma once
+#pragma once
 #include "gameNode.h"
 #include <map>
+
+class player;
 
 
 struct tagRoomInfo
@@ -10,13 +12,14 @@ struct tagRoomInfo
 	int _width, _height;
 	image* _roomImage;
 	image* _pixelColImage;
+	
 };
 
 class stage : public gameNode
 {
 private:
 	typedef map<string, tagRoomInfo> mRoom;
-	typedef map<string, tagRoomInfo> miRoom;
+	typedef map<string, tagRoomInfo>::iterator miRoom;
 
 private:
 	mRoom _mRoom;
@@ -24,7 +27,12 @@ private:
 	tagRoomInfo _prevRoom;
 
 	int _currentRoomNum;
-	
+	player* _player;
+
+	//임시 렉트
+
+	RECT _rc;
+
 
 public:
 	stage();
@@ -36,6 +44,10 @@ public:
 	void render();
 
 	void setStageBackgroundInfo();
+	tagRoomInfo findRoomInfo(string key);
+
+	void setCameraObject();
+
+	void  AddressLinkWithPlayer(player* _p) { _player = _p; }
 
 };
-

@@ -30,8 +30,8 @@ HRESULT mainGame::init()			//초기화 함수
 	_player = new player;
 	_player->init();*/
 
-	//_player = new player;
-	//_player->init();
+	_player = new player;
+	_player->init();
 
 	//sys = new system_option;
 	//sys->init();
@@ -53,8 +53,11 @@ HRESULT mainGame::init()			//초기화 함수
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&rc);*/
 
-	_objectManager = new objectManager;
-	_objectManager->init();
+	/*_objectManager = new objectManager;
+	_objectManager->init();*/
+
+	SCENEMANAGER->addScene("stage", new stage);
+	SCENEMANAGER->changeScene("stage", _player);
 	return S_OK;
 }
 
@@ -79,12 +82,12 @@ void mainGame::update()				//연산 함수
 	}*/
 	
 	//sys->update();
-	//SCENEMANAGER->update();
+	SCENEMANAGER->update();
 	//_player->update();
 	
 	//_ui->update();
 	//_town->update();
-	_objectManager->update();
+	//_objectManager->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -93,7 +96,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	//sys->render();
-	//SCENEMANAGER->render();
+	SCENEMANAGER->render();
 
 	//_player->render();
 
@@ -101,7 +104,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	
 	//_town->render();
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
-	_objectManager->render();
+	//_objectManager->render();
 	//==================== 건들지마라 =======================
 	//TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);
