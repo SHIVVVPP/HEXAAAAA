@@ -27,4 +27,12 @@ void objectManager::update()
 
 void objectManager::render()
 {
+	for (int i = 0; i < _vgem.size(); i++)
+	{
+		_vgem[i]->render();
+	}
+}
+
+void objectManager::player_object_collision()
+{
 }

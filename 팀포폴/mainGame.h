@@ -5,7 +5,7 @@
 #include "stage.h"
 #include "player.h"	
 #include "ui.h"
-
+#include "objects.h"
 class mainGame : public gameNode
 {
 private:
@@ -15,7 +15,7 @@ private:
 	gameNode * _inventory;
 	gameNode* _stage;
 	ui* _ui;
-
+	objects* _obj;
 public:
 	virtual HRESULT init();			
 	virtual void release();			

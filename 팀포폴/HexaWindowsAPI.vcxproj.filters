@@ -103,6 +103,9 @@
     <Filter Include="MainGame\bullet">
       <UniqueIdentifier>{4adaacb7-51ae-4e72-8b6c-a5fd250d1614}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\gem">
+      <UniqueIdentifier>{088f5717-f9a1-4132-b5b9-a1e12b76808b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -240,6 +243,9 @@
     <ClInclude Include="objects.h">
       <Filter>shovelKnight\ObjectManager\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="gem.h">
+      <Filter>shovelKnight\ObjectManager\Objects\gem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -370,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="objects.cpp">
       <Filter>shovelKnight\ObjectManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gem.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\gem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
