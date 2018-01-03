@@ -100,6 +100,15 @@
     <Filter Include="shovelKnight\ObjectManager\Objects\gem">
       <UniqueIdentifier>{088f5717-f9a1-4132-b5b9-a1e12b76808b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\ladder">
+      <UniqueIdentifier>{f64ba99f-4165-447a-ac93-a670a8594044}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\dirtpile">
+      <UniqueIdentifier>{3e026230-4060-4ccb-9990-fb11e1437efa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\movingblock">
+      <UniqueIdentifier>{c7adf367-79ff-4183-8331-5ff49d09e914}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -222,27 +231,6 @@
     <ClInclude Include="sceneManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="blueSlime.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="greenDragon.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="redBeetle.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="skeleton.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="yellowDragon.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>shovelKnight\EnemyManager</Filter>
-    </ClInclude>
-    <ClInclude Include="boss.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="NPC.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
@@ -293,6 +281,21 @@
     </ClInclude>
     <ClInclude Include="gem.h">
       <Filter>shovelKnight\ObjectManager\Objects\gem</Filter>
+    </ClInclude>
+    <ClInclude Include="database.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ladder.h">
+      <Filter>shovelKnight\ObjectManager\Objects\ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="dirtpile.h">
+      <Filter>shovelKnight\ObjectManager\Objects\dirtpile</Filter>
+    </ClInclude>
+    <ClInclude Include="moveblock.h">
+      <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -398,27 +401,6 @@
     <ClCompile Include="sceneManager.cpp">
       <Filter>2DFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="blueSlime.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="greenDragon.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="redBeetle.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="skeleton.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="yellowDragon.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>shovelKnight\EnemyManager</Filter>
-    </ClCompile>
-    <ClCompile Include="boss.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
@@ -475,6 +457,21 @@
     </ClCompile>
     <ClCompile Include="gem.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\gem</Filter>
+    </ClCompile>
+    <ClCompile Include="database.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ladder.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\ladder</Filter>
+    </ClCompile>
+    <ClCompile Include="dirtpile.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\dirtpile</Filter>
+    </ClCompile>
+    <ClCompile Include="moveblock.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

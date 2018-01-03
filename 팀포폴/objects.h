@@ -11,7 +11,8 @@
 #define TYPE_SKULL 7
 class objects : public gameNode
 {
-private:
+protected:
+	animation* _objAni;
 	int _type;
 	RECT _rc;
 
@@ -19,14 +20,22 @@ private:
 	bool _hang;
 
 	bool _picked;
-
+	bool _canLand;
+	int _x;
+	int _y;
+	int _startX, _startY;
+	int _range;
+	int _width, _height;
+	float _speedX;
+	const char* _imageName;
 public:
 	objects();
 	~objects();
-
+	virtual HRESULT init(int x, int y, int range, bool isRight);
+	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y);	
-	virtual	HRESULT init(int x, int y, int length);
-	virtual HRESULT init(int x, int y, float angle);
+	virtual	HRESULT init(int x, int y, float length);
+	virtual HRESULT init(int x, int y, const char* imageName);
 	virtual void update();
 	virtual void render();
 	virtual void release();

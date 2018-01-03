@@ -3,10 +3,8 @@
 
 class gem : public objects
 {
-private:
-
 public:
-	HRESULT init(int x, int y);
+	HRESULT init(int x, int y,const char* imageName);
 	void update();
 	void render();
 	gem();

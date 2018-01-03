@@ -11,19 +11,29 @@ objects::~objects()
 {
 }
 
+HRESULT objects::init(int x, int y, int range, bool isRight)
+{
+	return E_NOTIMPL;
+}
+
+HRESULT objects::init(int x, int y, int startX, int startY)
+{
+	return E_NOTIMPL;
+}
+
 HRESULT objects::init(int x, int y)
 {
-	return S_OK;
+	return E_NOTIMPL;
 }
 
-HRESULT objects::init(int x, int y, int length)
+HRESULT objects::init(int x, int y, float length)
 {
-	return S_OK;
+	return E_NOTIMPL;
 }
 
-HRESULT objects::init(int x, int y, float angle)
+HRESULT objects::init(int x, int y, const char* imageName)
 {
-	return S_OK;
+	return E_NOTIMPL;
 }
 
 void objects::update()

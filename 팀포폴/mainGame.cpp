@@ -38,8 +38,8 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//SCENEMANAGER->addScene("스테이지", new stage);
 	//SCENEMANAGER->addScene("인벤토리", new inventory);
-	
-	//SCENEMANAGER->changeScene();
+	//
+	//SCENEMANAGER->changeScene("인벤토리","스테이지",_player);
 
 	//_ui = new ui;
 	//_ui->init(UI_STAGE);
@@ -52,6 +52,9 @@ HRESULT mainGame::init()			//초기화 함수
 	rc = RectMake(WINSIZEX / 2, WINSIZEX / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&rc);*/
+
+	_objectManager = new objectManager;
+	_objectManager->init();
 	return S_OK;
 }
 
@@ -81,7 +84,7 @@ void mainGame::update()				//연산 함수
 	
 	//_ui->update();
 	//_town->update();
-
+	_objectManager->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -98,6 +101,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	
 	//_town->render();
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	_objectManager->render();
 	//==================== 건들지마라 =======================
 	//TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);

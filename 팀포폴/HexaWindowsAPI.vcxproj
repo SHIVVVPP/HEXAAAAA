@@ -85,6 +85,7 @@
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="deerLady.h" />
+    <ClInclude Include="dirtpile.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="enemyManager.h" />
@@ -101,10 +102,12 @@
     <ClInclude Include="itemManager.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="ladder.h" />
     <ClInclude Include="maiden.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="Merchant.h" />
     <ClInclude Include="Molly.h" />
+    <ClInclude Include="moveblock.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="objectManager.h" />
@@ -144,6 +147,7 @@
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="deerLady.cpp" />
+    <ClCompile Include="dirtpile.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="enemyManager.cpp" />
@@ -160,11 +164,13 @@
     <ClCompile Include="itemManager.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="ladder.cpp" />
     <ClCompile Include="maiden.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="mainGame_images.cpp" />
     <ClCompile Include="Merchant.cpp" />
     <ClCompile Include="Molly.cpp" />
+    <ClCompile Include="moveblock.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="objectManager.cpp" />
