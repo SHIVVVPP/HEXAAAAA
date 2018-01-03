@@ -39,5 +39,8 @@ public:
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 	sceneManager();
 	~sceneManager();
+
+	HRESULT changeScene(string sceneName);
+	HRESULT changeScene(string sceneName,string loadingSceneName);
 };
 

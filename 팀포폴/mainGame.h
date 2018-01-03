@@ -5,17 +5,21 @@
 #include "stage.h"
 #include "player.h"	
 #include "ui.h"
+#include "town.h"
 
+#include "objectManager.h"
 class mainGame : public gameNode
 {
 private:
+	//RECT rc;
 	system_option* sys;
 	player* _player;
+	town*	_town;
 	//system_option* sys;
 	gameNode * _inventory;
 	gameNode* _stage;
 	ui* _ui;
-
+	objectManager* _objectManager;
 public:
 	virtual HRESULT init();			
 	virtual void release();			
