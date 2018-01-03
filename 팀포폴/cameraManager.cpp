@@ -334,7 +334,7 @@ void cameraManager::cameraFollow(bool vertical)
 }
 
 
-void cameraManager::addCameraObject(bool vertical, bool sence_vertical,int type, int nextCameraCondition, RECT rc, POINT prevLimit, POINT nextLimit, RECT * aim,bool left_top)
+void cameraManager::addCameraObject(bool vertical, bool sence_vertical,int type, int nextCameraCondition, RECT rc, POINT prevLimit, POINT nextLimit, RECT * aim,bool left_top, string num)
 {
 	CAMERA_OBJECT temp;
 	temp._type = type;
@@ -342,6 +342,7 @@ void cameraManager::addCameraObject(bool vertical, bool sence_vertical,int type,
 	temp.sence_vertical = sence_vertical;
 	temp.left_top = left_top;
 	temp.nextCondition = nextCameraCondition;
+	temp.num = num;
 
 	temp.nextCameraLimit = nextLimit;
 	temp.prevCameraLimit =	prevLimit;
@@ -403,7 +404,7 @@ void cameraManager::cameraObjectRender(HDC hdc)
 	TextOut(hdc, 0,200, str, strlen(str));
 }
 
-void cameraManager::cameraOCollision(RECT rc)
+string cameraManager::cameraOCollision(RECT rc,string me)
 {
 	RECT temp;
 	RECT col;
@@ -420,13 +421,21 @@ void cameraManager::cameraOCollision(RECT rc)
 			if (!PtInRect(&temp, { (rc.left + rc.right) / 2 ,_co->prevP }))_co->prevP = (temp.bottom + temp.top) / 2;
 			if (_co->left_top)
 			{
-				if (_co->prevP < (temp.top + temp.bottom) / 2) _co->toNext = true;
-				else if (_co->prevP >(temp.top + temp.bottom) / 2) _co->toNext = false;
+				if (_co->prevP < (temp.top + temp.bottom) / 2) {
+					_co->toNext = true;
+				}
+				else if (_co->prevP > (temp.top + temp.bottom) / 2) {
+					_co->toNext = false;
+				}
 			}
 			else
 			{
-				if (_co->prevP < (temp.top + temp.bottom) / 2) _co->toNext = false;
-				else if (_co->prevP >(temp.top + temp.bottom) / 2) _co->toNext = true;
+				if (_co->prevP < (temp.top + temp.bottom) / 2) {
+					_co->toNext = false;
+				}
+				else if (_co->prevP > (temp.top + temp.bottom) / 2) {
+					_co->toNext = true;
+				}
 			}
 			if (tNext != _co->toNext) _co->moveFinish = false;
 		}
@@ -438,13 +447,22 @@ void cameraManager::cameraOCollision(RECT rc)
 
 			if (_co->left_top)
 			{
-				if (_co->prevP < (temp.left + temp.right) / 2) _co->toNext = true;
-				else if (_co->prevP >(temp.left + temp.right) / 2) _co->toNext = false;
+				if (_co->prevP < (temp.left + temp.right) / 2) {
+					_co->toNext = true;
+				}
+				else if (_co->prevP > (temp.left + temp.right) / 2) {
+					_co->toNext = false;
+				}
 			}
 			else
 			{
-				if (_co->prevP < (temp.left + temp.top) / 2) _co->toNext = false;
-				else if (_co->prevP >(temp.left + temp.top) / 2) _co->toNext = true;
+				if (_co->prevP < (temp.left + temp.top) / 2) {
+					_co->toNext = false;
+				}
+				else if (_co->prevP > (temp.left + temp.top) / 2)
+				{
+					_co->toNext = true;
+				}
 			}
 			if (tNext != _co->toNext) _co->moveFinish = false;
 
@@ -533,8 +551,14 @@ void cameraManager::cameraOCollision(RECT rc)
 			}
 		}
 
-
+		if (_co->toNext) {
+			string temp = _co->num;
+			_co->num = me;
+			return temp;
+		}
+		else return _co->num;
 	}
 
+	return "empty";
 
 }
