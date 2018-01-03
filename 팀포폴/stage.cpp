@@ -24,7 +24,7 @@ HRESULT stage::init()
 	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&_rc);
+	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
 	
 
@@ -41,7 +41,7 @@ void stage::release()
 
 void stage::update()
 {
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 6;
 		_rc.right += 6;
@@ -60,7 +60,7 @@ void stage::update()
 	{
 		_rc.top -= 6;
 		_rc.bottom -= 6;
-	}
+	}*/
 
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col == "empty") {}
@@ -69,11 +69,7 @@ void stage::update()
 		_prevRoom = _currentRoom;
 		_currentRoom = _mRoom.find(c_col)->second;
 	}
-	//_player->update();
-}
-		_rc.top -= 3;
-		_rc.bottom -= 3;
-	}*/
+
 	pixelCollison();
 	_player->update();
 }
@@ -89,6 +85,7 @@ void stage::render()
 	}
 	
 	//_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
+	
 	_player->render();
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
 
@@ -362,13 +359,14 @@ void stage::pixelCollison()
 		//	if ()
 	}
 
-	else if (_player->getJumpPower()  < 0)
+	else if (_player->getJumpPower()  < 0 ) //&& _player->getIsJump() == true)
 	{
 		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
 		bool k = false;
 		int a = 0;
 		int b = 0;
 		bool istop = false;
+		
 		for (int i = _player->getprobeY() + 30; i >  _player->getprobeY() - 30; --i)
 		{
 			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, i);
@@ -381,11 +379,13 @@ void stage::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				k = true;
-				_player->setPlayerY(i - 75);
+				_player->setPlayerY(i - 100 + _currentRoom._topY);
+				_player->setIsJump(false);
 				b = i;
 				a++;
 
 			}
+			
 		}
 
 
