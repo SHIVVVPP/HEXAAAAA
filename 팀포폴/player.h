@@ -78,6 +78,9 @@ public:
 	void usage();
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
+	void collisonObject(int objType, int objValue);
+	void pixelCollison();
+	
 
 	static void rightAttack(void* obj);
 	static void leftAttack(void* obj);
@@ -103,7 +106,7 @@ public:
 
 
 	////////  플레이어 충돌렉트 접근자 설정자
-	RECT getPlayerRect() { return _playerRC; }
+	RECT* getPlayerRect() { return &_playerRC; }
 
 	//////// 현재 체력 접근자 설정자
 

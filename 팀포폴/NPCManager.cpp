@@ -30,25 +30,7 @@ void NPCManager::update()
 	}
 	
 	collision();
-// npc의 무대값;
-	/*for (int i = 0; i < _vNPC.max_size(); i++) {
-		if ((*_viNPC)->getisMove()) 
-		{
-			if ((*_viNPC)->getisRight()) 
-			{
-				if ((*_viNPC)->getimgRC().left > 8137) 
-				{
-					removeNpc(i);
-				}
-			}
-			else {
-				if ((*_viNPC)->getimgRC().left > 2530) 
-				{
-					removeNpc(i);
-				}
-			}
-		}
-	}*/
+
 }
 
 void NPCManager::render()
@@ -58,42 +40,47 @@ void NPCManager::render()
 		(*_viNPC)->render();
 
 	}
-	//TextOut(getMemDC(), 50, 50, str, strlen(str));
+	TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
 void NPCManager::setNpc()
 {
 	NPC* watergirl;
 	watergirl = new waterGirl;
-	watergirl->init("watergirl", PointMake(6400, WINSIZEY - 250), "./text/NPC/waterGirl.txt",true,false);
+	watergirl->init("watergirl", PointMake(6400, 650), "./text/NPC/waterGirl.txt", "..", true, false, false, false);
+	
 	NPC* bard;
 	bard = new Bard;
-	bard->init("bardfun", PointMake(1865, WINSIZEY - 250), "./text/NPC/bard.txt",  false, false);
+	bard->init("bardnomal", PointMake(1865, 650), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", false, false, true, false);
 
 	NPC* molly;
 	molly = new Molly;
-	molly->init("몰리", PointMake(2330, WINSIZEY - 250), "./text/NPC/몰리.txt",  false, false);
+	molly->init("몰리", PointMake(2330, 650), "./text/NPC/몰리.txt", "..", true, false, false, false);
 
 	NPC* gote;
 	gote = new Merchant;
-	gote->init("염소", PointMake(3170, WINSIZEY - 250), "./text/NPC/goatician.txt",  false, false);
+	gote->init("염소", PointMake(3170, 650), "./text/NPC/goatician.txt","./text/NPC/goatician2.txt", false, false, true, true);
 
 	NPC* _wizard;
 	_wizard = new Wizard;
-	_wizard->init("마법사", PointMake(3710, WINSIZEY - 535), "./text/NPC/위자드.txt", false, false);
+	_wizard->init("마법사", PointMake(3710, 365), "./text/NPC/위자드.txt", "./text/NPC/위자드1.txt", false, false, true, true);
 
 	NPC* _cooker;
 	_cooker = new Sepp;
-	_cooker->init("요리사", PointMake(2935, WINSIZEY - 610), "./text/NPC/요리사.txt",  false, false);
+	_cooker->init("요리사", PointMake(2935,	280), "./text/NPC/요리사.txt", "./text/NPC/요리사1.txt", false, false, true, false);
 
 	NPC* _famer;
 	_famer = new hedgeFarmer;
-	_famer->init("hedgeFarmer", PointMake(5450, WINSIZEY - 250), "./text/NPC/요리사.txt", false, false);
+	_famer->init("hedgeFarmer", PointMake(5450, 650), "...","...", false, false,false,false);
 
 	NPC* _gard;
 	_gard = new gard;
-	_gard->init("guard", PointMake(300, WINSIZEY - 250), "./text/NPC/gard.txt", false, false);
+	_gard->init("guard", PointMake(300, 650), "./text/NPC/gard.txt", "./text/NPC/gard1.txt", false, false, true, false);
 
+	NPC* _crown;
+	_crown = new Crown;
+	_crown->init("광대", PointMake(50, 700), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
+	
 	_vNPC.push_back(watergirl);
 	_vNPC.push_back(bard);
 	_vNPC.push_back(molly);
@@ -102,6 +89,7 @@ void NPCManager::setNpc()
 	_vNPC.push_back(_cooker);
 	_vNPC.push_back(_famer);
 	_vNPC.push_back(_gard);
+	_vNPC.push_back(_crown);
 
 }
 
@@ -109,9 +97,9 @@ void NPCManager::setLeftNpc(bool _isRight)
 {
 	NPC* _bagFella;
 	_bagFella = new bagFella;
-	_bagFella->init("짐든 남자",PointMake(100, WINSIZEY - 250), "./text/NPC/짐꾼.txt", true, _isRight);
+	_bagFella->init("짐든 남자",PointMake(100, WINSIZEY - 250), "./text/NPC/짐꾼.txt", "..", true, _isRight, false, false );
 
-	_vNPC.push_back(_bagFella);
+	//_vNPC.push_back(_bagFella);
 
 }
 
@@ -119,7 +107,7 @@ void NPCManager::setRightNpc(bool _isRight)
 {
 	NPC* _deerlady;
 	_deerlady = new maiden;
-	_deerlady->init("deerLadyMove", PointMake(100, WINSIZEY - 330), "./text/NPC/사슴여인.txt",  true,_isRight);
+	_deerlady->init("deerLadyMove", PointMake(100, WINSIZEY - 330), "./text/NPC/사슴여인.txt", "..", true, _isRight, false, false);
 
 	_vNPC.push_back(_deerlady);
 }
@@ -139,18 +127,36 @@ void NPCManager::collision()
 
 	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end();++_viNPC )
 	{
-		if (PtInRect(&(*_viNPC)->getimgRC(), _ptMouse))
+		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &RectMake(_ptMouse.x,_ptMouse.y,50,50)))
 		{
-			a++;
-			(*_viNPC)->Converstion(a);
 			
-			if (a >= 102) {
-				a = 101;
+			if (KEYMANAGER->isOnceKeyDown(VK_UP)) {
+			
+				(*_viNPC)->setisTolk(true);
 			}
+			if ((*_viNPC)->getisTolk()) {
+				a++;
+				(*_viNPC)->Converstion(a);
+			}
+			if (!(*_viNPC)->getisTolk()) {
+				a = 0;
+				
+			}
+			sprintf(str, "a : %d", a);
+			if (KEYMANAGER->isOnceKeyDown('X'))
+			{
+				(*_viNPC)->setcoversationCount(1);
+			
+			}
+			if (a >= (*_viNPC)->gettxtSizeMax()) {
+				a = (*_viNPC)->gettxtSizeMax();
+			}
+		
 		}
 		else
 		{
 			(*_viNPC)->setisTolk(false);
+			
 		}
 
 	}

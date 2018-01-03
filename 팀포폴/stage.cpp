@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "stage.h"
-
+#include "player.h"
 
 stage::stage()
 {
@@ -13,6 +13,22 @@ stage::~stage()
 
 HRESULT stage::init()
 {
+	setStageBackgroundInfo();
+	_currentRoom = findRoomInfo("1");
+	_prevRoom = findRoomInfo("1");
+	CAMERAMANAGER->setStartBackground(0, 0);
+	CAMERAMANAGER->setBackground(_currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height);
+
+
+	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
+	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
+	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
+	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
+
+	
+
+
+
 
 	return S_OK;
 }
@@ -23,17 +39,54 @@ void stage::release()
 
 void stage::update()
 {
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+		_rc.left += 3;
+		_rc.right += 3;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		_rc.left -= 3;
+		_rc.right -= 3;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		_rc.top += 3;
+		_rc.bottom += 3;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
+	{
+		_rc.top -= 3;
+		_rc.bottom -= 3;
+	}*/
+
+	_player->update();
 }
 
 void stage::render()
 {
+	_currentRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
+	_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
+	_player->render();
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
+
+	char str[128];
+
+	sprintf(str, "mouse point X %d, Y %d", _ptMouse.x, _ptMouse.y);
+	TextOut(getMemDC(), WINSIZEX / 2, 0, str, strlen(str));
+	sprintf(str, "rc lt %d %d, rb %d %d", _rc.left, _rc.top, _rc.right, _rc.bottom);
+	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top - 20), str, strlen(str));
+	sprintf(str, "current Room lt %d %d rb %d %d", _currentRoom._leftX, _currentRoom._topY, _currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height);
+	TextOut(getMemDC(), 0, 0, str, strlen(str));
+
 }
+
 
 void stage::setStageBackgroundInfo()
 {
 	// 1~3 0,2732 ->
-	
-	
+
+
 	tagRoomInfo temp;
 	temp._roomImage = IMAGEMANAGER->findImage("back1");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack1");
@@ -60,7 +113,7 @@ void stage::setStageBackgroundInfo()
 	_mRoom.insert(make_pair("3", temp));
 
 	// 4~6 
-	
+
 	temp._roomImage = IMAGEMANAGER->findImage("back4");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack4");
 	temp._leftX = 7819;
@@ -87,7 +140,7 @@ void stage::setStageBackgroundInfo()
 
 
 	//7~8 7819 1901~4391 v
-	
+
 
 	temp._roomImage = IMAGEMANAGER->findImage("back7");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack7");
@@ -106,7 +159,7 @@ void stage::setStageBackgroundInfo()
 	_mRoom.insert(make_pair("8", temp));
 
 	// 9~10  11019,4391
-	
+
 	temp._roomImage = IMAGEMANAGER->findImage("back8_left");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack8_left");
 	temp._leftX = 9419;
@@ -135,7 +188,7 @@ void stage::setStageBackgroundInfo()
 
 
 	// 11~14    15819 1901
-	
+
 	temp._roomImage = IMAGEMANAGER->findImage("back11");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack11");
 	temp._leftX = 15819;
@@ -213,4 +266,15 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	_mRoom.insert(make_pair("17", temp));
+}
+
+tagRoomInfo stage::findRoomInfo(string strkey)
+{
+	miRoom key = _mRoom.find(strkey);
+
+	return key->second;
+}
+
+void stage::setCameraObject()
+{
 }
