@@ -2,6 +2,8 @@
 #include "gameNode.h"
 #include <map>
 
+class player;
+
 
 struct tagRoomInfo
 {
@@ -25,7 +27,7 @@ private:
 	tagRoomInfo _prevRoom;
 
 	int _currentRoomNum;
-
+	player* _player;
 
 	//임시 렉트
 
@@ -45,5 +47,7 @@ public:
 	tagRoomInfo findRoomInfo(string key);
 
 	void setCameraObject();
+
+	void  AddressLinkWithPlayer(player* _p) { _player = _p; }
 
 };

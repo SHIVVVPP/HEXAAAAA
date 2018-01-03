@@ -90,6 +90,7 @@ HRESULT sceneManager::changeScene(string sceneName, player* p)
 	{
 		if (_currentScene)_currentScene->release();
 		_currentScene = find->second;
+		_currentScene->AddressLinkWithPlayer(p);
 
 		return S_OK;
 	}
