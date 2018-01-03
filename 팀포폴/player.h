@@ -141,6 +141,8 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
+	void setIsJump(bool boolValue) { _isJump = boolValue; }
+
 	// 점프파워 접근자
 
 	float getJumpPower() { return _jumpPower; }

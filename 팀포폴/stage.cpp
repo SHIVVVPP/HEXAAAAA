@@ -17,7 +17,7 @@ HRESULT stage::init()
 
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
-	CAMERAMANAGER->setStartBackground(0, 0);
+	CAMERAMANAGER->setStartBackground(0, _currentRoom._topY);
 	CAMERAMANAGER->setBackground(_currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height);
 
 
@@ -64,21 +64,17 @@ void stage::update()
 	}
 
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
-	if (c_col == "empty") {}
-	else 
+	if (c_col != "empty")
 	{
 		_prevRoom = _currentRoom;
 		_currentRoom = _mRoom.find(c_col)->second;
 	}
+	_player->update();
+
+	
+	//pixelCollison();
 	//_player->update();
 }
-//		_rc.top -= 3;
-//		_rc.bottom -= 3;
-//	}*/
-//	pixelCollison();
-//	_player->update();
-//	
-//}
 
 void stage::render()
 {
@@ -90,7 +86,7 @@ void stage::render()
 		temp._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(temp._leftX), CAMERAMANAGER->CameraRelativePointY(temp._topY));
 	}
 	
-	//_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
+	_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
 	_player->render();
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
 
@@ -129,7 +125,7 @@ void stage::setStageBackgroundInfo()
 	temp._topY = 2732;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
-	temp._vConnectedRoom = { "2" ,"3"};
+	temp._vConnectedRoom = {"1","3"};
 	temp.myKey = "2";
 	_mRoom.insert(make_pair("2", temp));
 
@@ -341,6 +337,23 @@ tagRoomInfo stage::findRoomInfo(string strkey)
 
 void stage::setCameraObject()
 {
+	//1->2
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(6215, 2980, 20, 480),
+	{ 0,6219 }, { 6219,6219 + WINSIZEX }, &_rc, true, "2");
+
+	//2->3 7811 2991
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(7811, 2994, 20, 480),
+	{ 6219,6219 + WINSIZEX }, { 7819,7819 + WINSIZEX }, &_rc, true, "3");
+
+	//3->4 »ç´Ù¸®
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(8955, 2735, 106, 20),
+	{ 2732,2732 + WINSIZEY }, { 1901,1901+WINSIZEY }, &_rc, false, "4");
+
+	//4->5 
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(9409, 1964, 20, 331),
+	{ 7819,7819 + WINSIZEX }, { 9419,9419 + WINSIZEX }, &_rc, true, "5");
+
+
 }
 
 

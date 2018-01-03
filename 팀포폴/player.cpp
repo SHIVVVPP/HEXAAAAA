@@ -508,9 +508,9 @@ void player::render()
 	//_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		Rectangle(getMemDC(), _imageRC.left, _imageRC.top, _imageRC.right, _imageRC.bottom);
-		Rectangle(getMemDC(), _playerRC.left, _playerRC.top, _playerRC.right, _playerRC.bottom);
-		Rectangle(getMemDC(), _attackRC.left, _attackRC.top, _attackRC.right, _attackRC.bottom);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointX(_attackRC.top),75, 100);
 	}
 }
 
