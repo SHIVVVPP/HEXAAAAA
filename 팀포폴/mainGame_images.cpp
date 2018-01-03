@@ -239,5 +239,47 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("rightfaketail", "./image/object/faketail_right.bmp", 64, 192, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("ladder", "./image/object/ladder.bmp", 72, 461, true, RGB(255, 0, 255));
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////에너미 이미지
+
+	IMAGEMANAGER->addFrameImage("슬라임", "슬라임.bmp",
+		200, 272,
+		4, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("레드비틀", "레드비틀.bmp",
+		260, 160,
+		4, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("노란용", "노란드래곤2.bmp",
+		5790, 990,
+		12, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("초록용", "초록색용.bmp",
+		277, 639,
+		3, 8, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("해골", "스켈레톤완성.bmp",
+		580, 3060,
+		4, 24, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("버블", "비눗방울완성.bmp",
+		925, 438,
+		4, 2, true, RGB(255, 0, 255));
+
+	//IMAGEMANAGER->addFrameImage("해골", "스켈레톤.bmp",
+	//	580, 3060,
+	//	4, 24, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("보스", "검은삽기사.bmp",
+		1500, 11125,
+		6, 50, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("임시배경", "임시배경입니다.bmp", 1280, 720, true, RGB(255, 0, 255));
+
+
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }
 	

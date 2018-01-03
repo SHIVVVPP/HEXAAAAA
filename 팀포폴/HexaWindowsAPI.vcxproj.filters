@@ -327,6 +327,9 @@
     <ClInclude Include="moveblock.h">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
     </ClInclude>
+    <ClInclude Include="bubble.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -529,6 +532,9 @@
     </ClCompile>
     <ClCompile Include="moveblock.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
+    </ClCompile>
+    <ClCompile Include="bubble.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
