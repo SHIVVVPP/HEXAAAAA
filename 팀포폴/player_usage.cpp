@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "player.h"
+#include "player_usage.h"
 
 void player::usage()
 {
@@ -61,4 +62,13 @@ void player::usage()
 	case FISHINGROD:
 		break;
 	}
+}
+
+player_usage::player_usage()
+{
+}
+
+
+player_usage::~player_usage()
+{
 }

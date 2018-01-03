@@ -93,11 +93,13 @@ void mainGame::setImages()
 	//아이템 이미지
 	IMAGEMANAGER->addImage("firelod", "./image/inventory/firelod.bmp", 133, 133, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("shovel", "./image/inventory/shovel.bmp", 133, 133, true, RGB(0, 0, 0));
-	//마을, NPC 이미지ㅛ    
+	//마을, NPC 이미지    
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("townPix", "./image/town/townPiximage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("backsideimg", "./image/town/backsidetown.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("conversationRect", "./image/town/conversationRect.bmp", 1600, 194, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점", "./image/town/상점UI.bmp", 1600, 384, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("선택박스", "./image/town/SelectRect.bmp", 121, 120, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 426, 360, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
@@ -112,6 +114,13 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("요리사", "./image/town/음식점주인기쁨.bmp", 797, 300, 4, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("hedgeFarmer", "./image/town/hedgeFarmer1-1.bmp", 436, 180, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("guard", "./image/town/guard.bmp", 308, 200, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("광대", "./image/town/Merchant.bmp", 339, 150, 2, 1, true, RGB(255, 0, 255));
+
+
+	IMAGEMANAGER->addImage("선택안된YES", "./image/town/NotSelectYes.bmp", 107, 43, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택안된NO", "./image/town/NotSelectNO.bmp", 75, 36, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택BOX", "./image/town/SelectBox.bmp", 130, 61, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("안삼", "./image/town/Done.bmp", 79, 24, true, RGB(0, 0, 0));
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
@@ -203,8 +212,8 @@ void mainGame::setImages()
 	//오브젝트 젬
 	IMAGEMANAGER->addImage("bluedia", "./image/object/bigdia.bmp", 60, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("reddia", "./image/object/smalldia.bmp", 48, 41, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("bluegem", "./image/object/bluegem", 32, 33, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("greengem", "./image/object/greegem.bmp", 26, 38, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("bluegem", "./image/object/bluegem.bmp", 32, 33, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("greengem", "./image/object/greengem.bmp", 26, 38, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("smalljew", "./image/object/sjewel.bmp", 17, 20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("yellowgem", "./image/object/yellowgem.bmp", 37, 28, true, RGB(255, 0, 255));
 
@@ -239,5 +248,47 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("rightfaketail", "./image/object/faketail_right.bmp", 64, 192, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("ladder", "./image/object/ladder.bmp", 72, 461, true, RGB(255, 0, 255));
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////에너미 이미지
+
+	IMAGEMANAGER->addFrameImage("슬라임", "슬라임.bmp",
+		200, 272,
+		4, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("레드비틀", "레드비틀.bmp",
+		260, 160,
+		4, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("노란용", "노란드래곤2.bmp",
+		5790, 990,
+		12, 4, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("초록용", "초록색용.bmp",
+		277, 639,
+		3, 8, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("해골", "스켈레톤완성.bmp",
+		580, 3060,
+		4, 24, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("버블", "비눗방울완성.bmp",
+		925, 438,
+		4, 2, true, RGB(255, 0, 255));
+
+	//IMAGEMANAGER->addFrameImage("해골", "스켈레톤.bmp",
+	//	580, 3060,
+	//	4, 24, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addFrameImage("보스", "검은삽기사.bmp",
+		1500, 11125,
+		6, 50, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("임시배경", "임시배경입니다.bmp", 1280, 720, true, RGB(255, 0, 255));
+
+
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }
 	

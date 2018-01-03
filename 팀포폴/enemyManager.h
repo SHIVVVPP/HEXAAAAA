@@ -8,6 +8,7 @@
 #include "skeleton.h"
 #include "yellowDragon.h"
 ////////////////////////////
+#include "bubble.h"
 
 #include "boss.h"
 
@@ -46,6 +47,11 @@ public:
 	vEnemy		 _vBoss;
 	viEnemy		 _viBoss;
 
+	vEnemy		 _vBubble;
+	viEnemy		 _viBubble;
+
+	int _bubbleX , _bubbleY;
+
 
 	virtual HRESULT init();
 	virtual void release();
@@ -57,6 +63,7 @@ public:
 	void setBlueSlime();
 	void setSkeleton();
 	void setYellowDragon();
+	void setBubble(int bubbleX , int bubbleY);
 
 
 	void attackPlayer();
@@ -83,6 +90,9 @@ public:
 
 	vector<enemy*> getVBoss() { return _vBoss; }
 	vector<enemy*>::iterator getVIBoss() { return _viBoss; }
+
+	vector<enemy*> getVBubble() { return _vBubble; }
+	vector<enemy*>::iterator getVIBubble() { return _viBubble; }
 
 	enemyManager();
 	~enemyManager();

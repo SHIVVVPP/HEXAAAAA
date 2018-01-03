@@ -15,6 +15,7 @@
 #include"waterGirl.h"
 #include"Wizard.h"
 #include"gard.h"
+#include"Crown.h"
 
 class NPCManager : public gameNode
 {
