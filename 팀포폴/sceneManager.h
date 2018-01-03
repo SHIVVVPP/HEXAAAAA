@@ -34,13 +34,11 @@ public:
 
 	HRESULT changeScene(string sceneName, player* p);
 	HRESULT changeScene(string sceneName, string loadingSceneName, player* p);
-	HRESULT returnScene();
+	HRESULT returnScene() { _currentScene = _preScene; }
 
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 	sceneManager();
 	~sceneManager();
 
-	HRESULT changeScene(string sceneName);
-	HRESULT changeScene(string sceneName,string loadingSceneName);
 };
 

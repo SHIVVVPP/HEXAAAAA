@@ -79,7 +79,7 @@ gameNode* sceneManager::addLoadingScene(string loadingSceneName, gameNode* scene
 	return scene;
 }
 
-HRESULT sceneManager::changeScene(string sceneName)
+HRESULT sceneManager::changeScene(string sceneName, player* p)
 {
 	mapSceneIter find = _mSceneList.find(sceneName);
 
@@ -96,7 +96,7 @@ HRESULT sceneManager::changeScene(string sceneName)
 	return E_FAIL;
 }
 
-HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName)
+HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName, player* p)
 {
 	mapSceneIter find = _mSceneList.find(sceneName);
 
@@ -105,7 +105,7 @@ HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName)
 
 	mapSceneIter findLoading = _mLoadingSceneList.find(loadingSceneName);
 
-	if (find == _mLoadingSceneList.end()) return changeScene(loadingSceneName);
+	if (find == _mLoadingSceneList.end()) return changeScene(loadingSceneName,p);
 
 	if (SUCCEEDED(find->second->init()))
 	{
