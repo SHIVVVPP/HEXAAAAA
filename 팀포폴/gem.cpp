@@ -8,18 +8,18 @@ gem::gem()
 	_move = false;
 	_hang = false;
 	_picked = false;
-	//_isHit = false;
+	_canHit = false;
 }
 
 gem::~gem()
 {
 }
 
-HRESULT gem::init(const char* imageName, int goldup, bool hit)
+HRESULT gem::init(const char* imageName, int goldup)
 {
 	_imageName = imageName;
 	_goldValue = goldup;
-	_isHit = hit;
+	
 	return S_OK;
 }
 
@@ -43,7 +43,7 @@ void gem::fire(int x, int y, float speed, float angle)
 	_angle = angle;
 	_speedX = speed;
 
-	_rc = RectMake(_x, _y, IMAGEMANAGER->findImage(_imageName)->getWidth(), IMAGEMANAGER->findImage(_imageName)->getHeight());
+	//_rc = RectMake(_x, _y, IMAGEMANAGER->findImage(_imageName)->getWidth(), IMAGEMANAGER->findImage(_imageName)->getHeight());
 }
 
 void gem::move()

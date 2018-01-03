@@ -41,6 +41,7 @@ void stage::release()
 
 void stage::update()
 {
+
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 6;

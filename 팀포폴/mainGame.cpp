@@ -45,16 +45,16 @@ HRESULT mainGame::init()			//초기화 함수
 	//_ui->init(UI_STAGE);
 	//CAMERAMANAGER->setBackground(8137, 900);
 	//CAMERAMANAGER->setStartBackground(0, 0);
-
-	/*_town = new town;
-	_town->init();*/
+   
+	//_town = new town;
+	//_town->init();
 	
 	//rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	//CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	//CAMERAMANAGER->setCameraAim(&rc);
 
-	//_objectManager = new objectManager;
-	//_objectManager->init();
+	_objectManager = new objectManager;
+	_objectManager->init();
 	return S_OK;
 }
 
@@ -101,7 +101,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	
 	//_town->render();
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
-	//_objectManager->render();
+	_objectManager->render();
 	//==================== 건들지마라 =======================
 	//TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);
