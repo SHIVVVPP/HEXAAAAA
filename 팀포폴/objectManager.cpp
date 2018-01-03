@@ -14,7 +14,7 @@ objectManager::~objectManager()
 HRESULT objectManager::init()
 {
 	setPosition();
-
+	
 	return S_OK;
 }
 
@@ -24,7 +24,6 @@ void objectManager::release()
 
 void objectManager::update()
 {
-	setPosition();
 	for (int i = 0; i < _vmoveblock.size(); i++)
 	{
 		_vmoveblock[i]->update();
@@ -35,19 +34,26 @@ void objectManager::update()
 		_vdirtpile[i]->update();
 	}
 
+	for (int i = 0; i < _vgem.size(); i++)
+	{
+		if (_vgem[i]->getisHit())_vgem[i]->update();
+	}
+
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
 		for (int j = 0; j < _vgem.size(); j++)
 		{
-			if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) //충돌 추가로 넣기
+			if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) //충돌 추가로 넣기 한대쳤을떄
 			{
 				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
 				{
+					_vgem[0]->setisHit(true);
 					_vdirtpile[i]->getAni()->setPlayIndex(1);
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
 				{
 					_vdirtpile[i]->getAni()->setPlayIndex(2);
+					//_vgem[j]->setisHit(true);
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
 				{
@@ -62,7 +68,16 @@ void objectManager::update()
 					_vdirtpile.erase(_vdirtpile.begin());
 				}
 			}
+
+			if (_vgem[0]->getisHit() == true)
+			{
+				//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
+				_vgem[1]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+				_vgem[3]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
+				_vgem[2]->setisHit(false);
+			}
 		}
+		break;
 	}
 }
 
@@ -92,26 +107,27 @@ void objectManager::setPosition()
 {
 	objects* _obj;
 	
+	
 	//_obj = new gem;
-	//_obj->init(_vdirtpile[0]->getX(),_vdirtpile[0]->getY(), "bluedia", 50);
+	//_obj->init(_vdirtpile[i]->getX(),_vdirtpile[i]->getY(), "bluedia", 50);
 	//_vgem.push_back(_obj);
 	
 	//
 	_obj = new gem;
-	_obj->init(60, 60, "reddia", 10);
+	_obj->init("reddia", 10,false);
 	_vgem.push_back(_obj);
 	//
-	//_obj = new gem;
-	//_obj->init(80, 80, "bluegem", 20);
-	//_vgem.push_back(_obj);
+	_obj = new gem;
+	_obj->init("bluegem", 20,false);
+	_vgem.push_back(_obj);
 	//
-	//_obj = new gem;
-	//_obj->init(90, 90, "greengem", 30);
-	//_vgem.push_back(_obj);
+	_obj = new gem;
+	_obj->init("greengem", 30,false);
+	_vgem.push_back(_obj);
 	//
-	//_obj = new gem;
-	//_obj->init(120, 120, "smalljew", 30);
-	//_vgem.push_back(_obj);
+	_obj = new gem;
+	_obj->init("smalljew", 30,false);
+	_vgem.push_back(_obj);
 
 	_obj = new ladder;
 	_obj->init(50, 50, 100);

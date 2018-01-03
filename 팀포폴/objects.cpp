@@ -31,13 +31,14 @@ HRESULT objects::init(int x, int y, float length)
 	return E_NOTIMPL;
 }
 
-HRESULT objects::init(int x, int y, const char* imageName, int goldup)
+HRESULT objects::init(const char* imageName, int goldup ,bool hit)
 {
 	return E_NOTIMPL;
 }
 
 void objects::update()
 {
+	move();
 }
 
 void objects::render()
@@ -49,5 +50,9 @@ void objects::release()
 }
 
 void objects::move()
+{
+}
+
+void objects::fire(int x, int y, float speed, float angle)
 {
 }

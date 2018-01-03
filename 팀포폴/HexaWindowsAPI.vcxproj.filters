@@ -118,6 +118,9 @@
     <Filter Include="shovelKnight\ObjectManager\Objects\food">
       <UniqueIdentifier>{52191c07-f122-44ef-8c41-fc5804db0248}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\bullet">
+      <UniqueIdentifier>{b38314ff-e988-446c-9f20-0e4462c3f28a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -339,6 +342,12 @@
     <ClInclude Include="food.h">
       <Filter>shovelKnight\ObjectManager\Objects\food</Filter>
     </ClInclude>
+    <ClInclude Include="player_usage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>MainGame\bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -547,6 +556,12 @@
     </ClCompile>
     <ClCompile Include="food.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\food</Filter>
+    </ClCompile>
+    <ClCompile Include="player_usage.cpp">
+      <Filter>shovelKnight\player</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>MainGame\bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ ladder::ladder()
 	_hang = true;
 
 	_picked = false;
+	//_isHit = false;
 }
 
 
