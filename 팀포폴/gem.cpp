@@ -14,12 +14,12 @@ gem::~gem()
 {
 }
 
-HRESULT gem::init(int x, int y , const char* imageName, int goldValue)
+HRESULT gem::init(int x, int y , const char* imageName, int goldup)
 {
 	_x = x;
 	_y = y;
 	_imageName = imageName;
-	_goldValue = goldValue;
+	_goldValue = goldup;
 	_rc = RectMake(_x, _y, IMAGEMANAGER->findImage(imageName)->getWidth(), IMAGEMANAGER->findImage(imageName)->getHeight());
 	return S_OK;
 }
@@ -33,6 +33,10 @@ void gem::render()
 	if(KEYMANAGER->isToggleKey(VK_F1))
 	Rectangle(getMemDC(),_rc.left, _rc.top, _rc.right, _rc.bottom);
 	IMAGEMANAGER->findImage(_imageName)->render(getMemDC(),_rc.left,_rc.top);
+}
+
+void gem::respawn(int x, int y, bool fire, float angle)
+{
 }
 
 

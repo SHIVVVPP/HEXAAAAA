@@ -7,6 +7,7 @@ public:
 	HRESULT init(int x, int y,const char* imageName, int goldup);
 	void update();
 	void render();
+	void respawn(int x, int y, bool fire, float angle);
 	gem();
 	~gem();
 };

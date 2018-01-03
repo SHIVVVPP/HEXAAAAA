@@ -203,8 +203,8 @@ void mainGame::setImages()
 	//¿ÀºêÁ§Æ® Áª
 	IMAGEMANAGER->addImage("bluedia", "./image/object/bigdia.bmp", 60, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("reddia", "./image/object/smalldia.bmp", 48, 41, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("bluegem", "./image/object/bluegem", 32, 33, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("greengem", "./image/object/greegem.bmp", 26, 38, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("bluegem", "./image/object/bluegem.bmp", 32, 33, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("greengem", "./image/object/greengem.bmp", 26, 38, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("smalljew", "./image/object/sjewel.bmp", 17, 20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("yellowgem", "./image/object/yellowgem.bmp", 37, 28, true, RGB(255, 0, 255));
 

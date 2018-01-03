@@ -44,5 +44,7 @@ public:
 	virtual void release();
 	virtual void move();
 	animation* getAni() { return _objAni; }
+	int getX() { return _x; }
+	int getY() { return _y; }
 };
 
