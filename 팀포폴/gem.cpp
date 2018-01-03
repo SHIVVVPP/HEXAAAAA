@@ -26,6 +26,7 @@ HRESULT gem::init(const char* imageName, int goldup)
 void gem::update()
 {
 	move();
+	
 }
 
 void gem::render()
@@ -33,13 +34,13 @@ void gem::render()
 	if(KEYMANAGER->isToggleKey(VK_F1))
 	Rectangle(getMemDC(),_rc.left, _rc.top, _rc.right, _rc.bottom);
 
-	IMAGEMANAGER->findImage(_imageName)->render(getMemDC(),_rc.left,_rc.top);
+	IMAGEMANAGER->findImage(_imageName)->render(getMemDC(), _x, _y);
 }
 
-void gem::fire(int x, int y, float speed, float angle)
+void gem::fire(int x, int y,int startX, int startY, float speed, float angle)
 {
-	_x = x;
-	_y = y;
+	_x = _startX = x;
+	_y = _startY = y;
 	_angle = angle;
 	_speedX = speed;
 
@@ -48,9 +49,11 @@ void gem::fire(int x, int y, float speed, float angle)
 
 void gem::move()
 {
-	_x += _speedX;
+	_rc = RectMake(_x, _y,IMAGEMANAGER->findImage(_imageName)->getWidth(), IMAGEMANAGER->findImage(_imageName)->getHeight());
+
+	_x += cosf(_angle) * _speedX;
 	_y += -sinf(_angle) * (10) * _speedX;
-	_rc = RectMake(_x, _y, IMAGEMANAGER->findImage(_imageName)->getWidth(), IMAGEMANAGER->findImage(_imageName)->getHeight());
 }
+
 
 

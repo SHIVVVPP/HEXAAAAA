@@ -41,12 +41,12 @@ public:
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
-	virtual HRESULT init(const char* imageName , int goldup );
+	virtual HRESULT init(const char* imageName , int goldup);
 	virtual void update();
 	virtual void render();
 	virtual void release();
 	virtual void move();
-	virtual void fire(int x, int y, float speed, float angle);
+	virtual void fire(int x, int y, int startX,int startY,float speed, float angle);
 	animation* getAni() { return _objAni; }
 	int getX() { return _x; }
 	int getY() { return _y; }

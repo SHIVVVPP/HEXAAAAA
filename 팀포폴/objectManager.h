@@ -12,9 +12,10 @@ class objectManager : public gameNode
 private:
 	
 	typedef vector<objects*> vO;
-	typedef vector<objects*> viO;
+	typedef vector<objects*>::iterator viO;
 private:
 	vO _vgem;
+	viO _vigem;
 	vO _vladder;
 	vO _vmoveblock;
 	vO _vdirtpile;

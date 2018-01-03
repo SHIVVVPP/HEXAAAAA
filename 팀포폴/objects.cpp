@@ -53,6 +53,6 @@ void objects::move()
 {
 }
 
-void objects::fire(int x, int y, float speed, float angle)
+void objects::fire(int x, int y,int startX, int startY, float speed, float angle)
 {
 }
