@@ -273,7 +273,7 @@ void player::update()
 			//// 좌측으로 달리면서 점프
 			if (_playerMainCondition == PLAYER_LEFT_MOVE)
 			{
-				_ani->stop();
+				//_ani->stop();
 				_playerMainCondition = PLAYER_LEFT_JUMP;
 				_image = IMAGEMANAGER->findImage("playerJump");
 				_ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
@@ -287,7 +287,7 @@ void player::update()
 			switch (_dir)
 			{
 			case 1:
-				_ani->stop();
+				//_ani->stop();
 				_playerMainCondition = PLAYER_RIGHT_ATTACK;
 				_image = IMAGEMANAGER->findImage("playerAtk");
 				_ani = KEYANIMANAGER->findAnimation("playerRightAttack");
@@ -295,7 +295,7 @@ void player::update()
 				break;
 
 			case -1:
-				_ani->stop();
+				//_ani->stop();
 				_playerMainCondition = PLAYER_LEFT_ATTACK;
 				_image = IMAGEMANAGER->findImage("playerAtk");
 				_ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
