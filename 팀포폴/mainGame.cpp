@@ -31,7 +31,7 @@ HRESULT mainGame::init()			//초기화 함수
 	_player->init();*/
 
 	_player = new player;
-	//_player->init();
+	_player->init();
 
 	//sys = new system_option;
 	//sys->init();
