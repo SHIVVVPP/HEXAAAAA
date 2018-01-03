@@ -44,30 +44,33 @@ void stage::update()
 
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		_rc.left += 6;
-		_rc.right += 6;
+		_rc.left += 15;
+		_rc.right += 15;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		_rc.left -= 6;
-		_rc.right -= 6;
+		_rc.left -= 15;
+		_rc.right -= 15;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		_rc.top += 6;
-		_rc.bottom += 6;
+		_rc.top += 15;
+		_rc.bottom += 15;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		_rc.top -= 6;
-		_rc.bottom -= 6;
+		_rc.top -= 15;
+		_rc.bottom -= 15;
 	}
 
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")
 	{
-		_prevRoom = _currentRoom;
-		_currentRoom = _mRoom.find(c_col)->second;
+		if (_currentRoom.myKey != c_col)
+		{
+			_prevRoom = _currentRoom;
+			_currentRoom = _mRoom.find(c_col)->second;
+		}
 	}
 	_player->update();
 
@@ -78,7 +81,6 @@ void stage::update()
 
 void stage::render()
 {
-	_currentRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
 	
 	for (int i = 0; i < _currentRoom._vConnectedRoom.size(); i++)
 	{
@@ -87,6 +89,9 @@ void stage::render()
 	}
 	
 	_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
+	_currentRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
+
+	
 	_player->render();
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
 
@@ -178,7 +183,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back7");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack7");
 	temp._leftX = 11019;
-	temp._topY = 4391;
+	temp._topY = 2732;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "6","8" };
@@ -188,7 +193,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back8");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack8");
 	temp._leftX = 11019;
-	temp._topY = 4391 + IMAGEMANAGER->findImage("back7")->getHeight();
+	temp._topY = 2732 + IMAGEMANAGER->findImage("back7")->getHeight();
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "7","801","9" };
@@ -200,7 +205,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back8_left");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack8_left");
 	temp._leftX = 9419;
-	temp._topY = 4391;
+	temp._topY = 4321;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "8" };
@@ -210,8 +215,8 @@ void stage::setStageBackgroundInfo()
 
 	temp._roomImage = IMAGEMANAGER->findImage("back9");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack9");
-	temp._leftX = 9419 + IMAGEMANAGER->findImage("back8")->getWidth();
-	temp._topY = 4391;
+	temp._leftX = 11019 + IMAGEMANAGER->findImage("back8")->getWidth();
+	temp._topY = 4321;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "8","9" };
@@ -220,8 +225,8 @@ void stage::setStageBackgroundInfo()
 
 	temp._roomImage = IMAGEMANAGER->findImage("back10");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack10");
-	temp._leftX = 9419 + IMAGEMANAGER->findImage("back8")->getWidth() + IMAGEMANAGER->findImage("back9")->getWidth();
-	temp._topY = 4391;
+	temp._leftX = 11019 + IMAGEMANAGER->findImage("back8")->getWidth() + IMAGEMANAGER->findImage("back9")->getWidth();
+	temp._topY = 4321;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "9","10" };
@@ -235,7 +240,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back11");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack11");
 	temp._leftX = 15819;
-	temp._topY = 1901;
+	temp._topY = 1830;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "10","12" };
@@ -245,7 +250,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back12");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack12");
 	temp._leftX = 15819 + IMAGEMANAGER->findImage("back11")->getWidth();
-	temp._topY = 1901;
+	temp._topY = 1830;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "11","1101","13" };
@@ -256,7 +261,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back13");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack13");
 	temp._leftX = 15819 + IMAGEMANAGER->findImage("back11")->getWidth() + IMAGEMANAGER->findImage("back12")->getWidth();
-	temp._topY = 1901;
+	temp._topY = 1830;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "12","14" };
@@ -266,7 +271,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back14");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack14");
 	temp._leftX = 15819 + IMAGEMANAGER->findImage("back11")->getWidth() + IMAGEMANAGER->findImage("back12")->getWidth() + IMAGEMANAGER->findImage("back13")->getWidth();
-	temp._topY = 1901;
+	temp._topY = 1830;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "13","15" };
@@ -278,7 +283,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back11_right");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack11_right");
 	temp._leftX = 17419;
-	temp._topY = 3561;
+	temp._topY = 3490;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "11" };
@@ -353,7 +358,41 @@ void stage::setCameraObject()
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(9409, 1964, 20, 331),
 	{ 7819,7819 + WINSIZEX }, { 9419,9419 + WINSIZEX }, &_rc, true, "5");
 
+	//5->6
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(11008, 1962, 20, 728),
+	{ 9419,9419 + WINSIZEX }, { 11019,11019 + WINSIZEX }, &_rc, true, "6");
 
+	//6->7
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(12356, 2794, 100, 20),
+	 { 1901,1901 + WINSIZEY }, { 2732,2732 + WINSIZEY }, &_rc, true, "7");
+
+	//7->8
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(11333, 3626, 100, 20),
+	{ 2732,2732 + WINSIZEY }, { 3632,3632 + WINSIZEY }, &_rc, true, "8");
+
+	//8->8 under
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(12361, 4220, 140, 20),
+	{ 3632,3632 + WINSIZEY }, { 5221-WINSIZEY,5221 }, &_rc, true, "8");
+
+	//8->8_LEFT
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(11010, 4889, 20, 228),
+	{ 11019,12619 }, { 9419,11019 },  &_rc, false, "801");
+
+	//8->9
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(12611, 4632, 20, 341),
+	 { 11019,12619 }, { 12619,14219 }, &_rc, true, "9");
+
+	//9~10
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(14210, 4387, 20, 714),
+	{ 12619,14219 }, { 14219,15819 }, &_rc, true, "10");
+
+	//9~10
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(15812, 4702, 20, 401),
+	{ 14219,15819 }, { 15819,17419 }, &_rc, true, "11");
+
+	//3->4 »ç´Ù¸®
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17218, 4404, 80, 20),
+	{ 4321,5221 }, { 4371-WINSIZEY,4371 }, &_rc, false, "11");
 }
 
 

@@ -456,10 +456,10 @@ string cameraManager::cameraOCollision(RECT rc,string me)
 			}
 			else
 			{
-				if (_co->prevP < (temp.left + temp.top) / 2) {
+				if (_co->prevP < (temp.left + temp.right) / 2) {
 					_co->toNext = false;
 				}
-				else if (_co->prevP > (temp.left + temp.top) / 2)
+				else if (_co->prevP > (temp.left + temp.right) / 2)
 				{
 					_co->toNext = true;
 				}
@@ -494,11 +494,11 @@ string cameraManager::cameraOCollision(RECT rc,string me)
 			case C_OBJECT_MOVE:
 				if (_co->toNext)
 				{
-					cameraMoveTo(true, _co->nextCameraLimit.x, 10);
+					cameraMoveTo(true, _co->nextCameraLimit.x, 20);
 				}
 				else
 				{
-					cameraMoveTo(true, _co->prevCameraLimit.x, 10);
+					cameraMoveTo(true, _co->prevCameraLimit.x, 20);
 				}
 				_cameraConditionY = CAMERA_MOVING;
 
@@ -529,11 +529,11 @@ string cameraManager::cameraOCollision(RECT rc,string me)
 			case C_OBJECT_MOVE:
 				if (_co->toNext)
 				{
-					cameraMoveTo(false, _co->nextCameraLimit.x, 10);
+					cameraMoveTo(false, _co->nextCameraLimit.x, 20);
 				}
 				else
 				{
-					cameraMoveTo(false, _co->prevCameraLimit.x, 10);
+					cameraMoveTo(false, _co->prevCameraLimit.x, 20);
 				}
 				_cameraConditionX = CAMERA_MOVING;
 				break;
