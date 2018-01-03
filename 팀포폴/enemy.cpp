@@ -29,6 +29,7 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 	slowFrameCounter = 0;
 	frameCounter = 0;
 	_index = 0;
+	_speed = 3.0f;
 
 	_rcX = rcX;				//충돌렉트 x
 	_rcY = rcY;				//충돌렉트 Y
@@ -37,6 +38,8 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 	_rcPlaceY = rcPlaceY;	//충돌렉트 Y좌표 설정
 
 	_monsterDirection = leftMove;	//초기 상태
+
+	_jumpPower = _gravity = 0;
 
 	
 	
@@ -351,7 +354,7 @@ void enemy::skeletonFrameMove()
 
 		if (_monsterDirection == leftStand)
 		{
-			_currentFrameY = 11;
+			_currentFrameY = 12;
 			_currentFrameX = 3;
 
 			frameCounter = 0;
@@ -359,7 +362,7 @@ void enemy::skeletonFrameMove()
 
 		if (_monsterDirection == leftMove)
 		{
-			_currentFrameY = 12;
+			_currentFrameY = 13;
 
 			if (_currentFrameX <= 0) _currentFrameX = 4;
 
@@ -370,7 +373,7 @@ void enemy::skeletonFrameMove()
 
 		if (_monsterDirection == leftAttack)
 		{
-			_currentFrameY = 15;
+			_currentFrameY = 16;
 			if (_currentFrameX > 2)
 			{
 				_currentFrameX--;
@@ -379,7 +382,10 @@ void enemy::skeletonFrameMove()
 			}
 			else
 			{
+
 				_attackRc = RectMake(centerX, centerY, 0, 0);
+
+				_monsterDirection = leftStand;
 			}
 			
 
@@ -456,6 +462,10 @@ void enemy::bossFrameMove()
 			_currentFrameX = 0;
 
 			frameCounter = 0;
+
+			centerX += 3;
+			centerY -= (_jumpPower - _gravity);
+			_gravity += 0.1f;
 		}
 
 		if (_monsterDirection == rightJumpAttack)
@@ -463,6 +473,12 @@ void enemy::bossFrameMove()
 			_currentFrameY = 5;
 
 			_currentFrameX = 0;
+
+			centerY += (_gravity);
+
+			_gravity += 0.2f;
+
+			_attackRc = RectMake(_rc.left, centerY, 80, 70);
 
 			frameCounter = 0;
 
@@ -482,9 +498,17 @@ void enemy::bossFrameMove()
 		{
 			_currentFrameY = 8;
 
-			if (_currentFrameX <= 3)_currentFrameX = -1;
-			_currentFrameX++;
+			if (_currentFrameX < 3)
+			{
+				_currentFrameX++;
 
+				_attackRc = RectMake(centerX, _rc.top + 30, 80, 70);
+			}
+			else
+			{
+				_attackRc = RectMake(centerX, centerY, 0, 0);
+			}
+			
 			frameCounter = 0;
 		}
 
@@ -535,6 +559,10 @@ void enemy::bossFrameMove()
 			_currentFrameX = 6;
 
 			frameCounter = 0;
+
+			centerX -= 3;
+			centerY -= (_jumpPower - _gravity);
+			_gravity += 0.1f;
 		}
 
 		if (_monsterDirection == leftJumpAttack)
@@ -542,6 +570,11 @@ void enemy::bossFrameMove()
 			_currentFrameY = 29;
 
 			_currentFrameX = 6;
+
+			centerY += _gravity;
+			_gravity += 0.2f;
+
+			_attackRc = RectMake(_rc.left, centerY, 80, 70);
 
 			frameCounter = 0;
 		}
@@ -599,6 +632,31 @@ void enemy::bossFrameMove()
 
 	_imageName->setFrameX(_currentFrameX);
 	_imageName->setFrameY(_currentFrameY);
+}
+
+void enemy::bubbleFrameMove()
+{
+	frameCounter++;
+
+		if (frameCounter % 5 == 0)
+		{
+			if (_monsterDirection == leftMove)
+			{
+				if (frameCounter >= 3)frameCounter = -1;
+				frameCounter++;
+				frameCounter = 0;
+			}	
+		}
+}
+
+void enemy::bubbleMove()
+{
+	if (_monsterDirection == leftMove)
+	{
+		centerX -= _speed;
+
+		_speed += 0.2f;
+	}
 }
 
 

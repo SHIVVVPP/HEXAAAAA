@@ -275,7 +275,7 @@ void player::update()
 			//// 좌측으로 달리면서 점프
 			if (_playerMainCondition == PLAYER_LEFT_MOVE)
 			{
-				_ani->stop();
+				//_ani->stop();
 				_playerMainCondition = PLAYER_LEFT_JUMP;
 				_image = IMAGEMANAGER->findImage("playerJump");
 				_ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
@@ -289,7 +289,7 @@ void player::update()
 			switch (_dir)
 			{
 			case 1:
-				_ani->stop();
+				//_ani->stop();
 				_playerMainCondition = PLAYER_RIGHT_ATTACK;
 				_image = IMAGEMANAGER->findImage("playerAtk");
 				_ani = KEYANIMANAGER->findAnimation("playerRightAttack");
@@ -297,7 +297,7 @@ void player::update()
 				break;
 
 			case -1:
-				_ani->stop();
+				//_ani->stop();
 				_playerMainCondition = PLAYER_LEFT_ATTACK;
 				_image = IMAGEMANAGER->findImage("playerAtk");
 				_ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
@@ -485,7 +485,7 @@ void player::update()
 	KEYANIMANAGER->update();
 
 	//usage();
-	_Relic->update();
+	//_Relic->update();
 }
 
 
@@ -505,7 +505,7 @@ void player::render()
 	TextOut(getMemDC(), 100, 200, str1, strlen(str1));
 
 	
-	_Relic->render();
+	//_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		Rectangle(getMemDC(), _imageRC.left, _imageRC.top, _imageRC.right, _imageRC.bottom);
@@ -563,6 +563,57 @@ void player::collisonHitted(RECT * obj)
 		_playerMainCondition = PLAYER_LEFT_HITTED;
 	
 		break;
+	}
+}
+
+void player::collisonObject(int objType, int objValue)
+{
+	switch ( objType)
+	{
+	case 0:   // 사다리
+		_playerSubCondition = PLAYER_LADDER;
+		break;
+	case 1:   // 보석
+		_playerGold += objValue;
+
+		break;
+
+	case 2: // 스테이지에서 피채워주는 음식
+		_currentHP += objValue;
+		if (_currentHP > _maxHP) _currentHP = _maxHP;
+		break;
+
+	case 7:  // 물약
+		_currentMP += objValue;
+		if (_currentMP > _maxMP) _currentMP = _maxMP;
+		break;
+
+	}
+}
+
+void player::pixelCollison()
+{
+	COLORREF color;
+	int r, g, b;
+
+	// 머리 충돌판정
+	if (_jumpPower >=0)
+	{
+		_probeY = _playerRC.top;
+
+		color = GetPixel(getMemDC(), _x, _probeY);
+
+		r = GetRValue(color);
+		g = GetGValue(color);
+		b = GetBValue(color);
+
+	//	if ()
+	}
+
+	else if (_jumpPower < 0)
+	{
+		_probeY = _playerRC.bottom;
+
 	}
 }
 

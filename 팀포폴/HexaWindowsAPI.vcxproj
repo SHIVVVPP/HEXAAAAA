@@ -14,7 +14,7 @@
     <ProjectGuid>{1DFC11EA-FEF8-4657-8F70-D7904DFABE34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HexaWindowsAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,6 +81,9 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="bagFella.h" />
     <ClInclude Include="Bard.h" />
+    <ClInclude Include="blueSlime.h" />
+    <ClInclude Include="boss.h" />
+    <ClInclude Include="bubble.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="Crown.h" />
@@ -89,11 +92,14 @@
     <ClInclude Include="dirtpile.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyManager.h" />
+    <ClInclude Include="food.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="gard.h" />
     <ClInclude Include="genericKnight.h" />
     <ClInclude Include="goatician.h" />
+    <ClInclude Include="greenDragon.h" />
     <ClInclude Include="hedgeFarmer.h" />
     <ClInclude Include="gem.h" />
     <ClInclude Include="image.h" />
@@ -119,12 +125,15 @@
     <ClInclude Include="option_game.h" />
     <ClInclude Include="option_video.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="potion.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="redBeetle.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="Sepp.h" />
     <ClInclude Include="singletonBase.h" />
+    <ClInclude Include="skeleton.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="stdafx.h" />
@@ -140,11 +149,15 @@
     <ClInclude Include="waterGirl.h" />
     <ClInclude Include="Wizard.h" />
     <ClInclude Include="worldMap.h" />
+    <ClInclude Include="yellowDragon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="bagFella.cpp" />
     <ClCompile Include="Bard.cpp" />
+    <ClCompile Include="blueSlime.cpp" />
+    <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bubble.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="Crown.cpp" />
     <ClCompile Include="database.cpp" />
@@ -152,11 +165,14 @@
     <ClCompile Include="dirtpile.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyManager.cpp" />
+    <ClCompile Include="food.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="gard.cpp" />
     <ClCompile Include="genericKnight.cpp" />
     <ClCompile Include="goatician.cpp" />
+    <ClCompile Include="greenDragon.cpp" />
     <ClCompile Include="hedgeFarmer.cpp" />
     <ClCompile Include="gem.cpp" />
     <ClCompile Include="image.cpp" />
@@ -183,9 +199,12 @@
     <ClCompile Include="option_game.cpp" />
     <ClCompile Include="option_video.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="potion.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="redBeetle.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="Sepp.cpp" />
+    <ClCompile Include="skeleton.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -204,6 +223,7 @@
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="Wizard.cpp" />
     <ClCompile Include="worldMap.cpp" />
+    <ClCompile Include="yellowDragon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
