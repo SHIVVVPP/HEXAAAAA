@@ -39,6 +39,8 @@ void stage::release()
 
 void stage::update()
 {
+	
+
 	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 3;
@@ -59,7 +61,7 @@ void stage::update()
 		_rc.top -= 3;
 		_rc.bottom -= 3;
 	}*/
-
+	pixelCollison();
 	_player->update();
 }
 
@@ -277,4 +279,55 @@ tagRoomInfo stage::findRoomInfo(string strkey)
 
 void stage::setCameraObject()
 {
+}
+
+
+
+void stage::pixelCollison()
+{
+	COLORREF color;
+	int r, g, b;
+
+	// 머리 충돌판정
+	if (_player->getJumpPower() >= 0)
+	{
+		_player->setProbeY(_player->getPlayerRect()->top - _currentRoom._topY);
+
+		color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, _player->getPlayerRect()->top-_currentRoom._topY);
+
+		r = GetRValue(color);
+		g = GetGValue(color);
+		b = GetBValue(color);
+
+		//	if ()
+	}
+
+	else if (_player->getJumpPower()  < 0)
+	{
+		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
+		bool k = false;
+		int a = 0;
+		int b = 0;
+		bool istop = false;
+		for (int i = _player->getprobeY() + 30; i >  _player->getprobeY() - 30; --i)
+		{
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, i);
+
+			r = GetRValue(color);
+			g = GetGValue(color);
+			b = GetBValue(color);
+
+
+			if (r == 0 && g == 255 && b == 0)
+			{
+				k = true;
+				_player->setPlayerY(i - 75);
+				b = i;
+				a++;
+
+			}
+		}
+
+
+	}
 }

@@ -50,4 +50,5 @@ public:
 
 	void  AddressLinkWithPlayer(player* _p) { _player = _p; }
 
+	void pixelCollison();
 };

@@ -60,7 +60,7 @@ class player : public gameNode
 	bool _isJump;
 	int prevCondition1;
 	int prevCondition2;
-
+	
 	bullet* _Relic;
 	int _currentRelic;
 	float _bulletAngle;
@@ -79,7 +79,7 @@ public:
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
 	void collisonObject(int objType, int objValue);
-	void pixelCollison();
+	
 	
 
 	static void rightAttack(void* obj);
@@ -141,6 +141,22 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
+	// 점프파워 접근자
+
+	float getJumpPower() { return _jumpPower; }
+
+	// 탐사축 접근자  설정자
+	void setProbeY(float probe) { _probeY = probe; }
+	float getprobeY() { return _probeY; }
+
+
+	// 플레이어 좌표 접근 설정자
+
+	void setPlayerX(float x) { _x = x; }
+	float getPlayerX() { return _x; }
+	void setPlayerY(float y) { _y = y; }
+	float getPlayerY() { return _y; }
+
 };
 
 
