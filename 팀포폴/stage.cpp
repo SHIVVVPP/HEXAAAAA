@@ -59,6 +59,8 @@ void stage::update()
 		_rc.top -= 3;
 		_rc.bottom -= 3;
 	}
+
+
 }
 
 void stage::render()
