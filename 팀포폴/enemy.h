@@ -91,6 +91,9 @@ public:
 	//void skeletonAni();
 	//void yellowDragonAni();
 
+	inline int getCenterX() { return centerX; }
+	inline int getCenterY() { return centerY; }
+
 	inline int getFrameX() { return _currentFrameX; }				//x프레임 접근자
 	inline int getFrameY() { return _currentFrameY; }				//y프레임 접근자
 
