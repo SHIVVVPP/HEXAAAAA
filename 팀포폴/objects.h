@@ -8,7 +8,9 @@
 #define TYPE_DIRTPILE 4
 #define TYPE_BLOCK 5
 #define TYPE_MOVING_BLOCK 6
-#define TYPE_SKULL 7
+#define TYPE_POTION 7
+#define TYPE_BARRIER 8
+#define TYPE_MEAL 9
 class objects : public gameNode
 {
 protected:
@@ -26,6 +28,7 @@ protected:
 	int _startX, _startY;
 	int _range;
 	int _width, _height;
+	int _goldValue;
 	float _speedX;
 	const char* _imageName;
 public:
@@ -35,10 +38,11 @@ public:
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
-	virtual HRESULT init(int x, int y, const char* imageName);
+	virtual HRESULT init(int x, int y, const char* imageName , int goldup);
 	virtual void update();
 	virtual void render();
 	virtual void release();
 	virtual void move();
+	animation* getAni() { return _objAni; }
 };
 

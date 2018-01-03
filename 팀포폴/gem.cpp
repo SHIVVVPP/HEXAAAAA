@@ -14,11 +14,12 @@ gem::~gem()
 {
 }
 
-HRESULT gem::init(int x, int y , const char* imageName)
+HRESULT gem::init(int x, int y , const char* imageName, int goldValue)
 {
-	 _x = x;
-	 _y = y;
-	 _imageName = imageName;
+	_x = x;
+	_y = y;
+	_imageName = imageName;
+	_goldValue = goldValue;
 	_rc = RectMake(_x, _y, IMAGEMANAGER->findImage(imageName)->getWidth(), IMAGEMANAGER->findImage(imageName)->getHeight());
 	return S_OK;
 }

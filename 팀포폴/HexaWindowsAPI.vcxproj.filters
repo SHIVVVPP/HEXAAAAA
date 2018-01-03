@@ -112,6 +112,12 @@
     <Filter Include="shovelKnight\UI">
       <UniqueIdentifier>{c55661d9-8477-47f9-a178-91ceef11a3c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\potion">
+      <UniqueIdentifier>{83fdfaad-5317-45f1-bad1-f5bf76cad3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\food">
+      <UniqueIdentifier>{52191c07-f122-44ef-8c41-fc5804db0248}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -327,6 +333,12 @@
     <ClInclude Include="moveblock.h">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
     </ClInclude>
+    <ClInclude Include="potion.h">
+      <Filter>shovelKnight\ObjectManager\Objects\potion</Filter>
+    </ClInclude>
+    <ClInclude Include="food.h">
+      <Filter>shovelKnight\ObjectManager\Objects\food</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -529,6 +541,12 @@
     </ClCompile>
     <ClCompile Include="moveblock.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
+    </ClCompile>
+    <ClCompile Include="potion.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\potion</Filter>
+    </ClCompile>
+    <ClCompile Include="food.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\food</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -18,14 +18,11 @@
 #define Relics1 12
 #define Relics2 13
 
-#define Gear0 14   //인벤토리 창의 장비
-#define Gear1 15
-#define Gear2 16
-#define Gear3 17
-#define Gear4 18
-#define Gear5 19
-#define Gear6 20
-
+#define Gear0 14   //인벤토리 창의 장비 삽
+#define Gear1 15   //갑옷
+#define Gear2 16   //체력캡
+#define Gear3 17   //밀티켓
+#define Gear4 18   //악보
 struct tagRelics
 {
 	image* _image; //인벤속 아이템의 이미지.
