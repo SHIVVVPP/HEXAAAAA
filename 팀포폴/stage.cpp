@@ -23,7 +23,7 @@ HRESULT stage::init()
 	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&_rc);
+	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
 	
 
@@ -39,7 +39,7 @@ void stage::release()
 
 void stage::update()
 {
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 3;
 		_rc.right += 3;
@@ -58,7 +58,9 @@ void stage::update()
 	{
 		_rc.top -= 3;
 		_rc.bottom -= 3;
-	}
+	}*/
+
+	_player->update();
 }
 
 void stage::render()

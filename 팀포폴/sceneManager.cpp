@@ -86,11 +86,14 @@ HRESULT sceneManager::changeScene(string sceneName, player* p)
 	if (find == _mSceneList.end()) return E_FAIL;
 	if (find->second == _currentScene)return S_OK;
 
-	if (SUCCEEDED(find->second->init()))
+
+	find->second->AddressLinkWithPlayer(p);
+	bool k = SUCCEEDED(find->second->init());
+	if (k)
 	{
 		if (_currentScene)_currentScene->release();
 		_currentScene = find->second;
-		_currentScene->AddressLinkWithPlayer(p);
+		
 
 		return S_OK;
 	}
