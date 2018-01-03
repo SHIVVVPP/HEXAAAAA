@@ -31,55 +31,6 @@ void system_option::release()
 void system_option::update()
 {
 	_currentOption->update();
-
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
-	{
-		switch (_currentOption->getConnectedOption())
-		{
-		case OPTION_OUT:
-			//option_out-> ¿É¼ÇÃ¢ ²ô±â
-
-
-		break;
-		case OPTION_MAIN:
-			SAFE_RELEASE(_currentOption);
-			_currentOption = new option;
-			_currentOption->init();
-		break;
-		case OPTION_GAME:
-			SAFE_RELEASE(_currentOption);
-			_currentOption = new option_game;
-			_currentOption->init();
-		break;
-		case OPTION_CONTROLS:
-			SAFE_RELEASE(_currentOption);
-			_currentOption = new option_controls;
-			_currentOption->init();
-		break;
-		case OPTION_AUDIO:
-			SAFE_RELEASE(_currentOption);
-			_currentOption = new option_audio;
-			_currentOption->init();
-		break;
-		case OPTION_VIDEO:
-			SAFE_RELEASE(_currentOption);
-			_currentOption = new option_video;
-			_currentOption->init();
-		break;
-		case OPTION_SELECT:
-			_currentOption->setSelectCondition();
-		break;
-		case OPTION_PROGRESS:
-		break;
-		case OPTION_DEFAULTSET:
-			_currentOption->setDefault();
-		break;
-		case OPTION_NONE:
-			
-		break;
-		}
-	}
-
 }
 
 void system_option::render()

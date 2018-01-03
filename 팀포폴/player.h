@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "bullet.h"
 
 enum PLAYERMAINCONDITION       // 케릭터의 메인 상태값 설정을 위한 이넘문
 {
@@ -60,6 +61,9 @@ class player : public gameNode
 	int prevCondition1;
 	int prevCondition2;
 
+	bullet* _Relic;
+	int _currentRelic;
+	float _bulletAngle;
 public:
 	player();
 	~player();
@@ -71,7 +75,7 @@ public:
 	void release();
 	void update();
 	void render();
-
+	void usage();
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
 
@@ -136,3 +140,22 @@ public:
 	bool getIsJump() { return _isJump; }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+enum
+{
+	FIRELOD,
+	ORB,
+	FISHINGROD
+};

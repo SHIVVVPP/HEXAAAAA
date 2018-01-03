@@ -18,7 +18,7 @@ public:
 	//Load
 	vector<string> txtLoad(const char* loadFileName);
 	vector<string> charArraySeparation(char charArray[]);
-	void render(const char* loadFileName,HDC hdc, int x, int y, float width, float height, int outputNum);
+	void render(const char* loadFileName,HDC hdc, int x, int y, float width, float height, int outputNum , int fontSize);
 
 	txtData();
 	~txtData();

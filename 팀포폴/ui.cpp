@@ -58,6 +58,8 @@ void ui::update()
 		_playerHP++;
 		_gold += 10;
 	}
+
+
 }
 
 
@@ -116,7 +118,7 @@ void ui::render_Gold()
 }
 
 void ui::render_HP()
-{//268 816 ??????? ¿Ã∞‘ ππø©
+{//268 816
 	int maxHpPlace = 0;
 	int HpPlace = 0;
 

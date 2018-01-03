@@ -98,7 +98,7 @@ private:
 	inventoryGear* _invenGear;
 	RECT _checkRect; //아이템 확인용 렉트.
 	RECT _checkRect2;
-					 //이하 커서조작용 변수들
+	//이하 커서조작용 변수들
 	RECT _cursorRect; //커서의 렉트
 	POINT _center; //커서 중심좌표
 	int _cursorPoint; //커서움직임 (스위치로 판단.)
@@ -119,7 +119,7 @@ public:
 	void cursorMove(); //커서 움직임 함수
 					   //인벤 내의 벡터 접근자 설정.
 	void draw();
-					   //사용할수도 있으니 씬 하나 만듬.
+	//사용할수도 있으니 씬 하나 만듬.
 	static void invenScene();
 };
 

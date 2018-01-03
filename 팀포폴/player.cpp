@@ -21,8 +21,10 @@ HRESULT player::init()
 	//IMAGEMANAGER->addFrameImage("playerDownAtk", "./image/character/playerDownAtk.bmp", 250, 500, 1, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("playerAtk", "./image/character/playerAtk.bmp", 1000, 500, 4, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 500, 500, 2, 2, true, RGB(255, 0, 255));
-	
-
+	/*_Relic = new bullet;
+	_Relic->init("ÆÄº¼", 100, 800);*/
+	_currentRelic = FIRELOD;
+	_bulletAngle = PI;
 	_playerMainCondition = PLAYER_RIGHT_IDLE;
 	_playerSubCondition = PLAYER_NOTHING;
 	
@@ -482,13 +484,13 @@ void player::update()
 	
 	KEYANIMANAGER->update();
 
-	
+	//usage();
+	_Relic->update();
 }
 
 
 void player::render()
 {
-
 	Rectangle(getMemDC(), LadderRC.left, LadderRC.top, LadderRC.right, LadderRC.bottom);
 	Rectangle(getMemDC(), enemyRC.left, enemyRC.top, enemyRC.right, enemyRC.bottom);
 
@@ -503,7 +505,7 @@ void player::render()
 	TextOut(getMemDC(), 100, 200, str1, strlen(str1));
 
 	
-
+	_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		Rectangle(getMemDC(), _imageRC.left, _imageRC.top, _imageRC.right, _imageRC.bottom);
