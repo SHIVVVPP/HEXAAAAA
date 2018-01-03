@@ -15,14 +15,14 @@
 
 class objects : public gameNode
 {
-	
+	friend class objectManager;
 protected:
 	animation* _objAni;
 	int _type;
 	RECT _rc;
 	bool _move;
 	bool _hang;
-	bool _isHit;
+	bool _canHit;
 	bool _picked;
 	bool _canLand;
 	int _x;
@@ -41,7 +41,7 @@ public:
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
-	virtual HRESULT init(const char* imageName , int goldup ,bool hit);
+	virtual HRESULT init(const char* imageName , int goldup );
 	virtual void update();
 	virtual void render();
 	virtual void release();
@@ -52,8 +52,6 @@ public:
 	int getY() { return _y; }
 	RECT getRc() { return _rc; }
 	void setRC(RECT rc) { _rc = rc; }
-	bool getisHit() { return _isHit; }
-	void setisHit(bool ishit) { _isHit = ishit; }
 	const char* getImage() { return _imageName; }
 };
 

@@ -31,7 +31,7 @@ HRESULT objects::init(int x, int y, float length)
 	return E_NOTIMPL;
 }
 
-HRESULT objects::init(const char* imageName, int goldup ,bool hit)
+HRESULT objects::init(const char* imageName, int goldup)
 {
 	return E_NOTIMPL;
 }
