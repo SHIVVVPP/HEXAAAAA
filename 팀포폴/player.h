@@ -78,6 +78,9 @@ public:
 	void usage();
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
+	void collisonObject(int objType, int objValue);
+	void pixelCollison();
+	
 
 	static void rightAttack(void* obj);
 	static void leftAttack(void* obj);
