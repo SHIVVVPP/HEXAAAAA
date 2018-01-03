@@ -49,7 +49,7 @@ HRESULT mainGame::init()			//초기화 함수
 	_town = new town;
 	_town->init();
 	
-	rc = RectMake(WINSIZEX / 2, WINSIZEX / 2, 50, 50);
+	rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&rc);
 

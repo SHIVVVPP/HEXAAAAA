@@ -1,5 +1,14 @@
 #pragma once
 #include "gameNode.h"
+enum selectNum
+{	
+	selectNum0,
+	selectNum1,
+	selectNum2,
+	selectNum3,
+	selectNum4,
+	selectNum5
+};
 
 class NPC :public gameNode
 {
@@ -11,8 +20,14 @@ protected:
 	image*		_conversaion;			//대화창
 	RECT		_tolkBox;				//대화창
 
+	image*		_storeUI;				//상점UI
+	image*		_firelod;				//파이어로드
+	image*		_invenMusicSheet;		//악보
+	image*		_selectRectimg;			//선택렉트
 	image*		_yesBox;				//yes
 	image*		_noBox;					//no
+	image*		_selectBox;				//박스박스박스
+	image*		_done;
 
 	float		_x;						//중심좌표 x
 	float		_y;						//중심좌표 y
@@ -26,13 +41,19 @@ protected:
 	int			_tolkMaxsize;			//토크 맥스 카운트
 	int			NpcSpeed;				//npc 움직임
 	int			conversationCount;		//...
-	
+	int			selectx;
+	int			selecty;
+	int			_selectBoxX;
+	int			_selectBoxY;
+	int			selectbox;
+
 	bool		_isMove;				//움직이냐?
 	bool		_isRight;				//오른쪽이냐?
 	bool		_istolk;				//토크 준비
 	bool		_isMoreConverstion;		//대화가 더있냐?
 	bool		_isSaller;				//상점 역활을 하니?
-	bool		_isYes;					//yes니?
+	bool		_isByYes;				//yes니?
+	bool		_isSelect;				//선택되었니?
 
 	const char* fileName;				//텍스트 파일 이름 저장
 	const char* fileName2;				//텍스트 파일 이름 저장

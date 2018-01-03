@@ -40,7 +40,7 @@ void NPCManager::render()
 		(*_viNPC)->render();
 
 	}
-	//TextOut(getMemDC(), 50, 50, str, strlen(str));
+	TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
 void NPCManager::setNpc()
@@ -51,7 +51,7 @@ void NPCManager::setNpc()
 	
 	NPC* bard;
 	bard = new Bard;
-	bard->init("bardnomal", PointMake(1865, 650), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", true, false, true, false);
+	bard->init("bardnomal", PointMake(1865, 650), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", false, false, true, false);
 
 	NPC* molly;
 	molly = new Molly;
@@ -59,15 +59,15 @@ void NPCManager::setNpc()
 
 	NPC* gote;
 	gote = new Merchant;
-	gote->init("염소", PointMake(3170, 650), "./text/NPC/goatician.txt","./text/NPC/goatician2.txt", true, false, true, true);
+	gote->init("염소", PointMake(3170, 650), "./text/NPC/goatician.txt","./text/NPC/goatician2.txt", false, false, true, true);
 
 	NPC* _wizard;
 	_wizard = new Wizard;
-	_wizard->init("마법사", PointMake(3710, 365), "./text/NPC/위자드.txt", "./text/NPC/위자드1.txt", true, false, true, true);
+	_wizard->init("마법사", PointMake(3710, 365), "./text/NPC/위자드.txt", "./text/NPC/위자드1.txt", false, false, true, true);
 
 	NPC* _cooker;
 	_cooker = new Sepp;
-	_cooker->init("요리사", PointMake(2935,	280), "./text/NPC/요리사.txt", "./text/NPC/요리사1.txt", true, false, true, false);
+	_cooker->init("요리사", PointMake(2935,	280), "./text/NPC/요리사.txt", "./text/NPC/요리사1.txt", false, false, true, false);
 
 	NPC* _famer;
 	_famer = new hedgeFarmer;
@@ -75,11 +75,11 @@ void NPCManager::setNpc()
 
 	NPC* _gard;
 	_gard = new gard;
-	_gard->init("guard", PointMake(300, 650), "./text/NPC/gard.txt", "./text/NPC/gard1.txt", true, false, true, false);
+	_gard->init("guard", PointMake(300, 650), "./text/NPC/gard.txt", "./text/NPC/gard1.txt", false, false, true, false);
 
 	NPC* _crown;
 	_crown = new Crown;
-	_crown->init("광대", PointMake(3710, 650), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", true, false, true, true);
+	_crown->init("광대", PointMake(50, 700), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
 	
 	_vNPC.push_back(watergirl);
 	_vNPC.push_back(bard);
@@ -99,7 +99,7 @@ void NPCManager::setLeftNpc(bool _isRight)
 	_bagFella = new bagFella;
 	_bagFella->init("짐든 남자",PointMake(100, WINSIZEY - 250), "./text/NPC/짐꾼.txt", "..", true, _isRight, false, false );
 
-	_vNPC.push_back(_bagFella);
+	//_vNPC.push_back(_bagFella);
 
 }
 
@@ -129,11 +129,24 @@ void NPCManager::collision()
 	{
 		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &RectMake(_ptMouse.x,_ptMouse.y,50,50)))
 		{
-			a++;
-			(*_viNPC)->Converstion(a);
-			if (KEYMANAGER->isOnceKeyDown('X')) {
-				(*_viNPC)->setcoversationCount(1);
+			
+			if (KEYMANAGER->isOnceKeyDown(VK_UP)) {
+			
+				(*_viNPC)->setisTolk(true);
+			}
+			if ((*_viNPC)->getisTolk()) {
+				a++;
+				(*_viNPC)->Converstion(a);
+			}
+			if (!(*_viNPC)->getisTolk()) {
 				a = 0;
+				
+			}
+			sprintf(str, "a : %d", a);
+			if (KEYMANAGER->isOnceKeyDown('X'))
+			{
+				(*_viNPC)->setcoversationCount(1);
+			
 			}
 			if (a >= (*_viNPC)->gettxtSizeMax()) {
 				a = (*_viNPC)->gettxtSizeMax();

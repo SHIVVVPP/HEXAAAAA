@@ -98,6 +98,8 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("townPix", "./image/town/townPiximage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("backsideimg", "./image/town/backsidetown.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("conversationRect", "./image/town/conversationRect.bmp", 1600, 194, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점", "./image/town/상점UI.bmp", 1600, 384, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("선택박스", "./image/town/SelectRect.bmp", 121, 120, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 426, 360, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
@@ -114,11 +116,11 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("guard", "./image/town/guard.bmp", 308, 200, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("광대", "./image/town/Merchant.bmp", 339, 150, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("선택된YES", "./image/inventory/SelectYes.bmp", 130, 61, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("선택안된YES", "./image/inventory/NotSelectYes.bmp", 107, 43, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("선택된NO", "./image/inventory/SelectNo.bmp", 98, 61, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("선택안된NO", "./image/inventory/NotSelectNO.bmp", 75, 36, true, RGB(0, 0, 0));
-	IMAGEMANAGER->addImage("안삼", "./image/inventory/Done.bmp", 79, 23, true, RGB(0, 0, 0));
+
+	IMAGEMANAGER->addImage("선택안된YES", "./image/town/NotSelectYes.bmp", 107, 43, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택안된NO", "./image/town/NotSelectNO.bmp", 75, 36, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("선택BOX", "./image/town/SelectBox.bmp", 130, 61, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("안삼", "./image/town/Done.bmp", 79, 24, true, RGB(0, 0, 0));
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
