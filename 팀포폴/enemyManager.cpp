@@ -270,3 +270,42 @@ void enemyManager::killSomething(int arrNum)
 
 
 }
+
+
+
+
+//for (int i = 0; i < _em->getVRedBeetle().size(); i++)
+//{
+//	int playerX;
+//	playerX = _player->getPlayerRect().right - _player->getPlayerRect().left;
+//	RECT temp;
+//	if (IntersectRect(&temp, &_em->getVRedBeetle()[i]->getDetectRect(), &_player->getPlayerRect()))
+//	{
+//		if (_isAttack == false)
+//		{
+//			
+//				if (playerX - _em->getVRedBeetle()[i]->getCenterX > 100)
+//				{
+//					_em->getVRedBeetle()[i]->getMonsetrDirection = rightMove;
+//				}
+//				if (playerX - _em->getVRedBeetle()[i]->getCenterX < -100)
+//				{
+//					_em->getVRedBeetle()[i]->getMonsetrDirection = leftMove;
+//				}
+//				if (playerX - _em->getVRedBeetle()[i]->getCenterX > 0 && playerX - _em->getVRedBeetle()[i]->getCenterX < 100)
+//				{
+//					_em->getVRedBeetle()[i]->getMonsetrDirection = rightAttack;
+//				}
+//
+//				if (playerX - _em->getVRedBeetle()[i]->getCenterX > 0 && playerX - _em->getVRedBeetle()[i]->getCenterX < 100)
+//				{
+//					_em->getVRedBeetle()[i]->getMonsetrDirection = rightAttack;
+//				}
+//
+//		}
+//		
+//
+//
+//		break;
+//	}
+//}

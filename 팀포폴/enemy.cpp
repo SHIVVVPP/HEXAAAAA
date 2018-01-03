@@ -351,7 +351,7 @@ void enemy::skeletonFrameMove()
 
 		if (_monsterDirection == leftStand)
 		{
-			_currentFrameY = 11;
+			_currentFrameY = 12;
 			_currentFrameX = 3;
 
 			frameCounter = 0;
@@ -359,7 +359,7 @@ void enemy::skeletonFrameMove()
 
 		if (_monsterDirection == leftMove)
 		{
-			_currentFrameY = 12;
+			_currentFrameY = 13;
 
 			if (_currentFrameX <= 0) _currentFrameX = 4;
 
@@ -370,7 +370,7 @@ void enemy::skeletonFrameMove()
 
 		if (_monsterDirection == leftAttack)
 		{
-			_currentFrameY = 15;
+			_currentFrameY = 16;
 			if (_currentFrameX > 2)
 			{
 				_currentFrameX--;
@@ -379,7 +379,10 @@ void enemy::skeletonFrameMove()
 			}
 			else
 			{
+
 				_attackRc = RectMake(centerX, centerY, 0, 0);
+
+				_monsterDirection = leftStand;
 			}
 			
 
