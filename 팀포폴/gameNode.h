@@ -1,8 +1,6 @@
 #pragma once
 #include "image.h"
 
-class player;
-
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 static image* _backBuffer2 = IMAGEMANAGER->addImage("backBuffer2", WINSIZEX, WINSIZEY);
 class gameNode
@@ -27,9 +25,6 @@ public:
 	HDC getHDC() { return _hdc; }
 
 	LRESULT MainProc(HWND, UINT, WPARAM, LPARAM);
-
-
-	void addressLinkWithPlayer(player* p) {}
 
 	gameNode();
 	virtual ~gameNode();

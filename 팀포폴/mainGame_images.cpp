@@ -95,16 +95,23 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("shovel", "./image/inventory/shovel.bmp", 133, 133, true, RGB(0, 0, 0));
 	//마을, NPC 이미지ㅛ    
 	IMAGEMANAGER->addImage("town", "./image/town/townimage.bmp", 8137, 900, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("townPix", "./image/town/townPiximage.bmp", 8137, 900, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("backsideimg", "./image/town/backsidetown.bmp", 8137, 900, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("conversationRect", "./image/town/conversationRect.bmp", 1600, 194, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 90, 34, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 426, 360, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/바드흥겨운음악.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/마법사아가씨믹스.bmp", 0, 0, 7875, 225, 46, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("짐든 남자", "./image/town/bagFellaMove.bmp", 0, 0, 427, 360, 2, 2, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("염소", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("마법사", "./image/town/마법사아가씨믹스.bmp", 7668, 225, 46, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("요리사", "./image/town/음식점주인기쁨.bmp", 797, 300, 4, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("hedgeFarmer", "./image/town/hedgeFarmer1-1.bmp", 436, 180, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("guard", "./image/town/guard.bmp", 308, 200, 2, 1, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));
@@ -132,9 +139,53 @@ void mainGame::setImages()
 	//------------------------------------------------------
 	//**************백그라운드 이미지*********************
 	//------------------------------------------------------
+	
+	
+	//배경
+	IMAGEMANAGER->addImage("back1", "./image./stage./background_1.bmp", 6219, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back2", "./image./stage./background_2.bmp",1600,900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back3","./image./stage./background_3.bmp",1600,900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back4","./image./stage./background_4.bmp",1600,900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back5","./image./stage./background_5.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back6","./image./stage./background_6.bmp",1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back7","./image./stage./background_7.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back8","./image./stage./background_8.bmp", 1600, 1589, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back8_left","./image./stage./background_8_left.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back9","./image./stage./background_9.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back10","./image./stage./background_10.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back11","./image./stage./background_11.bmp", 1600, 3390, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back11_right","./image./stage./background_11_right.bmp", 2303, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back12","./image./stage./background_12.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back13","./image./stage./background_13.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back14","./image./stage./background_14.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back15","./image./stage./background_15.bmp", 1600, 1821, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back15_left","./image./stage./background_15_left.bmp", 1983, 899, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back16","./image./stage./background_16.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("backBoss","./image./stage./background_boss.bmp", 1600, 900, false, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("필드배경", "./background/background.bmp", 27007, 5291, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("픽셀배경", "./background/piexlground.bmp", 27007, 5291, false, RGB(0, 255, 0 ));
+	//pixel collision background
+	IMAGEMANAGER->addImage("colBack1", "./image./stage./colbackground_1.bmp", 6219, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack2", "./image./stage./colbackground_2.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack3", "./image./stage./colbackground_3.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack4", "./image./stage./colbackground_4.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack5", "./image./stage./colbackground_5.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack6", "./image./stage./colbackground_6.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack7", "./image./stage./colbackground_7.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack8", "./image./stage./colbackground_8.bmp", 1600, 1589, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack8_left", "./image./stage./colbackground_8_left.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack9", "./image./stage./colbackground_9.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack10", "./image./stage./colbackground_10.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack11", "./image./stage./colbackground_11.bmp", 1600, 3390, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack11_right", "./image./stage./colbackground_11_right.bmp", 2303, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack12", "./image./stage./colbackground_12.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack13", "./image./stage./colbackground_13.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack14", "./image./stage./colbackground_14.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack15", "./image./stage./colbackground_15.bmp", 1600, 1821, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack15_left", "./image./stage./colbackground_15_left.bmp", 1983, 899, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack16", "./image./stage./colbackground_16.bmp", 1600, 900, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBackBoss", "./image./stage./colbackground_boss.bmp", 1600, 900, false, RGB(255, 0, 255));
+
+
 
 	//------------------------------------------------------
 	//------------------------------------------------------

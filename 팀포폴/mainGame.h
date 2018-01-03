@@ -5,12 +5,16 @@
 #include "stage.h"
 #include "player.h"	
 #include "ui.h"
+#include "town.h"
+
 #include "objects.h"
 class mainGame : public gameNode
 {
 private:
+	//RECT rc;
 	system_option* sys;
 	player* _player;
+	town*	_town;
 	//system_option* sys;
 	gameNode * _inventory;
 	gameNode* _stage;

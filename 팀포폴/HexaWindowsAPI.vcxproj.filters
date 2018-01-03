@@ -94,14 +94,8 @@
     <Filter Include="shovelKnight\scene\Inventory">
       <UniqueIdentifier>{a0eb4474-c5a7-489b-88aa-982559b8c94d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\dataBase">
-      <UniqueIdentifier>{facfae0c-d8ad-4315-9f62-74c7252aaf0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shovelKnight\UI">
-      <UniqueIdentifier>{c55661d9-8477-47f9-a178-91ceef11a3c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\bullet">
-      <UniqueIdentifier>{4adaacb7-51ae-4e72-8b6c-a5fd250d1614}</UniqueIdentifier>
+    <Filter Include="AllEnemies">
+      <UniqueIdentifier>{13f4f781-343e-4efa-b92f-26c7921aa5e5}</UniqueIdentifier>
     </Filter>
     <Filter Include="shovelKnight\ObjectManager\Objects\gem">
       <UniqueIdentifier>{088f5717-f9a1-4132-b5b9-a1e12b76808b}</UniqueIdentifier>
@@ -228,17 +222,71 @@
     <ClInclude Include="sceneManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="database.h">
-      <Filter>MainGame\dataBase</Filter>
+    <ClInclude Include="blueSlime.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="ui.h">
-      <Filter>shovelKnight\UI</Filter>
+    <ClInclude Include="greenDragon.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>MainGame\bullet</Filter>
+    <ClInclude Include="redBeetle.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="item.h">
-      <Filter>shovelKnight\ItemManager\items</Filter>
+    <ClInclude Include="skeleton.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="yellowDragon.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>shovelKnight\EnemyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="bagFella.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Bard.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="goatician.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="genericKnight.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="hedgeFarmer.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="maiden.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Merchant.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Molly.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Sepp.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="waterGirl.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="deerLady.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="gard.h">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
     <ClInclude Include="objects.h">
       <Filter>shovelKnight\ObjectManager\Objects</Filter>
@@ -248,12 +296,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="winMain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="gameNode.cpp">
       <Filter>2DFramework</Filter>
     </ClCompile>
@@ -356,23 +398,77 @@
     <ClCompile Include="sceneManager.cpp">
       <Filter>2DFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="database.cpp">
-      <Filter>MainGame\dataBase</Filter>
+    <ClCompile Include="blueSlime.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="ui.cpp">
-      <Filter>shovelKnight\UI</Filter>
+    <ClCompile Include="greenDragon.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="player_usage.cpp">
-      <Filter>shovelKnight\player</Filter>
+    <ClCompile Include="redBeetle.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>MainGame\bullet</Filter>
+    <ClCompile Include="skeleton.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="stage_background.cpp">
+    <ClCompile Include="yellowDragon.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>shovelKnight\EnemyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="bagFella.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Bard.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="genericKnight.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="goatician.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="hedgeFarmer.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="maiden.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Merchant.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Molly.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sepp.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="waterGirl.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="item.cpp">
-      <Filter>shovelKnight\ItemManager\items</Filter>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="deerLady.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="gard.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="objects.cpp">
       <Filter>shovelKnight\ObjectManager\Objects</Filter>
