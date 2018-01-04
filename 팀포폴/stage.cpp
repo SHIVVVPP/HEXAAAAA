@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "stage.h"
 #include "player.h"
+#include "ui.h"
 
 stage::stage()
 {
@@ -14,6 +15,9 @@ stage::~stage()
 HRESULT stage::init()
 {
 	setStageBackgroundInfo();
+
+	_ui = new ui;
+	_ui->init(UI_STAGE);
 
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
@@ -66,14 +70,11 @@ void stage::update()
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")
 	{
-		if (_currentRoom.myKey != c_col)
-		{
 			_prevRoom = _currentRoom;
 			_currentRoom = _mRoom.find(c_col)->second;
-		}
 	}
 	_player->update();
-
+	_ui->update();
 	
 	//pixelCollison();
 	//_player->update();
@@ -105,6 +106,7 @@ void stage::render()
 	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	CAMERAMANAGER->cameraObjectRender(getMemDC());
+	_ui->render();
 }
 
 
@@ -283,7 +285,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back11_right");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack11_right");
 	temp._leftX = 17419;
-	temp._topY = 3490;
+	temp._topY = 3471;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "11" };
@@ -296,7 +298,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back15");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack15");
 	temp._leftX = 22219;
-	temp._topY = 240;
+	temp._topY = 169;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "14","1501","16" };
@@ -306,7 +308,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back15_left");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack15_left");
 	temp._leftX = 22219 - IMAGEMANAGER->findImage("back15_left")->getWidth();
-	temp._topY = 240;
+	temp._topY = 169;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp.myKey = "1501";
@@ -315,7 +317,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("back16");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colBack16");
 	temp._leftX = 22219 + IMAGEMANAGER->findImage("back16")->getWidth();
-	temp._topY = 240;
+	temp._topY = 169;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "15","17" };
@@ -325,7 +327,7 @@ void stage::setStageBackgroundInfo()
 	temp._roomImage = IMAGEMANAGER->findImage("backBoss");
 	temp._pixelColImage = IMAGEMANAGER->findImage("colbackBoss");
 	temp._leftX = 22219 + IMAGEMANAGER->findImage("back16")->getWidth() + IMAGEMANAGER->findImage("backBoss")->getWidth();
-	temp._topY = 240;
+	temp._topY = 169;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "16" };
@@ -386,13 +388,65 @@ void stage::setCameraObject()
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(14210, 4387, 20, 714),
 	{ 12619,14219 }, { 14219,15819 }, &_rc, true, "10");
 
-	//9~10
+	//10~11
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(15812, 4702, 20, 401),
 	{ 14219,15819 }, { 15819,17419 }, &_rc, true, "11");
 
-	//3->4 사다리
+	//11->11 사다리
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17218, 4404, 80, 20),
 	{ 4321,5221 }, { 4371-WINSIZEY,4371 }, &_rc, false, "11");
+
+	//11->1101
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17410, 3803, 20, 215),
+	{ 15819,17419 }, { 17419,19722 }, &_rc, true, "1101");
+
+	//11->11 사다리
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(15819, 3567, 80, 20),
+	{ 4371 - WINSIZEY,4371 }, { 3577 - WINSIZEY, 3577 }, &_rc, false, "11");
+
+	//11->11 사다리2
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(16198, 2668, 80, 20),
+	{ 3577 - WINSIZEY, 3577 }, { 2730 - WINSIZEY, 2730 }, &_rc, false, "11");
+
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(16901, 2668, 80, 20),
+	{ 3577 - WINSIZEY, 3577 }, { 2730 - WINSIZEY, 2730 }, &_rc, false, "11");
+
+	//11->12
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17411, 1896, 20, 462),
+	{ 15819,17419 }, { 17419,19019 }, &_rc, true, "12");
+
+	//12->13
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(19010, 1898, 20, 520),
+	{ 17419,19019 }, { 19019,20619 }, &_rc, true, "13");
+
+	//13->14
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(20612, 1898, 20, 322),
+	{ 19019,20619 }, { 20619,22219 }, &_rc, true, "14");
+
+	//14->15
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(22210, 1910, 20, 633),
+	{ 20619,22219 }, { 22219,23819 }, &_rc, true, "15");
+
+	//15 사다리
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(23691, 1820, 80, 20),
+	{ 2730 - WINSIZEY, 2730 }, { 999, 1899 }, &_rc, false, "15");
+
+	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(22737, 1059, 80, 20),
+	{ 999, 1899 }, { 169, 1069 }, &_rc, false, "15");
+
+	//15 1501
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(22219, 232, 20, 332),
+	 { 22219,23819 }, { 20236,22219 }, &_rc, false, "1501");
+	
+
+	//15->16
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(23807, 232, 20, 718),
+	{ 22219,23819 }, { 23819,25419 }, &_rc, true, "16");
+
+	//16->boss
+	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(25407, 232, 20, 718),
+	{ 23819,25419 }, { 25419,27019 }, &_rc, true, "17");
+
 }
 
 

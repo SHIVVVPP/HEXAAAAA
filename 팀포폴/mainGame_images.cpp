@@ -167,7 +167,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("back12","./image./stage./background_12.bmp", 1600, 900, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("back13","./image./stage./background_13.bmp", 1600, 900, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("back14","./image./stage./background_14.bmp", 1600, 900, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("back15","./image./stage./background_15.bmp", 1600, 1821, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("back15","./image./stage./background_15.bmp", 1601, 2561, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("back15_left","./image./stage./background_15_left.bmp", 1983, 899, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("back16","./image./stage./background_16.bmp", 1600, 900, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("backBoss","./image./stage./background_boss.bmp", 1600, 900, false, RGB(255, 0, 255));
@@ -189,7 +189,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("colBack12", "./image./stage./colbackground_12.bmp", 1600, 900, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("colBack13", "./image./stage./colbackground_13.bmp", 1600, 900, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("colBack14", "./image./stage./colbackground_14.bmp", 1600, 900, false, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("colBack15", "./image./stage./colbackground_15.bmp", 1600, 1821, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("colBack15", "./image./stage./colbackground_15.bmp", 1601, 2561, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("colBack15_left", "./image./stage./colbackground_15_left.bmp", 1983, 899, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("colBack16", "./image./stage./colbackground_16.bmp", 1600, 900, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("colBackBoss", "./image./stage./colbackground_boss.bmp", 1600, 900, false, RGB(255, 0, 255));
