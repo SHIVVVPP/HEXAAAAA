@@ -90,6 +90,8 @@ HRESULT player::init()
 	
 	_image = IMAGEMANAGER->findImage("playerIdle");
 	_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
+
+	DATABASE->setPlayer_currentInfo(_currentHP, _maxHP, _currentMP, _playerGold);
 	return S_OK;
 }
 void player::release()
@@ -486,6 +488,8 @@ void player::update()
 	//pixelCollison();
 	//usage();
 	//_Relic->update();
+	DATABASE->setPlayer_currentInfo(_currentHP, _maxHP, _currentMP, _playerGold);
+
 }
 
 

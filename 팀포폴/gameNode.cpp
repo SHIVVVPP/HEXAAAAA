@@ -46,6 +46,7 @@ HRESULT gameNode::init(bool managerInit)
 		KEYANIMANAGER->init();
 		TXTDATA->init();
 		INIDATA->init();
+		DATABASE->init();
 	}
 
 
@@ -66,6 +67,7 @@ void gameNode::release()
 		KEYANIMANAGER->releaseSingleton();
 		TXTDATA->releaseSingleton();
 		INIDATA->releaseSingleton();
+		DATABASE->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

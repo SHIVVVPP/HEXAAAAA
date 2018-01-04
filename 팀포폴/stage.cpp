@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "stage.h"
 #include "player.h"
+#include "ui.h"
 
 stage::stage()
 {
@@ -14,6 +15,9 @@ stage::~stage()
 HRESULT stage::init()
 {
 	setStageBackgroundInfo();
+
+	_ui = new ui;
+	_ui->init(UI_STAGE);
 
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
@@ -70,7 +74,7 @@ void stage::update()
 			_currentRoom = _mRoom.find(c_col)->second;
 	}
 	_player->update();
-
+	_ui->update();
 	
 	//pixelCollison();
 	//_player->update();
@@ -102,6 +106,7 @@ void stage::render()
 	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	CAMERAMANAGER->cameraObjectRender(getMemDC());
+	_ui->render();
 }
 
 
