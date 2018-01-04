@@ -297,9 +297,6 @@
     <ClInclude Include="database.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ui.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ladder.h">
       <Filter>shovelKnight\ObjectManager\Objects\ladder</Filter>
     </ClInclude>
@@ -347,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="yellowDragon.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>shovelKnight\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +512,6 @@
     <ClCompile Include="database.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ui.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ladder.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\ladder</Filter>
     </ClCompile>
@@ -562,6 +559,9 @@
     </ClCompile>
     <ClCompile Include="yellowDragon.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>shovelKnight\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
