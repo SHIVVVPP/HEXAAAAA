@@ -5,25 +5,27 @@
 #include "ladder.h"
 #include "dirtpile.h"
 #include "moveblock.h"
+#include "player.h"
 #include <vector>
 
 class objectManager : public gameNode
 {
 private:
-
 	typedef vector<objects*> vO;
 	typedef vector<objects*>::iterator viO;
 private:
 	vO _vgem;
 	viO _vigem;
 	vO _vladder;
-	vO _vmoveblock;
+	vO _vmoveblock; 
 	vO _vdirtpile;
 	viO _vidirtpile;
 	objects* _obj;
 	int _hitcount;
 	int _leftX;
 	int _topY;
+
+	player* _p;
 public:
 	objectManager();
 	~objectManager();

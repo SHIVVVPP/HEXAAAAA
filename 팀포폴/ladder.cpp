@@ -21,9 +21,9 @@ ladder::~ladder()
 HRESULT ladder::init(int x, int y, float length)
 {
 	_height = length;
-	_x = x;
-	_y = y;
-	_rc = RectMake(_x, _y, IMAGEMANAGER->findImage("ladder")->getWidth(), _height);
+	_leftX = x;
+	_topY = y;
+	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("ladder")->getWidth(), _height);
 	return S_OK;
 }
 
@@ -36,7 +36,7 @@ void ladder::render()
 	for (; tempY >= _rc.top + IMAGEMANAGER->findImage("ladder")->getHeight();)
 	{
 		tempY -= IMAGEMANAGER->findImage("ladder")->getHeight();
-		IMAGEMANAGER->findImage("ladder")->render(getMemDC(), _x, tempY);
+		IMAGEMANAGER->findImage("ladder")->render(getMemDC(), _leftX, tempY);
 	}
 	_rc.top = tempY;
 	_rc.right = _rc.left + IMAGEMANAGER->findImage("ladder")->getWidth();

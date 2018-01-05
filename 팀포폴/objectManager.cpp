@@ -19,11 +19,14 @@ HRESULT objectManager::init()
 	{
 		_vgem[i]->_canHit = true;
 	}
+	_p = new player;
+	_p->init();
 	return S_OK;
 }
 
 void objectManager::release()
 {
+
 }
 
 void objectManager::update()
@@ -70,7 +73,7 @@ void objectManager::render()
 
 void objectManager::setPosition()
 {
-
+	
 	//_vgem.clear();
 	//_vdirtpile.clear();
 	//_obj = new gem;
@@ -101,7 +104,7 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(80, 80, 50, false);
+	_obj->init(80, 80,50,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
@@ -109,79 +112,72 @@ void objectManager::setPosition()
 	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;
-	_obj->init(500, 100);
+	_obj->init(2800, 3100);
 	_vdirtpile.push_back(_obj);
 
 	_obj = new dirtpile;
-	_obj->init(500, 300);
+	_obj->init(2800, 3200);
 	_vdirtpile.push_back(_obj);
 
 	_obj = new dirtpile;
-	_obj->init(500, 400);
+	_obj->init(2800, 3300);
 	_vdirtpile.push_back(_obj);
 }
 
 void objectManager::player_object_collision()
 {
-	//for (_vidirtpile = _vdirtpile.begin(); _vidirtpile != _vdirtpile.end(); ++_vidirtpile)
-	//{
-	//	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-	//	{
-	//		if ((*_vidirtpile)->getAni()->getPlayIndex() == 0)
-	//		{
-	//			(*_vidirtpile)->getAni()->setPlayIndex(1);
-	//			//_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-	//		}
-	//	}
-	//
-	//	//else ++_vidirtpile;
-	//}
-
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
-		//for (int j = 0; j < _vgem.size(); j++)
-		//{
-		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && PtInRect(&_vdirtpile[i]->_rc, _ptMouse)) //충돌 추가로 넣기 한대쳤을떄
-		{
-			_leftX = _vdirtpile[i]->getX();
-			_topY = _vdirtpile[i]->getY();
-			if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
+			RECT temp;
+			if(IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtpile[i]->_rc))
 			{
-				_vdirtpile[i]->getAni()->setPlayIndex(1);
-				//_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+				_leftX = _vdirtpile[i]->getX();
+				_topY = _vdirtpile[i]->getY();
+				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
+				{
+					_vdirtpile[i]->getAni()->setPlayIndex(1);
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
+				{
+					
+					_vdirtpile[i]->getAni()->setPlayIndex(2);	
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
+				{	
+					_vdirtpile[i]->getAni()->setPlayIndex(3);
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
+				{
+					_vdirtpile[i]->getAni()->setPlayIndex(4);
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
+				{
+					_vdirtpile.erase(_vdirtpile.begin() + i);
+				}
 			}
+    }
 
-			else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
-			{
-				//_hitcount = 3;
-				_vdirtpile[i]->getAni()->setPlayIndex(2);
-				//_vgem[j]->fire(_leftX + 10, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-			}
-			else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
-			{
-				//_hitcount = 2;
-				_vdirtpile[i]->getAni()->setPlayIndex(3);
-				//_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-			}
-			else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
-			{
-				//_hitcount = 1;
-				_vdirtpile[i]->getAni()->setPlayIndex(4);
-				//_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-			}
-			else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
-			{
-				//_hitcount = 0;
-				//_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-				_vdirtpile.erase(_vdirtpile.begin() + i);
-			}
-		}
-		//}
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+
 	}
-
-
 	for (int i = 0; i < _vgem.size(); i++)
 	{
+		//if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+		//{
+		//	_obj = new gem;
+		//	_obj->init("reddia", 10, 30);
+		//	_vgem.push_back(_obj);
+		//
+		//	_obj = new gem;
+		//	_obj->init("reddia", 10, 30);
+		//	_vgem.push_back(_obj);
+		//
+		//	_obj = new gem;
+		//	_obj->init("yellowgem", 30, 30);
+		//	_vgem.push_back(_obj);
+		//
+		//}
 		if (PtInRect(&_vgem[i]->_rc, _ptMouse))
 		{
 			RECT temp;
@@ -190,8 +186,8 @@ void objectManager::player_object_collision()
 				//vector<objects*> temp;
 				//temp.push_back(_vgem[i]);
 				//_vgem.erase(_vgem.begin());
-				_vgem.push_back(_vgem[i + 1]);
-				_vgem.erase(_vgem.begin() + i);
+				//_vgem.push_back(_vgem[i + 1]);
+				//_vgem.erase(_vgem.begin() + i);
 			}//break;
 		}
 	}
