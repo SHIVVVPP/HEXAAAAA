@@ -30,7 +30,8 @@ HRESULT stage::init()
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&_rc);
 
-	
+	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
+	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
 
 
 
@@ -76,8 +77,7 @@ void stage::update()
 	_player->update();
 	_ui->update();
 	
-	//pixelCollison();
-	//_player->update();
+	pixelCollison();
 }
 
 void stage::render()
@@ -91,11 +91,20 @@ void stage::render()
 	
 	_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
 	_currentRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
-
-	
+	HPEN hPen, hOldPen;
+	HBRUSH hBrush, hOldBrush;
+	hBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	hPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+	hOldBrush = (HBRUSH)SelectObject(getMemDC(), hBrush);
+	hOldPen = (HPEN)SelectObject(getMemDC(), hPen);
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY), _currentRoom._width, _currentRoom._height);
+	SelectObject(getMemDC(), hOldPen);
+	SelectObject(getMemDC(), hOldBrush);
+	DeleteObject(hBrush);
+	DeleteObject(hPen);
 	_player->render();
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
-
+	_ui->render();
 	char str[128];
 
 	sprintf(str, "mouse point X %d, Y %d", _ptMouse.x+CAMERAMANAGER->getCameraPoint().x, _ptMouse.y + CAMERAMANAGER->getCameraPoint().y);
@@ -106,7 +115,7 @@ void stage::render()
 	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	CAMERAMANAGER->cameraObjectRender(getMemDC());
-	_ui->render();
+
 }
 
 
@@ -479,7 +488,7 @@ void stage::pixelCollison()
 		bool istop = false;
 		for (int i = _player->getprobeY() + 30; i >  _player->getprobeY() - 30; --i)
 		{
-			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, i);
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(),(_player->getPlayerRect()->left+ _player->getPlayerRect()->right)/2 - _currentRoom._leftX, i);
 
 			r = GetRValue(color);
 			g = GetGValue(color);
@@ -489,11 +498,12 @@ void stage::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				k = true;
-				_player->setPlayerY(i - 75);
-				b = i;
 				a++;
-
 			}
+		}
+		if (k)
+		{
+			_player->setPlayerY(_player->getPlayerRect()->bottom + 30 - a);
 		}
 
 
