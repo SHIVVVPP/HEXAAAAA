@@ -6,6 +6,7 @@
 #include "dirtpile.h"
 #include "moveblock.h"
 #include "player.h"
+#include "effect.h"
 #include <vector>
 
 class objectManager : public gameNode
@@ -26,6 +27,7 @@ private:
 	int _topY;
 	int  col;
 	player* _p;
+	effect* _pickeffect;
 public:
 	objectManager();
 	~objectManager();

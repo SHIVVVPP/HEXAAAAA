@@ -19,8 +19,9 @@ HRESULT objectManager::init()
 	{
 		_vgem[i]->_canHit = true;
 	}
+	//_pickeffect = new effect;
 
-	//EFFECTMANAGER->addEffect("보석",IMAGEMANAGER->findImage("sparkle"),)
+	EFFECTMANAGER->addEffect("보석", "pickupSparkle.bmp", 42, 14, 14, 14, 1.0f, 0.1f, 100);
 	return S_OK;
 }
 
@@ -46,6 +47,7 @@ void objectManager::update()
 	}
 	player_object_collision();
 	_p->update();
+	EFFECTMANAGER->update();
 }
 
 void objectManager::render()
@@ -68,7 +70,7 @@ void objectManager::render()
 	{
 		_vgem[i]->render();
 	}
-
+	EFFECTMANAGER->render();
 }
 
 void objectManager::setPosition()
@@ -181,7 +183,7 @@ void objectManager::player_object_collision()
 			//}
 			//break;
     }
-
+	EFFECTMANAGER->play("보석", CAMERAMANAGER->CameraRelativePointX(2900), CAMERAMANAGER->CameraRelativePointY(3000));
 	for (int i = 0; i < _vgem.size(); i++)
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
@@ -204,6 +206,9 @@ void objectManager::player_object_collision()
 			if (IntersectRect(&temp, _p->getPlayerRect(), &_vgem[i]->_rc))
 			{
 				_vgem.erase(_vgem.begin() + i);
+				_obj = new gem;
+				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+				_vgem.push_back(_obj);
 			}
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
 			{
