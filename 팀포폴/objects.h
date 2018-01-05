@@ -35,6 +35,8 @@ protected:
 	float _speedX;
 	float _angle;
 	const char* _imageName;
+	image* _image;
+	int _shuf;
 public:
 	objects();
 	~objects();
@@ -42,12 +44,13 @@ public:
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
-	virtual HRESULT init(const char* imageName , int goldup , int range);
+	virtual HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);
+
 	virtual void update();
 	virtual void render();
 	virtual void release();
 	virtual void move();
-	virtual void fire(int x, int y, int startX,int startY,float speed, float angle);
+	
 	animation* getAni() { return _objAni; }
 	int getX() { return _leftX; }
 	int getY() { return _topY; }

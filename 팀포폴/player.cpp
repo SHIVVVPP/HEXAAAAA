@@ -34,7 +34,7 @@ HRESULT player::init()
 	
 	
 	_x = 2800;
-	_y = 3100;
+	_y = 3800;
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
@@ -477,10 +477,10 @@ void player::update()
 	}
 
 
-	if (_playerMainCondition < 10 || _playerMainCondition >= 17)
-	{
-		_attackRC = RectMakeCenter(-150, 150, 100, 150);
-	}
+	// if (_playerMainCondition < 10 || _playerMainCondition >= 17)
+	//{
+	//	_attackRC = RectMakeCenter(-150, 150, 100, 150);
+	//}
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
@@ -490,7 +490,7 @@ void player::update()
 	//usage();
 	//_Relic->update();
 	DATABASE->setPlayer_currentInfo(_currentHP, _maxHP, _currentMP, _playerGold);
-
+	//usage();
 }
 
 

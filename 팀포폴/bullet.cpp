@@ -32,7 +32,7 @@ void bullet::render(void)
 {
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
-		_viBullet->bulletImage->frameRender(getMemDC(), _viBullet->rc.left, _viBullet->rc.top,_viBullet->bulletImage->getFrameX(),_viBullet->bulletImage->getFrameY());
+		_viBullet->bulletImage->frameRender(getMemDC(),_viBullet->rc.left,_viBullet->rc.top,_viBullet->bulletImage->getFrameX(),_viBullet->bulletImage->getFrameY());
 	}
 }
 
