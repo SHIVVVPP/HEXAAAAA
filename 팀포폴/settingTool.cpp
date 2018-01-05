@@ -164,15 +164,40 @@ void settingTool::update()
 }
 void settingTool::render()
 {
+	HPEN hPen, hOldPen;
+	HBRUSH hBrush, hOldBrush;
 	switch (TYPE)
 	{
 	case OBJECT:
+
 		_image->render(getMemDC(), _rc.left, _rc.top);
+		HPEN hPen, hOldPen;
+		HBRUSH hBrush, hOldBrush;
+		hBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		hPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hOldBrush = (HBRUSH)SelectObject(getMemDC(), hBrush);
+		hOldPen = (HPEN)SelectObject(getMemDC(), hPen);
+		RectangleMake(getMemDC(), _rc.left, _rc.top, _image->getWidth(), _image->getHeight());
+		SelectObject(getMemDC(), hOldPen);
+		SelectObject(getMemDC(), hOldBrush);
+		DeleteObject(hBrush);
+		DeleteObject(hPen);
 		break;
 	case MONSTER:
 		_image->frameRender(getMemDC(), _rc.left, _rc.top, 0, 0);
+		
+		hBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		hPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hOldBrush = (HBRUSH)SelectObject(getMemDC(), hBrush);
+		hOldPen = (HPEN)SelectObject(getMemDC(), hPen);
+		RectangleMake(getMemDC(), _rc.left, _rc.top, _image->getFrameWidth(), _image->getFrameHeight());
+		SelectObject(getMemDC(), hOldPen);
+		SelectObject(getMemDC(), hOldBrush);
+		DeleteObject(hBrush);
+		DeleteObject(hPen);
 		break;
 	}
+	
 
 	char str[128];
 	sprintf(str, "leftX %d, topY %d", _rc.left + CAMERAMANAGER->getCameraPoint().x, _rc.top + CAMERAMANAGER->getCameraPoint().y);

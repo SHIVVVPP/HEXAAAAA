@@ -45,6 +45,8 @@ void objectManager::update()
 	{
 		_vgem[i]->update();
 	}
+
+	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	player_object_collision();
 	_p->update();
 	EFFECTMANAGER->update();
@@ -130,13 +132,17 @@ void objectManager::setPosition()
 	_vdirtpile.push_back(_obj);
 }
 
-void objectManager::player_object_collision()
+LPCOLLISION_INFO objectManager::player_object_collision()
 {
+	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
+	tempInfo = NULL;
+
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
 		_leftX = _vdirtpile[i]->getX();
 		_topY = _vdirtpile[i]->getY();
 
+		//dirty는 충돌시 플레이어에 영향을 주지 않으므로 pass
 			RECT temp;
 			if(IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtpile[i]->_rc))
 			{
@@ -209,6 +215,13 @@ void objectManager::player_object_collision()
 				_obj = new gem;
 				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
 				_vgem.push_back(_obj);
+
+
+				//충돌메시지 작성
+				tempInfo->_colType = COL_OBJECT;
+				//tempInfo->index_detail = --- 세부번호
+				tempInfo->object = _vgem[i];
+
 			}
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
 			{
@@ -253,4 +266,7 @@ void objectManager::player_object_collision()
 	//	}
 	//	break;
 	//}
+
+	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
+	return tempInfo;
 }
