@@ -44,7 +44,7 @@ void objectManager::update()
 	{
 		_vgem[i]->update();
 	}
-
+	_p->update();
 	player_object_collision();
 }
 
@@ -104,11 +104,11 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(80, 80,50,false);
+	_obj->init(2600, 2800,50,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(80, 150, 50, false);
+	_obj->init(2600, 3000, 200, false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;
