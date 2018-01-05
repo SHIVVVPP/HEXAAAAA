@@ -73,4 +73,3 @@ extern HWND	_hWnd;
 extern POINT _ptMouse;
 
 
-

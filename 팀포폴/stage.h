@@ -13,9 +13,7 @@ struct tagRoomInfo
 	int _width, _height;
 	image* _roomImage;
 	image* _pixelColImage;
-	vector<string> _vConnectedRoom;
-
-	
+	vector<string> _vConnectedRoom;	
 };
 
 class stage : public gameNode
