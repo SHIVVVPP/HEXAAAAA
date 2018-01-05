@@ -35,7 +35,7 @@ HRESULT dirtpile::init(int x, int y)
 
 void dirtpile::update()
 {
-
+	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
 
 }
 

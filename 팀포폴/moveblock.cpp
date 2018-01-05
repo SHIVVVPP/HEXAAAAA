@@ -45,8 +45,8 @@ void moveblock::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		Rectangle(getMemDC(), _rc.left, _rc.top, _rc.right, _rc.bottom);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), IMAGEMANAGER->findImage("movingrock")->getWidth(), IMAGEMANAGER->findImage("movingrock")->getHeight());
 	}
 	
-	IMAGEMANAGER->findImage("movingrock")->render(getMemDC(), _leftX,_topY);
+	IMAGEMANAGER->findImage("movingrock")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY));
 }
