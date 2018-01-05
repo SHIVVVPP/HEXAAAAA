@@ -121,6 +121,9 @@
     <Filter Include="MainGame\bullet">
       <UniqueIdentifier>{b38314ff-e988-446c-9f20-0e4462c3f28a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\database">
+      <UniqueIdentifier>{fe21c3b2-89c1-46e5-a2a6-75028d870a95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -294,9 +297,6 @@
     <ClInclude Include="gem.h">
       <Filter>shovelKnight\ObjectManager\Objects\gem</Filter>
     </ClInclude>
-    <ClInclude Include="database.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ladder.h">
       <Filter>shovelKnight\ObjectManager\Objects\ladder</Filter>
     </ClInclude>
@@ -347,6 +347,9 @@
     </ClInclude>
     <ClInclude Include="ui.h">
       <Filter>shovelKnight\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="database.h">
+      <Filter>MainGame\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -509,9 +512,6 @@
     <ClCompile Include="gem.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\gem</Filter>
     </ClCompile>
-    <ClCompile Include="database.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ladder.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\ladder</Filter>
     </ClCompile>
@@ -562,6 +562,9 @@
     </ClCompile>
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="database.cpp">
+      <Filter>MainGame\database</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

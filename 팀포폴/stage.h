@@ -3,7 +3,7 @@
 #include <map>
 
 class player;
-
+class ui;
 
 struct tagRoomInfo
 {
@@ -31,6 +31,7 @@ private:
 
 	int _currentRoomNum;
 	player* _player;
+	ui* _ui;
 
 	//임시 렉트
 

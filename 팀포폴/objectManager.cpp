@@ -40,7 +40,7 @@ void objectManager::update()
 
 	for (int i = 0; i < _vgem.size(); i++)
 	{
-		if(_hitcount <5)_vgem[i]->update();
+		_vgem[i]->update();
 	}
 	player_object_collision();
 }
@@ -70,28 +70,31 @@ void objectManager::render()
 
 void objectManager::setPosition()
 {
-	objects* _obj;
-	
-	
 	//_obj = new gem;
 	//_obj->init(_vdirtpile[i]->getX(),_vdirtpile[i]->getY(), "bluedia", 50);
 	//_vgem.push_back(_obj);
-	
+
+	//_obj = new gem;
+	//_obj->init("bluegem", 20,30);
+	//_vgem.push_back(_obj);
 	//
+	//_obj = new gem;
+	//_obj->init("greengem", 30,30);
+	//_vgem.push_back(_obj);
+	//
+	//_obj = new gem;
+	//_obj->init("bluedia", 10, 30);
+	//_vgem.push_back(_obj);
 	_obj = new gem;
-	_obj->init("reddia", 10);
+	_obj->init("smalljew", 30, 30);
 	_vgem.push_back(_obj);
-	//
+
 	_obj = new gem;
-	_obj->init("bluegem", 20);
+	_obj->init("reddia", 10, 30);
 	_vgem.push_back(_obj);
-	//
+
 	_obj = new gem;
-	_obj->init("greengem", 30);
-	_vgem.push_back(_obj);
-	//
-	_obj = new gem;
-	_obj->init("smalljew", 30);
+	_obj->init("yellowgem", 30, 30);
 	_vgem.push_back(_obj);
 
 	_obj = new ladder;
@@ -116,47 +119,71 @@ void objectManager::player_object_collision()
 {
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
-		for (int j = 0; j < _vgem.size(); j++)
+		if (_vdirtpile[i]->getAni()->getPlayIndex() >= 4)
 		{
-			if (_vgem[j]->_canHit)
+		}
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && PtInRect(&_vdirtpile[i]->_rc, _ptMouse)) //충돌 추가로 넣기 한대쳤을떄
 			{
-				if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) //충돌 추가로 넣기 한대쳤을떄
-				{
-					if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
-					{
-						_hitcount = 4;
+				int leftX = _vdirtpile[i]->getX();
+				int topY = _vdirtpile[i]->getY();
+				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
+					{		
 						_vdirtpile[i]->getAni()->setPlayIndex(1);
-						_vgem[3]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
+
+						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[1]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[2]->fire(leftX + 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
 					}
 					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
 					{
-						_hitcount = 3;
+						//_hitcount = 3;
 						_vdirtpile[i]->getAni()->setPlayIndex(2);
+						_vgem[0]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[1]->fire(leftX + 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
 					}
 					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
 					{
-						_hitcount = 2;
+						//_hitcount = 2;
 						_vdirtpile[i]->getAni()->setPlayIndex(3);
+						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[1]->fire(leftX - 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[2]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
 					}
 					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
 					{
-						_hitcount = 1;
+						//_hitcount = 1;
 						_vdirtpile[i]->getAni()->setPlayIndex(4);
+						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[1]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[2]->fire(leftX - 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
 					}
 					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
 					{
-						_hitcount = 0;
+						//_hitcount = 0;
+						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[1]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+						_vgem[2]->fire(leftX - 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
+
 						_vdirtpile.erase(_vdirtpile.begin());
 					}
 				}
-			
-			}
-		}break;
-	}
+     }
 
-	for (_vigem = _vgem.begin(); _vigem != _vgem.end(); ++_vigem)
+
+	for (int i = 0; i < _vgem.size(); i++)
 	{
-		//(*_vigem)->_rc = 
+		if (PtInRect(&_vgem[i]->_rc, _ptMouse))
+		{
+			RECT temp;
+			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+			{
+				//vector<objects*> temp;
+				//temp.push_back(_vgem[i]);
+				//_vgem.erase(_vgem.begin());
+				_vgem.erase(_vgem.begin() + i);
+				_vgem.push_back(_vgem[i]);
+			}break;
+		}
 	}
 	//for (int i = 0; i < _vdirtpile.size(); ++i) // 2
 	//{
