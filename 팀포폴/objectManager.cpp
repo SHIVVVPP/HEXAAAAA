@@ -42,8 +42,8 @@ void objectManager::update()
 	{
 		_vgem[i]->update();
 	}
-	_p->update();
 	player_object_collision();
+	_p->update();
 }
 
 void objectManager::render()
@@ -131,13 +131,15 @@ void objectManager::player_object_collision()
 			{
 				_leftX = _vdirtpile[i]->getX();
 				_topY = _vdirtpile[i]->getY();
+			
 				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
 				{
 					_vdirtpile[i]->getAni()->setPlayIndex(1);
+					//col = 1;
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
 				{
-					
+					//col = 2;
 					_vdirtpile[i]->getAni()->setPlayIndex(2);	
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
@@ -152,6 +154,22 @@ void objectManager::player_object_collision()
 				{
 					_vdirtpile.erase(_vdirtpile.begin() + i);
 				}
+			}
+
+			switch (col)
+			{
+			case 1:
+				//_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
+				break;
+			case 2:
+				//_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
 			}
     }
 

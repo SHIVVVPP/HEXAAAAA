@@ -108,6 +108,7 @@ public:
 	////////  플레이어 충돌렉트 접근자 설정자
 	RECT* getPlayerRect() { return &_playerRC; }
 	RECT* getPlayerAttackRect() { return &_attackRC; }
+	void setPlayerAttackRect(RECT _rc) { _attackRC = _rc; }
 	//////// 현재 체력 접근자 설정자
 
 	int getPlayerCurrentHP() { return _currentHP; }

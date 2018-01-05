@@ -38,7 +38,7 @@ HRESULT player::init()
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
-
+	_attackRC = RectMakeCenter(-100, -100, 150, 160);
 	//플레이어 기본값 초기화
 	_currentHP = _maxHP = 8;
 	_currentMP = _maxMP = 30;
@@ -481,6 +481,7 @@ void player::update()
 	{
 		_attackRC = RectMakeCenter(-150, 150, 100, 150);
 	}
+
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	

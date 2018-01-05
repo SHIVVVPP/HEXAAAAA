@@ -24,7 +24,7 @@ private:
 	int _hitcount;
 	int _leftX;
 	int _topY;
-
+	int  col;
 	player* _p;
 public:
 	objectManager();
