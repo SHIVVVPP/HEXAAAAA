@@ -10,7 +10,7 @@
 class objectManager : public gameNode
 {
 private:
-	
+
 	typedef vector<objects*> vO;
 	typedef vector<objects*>::iterator viO;
 private:
@@ -19,8 +19,11 @@ private:
 	vO _vladder;
 	vO _vmoveblock;
 	vO _vdirtpile;
+	viO _vidirtpile;
 	objects* _obj;
 	int _hitcount;
+	int _leftX;
+	int _topY;
 public:
 	objectManager();
 	~objectManager();
