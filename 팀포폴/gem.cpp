@@ -51,8 +51,10 @@ void gem::move()
 {
 	_rc = RectMake(_x, _y,IMAGEMANAGER->findImage(_imageName)->getWidth(), IMAGEMANAGER->findImage(_imageName)->getHeight());
 
-	_x += cosf(_angle) * _speedX;
-	_y += -sinf(_angle) * (10) * _speedX;
+	_x += _speedX;
+	_y += -sinf(_angle) * (50) * _speedX;
+
+	_angle += 0.02;
 }
 
 

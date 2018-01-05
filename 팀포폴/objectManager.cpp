@@ -126,7 +126,7 @@ void objectManager::player_object_collision()
 					{
 						_hitcount = 4;
 						_vdirtpile[i]->getAni()->setPlayIndex(1);
-						_vgem[3]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
+						_vgem[j]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 0.08f, PI / 33);
 					}
 					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
 					{
