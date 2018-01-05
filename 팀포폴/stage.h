@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "settingTool.h"
 #include <map>
 
 class player;
@@ -35,6 +36,7 @@ private:
 
 	RECT _rc;
 
+	settingTool* Tool;
 
 public:
 	stage();

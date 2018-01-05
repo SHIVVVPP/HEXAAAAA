@@ -134,6 +134,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="Sepp.h" />
+    <ClInclude Include="settingTool.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="skeleton.h" />
     <ClInclude Include="soundManager.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="redBeetle.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="Sepp.cpp" />
+    <ClCompile Include="settingTool.cpp" />
     <ClCompile Include="skeleton.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage.cpp" />

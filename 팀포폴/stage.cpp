@@ -33,7 +33,8 @@ HRESULT stage::init()
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
 
-	
+	Tool = new settingTool;
+	Tool->init();
 
 	setCameraObject();
 	return S_OK;
@@ -76,6 +77,7 @@ void stage::update()
 	_ui->update();
 	
 	pixelCollison();
+	Tool->update();
 }
 
 void stage::render()
@@ -118,7 +120,7 @@ void stage::render()
 	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	CAMERAMANAGER->cameraObjectRender(getMemDC());
-
+	Tool->render();
 }
 
 
