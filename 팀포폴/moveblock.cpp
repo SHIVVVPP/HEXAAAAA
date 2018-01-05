@@ -38,7 +38,7 @@ void moveblock::update()
 	_rc = RectMake(_x, _y, _width, _height);
 
 	if (_range <= getDistance(_x, _y, _startX, _startY)) _speedX = -2;
-	if (_x <= _startX) _speedX = +2;
+	if (_x <= _startX) _speedX = 2;
 }
 
 void moveblock::render()

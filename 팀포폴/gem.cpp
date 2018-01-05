@@ -18,6 +18,7 @@ gem::~gem()
 HRESULT gem::init(const char* imageName, int goldup, int range)
 {
 	_imageName = imageName;
+
 	_goldValue = goldup;
 	_range = range;
 	return S_OK;
@@ -43,7 +44,7 @@ void gem::fire(int x, int y,int startX, int startY, float speed, float angle)
 	_y = _startY = y;
 	_angle = angle;
 	_speedX = speed;
-
+	//파이어하지말고 생성ㄷ되자마자 무브로 옮기게;
 	//_rc = RectMake(_x, _y, IMAGEMANAGER->findImage(_imageName)->getWidth(), IMAGEMANAGER->findImage(_imageName)->getHeight());
 }
 

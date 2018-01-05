@@ -24,7 +24,7 @@ HRESULT dirtpile::init(int x, int y)
 	_objAni->init(IMAGEMANAGER->findImage("dirtpile")->getWidth(), IMAGEMANAGER->findImage("dirtpile")->getHeight(),
 				  IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
 	_objAni->setDefPlayFrame(false, false);
-	
+	_objAni->setFPS(1);
 	_x = x;
 	_y = y;
 
@@ -35,6 +35,7 @@ HRESULT dirtpile::init(int x, int y)
 
 void dirtpile::update()
 {
+
 
 }
 
