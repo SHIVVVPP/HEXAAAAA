@@ -33,7 +33,7 @@ HRESULT player::init()
 	enemyRC = RectMakeCenter(900, WINSIZEY / 2, 100, 100);
 	
 	
-	_x = 100;
+	_x = 2800;
 	_y = 3100;
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
@@ -392,7 +392,7 @@ void player::update()
 	//	}
 	//	break;
 	case PLAYER_RIGHT_ATTACK:
-		_attackRC = RectMakeCenter(_x + 100, _y+30, 75, 100);
+		_attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
 		if (_isJump)
 		{
 			_y -= _jumpPower;

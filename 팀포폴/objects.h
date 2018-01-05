@@ -25,8 +25,8 @@ protected:
 	bool _canHit;
 	bool _picked;
 	bool _canLand;
-	int _x;
-	int _y;
+	int _leftX;
+	int _topY;
 	int _startX, _startY;
 	int _range;
 	int _width, _height;
@@ -49,8 +49,8 @@ public:
 	virtual void move();
 	virtual void fire(int x, int y, int startX,int startY,float speed, float angle);
 	animation* getAni() { return _objAni; }
-	int getX() { return _x; }
-	int getY() { return _y; }
+	int getX() { return _leftX; }
+	int getY() { return _topY; }
 	RECT getRc() { return _rc; }
 	void setRC(RECT rc) { _rc = rc; }
 	const char* getImage() { return _imageName; }

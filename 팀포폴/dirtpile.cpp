@@ -25,10 +25,10 @@ HRESULT dirtpile::init(int x, int y)
 				  IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
 	_objAni->setDefPlayFrame(false, false);
 	_objAni->setFPS(1);
-	_x = x;
-	_y = y;
+	_leftX = x;
+	_topY = y;
 
-	_rc = RectMake(_x, _y, IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
+	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
 
 	return S_OK;
 }
@@ -42,7 +42,9 @@ void dirtpile::update()
 void dirtpile::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
-		Rectangle(getMemDC(), _rc.left, _rc.top, _rc.right, _rc.bottom);
+	{
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointX(_rc.top), IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
+	}
 
-	IMAGEMANAGER->findImage("dirtpile")->aniRender(getMemDC(), _x, _y, _objAni);
+	IMAGEMANAGER->findImage("dirtpile")->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), _objAni);
 }

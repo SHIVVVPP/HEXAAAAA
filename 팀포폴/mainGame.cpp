@@ -80,11 +80,11 @@ void mainGame::update()				//연산 함수
 	
 	//sys->update();
 	SCENEMANAGER->update();
-	//_player->update();
+	_player->update();
 	
 	//_ui->update();
 	//_town->update();
-	//_objectManager->update();
+	_objectManager->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -95,7 +95,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//sys->render();
 	SCENEMANAGER->render();
 
-	//_player->render();
+	_player->render();
 
 	//_ui->render();
 	
