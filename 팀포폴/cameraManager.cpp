@@ -342,7 +342,7 @@ void cameraManager::addCameraObject(bool vertical, bool sence_vertical,int type,
 	temp.sence_vertical = sence_vertical;
 	temp.left_top = left_top;
 	temp.nextCondition = nextCameraCondition;
-	temp.num = num;
+	temp.nextRoom = num;
 
 	temp.nextCameraLimit = nextLimit;
 	temp.prevCameraLimit =	prevLimit;
@@ -552,11 +552,13 @@ string cameraManager::cameraOCollision(RECT rc,string me)
 		}
 
 		if (_co->toNext) {
-			string temp = _co->num;
-			_co->num = me;
-			return temp;
+			_co->prevRoom = me;
+			return _co->nextRoom;
 		}
-		else return _co->num;
+		else
+		{
+			return _co->prevRoom;
+		}
 	}
 
 	return "empty";

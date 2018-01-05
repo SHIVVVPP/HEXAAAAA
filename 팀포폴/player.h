@@ -141,7 +141,7 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
-	void setIsJump(bool boolValue) { _isJump = boolValue; }
+	void setIsJump(bool boolValue) { _isJump = boolValue; if (!boolValue) { _jumpPower = 11;  if (_dir == 1)setPlayerMainCondition(PLAYER_RIGHT_IDLE); else if (_dir == -1)setPlayerMainCondition(PLAYER_LEFT_IDLE); } }
 
 	// 점프파워 접근자
 
@@ -158,6 +158,7 @@ public:
 	float getPlayerX() { return _x; }
 	void setPlayerY(float y) { _y = y; }
 	float getPlayerY() { return _y; }
+
 
 };
 

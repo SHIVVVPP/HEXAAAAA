@@ -48,7 +48,8 @@ typedef struct tagCameraObject
 	int prevP;
 
 	//팀포폴전용
-	string num;
+	string nextRoom,prevRoom;
+
 
 	tagCameraObject()
 	{
