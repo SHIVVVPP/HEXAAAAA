@@ -174,7 +174,7 @@ public:
 
 
 
-enum
+enum usg
 {
 	FIRELOD,
 	ORB,

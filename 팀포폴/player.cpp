@@ -90,6 +90,8 @@ HRESULT player::init()
 	
 	_image = IMAGEMANAGER->findImage("playerIdle");
 	_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
+
+	DATABASE->setPlayer_currentInfo(_currentHP, _maxHP, _currentMP, _playerGold);
 	return S_OK;
 }
 void player::release()
@@ -486,13 +488,15 @@ void player::update()
 	//pixelCollison();
 	//usage();
 	//_Relic->update();
+	DATABASE->setPlayer_currentInfo(_currentHP, _maxHP, _currentMP, _playerGold);
+
 }
 
 
 void player::render()
 {
-	Rectangle(getMemDC(), LadderRC.left, LadderRC.top, LadderRC.right, LadderRC.bottom);
-	Rectangle(getMemDC(), enemyRC.left, enemyRC.top, enemyRC.right, enemyRC.bottom);
+	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(LadderRC.left), CAMERAMANAGER->CameraRelativePointX(LadderRC.top), CAMERAMANAGER->CameraRelativePointX(LadderRC.right), CAMERAMANAGER->CameraRelativePointX(LadderRC.bottom));
+	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(enemyRC.left), CAMERAMANAGER->CameraRelativePointX(enemyRC.top), CAMERAMANAGER->CameraRelativePointX(enemyRC.right), CAMERAMANAGER->CameraRelativePointX(enemyRC.bottom));
 
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _imageRC.left), CAMERAMANAGER->CameraRelativePointY( _imageRC.top), _ani);
 

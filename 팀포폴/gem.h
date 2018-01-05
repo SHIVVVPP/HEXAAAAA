@@ -4,7 +4,7 @@
 class gem : public objects
 {
 public:
-	HRESULT init(const char* imageName, int goldup);
+	HRESULT init(const char* imageName, int goldup , int range);
 	void update();
 	void render();
 	void fire(int x, int y,int startX,int startY, float speed, float angle);

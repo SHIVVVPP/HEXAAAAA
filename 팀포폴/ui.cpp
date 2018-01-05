@@ -24,14 +24,15 @@ HRESULT ui::init(UI_STYLE style)
 		_uiBackground = IMAGEMANAGER->findImage("UI_worldMap");
 	break;
 	}
-	/*_playerHP = DATABASE->getCurrentPlayerInfo()->player_HP;
+
+	_playerHP = DATABASE->getCurrentPlayerInfo()->player_HP;
 	_playerMaxHP = DATABASE->getCurrentPlayerInfo()->player_MaxHP;
 	_playerMP = DATABASE->getCurrentPlayerInfo()->player_MP;
-	_gold = _gold_render = DATABASE->getCurrentPlayerInfo()->player_Gold;*/
-	_playerHP = 0;
+	_gold = _gold_render = DATABASE->getCurrentPlayerInfo()->player_Gold;
+	/*_playerHP = 0;
 	_playerMaxHP = 10;
 	_playerMP = 30;
-	_gold = _gold_render = 1000;
+	_gold = _gold_render = 1000;*/
 
 	return S_OK;
 }
@@ -42,10 +43,10 @@ void ui::release()
 
 void ui::update()
 {
-	/*_playerHP = DATABASE->getCurrentPlayerInfo()->player_HP;
+	_playerHP = DATABASE->getCurrentPlayerInfo()->player_HP;
 	_playerMaxHP = DATABASE->getCurrentPlayerInfo()->player_MaxHP;
 	_playerMP = DATABASE->getCurrentPlayerInfo()->player_MP;
-	_gold = DATABASE->getCurrentPlayerInfo()->player_Gold;*/
+	_gold = DATABASE->getCurrentPlayerInfo()->player_Gold;
 
 	if (_gold > _gold_render)
 	{

@@ -31,6 +31,7 @@ protected:
 	int _range;
 	int _width, _height;
 	int _goldValue;
+	int _alphaValue;
 	float _speedX;
 	float _angle;
 	const char* _imageName;
@@ -41,7 +42,7 @@ public:
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
-	virtual HRESULT init(const char* imageName , int goldup);
+	virtual HRESULT init(const char* imageName , int goldup , int range);
 	virtual void update();
 	virtual void render();
 	virtual void release();

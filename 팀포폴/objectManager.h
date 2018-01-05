@@ -19,7 +19,7 @@ private:
 	vO _vladder;
 	vO _vmoveblock;
 	vO _vdirtpile;
-
+	objects* _obj;
 	int _hitcount;
 public:
 	objectManager();
