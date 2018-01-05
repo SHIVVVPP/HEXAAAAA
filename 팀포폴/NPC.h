@@ -67,9 +67,9 @@ public:
 	void release();
 	void update();
 	void render();
+	virtual void tolkdrow();
 	virtual void Move(bool _isMvoe, bool _isRight);
-	virtual void Converstion(int tolkCount);
-
+	virtual void Converstion(int tolkCount);  
 
 	RECT getimgRC() { return _imgrc; }
 	bool getisMove() { return _isMove; }
