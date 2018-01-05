@@ -495,8 +495,8 @@ void player::update()
 
 void player::render()
 {
-	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(LadderRC.left), CAMERAMANAGER->CameraRelativePointX(LadderRC.top), CAMERAMANAGER->CameraRelativePointX(LadderRC.right), CAMERAMANAGER->CameraRelativePointX(LadderRC.bottom));
-	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(enemyRC.left), CAMERAMANAGER->CameraRelativePointX(enemyRC.top), CAMERAMANAGER->CameraRelativePointX(enemyRC.right), CAMERAMANAGER->CameraRelativePointX(enemyRC.bottom));
+	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(LadderRC.left), CAMERAMANAGER->CameraRelativePointY(LadderRC.top), CAMERAMANAGER->CameraRelativePointX(LadderRC.right), CAMERAMANAGER->CameraRelativePointY(LadderRC.bottom));
+	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(enemyRC.left), CAMERAMANAGER->CameraRelativePointY(enemyRC.top), CAMERAMANAGER->CameraRelativePointX(enemyRC.right), CAMERAMANAGER->CameraRelativePointY(enemyRC.bottom));
 
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _imageRC.left), CAMERAMANAGER->CameraRelativePointY( _imageRC.top), _ani);
 
@@ -515,6 +515,8 @@ void player::render()
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointY(_attackRC.top),75, 100);
+		sprintf(str, "attackRC LT %d %d RB %d %d", _attackRC.left, _attackRC.top, _attackRC.right, _attackRC.bottom);
+		TextOut(getMemDC(), WINSIZEX / 2, WINSIZEY / 2, str, strlen(str));
 	}
 }
 

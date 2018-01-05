@@ -552,6 +552,7 @@ string cameraManager::cameraOCollision(RECT rc,string me)
 		}
 
 		if (_co->toNext) {
+			if(_co->nextRoom != me)
 			_co->prevRoom = me;
 			return _co->nextRoom;
 		}

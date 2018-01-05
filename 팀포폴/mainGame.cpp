@@ -103,6 +103,6 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	_objectManager->render();
 	//==================== 건들지마라 =======================
-	//TIMEMANAGER->render(getMemDC());
+	TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);
 }
