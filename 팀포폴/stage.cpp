@@ -33,6 +33,8 @@ HRESULT stage::init()
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
 
+	
+
 	setCameraObject();
 	return S_OK;
 }

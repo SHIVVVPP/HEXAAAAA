@@ -19,8 +19,6 @@ HRESULT objectManager::init()
 	{
 		_vgem[i]->_canHit = true;
 	}
-	_p = new player;
-	_p->init();
 	return S_OK;
 }
 

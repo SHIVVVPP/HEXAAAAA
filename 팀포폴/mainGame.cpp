@@ -54,7 +54,9 @@ HRESULT mainGame::init()			//초기화 함수
 	//CAMERAMANAGER->setCameraAim(&rc);
 
 	_objectManager = new objectManager;
+	_objectManager->connectPlayer(_player);
 	_objectManager->init();
+	
 	return S_OK;
 }
 

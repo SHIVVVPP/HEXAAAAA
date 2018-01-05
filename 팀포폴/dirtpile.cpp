@@ -43,7 +43,7 @@ void dirtpile::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointX(_rc.top), IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
 	}
 
 	IMAGEMANAGER->findImage("dirtpile")->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), _objAni);

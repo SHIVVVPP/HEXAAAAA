@@ -36,5 +36,6 @@ public:
 	void render();
 	void setPosition();
 	void player_object_collision();
+	void connectPlayer(player* p) { _p = p; }
 };
 
