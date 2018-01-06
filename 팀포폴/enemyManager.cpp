@@ -31,7 +31,7 @@ void enemyManager::update()
 	for (_viRedBeetle = _vRedBeetle.begin(); _viRedBeetle != _vRedBeetle.end(); ++_viRedBeetle)
 	{
 		(*_viRedBeetle)->update();
-		(*_viRedBeetle)->redbeetleFrameMove();
+		(*_viRedBeetle)->frameMove();
 		(*_viRedBeetle)->generalMove();
 	
 
@@ -40,7 +40,7 @@ void enemyManager::update()
 	for (_viSkeleton = _vSkeleton.begin(); _viSkeleton != _vSkeleton.end(); ++_viSkeleton)
 	{
 		(*_viSkeleton)->update();
-		(*_viSkeleton)->skeletonFrameMove();
+		(*_viSkeleton)->frameMove();
 		(*_viSkeleton)->generalMove();
 		
 	}
@@ -48,7 +48,7 @@ void enemyManager::update()
 	for (_viGreenDragon = _vGreenDragon.begin(); _viGreenDragon != _vGreenDragon.end(); ++_viGreenDragon)
 	{
 		(*_viGreenDragon)->update();
-		(*_viGreenDragon)->greenDragonFrameMove();
+		(*_viGreenDragon)->frameMove();
 		(*_viGreenDragon)->generalMove();
 		
 	}
@@ -56,13 +56,13 @@ void enemyManager::update()
 	for (_viYellowDragon = _vYellowDragon.begin(); _viYellowDragon != _vYellowDragon.end(); ++_viYellowDragon)
 	{
 		(*_viYellowDragon)->update();
-		(*_viYellowDragon)->yellowDragonFrameMove();
+		(*_viYellowDragon)->frameMove();
 	}
 
 	for (_viBlueSlime = _vBlueSlime.begin(); _viBlueSlime != _vBlueSlime.end(); ++_viBlueSlime)
 	{
 		(*_viBlueSlime)->update();
-		(*_viBlueSlime)->slimeFameMove();
+		(*_viBlueSlime)->frameMove();
 		(*_viBlueSlime)->generalMove();
 		//(*_viBlueSlime)->slimeAni();
 	}
@@ -70,14 +70,14 @@ void enemyManager::update()
 	for (_viBoss = _vBoss.begin(); _viBoss != _vBoss.end(); ++_viBoss)
 	{
 		(*_viBoss)->update();
-		(*_viBoss)->bossFrameMove();
+		(*_viBoss)->frameMove();
 	}
 
 	for (_viBubble = _vBubble.begin(); _viBubble != _vBubble.end(); ++_viBubble)
 	{
 		(*_viBubble)->update();
-		(*_viBubble)->bubbleFrameMove();
-		(*_viBubble)->bubbleMove();
+		(*_viBubble)->frameMove();
+		(*_viBubble)->move();
 	}
 	//////////////////////////////////////////////////////////
 	if (KEYMANAGER->isOnceKeyDown('Q'))setRedBeetle();
@@ -145,7 +145,7 @@ void enemyManager::setRedBeetle()
 			enemy* _beetle;
 			_beetle = new redBeetle;
 
-			_beetle->init("레드비틀", PointMake(WINSIZEX / 2 - 200, WINSIZEY / 2 + 200), 1, 60, 35, 0, 0);
+			_beetle->init(MON_REDBITTLE, PointMake(WINSIZEX / 2 - 200, WINSIZEY / 2 + 200));
 
 			_vRedBeetle.push_back(_beetle);
 		}
@@ -161,7 +161,7 @@ void enemyManager::setGreenDragon()
 			enemy* _greenDragon;
 			_greenDragon = new greenDragon;
 
-			_greenDragon->init("초록용", PointMake(WINSIZEX / 2 - 100, WINSIZEY / 2 + 200), 3, 50, 50, 0, 0);
+			_greenDragon->init(MON_GREENDRAGON, PointMake(WINSIZEX / 2 - 100, WINSIZEY / 2 + 200));
 
 			_vGreenDragon.push_back(_greenDragon);
 		}
@@ -177,7 +177,7 @@ void enemyManager::setBlueSlime()
 			enemy* _slime;
 			_slime = new blueSlime;
 
-			_slime->init("슬라임", PointMake(WINSIZEX / 2, WINSIZEY / 2 + 200), 2, 50, 50, 0, 10);
+			_slime->init(MON_SLIME, PointMake(WINSIZEX / 2, WINSIZEY / 2 + 200));
 
 			_vBlueSlime.push_back(_slime);
 		}
@@ -193,7 +193,7 @@ void enemyManager::setSkeleton()
 			enemy* _skeleton;
 			_skeleton = new skeleton;
 
-			_skeleton->init("해골", PointMake(WINSIZEX / 2 + 100, WINSIZEY / 2 + 200), 3, 50, 70, 0, 0);
+			_skeleton->init(MON_SKELETON, PointMake(WINSIZEX / 2 + 100, WINSIZEY / 2 + 200));
 
 			_vSkeleton.push_back(_skeleton);
 		}
@@ -209,7 +209,7 @@ void enemyManager::setYellowDragon()
 			enemy* _yellowDragon;
 			_yellowDragon = new yellowDragon;
 
-			_yellowDragon->init("노란용", PointMake(WINSIZEX / 2 + 200, WINSIZEY / 2 + 200), 7, 50, 50, 0, 0, 50, 50, 0, 0);
+			_yellowDragon->init(MON_YELLOWDRAGON, PointMake(WINSIZEX / 2 + 200, WINSIZEY / 2 + 200));
 
 			_vYellowDragon.push_back(_yellowDragon);
 		}
@@ -227,7 +227,7 @@ void enemyManager::setBubble(int bubbleX , int bubbleY)
 			enemy* _bubble;
 			_bubble = new bubble;
 
-			_bubble->init("버블", PointMake(_bubbleX , _bubbleY), 1, 60, 35, 0, 0);
+			_bubble->init(MON_BUBBLE, PointMake(_bubbleX , _bubbleY));
 
 			_vBubble.push_back(_bubble);
 		}
@@ -257,7 +257,7 @@ void enemyManager::setBoss()
 			enemy* _boss;
 			_boss = new boss;
 
-			_boss->init("보스", PointMake(WINSIZEX / 2 - 200, WINSIZEY / 2 + 200), 15, 60, 35, 0, 0);
+			_boss->init(MON_BOSS, PointMake(WINSIZEX / 2 - 200, WINSIZEY / 2 + 200));
 
 			_vBoss.push_back(_boss);
 		}

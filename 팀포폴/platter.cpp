@@ -2,17 +2,18 @@
 #include "platter.h"
 
 
-platter::platter()
+platters::platters()
 {
 	_type = TYPE_PLATTER;
+	
 }
 
 
-platter::~platter()
+platters::~platters()
 {
 }
 
-HRESULT platter::init(int x, int y , float length)
+HRESULT platters::init(int x, int y)
 {
 	_leftX = x;
 	_topY = y;
@@ -21,11 +22,11 @@ HRESULT platter::init(int x, int y , float length)
 	return S_OK;
 }
 
-void platter::update()
+void platters::update()
 {
 }
 
-void platter::render()
+void platters::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{

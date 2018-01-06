@@ -7,7 +7,7 @@ class Crown :
 public:
 	Crown();
 	~Crown();
-
+	virtual void tolkdrow();
 	virtual void Converstion(int tolkCount);
 };
 

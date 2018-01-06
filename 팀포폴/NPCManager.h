@@ -10,12 +10,15 @@
 #include"Molly.h"
 #include"Tim.h"
 #include"Bard.h"
-#include"Merchant.h"
 #include"Sepp.h"
 #include"waterGirl.h"
 #include"Wizard.h"
 #include"gard.h"
 #include"Crown.h"
+#include"goatician.h"
+
+
+#include "player.h"
 
 class NPCManager : public gameNode
 {
@@ -31,7 +34,11 @@ private:
 	float _x;								//Npc ÁöÁ¤ XÁËÇ¥
 	float _y;								//Npc ÁöÁ¤ YÁÂÇ¥
 
+	player* _p;
+
 	int a;							//·£´ýÇÑ ¼ö¸¦ »Ì±â À§ÇÑ INT
+
+	RECT rc;
 	char str[128];
 public:
 	NPCManager();
@@ -48,8 +55,9 @@ public:
 	void removeNpc(int arrNum);
 
 	void collision();
-	
+	LPCOLLISION_INFO player_npc_collision();
 	vector<NPC*> getVnpc() { return _vNPC; }
 	vector<NPC*>::iterator getVinpc() { return _viNPC; }
+	void connectPlayer(player* p) { _p = p; }
 };
 

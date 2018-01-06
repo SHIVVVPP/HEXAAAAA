@@ -6,5 +6,7 @@ class goatician :
 public:
 	goatician();
 	~goatician();
+	virtual void tolkdrow();
+	virtual void Converstion(int tolkCount);
 };
 

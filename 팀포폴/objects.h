@@ -12,6 +12,7 @@
 #define TYPE_BARRIER 8
 #define TYPE_MEAL 9
 #define TYPE_SMALL_BLOCK 10
+#define TYPE_PART 11
 
 
 class objects : public gameNode
@@ -26,6 +27,7 @@ protected:
 	bool _canHit;
 	bool _picked;
 	bool _canLand;
+	
 	int _leftX;
 	int _topY;
 	int _startX, _startY;
@@ -35,6 +37,7 @@ protected:
 	int _helathValue;
 	int _manaValue;
 	int _alphaValue;
+	int _gainValue;
 	float _speedX;
 	float _angle;
 	const char* _imageName;
@@ -45,11 +48,11 @@ public:
 	~objects();
 	virtual HRESULT init(int x, int y, int range, bool isRight);
 	virtual HRESULT init(int x, int y, int startX, int startY);
-	virtual HRESULT init(int x, int y, int starTx, int startY, int range);
+	virtual HRESULT init(int x, int y, int width);
+	virtual HRESULT init(int x, int y, int startx, int startY, int range);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
 	virtual HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);
-	virtual HRESULT init(int x, int y, int value);
 	virtual void update();
 	virtual void render();
 	virtual void release();
@@ -61,5 +64,9 @@ public:
 	RECT getRc() { return _rc; }
 	void setRC(RECT rc) { _rc = rc; }
 	const char* getImage() { return _imageName; }
+
+	int getHealthValue() { return _helathValue; }
+	int getGoldValue() { return _goldValue; }
+	int getManaValue() { return _manaValue; }
 };
 

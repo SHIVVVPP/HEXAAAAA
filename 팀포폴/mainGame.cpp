@@ -27,11 +27,11 @@ HRESULT mainGame::init()			//초기화 함수
 
 	
 
+	/*_player = new player;
+	_player->init();*/
+
 	_player = new player;
 	_player->init();
-
-	//_player = new player;
-	//_player->init();
 
 	//sys = new system_option;
 	//sys->init();
@@ -41,14 +41,15 @@ HRESULT mainGame::init()			//초기화 함수
 	//SCENEMANAGER->addScene("인벤토리", new inventory);
 	//
 
-	//_ui = new ui;
-	//_ui->init(UI_STAGE);
+	/*_ui = new ui;
+	_ui->init(UI_STAGE);*/
 	//CAMERAMANAGER->setBackground(8137, 900);
 	//CAMERAMANAGER->setStartBackground(0, 0);
    
 	//_town = new town;
 	//_town->init();
-	
+	//SCENEMANAGER->addScene("마을", new town);
+	//SCENEMANAGER->changeScene("마을", _player);
 	//rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	//CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	//CAMERAMANAGER->setCameraAim(&rc);
@@ -77,6 +78,14 @@ void mainGame::update()				//연산 함수
 	//	rc.left -= 5;
 	//	rc.right -= 5;
 	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_DOWN)) {
+	//	rc.top += 5;
+	//	rc.bottom += 5;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_UP)) {
+	//	rc.top -= 5;
+	//	rc.bottom -= 5;
+	//}
 	
 	//sys->update();
 	SCENEMANAGER->update();
@@ -93,12 +102,12 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//==================== 건들지마라 ======================
 	//sys->render();
 	SCENEMANAGER->render();
-
-	_player->render();
+	//_town->render();
+	//_player->render();
 
 	//_ui->render();
 	
-	//_town->render();
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc).x, CAMERAMANAGER->CameraRelativePoint(rc).y,50, 50);
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	//==================== 건들지마라 =======================
 	TIMEMANAGER->render(getMemDC());

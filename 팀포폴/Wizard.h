@@ -6,5 +6,7 @@ class Wizard :
 public:
 	Wizard();
 	~Wizard();
+	virtual void tolkdrow();
+	virtual void Converstion(int tolkCount);
 };
 

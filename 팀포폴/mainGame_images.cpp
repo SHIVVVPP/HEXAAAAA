@@ -100,18 +100,26 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("conversationRect", "./image/town/conversationRect.bmp", 1600, 194, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점", "./image/town/상점UI.bmp", 1600, 384, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("선택박스", "./image/town/SelectRect.bmp", 121, 120, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("포션", "./image/town/마법포션.bmp", 76, 70, true, RGB(0, 0, 0));
 
 	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 426, 360, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/바드흥겨운음악.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 372, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("짐든 남자", "./image/town/bagFellaMove.bmp", 0, 0, 427, 360, 2, 2, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("염소", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("마법사", "./image/town/마법사아가씨믹스.bmp", 7668, 225, 46, 1, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addFrameImage("요리사", "./image/town/음식점주인기쁨.bmp", 797, 300, 4, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중", "./image/town/음식점주인재료손질.bmp", 1030, 225, 4, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중1", "./image/town/음식점주인조리중1.bmp", 4945, 225, 23, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중2-1", "./image/town/음식점주인조리중2-1.bmp", 806, 225, 4, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중2-2", "./image/town/음식점주인조리중2-2.bmp", 1087, 225, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("서빙", "./image/town/음식점주인음식만듬.bmp", 892, 280, 3, 1, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addFrameImage("hedgeFarmer", "./image/town/hedgeFarmer1-1.bmp", 436, 180, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("guard", "./image/town/guard.bmp", 308, 200, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("광대", "./image/town/Merchant.bmp", 339, 150, 2, 1, true, RGB(255, 0, 255));
@@ -216,23 +224,23 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("greengem", "./image/object/greengem.bmp", 26, 38, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("smalljew", "./image/object/sjewel.bmp", 17, 20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("yellowgem", "./image/object/yellowgem.bmp", 37, 28, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("bgmusicsheet", "./image/object/bgmusicsheet.bmp", 83, 77, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("skull", "./image/object/skull.bmp", 48, 44, true, RGB(255, 0, 255));
 	//픽업 이펙트
 	IMAGEMANAGER->addFrameImage("sparkle", "./image/object/pickupSparkle.bmp", 42, 14, 3, 1, true, RGB(255, 0, 255));
-
+	
 	//음식
 	IMAGEMANAGER->addImage("chicken", "./image/object/chicken.bmp", 120, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("food", "./image/object/foods.bmp", 120, 75, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("platter", "./image/object/platter.bmp", 138, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("halfedplatter", "./image/object/halfedplatter.bmp", 125, 125, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("halfedplatter2", "./image/object/halfedplatter2.bmp", 90, 90, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("bubble", "./image/object/bubble.bmp", 100, 109, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bubbles", "./image/object/bubbles.bmp",400 ,100,4, 1, true, RGB(255, 0, 255));
 	//광맥
 	IMAGEMANAGER->addFrameImage("dirtpile", "./image/object/dirtpile.bmp", 660, 60, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("digclod1", "./image/object/digclod1.bmp", 40, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("digclod2", "./image/object/digclod2.bmp", 64, 64, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addFrameImage("bubbleeffect", "./image/object/bubbleeffect.bmp", 200, 100, 2, 1, true, RGB(255, 0, 255));
 	//블록
 	IMAGEMANAGER->addImage("dirtblock", "./image/object/dirtblock.bmp", 128, 128, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("dirtblocksmall", "./image/object/dirtblock_small.bmp", 58, 58, true, RGB(255, 0, 255));

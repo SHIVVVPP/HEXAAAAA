@@ -136,6 +136,9 @@
     <Filter Include="shovelKnight\ObjectManager\Objects\bubble">
       <UniqueIdentifier>{1330220f-319e-43c8-b236-0dfebc7f365f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\musicsheet">
+      <UniqueIdentifier>{b7e0c650-154f-4b3b-9727-09934d2c0501}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -279,9 +282,6 @@
     <ClInclude Include="maiden.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
-    <ClInclude Include="Merchant.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
     <ClInclude Include="Molly.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
@@ -327,27 +327,6 @@
     <ClInclude Include="bullet.h">
       <Filter>MainGame\bullet</Filter>
     </ClInclude>
-    <ClInclude Include="blueSlime.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="boss.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="greenDragon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="redBeetle.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="skeleton.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="yellowDragon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ui.h">
       <Filter>shovelKnight\UI</Filter>
     </ClInclude>
@@ -384,8 +363,32 @@
     <ClInclude Include="bubbles.h">
       <Filter>shovelKnight\ObjectManager\Objects\bubble</Filter>
     </ClInclude>
+    <ClInclude Include="musicsheet.h">
+      <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
+    </ClInclude>
+    <ClInclude Include="blueSlime.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="greenDragon.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="redBeetle.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="skeleton.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="yellowDragon.h">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="bubble.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +515,6 @@
     <ClCompile Include="maiden.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
-    <ClCompile Include="Merchant.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
     <ClCompile Include="Molly.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
@@ -566,27 +566,6 @@
     <ClCompile Include="bullet.cpp">
       <Filter>MainGame\bullet</Filter>
     </ClCompile>
-    <ClCompile Include="blueSlime.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="boss.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="greenDragon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="redBeetle.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="skeleton.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="yellowDragon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
     </ClCompile>
@@ -623,8 +602,32 @@
     <ClCompile Include="bubbles.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\bubble</Filter>
     </ClCompile>
+    <ClCompile Include="musicsheet.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
+    </ClCompile>
+    <ClCompile Include="blueSlime.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="greenDragon.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="redBeetle.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="skeleton.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="yellowDragon.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="bubble.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

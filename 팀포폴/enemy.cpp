@@ -12,14 +12,30 @@ enemy::~enemy()
 
 }
 
-
-HRESULT enemy::init()
+HRESULT enemy::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 {
-	
+	_index = mon_index;
+
+	centerX = leftX_topY.x;
+	centerY = leftX_topY.y;
+
+	_rc = RectMakeCenter(centerX, centerY, _imageName->getFrameWidth(), _imageName->getFrameHeight());  //이미지 기준 렉트
+
+	_collisionRc = RectMakeCenter((centerX + _rcPlaceX), (centerY + _rcPlaceY), _rcX, _rcY);			//충돌렉트		
+
+	_detectRc = RectMakeCenter(centerX, centerY, 150, 500);
+
+	_attackRc = RectMake(centerX, centerY, 0, 0);
+
+	reflectJumpPower = 5.0f;   //플레이어에게 넘겨줄 점프 파워 정보
+
+	_probeX = centerX;
+
+	_probeY = (centerY + _rc.bottom - _rc.top) / 2;
 
 	return S_OK;
 }
-
+	/*
 HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int rcX, int rcY, int rcPlaceX, int rcPlaceY)
 {
 	_currentFrameX = _currentFrameY = 0;
@@ -28,7 +44,6 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 
 	slowFrameCounter = 0;
 	frameCounter = 0;
-	_index = 0;
 	_speed = 3.0f;
 
 	_rcX = rcX;				//충돌렉트 x
@@ -103,7 +118,7 @@ HRESULT enemy::init(const char * imageName, POINT position, int hitCounter, int 
 	_hitCounter = hitCounter;
 
 	return S_OK;
-}
+}*/
 
 void enemy::release()
 {
@@ -148,7 +163,7 @@ void enemy::render()
 
 
 
-
+/*
 void enemy::slimeFameMove()
 {
 	frameCounter++;
@@ -659,7 +674,7 @@ void enemy::bubbleMove()
 	}
 }
 
-
+*/
 
 void enemy::generalMove()
 {
