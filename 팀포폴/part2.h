@@ -1,13 +1,14 @@
 #pragma once
 #include "objects.h"
-class food : public objects
+class part2 : public objects
 {
 public:
 
 	HRESULT init(int x, int y);
 	void update();
 	void render();
-	food();
-	~food();
+	void move();
+	part2();
+	~part2();
 };
 

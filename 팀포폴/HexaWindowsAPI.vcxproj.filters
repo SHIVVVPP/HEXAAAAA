@@ -127,6 +127,18 @@
     <Filter Include="MainGame\itemSettingTool">
       <UniqueIdentifier>{867bb6e6-7c0e-42cd-8430-850a57a2f9f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\platter">
+      <UniqueIdentifier>{a8a58519-5747-4daf-90a1-55d93c86b504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\dirtblock">
+      <UniqueIdentifier>{1cfe3884-8206-4978-a1c9-f601776c4a6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\bubble">
+      <UniqueIdentifier>{1330220f-319e-43c8-b236-0dfebc7f365f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\musicsheet">
+      <UniqueIdentifier>{b7e0c650-154f-4b3b-9727-09934d2c0501}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -324,19 +336,10 @@
     <ClInclude Include="boss.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="bubble.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="enemy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="food.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="greenDragon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="potion.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="redBeetle.h">
@@ -356,6 +359,39 @@
     </ClInclude>
     <ClInclude Include="settingTool.h">
       <Filter>MainGame\itemSettingTool</Filter>
+    </ClInclude>
+    <ClInclude Include="potions.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="potion.h">
+      <Filter>shovelKnight\ObjectManager\Objects\potion</Filter>
+    </ClInclude>
+    <ClInclude Include="food.h">
+      <Filter>shovelKnight\ObjectManager\Objects\food</Filter>
+    </ClInclude>
+    <ClInclude Include="platter.h">
+      <Filter>shovelKnight\ObjectManager\Objects\platter</Filter>
+    </ClInclude>
+    <ClInclude Include="part.h">
+      <Filter>shovelKnight\ObjectManager\Objects\platter</Filter>
+    </ClInclude>
+    <ClInclude Include="part2.h">
+      <Filter>shovelKnight\ObjectManager\Objects\platter</Filter>
+    </ClInclude>
+    <ClInclude Include="dirtblock.h">
+      <Filter>shovelKnight\ObjectManager\Objects\dirtblock</Filter>
+    </ClInclude>
+    <ClInclude Include="smalldirtblock.h">
+      <Filter>shovelKnight\ObjectManager\Objects\dirtblock</Filter>
+    </ClInclude>
+    <ClInclude Include="bubbles.h">
+      <Filter>shovelKnight\ObjectManager\Objects\bubble</Filter>
+    </ClInclude>
+    <ClInclude Include="bubble.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="musicsheet.h">
+      <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -542,19 +578,10 @@
     <ClCompile Include="boss.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="bubble.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="enemy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="food.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="greenDragon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="potion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="redBeetle.cpp">
@@ -574,6 +601,39 @@
     </ClCompile>
     <ClCompile Include="settingTool.cpp">
       <Filter>MainGame\itemSettingTool</Filter>
+    </ClCompile>
+    <ClCompile Include="potions.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="potion.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\potion</Filter>
+    </ClCompile>
+    <ClCompile Include="food.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\food</Filter>
+    </ClCompile>
+    <ClCompile Include="platter.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\platter</Filter>
+    </ClCompile>
+    <ClCompile Include="part.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\platter</Filter>
+    </ClCompile>
+    <ClCompile Include="part2.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\platter</Filter>
+    </ClCompile>
+    <ClCompile Include="dirtblock.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\dirtblock</Filter>
+    </ClCompile>
+    <ClCompile Include="smalldirtblock.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\dirtblock</Filter>
+    </ClCompile>
+    <ClCompile Include="bubbles.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\bubble</Filter>
+    </ClCompile>
+    <ClCompile Include="bubble.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="musicsheet.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -59,7 +59,7 @@ void effect::render(void)
 {
 	if ( !_isRunning ) return;
 
-	_effectImage->aniRender(getMemDC(), _x, _y, _effectAnimation);
+	_effectImage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_x), CAMERAMANAGER->CameraRelativePointY(_y), _effectAnimation);
 }
 
 //이펙트 시작위치(center Axis 보정)
@@ -67,9 +67,8 @@ void effect::startEffect(int x, int y)
 {
 	if ( !_effectImage || !_effectAnimation ) return;
 
-	_x = x - (_effectAnimation->getFrameWidth() / 2);
-	_y = y - (_effectAnimation->getFrameHeight() / 2);
-
+	_x = x;
+	_y = y;
 	_isRunning = true;
 	_effectAnimation->start();
 }

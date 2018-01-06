@@ -21,6 +21,11 @@ HRESULT objects::init(int x, int y, int startX, int startY)
 	return E_NOTIMPL;
 }
 
+HRESULT objects::init(int x, int y, int starTx, int startY, int range)
+{
+	return E_NOTIMPL;
+}
+
 HRESULT objects::init(int x, int y)
 {
 	return E_NOTIMPL;
@@ -36,7 +41,10 @@ HRESULT objects::init(int range  ,int x, int y, int startX, int startY, float sp
 	return E_NOTIMPL;
 }
 
-
+HRESULT objects::init(int x, int y, int value)
+{
+	return E_NOTIMPL;
+}
 
 void objects::update()
 {
