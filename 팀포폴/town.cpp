@@ -68,3 +68,7 @@ void town::render()
 	//TextOut(getMemDC(), 50, 50, str, strlen(str));
 }
 
+//void town::pixelCollison()
+//{
+//}
+//

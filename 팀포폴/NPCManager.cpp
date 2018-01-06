@@ -15,6 +15,7 @@ HRESULT NPCManager::init()
 {
 	a = 0;
 	rc = RectMake(WINSIZEX/2, WINSIZEY / 2, 50, 50);
+	
 	return S_OK;
 }
 
@@ -45,8 +46,11 @@ void NPCManager::update()
 		rc.top -= 5;
 		rc.bottom -= 5;
 	}
-	collision();
 
+	//_p->update();
+	collision();
+	/*player_npc_collision();*/
+	
 }
 
 void NPCManager::render()
@@ -117,7 +121,7 @@ void NPCManager::setLeftNpc(bool _isRight)
 	_bagFella = new bagFella;
 	_bagFella->init("짐든 남자", "", PointMake(100, WINSIZEY - 250), "./text/NPC/짐꾼.txt", "..", true, _isRight, false, false );
 
-	//_vNPC.push_back(_bagFella);
+	_vNPC.push_back(_bagFella);
 
 }
 
@@ -139,9 +143,9 @@ void NPCManager::removeNpc(int arrNum)
 
 void NPCManager::collision()
 {
+	
+	
 	RECT temp;
-	
-	
 
 	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end();++_viNPC )
 	{
@@ -198,4 +202,70 @@ void NPCManager::collision()
 
 	}
 }
+//
+//LPCOLLISION_INFO NPCManager::player_npc_collision()
+//{
+//	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
+//	for (int i =0 ; i< _vNPC.size();i++)
+//	{
+//		RECT temp;
+//		if (IntersectRect(&temp, &_vNPC[i]->getimgRC(), _p->getPlayerRect()))
+//		{
+//			//충돌메시지 작성
+//			tempInfo->_colType = COL_NPC;
+//			//tempInfo->index_detail = --- 세부번호
+//			if (!(*_viNPC)->getisTolk())
+//			{
+//				if (KEYMANAGER->isOnceKeyDown(VK_UP))
+//				{
+//					(*_viNPC)->setisTolk(true);
+//					
+//				}
+//			}
+//			if (_vNPC[i]->getisTolk()) {
+//				a++;
+//				_vNPC[i]->Converstion(a);
+//			}
+//			if (!_vNPC[i]->getisTolk()) {
+//				a = 0;
+//
+//			}
+//
+//			if (KEYMANAGER->isOnceKeyDown('X'))
+//			{
+//				_vNPC[i]->setcoversationCount(1);
+//				if (_vNPC[i]->getcoversationCount() == 1) {
+//					a = 0;
+//				}
+//				if (!_vNPC[i]->getisSaller())
+//				{
+//					if (_vNPC[i]->getcoversationCount() == 2) {
+//						_vNPC[i]->setisTolk(false);
+//						_vNPC[i]->setcoversationCount(-2);
+//					}
+//				}
+//
+//			}
+//			if (KEYMANAGER->isOnceKeyDown('Z'))
+//			{
+//				if (!_vNPC[i]->getisTiket())(*_viNPC)->setisgetTiket(true);
+//				if (!_vNPC[i]->getisfirelod())(*_viNPC)->setisfirelod(true);
+//			}
+//			if (a >= _vNPC[i]->gettxtSizeMax()) {
+//				a = _vNPC[i]->gettxtSizeMax();
+//			}
+//
+//		}
+//		else
+//		{
+//			_vNPC[i]->setisTolk(false);
+//
+//		}
+//		
+//	}
+//	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
+//	if (tempInfo->_colType != COL_NONE)
+//		return tempInfo;
+//	else return NULL;
+//}
 

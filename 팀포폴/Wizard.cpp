@@ -91,7 +91,7 @@ void Wizard::tolkdrow()
 			}
 		}
 	}
-	TextOut(getMemDC(), 500, 500, str, strlen(str));
+	
 }
 
 void Wizard::Converstion(int tolkCount)
@@ -188,7 +188,11 @@ void Wizard::Converstion(int tolkCount)
 		_tolkX = 235;																													//대화위치 x
 		_tolkY = 50;
 	}
-
+	else if (!_isgetfirelod && conversationCount >= 2)
+	{
+		conversationCount = 0;
+		_istolk = false;
+	}
 	if (conversationCount == 0) {
 		selectbox = 0;
 	}
