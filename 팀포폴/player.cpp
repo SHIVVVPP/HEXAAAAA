@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "player.h"
+#include "NPC.h"
+#include "enemy.h"
+#include "objects.h"
 
 
 player::player()
@@ -646,4 +649,49 @@ void player::rightJumpAttack(void * obj)
 
 void player::leftJumpAttack(void * obj)
 {
+}
+
+void player::getColMessage(LPCOLLISION_INFO message)
+{
+	if (message != NULL)
+	{
+		switch (message->_colType)
+		{
+		case COL_MONSTER:
+			switch (message->index_detail)
+			{
+			case 1:
+				//static_cast<objects*>(message->object).
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case COL_OBJECT:
+			switch (message->index_detail)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case COL_NPC:
+			switch (message->index_detail)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		}
+	}
+	SAFE_DELETE(message);
 }

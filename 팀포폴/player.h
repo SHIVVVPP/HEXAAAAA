@@ -2,6 +2,10 @@
 #include "gameNode.h"
 #include "bullet.h"
 
+class objects;
+class NPC;
+class enemy;
+
 enum PLAYERMAINCONDITION       // 케릭터의 메인 상태값 설정을 위한 이넘문
 {
 	PLAYER_RIGHT_IDLE,  		  // 오른쪽 가만히
@@ -160,6 +164,7 @@ public:
 	void setPlayerY(float y) { _y = y; }
 	float getPlayerY() { return _y; }
 
+	void getColMessage(LPCOLLISION_INFO message);
 
 };
 
