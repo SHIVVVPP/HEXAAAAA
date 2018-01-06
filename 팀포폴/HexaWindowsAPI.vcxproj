@@ -118,6 +118,7 @@
     <ClInclude Include="Merchant.h" />
     <ClInclude Include="Molly.h" />
     <ClInclude Include="moveblock.h" />
+    <ClInclude Include="musicsheet.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="objectManager.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Merchant.cpp" />
     <ClCompile Include="Molly.cpp" />
     <ClCompile Include="moveblock.cpp" />
+    <ClCompile Include="musicsheet.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="objectManager.cpp" />

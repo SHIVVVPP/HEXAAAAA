@@ -227,12 +227,12 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("platter", "./image/object/platter.bmp", 138, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("halfedplatter", "./image/object/halfedplatter.bmp", 125, 125, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("halfedplatter2", "./image/object/halfedplatter2.bmp", 90, 90, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("bubble", "./image/object/bubble.bmp", 100, 109, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("bubbles", "./image/object/bubbles.bmp",400 ,100,4, 1, true, RGB(255, 0, 255));
 	//±¤¸Æ
 	IMAGEMANAGER->addFrameImage("dirtpile", "./image/object/dirtpile.bmp", 660, 60, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("digclod1", "./image/object/digclod1.bmp", 40, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("digclod2", "./image/object/digclod2.bmp", 64, 64, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addFrameImage("bubbleeffect", "./image/object/bubbleeffect.bmp", 200, 100, 2, 1, true, RGB(255, 0, 255));
 	//ºí·Ï
 	IMAGEMANAGER->addImage("dirtblock", "./image/object/dirtblock.bmp", 128, 128, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("dirtblocksmall", "./image/object/dirtblock_small.bmp", 58, 58, true, RGB(255, 0, 255));

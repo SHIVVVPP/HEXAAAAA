@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "objects.h"
-//#include "platter.h"
+#include "platter.h"
 #include "dirtblock.h"
 #include "smalldirtblock.h"
 #include "gem.h"
@@ -16,6 +16,9 @@
 #include "player.h"
 #include "effect.h"
 #include <vector>
+
+
+
 
 class objectManager : public gameNode
 {
@@ -32,6 +35,8 @@ private:
 	viO _vidirtpile;
 	vO _vdirtblock;
 	vO _vbubble;
+	vO _vplatter;
+	vO _vpart;
 	objects* _obj;
 	int _hitcount;
 	int _leftX;
