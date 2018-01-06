@@ -146,7 +146,29 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
-	void setIsJump(bool boolValue) { _isJump = boolValue; if (!boolValue) { _jumpPower = 11;  if (_dir == 1)setPlayerMainCondition(PLAYER_RIGHT_IDLE); else if (_dir == -1)setPlayerMainCondition(PLAYER_LEFT_IDLE); } }
+	void setIsJump(bool boolValue) 
+	{ 
+		_isJump = boolValue; 
+		if (!boolValue) 
+		{
+			_jumpPower = 11;  
+			if (_dir == 1) {
+				if (_playerMainCondition == PLAYER_IDLE_JUMP)
+					setPlayerMainCondition(PLAYER_RIGHT_IDLE);
+				else
+					setPlayerMainCondition(PLAYER_RIGHT_MOVE);
+			}
+			else if (_dir == -1) {
+				if (_playerMainCondition == PLAYER_IDLE_JUMP)
+					setPlayerMainCondition(PLAYER_LEFT_IDLE);
+				else
+					setPlayerMainCondition(PLAYER_LEFT_MOVE);
+			}
+		}
+		else {
+			_jumpPower -= _gravity;
+		}
+	}
 
 	// 점프파워 접근자
 

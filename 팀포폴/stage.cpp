@@ -495,7 +495,7 @@ void stage::pixelCollison()
 		//	if ()
 	}
 
-	else if (_player->getJumpPower()  < 0)
+	else if (_player->getJumpPower()  <= 0)
 	{
 		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
 		bool k = false;
@@ -521,6 +521,10 @@ void stage::pixelCollison()
 		if (k)
 		{
 			_player->setIsJump(false);
+		}
+		else
+		{
+			_player->setIsJump(true);
 		}
 
 
