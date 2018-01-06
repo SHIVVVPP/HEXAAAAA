@@ -30,14 +30,14 @@ HRESULT mainGame::init()			//초기화 함수
 	/*_player = new player;
 	_player->init();*/
 
-	//_player = new player;
-	//_player->init();
+	_player = new player;
+	_player->init();
 
 	//sys = new system_option;
 	//sys->init();
 
-	//SCENEMANAGER->addScene("스테이지", new stage);
-	//SCENEMANAGER->changeScene("스테이지", _player);
+	SCENEMANAGER->addScene("스테이지", new stage);
+	SCENEMANAGER->changeScene("스테이지", _player);
 	//SCENEMANAGER->addScene("인벤토리", new inventory);
 	//
 
@@ -88,8 +88,8 @@ void mainGame::update()				//연산 함수
 	//}
 	
 	//sys->update();
-	////SCENEMANAGER->update();
-	//_player->update();
+	SCENEMANAGER->update();
+	_player->update();
 	
 	//_ui->update();
 	//_town->update();
@@ -101,7 +101,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	//sys->render();
-	//SCENEMANAGER->render();
+	SCENEMANAGER->render();
 	//_town->render();
 	//_player->render();
 
@@ -110,6 +110,6 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc).x, CAMERAMANAGER->CameraRelativePoint(rc).y,50, 50);
 	//Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	//==================== 건들지마라 =======================
-	//TIMEMANAGER->render(getMemDC());
+	TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);
 }

@@ -32,20 +32,6 @@ void fakedirt::render()
 
 	int tempX = _leftX;
 	int tempY = _rc.bottom;
-
-	//for (; tempY >= _rc.top + IMAGEMANAGER->findImage("leftfakehead")->getHeight();)
-	//{
-	//	tempY -= IMAGEMANAGER->findImage("leftfakehead")->getHeight();
-	//
-	//	for (; tempX < _rc.right - IMAGEMANAGER->findImage("leftfakehead")->getWidth();)
-	//	{
-	//		IMAGEMANAGER->findImage("leftfakehead")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(tempX), CAMERAMANAGER->CameraRelativePointY(tempY));
-	//	}
-	//	IMAGEMANAGER->findImage("leftfakehead")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(tempX), CAMERAMANAGER->CameraRelativePointY(tempY),0,0,_rc.right-tempX,
-	//		IMAGEMANAGER->findImage("leftfakehead")->getHeight());
-	//	tempX = _leftX;
-	//}
-	//
 	tempX = _rc.left;
 	IMAGEMANAGER->findImage("leftfakehead")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(tempX), CAMERAMANAGER->CameraRelativePointY(_rc.top));
 	tempX += IMAGEMANAGER->findImage("leftfakehead")->getWidth();
@@ -57,13 +43,10 @@ void fakedirt::render()
 	IMAGEMANAGER->findImage("leftfakehead")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(tempX), CAMERAMANAGER->CameraRelativePointY(_rc.top));
 	tempX += IMAGEMANAGER->findImage("leftfakehead")->getWidth();
 	_rc.right = tempX;
-	//
-	//_rc.top = tempY;
+	
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), IMAGEMANAGER->findImage("leftfakehead")->getWidth(), IMAGEMANAGER->findImage("leftfakehead")->getHeight());
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), getWidth(_rc), getHeight(_rc));
 	}
-
-	//IMAGEMANAGER->findImage("leftfakehead")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY));
 }
