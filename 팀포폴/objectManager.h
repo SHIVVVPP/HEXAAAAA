@@ -1,10 +1,17 @@
 #pragma once
 #include "gameNode.h"
 #include "objects.h"
+//#include "platter.h"
+#include "dirtblock.h"
+#include "smalldirtblock.h"
 #include "gem.h"
 #include "ladder.h"
 #include "dirtpile.h"
 #include "moveblock.h"
+#include "potion.h"
+#include "food.h"
+#include "part.h"
+#include "part2.h"
 #include "player.h"
 #include "effect.h"
 #include <vector>
@@ -20,7 +27,9 @@ private:
 	vO _vladder;
 	vO _vmoveblock; 
 	vO _vdirtpile;
+	vO _vUse;
 	viO _vidirtpile;
+	vO _vdirtblock;
 	objects* _obj;
 	int _hitcount;
 	int _leftX;

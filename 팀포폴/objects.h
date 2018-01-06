@@ -11,6 +11,7 @@
 #define TYPE_POTION 7
 #define TYPE_BARRIER 8
 #define TYPE_MEAL 9
+#define TYPE_SMALL_BLOCK 10
 
 
 class objects : public gameNode
@@ -31,6 +32,8 @@ protected:
 	int _range;
 	int _width, _height;
 	int _goldValue;
+	int _helathValue;
+	int _manaValue;
 	int _alphaValue;
 	float _speedX;
 	float _angle;
@@ -45,7 +48,7 @@ public:
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
 	virtual HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);
-
+	virtual HRESULT init(int x, int y, int value);
 	virtual void update();
 	virtual void render();
 	virtual void release();

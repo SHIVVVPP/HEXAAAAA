@@ -21,7 +21,9 @@ HRESULT objectManager::init()
 	}
 	//_pickeffect = new effect;
 
-	EFFECTMANAGER->addEffect("보석", "pickupSparkle.bmp", 42, 14, 14, 14, 1.0f, 0.1f, 100);
+	EFFECTMANAGER->addEffect("보석", "./image/object/pickupSparkle.bmp", 42, 14, 14, 14, 1.0f, 0.05f, 100);
+	EFFECTMANAGER->addEffect("블록", "./image/object/dirtblock_effect.bmp", 540, 148, 180, 148, 1.0f, 0.1f, 100);
+	EFFECTMANAGER->addEffect("작은블록", "./image/object/dirtblock_small_effect.bmp", 320, 72, 106, 72, 1.0f, 0.1f, 100);
 	return S_OK;
 }
 
@@ -46,6 +48,10 @@ void objectManager::update()
 		_vgem[i]->update();
 	}
 
+	for (int i = 0; i < _vUse.size(); i++)
+	{
+		_vUse[i]->update();
+	}
 	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	player_object_collision();
 	_p->update();
@@ -54,10 +60,10 @@ void objectManager::update()
 
 void objectManager::render()
 {
-	for (int i = 0; i < _vladder.size(); i++)
-	{
-		_vladder[i]->render();
-	}
+	//for (int i = 0; i < _vladder.size(); i++)
+	//{
+	//	_vladder[i]->render();
+	//}
 	for (int i = 0; i < _vmoveblock.size(); i++)
 	{
 		_vmoveblock[i]->render();
@@ -71,6 +77,16 @@ void objectManager::render()
 	for (int i = 0; i < _vgem.size(); i++)
 	{
 		_vgem[i]->render();
+	}
+
+	for (int i = 0; i < _vUse.size(); i++)
+	{
+		_vUse[i]->render();
+	}
+
+	for (int i = 0; i < _vdirtblock.size(); i++)
+	{
+		_vdirtblock[i]->render();
 	}
 	EFFECTMANAGER->render();
 }
@@ -130,6 +146,34 @@ void objectManager::setPosition()
 	_obj = new dirtpile;
 	_obj->init(3700, 3450);
 	_vdirtpile.push_back(_obj);
+
+	_obj = new potion;
+	_obj->init(3500, 3200);
+	_vUse.push_back(_obj);
+
+	_obj = new potion;
+	_obj->init(3900, 3200);
+	_vUse.push_back(_obj);
+
+	_obj = new food;
+	_obj->init(3200, 3100);
+	_vUse.push_back(_obj);
+
+	//_obj = new platter;
+	//_obj->init(3200, 3150);
+	//_vUse.push_back(_obj);
+
+	_obj = new dirtblock;
+	_obj->init(2550, 3050);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new dirtblock;
+	_obj->init(2300, 3150);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new smalldirtblock;
+	_obj->init(2100, 3300);
+	_vdirtblock.push_back(_obj);
 }
 
 LPCOLLISION_INFO objectManager::player_object_collision()
@@ -171,25 +215,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 					_vdirtpile.erase(_vdirtpile.begin() + i);
 				}
 			}
-
-			//switch (col)
-			//{
-			//case 1:
-			//	_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
-			//	break;
-			//case 2:
-			//	_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
-			//	break;
-			//case 3:
-			//	break;
-			//case 4:
-			//	break;
-			//case 5:
-			//	break;
-			//}
-			//break;
     }
-	EFFECTMANAGER->play("보석", CAMERAMANAGER->CameraRelativePointX(2900), CAMERAMANAGER->CameraRelativePointY(3000));
 	for (int i = 0; i < _vgem.size(); i++)
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
@@ -211,18 +237,17 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			RECT temp;
 			if (IntersectRect(&temp, _p->getPlayerRect(), &_vgem[i]->_rc))
 			{
+				EFFECTMANAGER->play("보석", _vgem[i]->_leftX,_vgem[i]->_topY);
 				_vgem.erase(_vgem.begin() + i);
 				_obj = new gem;
 				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
 				_vgem.push_back(_obj);
-
-
 				//충돌메시지 작성
 				tempInfo->_colType = COL_OBJECT;
 				//tempInfo->index_detail = --- 세부번호
 				tempInfo->object = _vgem[i];
-
 			}
+			//if (_vgem.size() >= 10)_vgem.erase(_vgem.begin(),_vgem.end());
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
 			{
 				//vector<objects*> temp;
@@ -231,42 +256,41 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 				//_vgem.push_back(_vgem[i]);
 				//_vgem.erase(_vgem.begin() + i);
 			}
+			if (_vdirtpile.size() <= 0)
+			{
+				_vgem[i]->_leftX = 0;
+				_vgem[i]->_topY = 0;
+			}
 		//}
 	}
-	//for (int i = 0; i < _vdirtpile.size(); ++i) // 2
-	//{
-	//	for (int j = 0; j < _vgem.size(); ++j)
-	//	{
-	//		int _leftX = _vdirtpile[i]->_x;
-	//		int _topY = _vdirtpile[i]->_y;
-	//		switch (_hitcount)
-	//		{
-	//		case 0:
-	//			//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
-	//			_vgem[j]->fire(200, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
-	//			break;
-	//		case 1:
-	//			//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
-	//			_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
-	//			break;
-	//		case 2:
-	//			//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
-	//			_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
-	//			break;
-	//		case 3:
-	//			//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
-	//			_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
-	//			break;
-	//		case 4:
-	//			//_vgem[j]->setRC(RectMake(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getWidth(), IMAGEMANAGER->findImage(_vgem[j]->getImage())->getHeight()));
-	//			_vgem[j]->fire(_leftX, _topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI);
-	//			//_vgem[1]->fire(_vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 3.0f, PI * 2);
-	//			break;
-	//		}
-	//	}
-	//	break;
-	//}
+	
+	//포션
+	for (int i = 0; i < _vUse.size(); i++)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_POTION)
+		{
+			//if(_vUse[i]->_type != TYPE_FOOD)
+			_vUse.erase(_vUse.begin() + i);
+		}
 
+		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_FOOD)
+		{
+			_vUse.erase(_vUse.begin() + i);
+		}
+	}
+
+	for (int i = 0; i < _vdirtblock.size(); i++)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtblock[i]->_rc))
+		{
+			if(_vdirtblock[i]->_type == TYPE_BLOCK)EFFECTMANAGER->play("블록",_vdirtblock[i]->_leftX, _vdirtblock[i]->_topY);
+
+			else if (_vdirtblock[i]->_type == TYPE_SMALL_BLOCK)EFFECTMANAGER->play("작은블록", _vdirtblock[i]->_leftX, _vdirtblock[i]->_topY);
+			_vdirtblock.erase(_vdirtblock.begin() + i);
+		}
+	}
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
 	if(tempInfo->_colType != COL_NONE)
 	return tempInfo;
