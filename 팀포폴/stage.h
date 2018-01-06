@@ -3,6 +3,7 @@
 #include "settingTool.h"
 #include <map>
 
+class objectManager;
 class player;
 class ui;
 
@@ -31,6 +32,7 @@ private:
 	int _currentRoomNum;
 	player* _player;
 	ui* _ui;
+	objectManager* _objectManager;
 
 	//임시 렉트
 

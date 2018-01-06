@@ -11,6 +11,7 @@ static image* _backBuffer2 = IMAGEMANAGER->addImage("backBuffer2", WINSIZEX, WIN
 
 enum COLLISION_TYPE
 {
+	COL_NONE,
 	COL_ITEM,
 	COL_MONSTER,
 	COL_OBJECT,
@@ -22,6 +23,13 @@ typedef struct tagCollisionInfo
 	COLLISION_TYPE _colType;
 	int index_detail;
 	void* object;
+
+	tagCollisionInfo()
+	{
+		_colType = COL_NONE;
+		index_detail = 0;
+		object = NULL;
+	}
 }COLLISION_INFO,*LPCOLLISION_INFO;
 
 

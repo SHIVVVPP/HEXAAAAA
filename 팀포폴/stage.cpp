@@ -2,6 +2,7 @@
 #include "stage.h"
 #include "player.h"
 #include "ui.h"
+#include "objectManager.h"
 
 stage::stage()
 {
@@ -32,6 +33,11 @@ HRESULT stage::init()
 
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
+
+	_objectManager = new objectManager;
+	_objectManager->connectPlayer(_player);
+	_objectManager->init();
+
 
 	Tool = new settingTool;
 	Tool->init();
@@ -74,6 +80,8 @@ void stage::update()
 			_currentRoom = _mRoom.find(c_col)->second;
 	}
 	_player->update();
+	_objectManager->update();
+
 	_ui->update();
 	
 	pixelCollison();
@@ -93,6 +101,9 @@ void stage::render()
 	_currentRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
 	_currentRoom._pixelColImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
 	_player->render();
+
+	_objectManager->render();
+
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
 	_ui->render();
 

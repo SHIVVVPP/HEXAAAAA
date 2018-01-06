@@ -135,7 +135,7 @@ void objectManager::setPosition()
 LPCOLLISION_INFO objectManager::player_object_collision()
 {
 	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
-	tempInfo = NULL;
+
 
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
@@ -268,5 +268,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 	//}
 
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
+	if(tempInfo->_colType != COL_NONE)
 	return tempInfo;
+	else return NULL;
 }
