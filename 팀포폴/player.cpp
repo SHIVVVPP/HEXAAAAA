@@ -57,6 +57,7 @@ HRESULT player::init()
 	_isLadder = false;
 	_isLand = false;
 	_isJump = true;
+	_canAtk = true;
 
 
 	int rightIdle[] = { 0 };
@@ -110,6 +111,10 @@ void player::update()
 		_y -= _jumpPower;
 		_jumpPower -= _gravity;
 	}
+	if (_isLand)
+	{
+		_jumpPower = 0.0f;
+	}
 	
 	
 	
@@ -122,7 +127,7 @@ void player::update()
 		{
 			_dir = 1;
 			_playerMainCondition = PLAYER_RIGHT_MOVE;
-			//setPlayerCondition();
+			setPlayerCondition();
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 		{
@@ -133,7 +138,7 @@ void player::update()
 		{
 			_dir = -1;
 			_playerMainCondition = PLAYER_LEFT_MOVE;
-			//setPlayerCondition();
+			setPlayerCondition();
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 		{
@@ -173,6 +178,23 @@ void player::update()
 				break;
 			}
 			setPlayerCondition();
+		
+		}
+		if (KEYMANAGER->isOnceKeyDown('A'))
+		{
+			switch (_dir)
+			{
+			case 1:
+				_playerMainCondition = PLAYER_RIGHT_ATTACK;
+				setPlayerCondition();
+				break;
+
+			case -1:
+				_playerMainCondition = PLAYER_LEFT_ATTACK;
+				setPlayerCondition();
+				break;
+
+			}
 		
 		}
 		
@@ -290,28 +312,28 @@ void player::update()
 		if (KEYMANAGER->isStayKeyDown(VK_UP))_y -= _speed;
 		break;
 	case PLAYER_DOWN_CLIMB:
-		if (KEYMANAGER->isStayKeyDown(VK_UP))_y += _speed;
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))_y += _speed;
 		break;
 	case PLAYER_EDGE_CLIMB:
 		break;
 	case PLAYER_RIGHT_ATTACK:
-		_attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
+		if(_canAtk)	_attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
 		break;
 	case PLAYER_RIGHT_JUMP_ATTACK:
 		break;
 	case PLAYER_LEFT_ATTACK:
-		_attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
+		if (_canAtk)	_attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
 		break;
 	case PLAYER_LEFT_JUMP_ATTACK:
 		break;
 	case PLAYER_DOWN_ATTACK:
-		_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)	_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
 		break;
 	case PLAYER_RIGHT_DOWN_ATTACK:
-		_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)	_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
 		break;
 	case PLAYER_LEFT_DOWN_ATTACK:
-		_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)	_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
 		break;
 	case PLAYER_RIGHT_HITTED:
 		break;
@@ -321,6 +343,7 @@ void player::update()
 		break;
 	
 	}
+
 
 
 	//if (_isJump && !_isLand && !_isLadder)
@@ -683,6 +706,8 @@ void player::update()
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	
+	if(!_canAtk)_attackRC = RectMakeCenter(_x, _y, 50, 50);
+	
 	KEYANIMANAGER->update();
 	//pixelCollison();
 	//usage();
@@ -737,10 +762,12 @@ void player::render()
 
 void player::collisonAttack(RECT * obj)
 {
+	_canAtk = false;
 	_repulsivePower = 3.0f;
 	_frictionalPower = 0.3f;
 	_jumpPower = 11.0f;
 	_gravity = 0.35f;
+	
 
 	if (_playerMainCondition >= 10 && _playerMainCondition <= 13)
 	{
@@ -765,7 +792,7 @@ void player::collisonAttack(RECT * obj)
 		_jumpPower -= _gravity;
 	}
 
-	
+	_canAtk = true;
 }
 
 void player::collisonHitted(RECT * obj)

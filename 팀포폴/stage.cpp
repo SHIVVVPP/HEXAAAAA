@@ -524,11 +524,13 @@ void stage::pixelCollison()
 		{
 			_player->setIsJump(false);
 			_player->setIsLand(true);
+			
 		}
 		else
 		{
 			_player->setIsJump(true);
 			_player->setIsLand(false);
+		
 		}
 
 	}
