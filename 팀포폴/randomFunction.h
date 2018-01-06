@@ -18,8 +18,10 @@ public:
 	}
 
 	inline int getInt(int num) { return rand() % num; }
-	inline int getFromIntTo(int fromNum, int toNum) { return rand() % (toNum - fromNum + 1) + fromNum; }
-
+	inline int getFromIntTo(int fromNum, int toNum) {
+		return rand() % (toNum - fromNum + 1) + fromNum, rand() % (toNum - fromNum + 1) + fromNum;
+	}
+	
 	inline float getFloat(float num)
 	{
 		return (float)rand() / (float)RAND_MAX;

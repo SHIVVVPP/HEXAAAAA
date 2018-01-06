@@ -5,6 +5,36 @@ class player;
 
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 static image* _backBuffer2 = IMAGEMANAGER->addImage("backBuffer2", WINSIZEX, WINSIZEY);
+
+
+//콜리전 메시지
+
+enum COLLISION_TYPE
+{
+	COL_NONE,
+	COL_ITEM,
+	COL_MONSTER,
+	COL_OBJECT,
+	COL_NPC,
+};
+
+typedef struct tagCollisionInfo
+{
+	COLLISION_TYPE _colType;
+	int index_detail;
+	void* object;
+
+	tagCollisionInfo()
+	{
+		_colType = COL_NONE;
+		index_detail = 0;
+		object = NULL;
+	}
+}COLLISION_INFO,*LPCOLLISION_INFO;
+
+
+
+
 class gameNode
 {
 private:

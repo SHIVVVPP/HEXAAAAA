@@ -4,10 +4,11 @@
 class gem : public objects
 {
 public:
-	HRESULT init(const char* imageName, int goldup , int range);
+	HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);
+	
 	void update();
 	void render();
-	void fire(int x, int y,int startX,int startY, float speed, float angle);
+	
 	void move();
 	gem();
 	~gem();

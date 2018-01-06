@@ -19,30 +19,37 @@ HRESULT objectManager::init()
 	{
 		_vgem[i]->_canHit = true;
 	}
+	//_pickeffect = new effect;
+
+	EFFECTMANAGER->addEffect("보석", "pickupSparkle.bmp", 42, 14, 14, 14, 1.0f, 0.1f, 100);
 	return S_OK;
 }
 
 void objectManager::release()
 {
+
 }
 
 void objectManager::update()
 {
-	for (int i = 0; i < _vmoveblock.size(); i++)
-	{
-		_vmoveblock[i]->update();
-	}
-
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
 		_vdirtpile[i]->update();
 	}
 
+	for (int i = 0; i < _vmoveblock.size(); i++)
+	{
+		_vmoveblock[i]->update();
+	}
 	for (int i = 0; i < _vgem.size(); i++)
 	{
 		_vgem[i]->update();
 	}
+
+	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	player_object_collision();
+	_p->update();
+	EFFECTMANAGER->update();
 }
 
 void objectManager::render()
@@ -65,15 +72,14 @@ void objectManager::render()
 	{
 		_vgem[i]->render();
 	}
-
+	EFFECTMANAGER->render();
 }
 
 void objectManager::setPosition()
 {
-	//_obj = new gem;
-	//_obj->init(_vdirtpile[i]->getX(),_vdirtpile[i]->getY(), "bluedia", 50);
-	//_vgem.push_back(_obj);
-
+	
+	//_vgem.clear();
+	//_vdirtpile.clear();
 	//_obj = new gem;
 	//_obj->init("bluegem", 20,30);
 	//_vgem.push_back(_obj);
@@ -85,105 +91,147 @@ void objectManager::setPosition()
 	//_obj = new gem;
 	//_obj->init("bluedia", 10, 30);
 	//_vgem.push_back(_obj);
-	_obj = new gem;
-	_obj->init("smalljew", 30, 30);
-	_vgem.push_back(_obj);
+	//_obj = new gem;
+	//_obj->init("smalljew", 30, 30);
+	//_vgem.push_back(_obj);
+	//
+	//_obj = new gem;
+	//_obj->init("reddia", 10, 30);
+	//_vgem.push_back(_obj);
+	//
+	//_obj = new gem;
+	//_obj->init("yellowgem", 30, 30);
+	//_vgem.push_back(_obj);
 
 	_obj = new gem;
-	_obj->init("reddia", 10, 30);
+	_obj->init(50, 3300, 3450, 3300, 3450, 2.0f, PI);
 	_vgem.push_back(_obj);
-
-	_obj = new gem;
-	_obj->init("yellowgem", 30, 30);
-	_vgem.push_back(_obj);
-
+	
 	_obj = new ladder;
 	_obj->init(50, 50, 100);
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(80, 80,50,false);
+	_obj->init(2600, 2800,50,false);
 	_vmoveblock.push_back(_obj);
 
+	_obj = new moveblock;
+	_obj->init(2600, 3000, 200, false);
+	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;
-	_obj->init(500, 100);
+	_obj->init(3100, 3450);
 	_vdirtpile.push_back(_obj);
 
 	_obj = new dirtpile;
-	_obj->init(600, 200);
+	_obj->init(3300, 3450);
+	_vdirtpile.push_back(_obj);
+
+	_obj = new dirtpile;
+	_obj->init(3700, 3450);
 	_vdirtpile.push_back(_obj);
 }
 
-void objectManager::player_object_collision()
+LPCOLLISION_INFO objectManager::player_object_collision()
 {
+	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
+
+
 	for (int i = 0; i < _vdirtpile.size(); i++)
 	{
-		if (_vdirtpile[i]->getAni()->getPlayIndex() >= 4)
-		{
-		}
-		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && PtInRect(&_vdirtpile[i]->_rc, _ptMouse)) //충돌 추가로 넣기 한대쳤을떄
+		_leftX = _vdirtpile[i]->getX();
+		_topY = _vdirtpile[i]->getY();
+
+		//dirty는 충돌시 플레이어에 영향을 주지 않으므로 pass
+			RECT temp;
+			if(IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtpile[i]->_rc))
 			{
-				int leftX = _vdirtpile[i]->getX();
-				int topY = _vdirtpile[i]->getY();
+			
 				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
-					{		
-						_vdirtpile[i]->getAni()->setPlayIndex(1);
-
-						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[1]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[2]->fire(leftX + 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-					}
-					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
-					{
-						//_hitcount = 3;
-						_vdirtpile[i]->getAni()->setPlayIndex(2);
-						_vgem[0]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[1]->fire(leftX + 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-					}
-					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
-					{
-						//_hitcount = 2;
-						_vdirtpile[i]->getAni()->setPlayIndex(3);
-						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[1]->fire(leftX - 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[2]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-					}
-					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
-					{
-						//_hitcount = 1;
-						_vdirtpile[i]->getAni()->setPlayIndex(4);
-						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[1]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[2]->fire(leftX - 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-					}
-					else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
-					{
-						//_hitcount = 0;
-						_vgem[0]->fire(leftX, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[1]->fire(leftX + 10, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-						_vgem[2]->fire(leftX - 15, topY, _vdirtpile[i]->getX(), _vdirtpile[i]->getY(), 2.0f, PI);
-
-						_vdirtpile.erase(_vdirtpile.begin());
-					}
+				{
+					_vdirtpile[i]->getAni()->setPlayIndex(1);
+					//col = 1;
+					_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
 				}
-     }
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
+				{
+					col = 2;
+					_vdirtpile[i]->getAni()->setPlayIndex(2);	
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
+				{	
+					_vdirtpile[i]->getAni()->setPlayIndex(3);
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
+				{
+					_vdirtpile[i]->getAni()->setPlayIndex(4);
+				}
+				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
+				{
+					_vdirtpile.erase(_vdirtpile.begin() + i);
+				}
+			}
 
-
+			//switch (col)
+			//{
+			//case 1:
+			//	_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
+			//	break;
+			//case 2:
+			//	_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
+			//	break;
+			//case 3:
+			//	break;
+			//case 4:
+			//	break;
+			//case 5:
+			//	break;
+			//}
+			//break;
+    }
+	EFFECTMANAGER->play("보석", CAMERAMANAGER->CameraRelativePointX(2900), CAMERAMANAGER->CameraRelativePointY(3000));
 	for (int i = 0; i < _vgem.size(); i++)
 	{
-		if (PtInRect(&_vgem[i]->_rc, _ptMouse))
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 		{
+			_obj = new gem;
+			_obj->init(20, _leftX, _topY, _leftX, _topY,2.0f,PI);
+			_vgem.push_back(_obj);
+		
+			//_obj = new gem;
+			//_obj->init("reddia", 10, 30);
+			//_vgem.push_back(_obj);
+		  	
+			//_obj = new gem;
+			//_obj->init("yellowgem", 10, 30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+			//_vgem.push_back(_obj);
+		}
+		//if (PtInRect(&_vgem[i]->_rc, _ptMouse))
+		//{
 			RECT temp;
+			if (IntersectRect(&temp, _p->getPlayerRect(), &_vgem[i]->_rc))
+			{
+				_vgem.erase(_vgem.begin() + i);
+				_obj = new gem;
+				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+				_vgem.push_back(_obj);
+
+
+				//충돌메시지 작성
+				tempInfo->_colType = COL_OBJECT;
+				//tempInfo->index_detail = --- 세부번호
+				tempInfo->object = _vgem[i];
+
+			}
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
 			{
 				//vector<objects*> temp;
 				//temp.push_back(_vgem[i]);
-				//_vgem.erase(_vgem.begin());
 				_vgem.erase(_vgem.begin() + i);
-				_vgem.push_back(_vgem[i]);
-			}break;
-		}
+				//_vgem.push_back(_vgem[i]);
+				//_vgem.erase(_vgem.begin() + i);
+			}
+		//}
 	}
 	//for (int i = 0; i < _vdirtpile.size(); ++i) // 2
 	//{
@@ -218,4 +266,9 @@ void objectManager::player_object_collision()
 	//	}
 	//	break;
 	//}
+
+	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
+	if(tempInfo->_colType != COL_NONE)
+	return tempInfo;
+	else return NULL;
 }

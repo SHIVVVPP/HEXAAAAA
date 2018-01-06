@@ -1,7 +1,9 @@
 #pragma once
 #include "gameNode.h"
+#include "settingTool.h"
 #include <map>
 
+class objectManager;
 class player;
 class ui;
 
@@ -13,9 +15,7 @@ struct tagRoomInfo
 	int _width, _height;
 	image* _roomImage;
 	image* _pixelColImage;
-	vector<string> _vConnectedRoom;
-
-	
+	vector<string> _vConnectedRoom;	
 };
 
 class stage : public gameNode
@@ -32,11 +32,13 @@ private:
 	int _currentRoomNum;
 	player* _player;
 	ui* _ui;
+	objectManager* _objectManager;
 
 	//임시 렉트
 
 	RECT _rc;
 
+	settingTool* Tool;
 
 public:
 	stage();
@@ -54,5 +56,7 @@ public:
 
 	void  AddressLinkWithPlayer(player* _p) { _player = _p; }
 
+
+	void sendColMessage();
 	void pixelCollison();
 };

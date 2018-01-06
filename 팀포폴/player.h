@@ -2,6 +2,10 @@
 #include "gameNode.h"
 #include "bullet.h"
 
+class objects;
+class NPC;
+class enemy;
+
 enum PLAYERMAINCONDITION       // 케릭터의 메인 상태값 설정을 위한 이넘문
 {
 	PLAYER_RIGHT_IDLE,  		  // 오른쪽 가만히
@@ -107,7 +111,8 @@ public:
 
 	////////  플레이어 충돌렉트 접근자 설정자
 	RECT* getPlayerRect() { return &_playerRC; }
-
+	RECT* getPlayerAttackRect() { return &_attackRC; }
+	void setPlayerAttackRect(RECT _rc) { _attackRC = _rc; }
 	//////// 현재 체력 접근자 설정자
 
 	int getPlayerCurrentHP() { return _currentHP; }
@@ -141,7 +146,29 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
-	void setIsJump(bool boolValue) { _isJump = boolValue; }
+	void setIsJump(bool boolValue) 
+	{ 
+		_isJump = boolValue; 
+		if (!boolValue) 
+		{
+			_jumpPower = 11;  
+			if (_dir == 1) {
+				if (_playerMainCondition == PLAYER_IDLE_JUMP)
+					setPlayerMainCondition(PLAYER_RIGHT_IDLE);
+				else
+					setPlayerMainCondition(PLAYER_RIGHT_MOVE);
+			}
+			else if (_dir == -1) {
+				if (_playerMainCondition == PLAYER_IDLE_JUMP)
+					setPlayerMainCondition(PLAYER_LEFT_IDLE);
+				else
+					setPlayerMainCondition(PLAYER_LEFT_MOVE);
+			}
+		}
+		else {
+			_jumpPower -= _gravity;
+		}
+	}
 
 	// 점프파워 접근자
 
@@ -158,6 +185,8 @@ public:
 	float getPlayerX() { return _x; }
 	void setPlayerY(float y) { _y = y; }
 	float getPlayerY() { return _y; }
+
+	void getColMessage(LPCOLLISION_INFO message);
 
 };
 

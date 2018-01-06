@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "player.h"
+#include "NPC.h"
+#include "enemy.h"
+#include "objects.h"
 
 
 player::player()
@@ -33,12 +36,12 @@ HRESULT player::init()
 	enemyRC = RectMakeCenter(900, WINSIZEY / 2, 100, 100);
 	
 	
-	_x = 100;
-	_y = 3100;
+	_x = 2800;
+	_y = 3800;
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
-
+	_attackRC = RectMakeCenter(-100, -100, 150, 160);
 	//플레이어 기본값 초기화
 	_currentHP = _maxHP = 8;
 	_currentMP = _maxMP = 30;
@@ -318,7 +321,7 @@ void player::update()
 		case 1 :
 			if (_playerMainCondition == PLAYER_RIGHT_DOWN_ATTACK) _ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
 			else if (_playerMainCondition == PLAYER_DOWN_ATTACK) _ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
-			else if (_jumpPower >= 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
+ 			else if (_jumpPower >= 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
 			else if (_jumpPower < 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpDown");
 			break;
 
@@ -392,7 +395,7 @@ void player::update()
 	//	}
 	//	break;
 	case PLAYER_RIGHT_ATTACK:
-		_attackRC = RectMakeCenter(_x + 100, _y+30, 75, 100);
+		_attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
 		if (_isJump)
 		{
 			_y -= _jumpPower;
@@ -477,10 +480,11 @@ void player::update()
 	}
 
 
-	if (_playerMainCondition < 10 || _playerMainCondition >= 17)
-	{
-		_attackRC = RectMakeCenter(-150, 150, 100, 150);
-	}
+	// if (_playerMainCondition < 10 || _playerMainCondition >= 17)
+	//{
+	//	_attackRC = RectMakeCenter(-150, 150, 100, 150);
+	//}
+
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	
@@ -489,14 +493,14 @@ void player::update()
 	//usage();
 	//_Relic->update();
 	DATABASE->setPlayer_currentInfo(_currentHP, _maxHP, _currentMP, _playerGold);
-
+	//usage();
 }
 
 
 void player::render()
 {
-	Rectangle(getMemDC(), LadderRC.left, LadderRC.top, LadderRC.right, LadderRC.bottom);
-	Rectangle(getMemDC(), enemyRC.left, enemyRC.top, enemyRC.right, enemyRC.bottom);
+	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(LadderRC.left), CAMERAMANAGER->CameraRelativePointY(LadderRC.top), CAMERAMANAGER->CameraRelativePointX(LadderRC.right), CAMERAMANAGER->CameraRelativePointY(LadderRC.bottom));
+	Rectangle(getMemDC(), CAMERAMANAGER->CameraRelativePointX(enemyRC.left), CAMERAMANAGER->CameraRelativePointY(enemyRC.top), CAMERAMANAGER->CameraRelativePointX(enemyRC.right), CAMERAMANAGER->CameraRelativePointY(enemyRC.bottom));
 
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _imageRC.left), CAMERAMANAGER->CameraRelativePointY( _imageRC.top), _ani);
 
@@ -514,7 +518,9 @@ void player::render()
 	{
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointX(_attackRC.top),75, 100);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointY(_attackRC.top),75, 100);
+		sprintf(str, "attackRC LT %d %d RB %d %d", _attackRC.left, _attackRC.top, _attackRC.right, _attackRC.bottom);
+		TextOut(getMemDC(), WINSIZEX / 2, WINSIZEY / 2, str, strlen(str));
 	}
 }
 
@@ -643,4 +649,49 @@ void player::rightJumpAttack(void * obj)
 
 void player::leftJumpAttack(void * obj)
 {
+}
+
+void player::getColMessage(LPCOLLISION_INFO message)
+{
+	if (message != NULL)
+	{
+		switch (message->_colType)
+		{
+		case COL_MONSTER:
+			switch (message->index_detail)
+			{
+			case 1:
+				//static_cast<objects*>(message->object).
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case COL_OBJECT:
+			switch (message->index_detail)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case COL_NPC:
+			switch (message->index_detail)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		}
+	}
+	SAFE_DELETE(message);
 }

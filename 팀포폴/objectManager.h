@@ -5,22 +5,29 @@
 #include "ladder.h"
 #include "dirtpile.h"
 #include "moveblock.h"
+#include "player.h"
+#include "effect.h"
 #include <vector>
 
 class objectManager : public gameNode
 {
 private:
-	
 	typedef vector<objects*> vO;
 	typedef vector<objects*>::iterator viO;
 private:
 	vO _vgem;
 	viO _vigem;
 	vO _vladder;
-	vO _vmoveblock;
+	vO _vmoveblock; 
 	vO _vdirtpile;
+	viO _vidirtpile;
 	objects* _obj;
 	int _hitcount;
+	int _leftX;
+	int _topY;
+	int  col;
+	player* _p;
+	effect* _pickeffect;
 public:
 	objectManager();
 	~objectManager();
@@ -30,6 +37,7 @@ public:
 	void update();
 	void render();
 	void setPosition();
-	void player_object_collision();
+	LPCOLLISION_INFO player_object_collision();
+	void connectPlayer(player* p) { _p = p; }
 };
 
