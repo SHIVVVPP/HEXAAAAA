@@ -73,6 +73,23 @@ void effect::startEffect(int x, int y)
 	_effectAnimation->start();
 }
 
+void effect::stretchstartEffect(int x, int y, int width)
+{
+	if (!_effectImage || !_effectAnimation) return;
+	_x = x; //x,y는 레프트 탑 좌표.
+	_y = y;
+	_width = width;
+	_isRunning = true;
+	_effectAnimation->start();
+	if (_effectAnimation->getPlayIndex() <= 0)
+	{
+		_effectAnimation->stop();
+		if(_x < x + _width)_x = RND->getInt(x + _width /2);
+		_isRunning = true;
+		_effectAnimation->start();
+	}
+}
+
 
 void effect::killEffect(void)
 {

@@ -97,6 +97,7 @@
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyManager.h" />
+    <ClInclude Include="fakedirt.h" />
     <ClInclude Include="food.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="gard.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyManager.cpp" />
+    <ClCompile Include="fakedirt.cpp" />
     <ClCompile Include="food.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="gard.cpp" />

@@ -1,6 +1,16 @@
 #pragma once
 #include "gameNode.h"
 
+enum MONSTER_INDEX 
+{
+	MON_REDBITTLE,
+	MON_GREENDRAGON,
+	MON_SLIME,
+	MON_SKELETON,
+	MON_YELLOWDRAGON,
+	MON_BUBBLE,
+	MON_BOSS,
+};
 
 enum monsterDirection
 {
@@ -31,6 +41,7 @@ class enemy : public gameNode
 protected:
 
 
+	MONSTER_INDEX _index;
 	image* _imageName;
 	RECT _rc;
 	RECT _collisionRc;
@@ -49,7 +60,6 @@ protected:
 
 	int frameCounter;
 	int slowFrameCounter;
-	int _index = 0;
 	int _currentFrameX, _currentFrameY;
 
 	int _probeX;
@@ -64,12 +74,13 @@ protected:
 
 public:
 
-	virtual HRESULT init();
-	HRESULT init(const char* imageName, POINT position, int hitCounter, int rcX, int rcY, int rcPlaceX, int rcPlaceY);
+	virtual HRESULT init(MONSTER_INDEX mon_index,POINT leftX_topY);
+	/*	virtual HRESULT init(const char* imageName, POINT position, int hitCounter, int rcX, int rcY, int rcPlaceX, int rcPlaceY);
 
-	HRESULT init(const char* imageName, POINT position, int hitCounter, int rcX, int rcY, int rcPlaceX,
+
+	virtual HRESULT init(const char* imageName, POINT position, int hitCounter, int rcX, int rcY, int rcPlaceX,
 		int rcPlaceY, int subRcX, int subRcY, int subRcPlaceX, int subRcPlaceY);
-
+		*/
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -78,6 +89,11 @@ public:
 	void generalMove();					
 	void damaged();						//맞았을때 함수
 
+
+	virtual void frameMove() {}
+	virtual void move(){}
+
+	/*
 	void slimeFameMove();				//몬스터별 프레임 무브
 	void redbeetleFrameMove();
 	void greenDragonFrameMove();
@@ -87,6 +103,7 @@ public:
 
 	void bubbleFrameMove();
 	void bubbleMove();
+	*/
 
 
 //	void detecting();

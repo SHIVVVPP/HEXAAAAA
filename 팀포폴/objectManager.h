@@ -13,6 +13,8 @@
 #include "part.h"
 #include "part2.h"
 #include "bubbles.h"
+#include "fakedirt.h"
+#include "musicsheet.h"
 #include "player.h"
 #include "effect.h"
 #include <vector>
@@ -37,11 +39,16 @@ private:
 	vO _vbubble;
 	vO _vplatter;
 	vO _vpart;
+	vO _vfakedirt;
 	objects* _obj;
 	int _hitcount;
 	int _leftX;
 	int _topY;
+	int _x, _y;
+	int x, y;
 	int  col;
+	bool _isOpen;
+	bool _iscrush;
 	player* _p;
 	effect* _pickeffect;
 public:

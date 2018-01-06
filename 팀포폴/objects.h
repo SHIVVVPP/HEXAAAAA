@@ -27,6 +27,7 @@ protected:
 	bool _canHit;
 	bool _picked;
 	bool _canLand;
+	
 	int _leftX;
 	int _topY;
 	int _startX, _startY;
@@ -46,11 +47,11 @@ public:
 	~objects();
 	virtual HRESULT init(int x, int y, int range, bool isRight);
 	virtual HRESULT init(int x, int y, int startX, int startY);
-	virtual HRESULT init(int x, int y, int starTx, int startY, int range);
+	virtual HRESULT init(int x, int y, int width);
+	virtual HRESULT init(int x, int y, int startx, int startY, int range);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
 	virtual HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);
-	virtual HRESULT init(int x, int y, int value);
 	virtual void update();
 	virtual void render();
 	virtual void release();
