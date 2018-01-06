@@ -25,6 +25,7 @@ HRESULT objectManager::init()
 	EFFECTMANAGER->addEffect("블록", "./image/object/dirtblock_effect.bmp", 540, 148, 180, 148, 1.0f, 0.1f, 100);
 	EFFECTMANAGER->addEffect("작은블록", "./image/object/dirtblock_small_effect.bmp", 320, 72, 106, 72, 1.0f, 0.1f, 100);
 	EFFECTMANAGER->addEffect("버블", "./image/object/bubbleeffect.bmp", 200, 100, 100, 100, 1.0f, 0.1f, 100);
+	
 	return S_OK;
 }
 
@@ -68,7 +69,10 @@ void objectManager::update()
 	{
 		_vpart[i]->update();
 	}
-
+	for (int i = 0; i < _vfakedirt.size(); i++)
+	{
+		_vfakedirt[i]->update();
+	}
 	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	player_object_collision();
 	_p->update();
@@ -120,6 +124,12 @@ void objectManager::render()
 	{
 		_vpart[i]->render();
 	}
+
+	for (int i = 0; i < _vfakedirt.size(); i++)
+	{
+		_vfakedirt[i]->render();
+	}
+
 	EFFECTMANAGER->render();
 }
 
@@ -187,10 +197,6 @@ void objectManager::setPosition()
 	_obj->init(3900, 3200);
 	_vUse.push_back(_obj);
 
-	_obj = new food;
-	_obj->init(3200, 3100);
-	_vUse.push_back(_obj);
-
 	//_obj = new platter;
 	//_obj->init(3200, 3150);
 	//_vUse.push_back(_obj);
@@ -218,6 +224,14 @@ void objectManager::setPosition()
 	_obj = new platters;
 	_obj->init(3600, 3200);
 	_vplatter.push_back(_obj);
+
+	_obj = new platters;
+	_obj->init(3800, 3200);
+	_vplatter.push_back(_obj);
+
+	_obj = new fakedirt;
+	_obj->init(3500, 3200,500);
+	_vfakedirt.push_back(_obj);  
 }
 
 LPCOLLISION_INFO objectManager::player_object_collision()
@@ -353,13 +367,13 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 	for (int i = 0; i < _vplatter.size(); i++)
 	{
 		RECT temp;
-		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vplatter[i]->_rc));
+		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vplatter[i]->_rc))
 		{
-			int _x = _vplatter[i]->_leftX + 10;
-			int _y = _vplatter[i]->_topY + 10;
+			_x = _vplatter[i]->_leftX + 10;
+			_y = _vplatter[i]->_topY + 10;
 			
-			_vplatter.erase(_vplatter.begin());
-
+			_vplatter.erase(_vplatter.begin() + i);
+			_isOpen = true;
 			//_obj = new part;
 			//_obj->init(_x, _y);
 			//_vpart.push_back(_obj);
@@ -369,7 +383,40 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			//_vpart.push_back(_obj);
 		}
 	}
+	if (_isOpen)
+	{
+		_obj = new part;
+		_obj->init(_x, _y);
+		_vpart.push_back(_obj);
 
+		_obj = new part2;
+		_obj->init(_x + 50, _y);
+		_vpart.push_back(_obj);
+
+		_obj = new food;
+		_obj->init(_x, _y);
+		_vUse.push_back(_obj);
+		_isOpen = false;
+	}
+	
+
+	for (int i = 0; i < _vfakedirt.size(); i++)
+	{
+		RECT temp;
+		if (IntersectRect(&temp,_p->getPlayerAttackRect(), &_vfakedirt[i]->_rc))
+		{
+			x = _vfakedirt[i]->_leftX;
+			y = _vfakedirt[i]->_topY;
+			_iscrush = true;
+			_vfakedirt.erase(_vfakedirt.begin() + i);
+		}
+	}
+
+	if (_iscrush)
+	{
+		EFFECTMANAGER->stretchplay("블록", x, y,IMAGEMANAGER->findImage("leftfakehead")->getWidth()/2);
+		//_iscrush = false;
+	}
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
 	if(tempInfo->_colType != COL_NONE)
 	return tempInfo;

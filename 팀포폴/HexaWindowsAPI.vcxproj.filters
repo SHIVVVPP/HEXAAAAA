@@ -139,6 +139,9 @@
     <Filter Include="shovelKnight\ObjectManager\Objects\musicsheet">
       <UniqueIdentifier>{b7e0c650-154f-4b3b-9727-09934d2c0501}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\ObjectManager\Objects\fakedirt">
+      <UniqueIdentifier>{a94dd201-f0c4-48c0-9b34-b5ffa65637f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -393,6 +396,9 @@
     <ClInclude Include="musicsheet.h">
       <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
     </ClInclude>
+    <ClInclude Include="fakedirt.h">
+      <Filter>shovelKnight\ObjectManager\Objects\fakedirt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -634,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="musicsheet.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
+    </ClCompile>
+    <ClCompile Include="fakedirt.cpp">
+      <Filter>shovelKnight\ObjectManager\Objects\fakedirt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
