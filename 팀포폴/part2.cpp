@@ -3,6 +3,7 @@
 
 part2::part2()
 {
+	_type = TYPE_PART;
 }
 
 
@@ -21,6 +22,7 @@ HRESULT part2::init(int x, int y)
 
 void part2::update()
 {
+	move();
 }
 
 void part2::render()
@@ -35,7 +37,7 @@ void part2::render()
 
 void part2::move()
 {
-	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("halfedplatter")->getWidth(), IMAGEMANAGER->findImage("halfedplatter")->getHeight());
+	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("halfedplatter2")->getWidth(), IMAGEMANAGER->findImage("halfedplatter2")->getHeight());
 
 	_leftX += cosf(_angle) * _speedX;
 	_topY += -sinf(_angle) * (5) * _speedX;

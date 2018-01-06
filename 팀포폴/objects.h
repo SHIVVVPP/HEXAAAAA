@@ -12,6 +12,7 @@
 #define TYPE_BARRIER 8
 #define TYPE_MEAL 9
 #define TYPE_SMALL_BLOCK 10
+#define TYPE_PART 11
 
 
 class objects : public gameNode

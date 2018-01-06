@@ -5,6 +5,7 @@
 
 part::part()
 {
+	_type = TYPE_PART;
 }
 
 
@@ -24,16 +25,17 @@ HRESULT part::init(int x, int y)
 
 void part::update()
 {
+	move();
 }
 
 void part::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), IMAGEMANAGER->findImage("halfedplatter2")->getWidth(), IMAGEMANAGER->findImage("halfedplatter2")->getHeight());
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), IMAGEMANAGER->findImage("halfedplatter")->getWidth(), IMAGEMANAGER->findImage("halfedplatter")->getHeight());
 	}
 
-	IMAGEMANAGER->findImage("halfedplatter2")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top));
+	IMAGEMANAGER->findImage("halfedplatter")->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top));
 }
 
 void part::move()
