@@ -45,6 +45,7 @@ public:
 	~objects();
 	virtual HRESULT init(int x, int y, int range, bool isRight);
 	virtual HRESULT init(int x, int y, int startX, int startY);
+	virtual HRESULT init(int x, int y, int starTx, int startY, int range);
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
 	virtual HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);

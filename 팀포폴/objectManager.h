@@ -12,6 +12,7 @@
 #include "food.h"
 #include "part.h"
 #include "part2.h"
+#include "bubbles.h"
 #include "player.h"
 #include "effect.h"
 #include <vector>
@@ -30,6 +31,7 @@ private:
 	vO _vUse;
 	viO _vidirtpile;
 	vO _vdirtblock;
+	vO _vbubble;
 	objects* _obj;
 	int _hitcount;
 	int _leftX;

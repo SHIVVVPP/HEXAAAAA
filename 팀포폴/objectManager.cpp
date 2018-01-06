@@ -52,6 +52,11 @@ void objectManager::update()
 	{
 		_vUse[i]->update();
 	}
+
+	for (int i = 0; i < _vbubble.size(); i++)
+	{
+		_vbubble[i]->update();
+	}
 	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	player_object_collision();
 	_p->update();
@@ -87,6 +92,11 @@ void objectManager::render()
 	for (int i = 0; i < _vdirtblock.size(); i++)
 	{
 		_vdirtblock[i]->render();
+	}
+
+	for (int i = 0; i < _vbubble.size(); i++)
+	{
+		_vbubble[i]->render();
 	}
 	EFFECTMANAGER->render();
 }
@@ -174,6 +184,14 @@ void objectManager::setPosition()
 	_obj = new smalldirtblock;
 	_obj->init(2100, 3300);
 	_vdirtblock.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(3464, 3100,3464,3100,90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(3200, 3100, 3200, 3100, 90);
+	_vbubble.push_back(_obj);
 }
 
 LPCOLLISION_INFO objectManager::player_object_collision()
@@ -289,6 +307,20 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 
 			else if (_vdirtblock[i]->_type == TYPE_SMALL_BLOCK)EFFECTMANAGER->play("작은블록", _vdirtblock[i]->_leftX, _vdirtblock[i]->_topY);
 			_vdirtblock.erase(_vdirtblock.begin() + i);
+		}
+	}
+
+	for (int i = 0; i < _vbubble.size(); i++)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vbubble[i]->_rc))
+		{
+			_obj = new bubbles;
+			_obj->init(_vbubble[i]->_leftX, _vbubble[i]->_topY, _vbubble[i]->_leftX, _vbubble[i]->_topY, 90);
+			_vbubble.push_back(_obj);
+
+			_vbubble.erase(_vbubble.begin() + i);
+
 		}
 	}
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리

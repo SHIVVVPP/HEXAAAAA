@@ -84,6 +84,7 @@
     <ClInclude Include="blueSlime.h" />
     <ClInclude Include="boss.h" />
     <ClInclude Include="bubble.h" />
+    <ClInclude Include="bubbles.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
@@ -166,8 +167,9 @@
     <ClCompile Include="Bard.cpp" />
     <ClCompile Include="blueSlime.cpp" />
     <ClCompile Include="boss.cpp" />
-    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="bubble.cpp" />
+    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="bubbles.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="Crown.cpp" />
     <ClCompile Include="database.cpp" />

@@ -227,7 +227,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("platter", "./image/object/platter.bmp", 138, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("halfedplatter", "./image/object/halfedplatter.bmp", 125, 125, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("halfedplatter2", "./image/object/halfedplatter2.bmp", 90, 90, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("bubble", "./image/object/bubble.bmp", 100, 109, true, RGB(255, 0, 255));
 	//±¤¸Æ
 	IMAGEMANAGER->addFrameImage("dirtpile", "./image/object/dirtpile.bmp", 660, 60, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("digclod1", "./image/object/digclod1.bmp", 40, 100, true, RGB(255, 0, 255));
