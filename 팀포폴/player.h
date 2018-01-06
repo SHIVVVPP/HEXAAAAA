@@ -61,6 +61,8 @@ class player : public gameNode
 	float _probeY;
 	float _repulsivePower;      // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
 	float _frictionalPower;		// 반발력을 서서히 삭감시키기 위한 마찰력
+	bool _isLadder;
+	bool _isLand;
 	bool _isJump;
 	int prevCondition1;
 	int prevCondition2;
@@ -80,6 +82,7 @@ public:
 	void update();
 	void render();
 	void usage();
+	void setPlayerCondition();
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
 	void collisonObject(int objType, int objValue);
@@ -169,6 +172,7 @@ public:
 			_jumpPower -= _gravity;
 		}
 	}
+	void setIsLand(bool landvalue) { _isLand = landvalue; }
 
 	// 점프파워 접근자
 

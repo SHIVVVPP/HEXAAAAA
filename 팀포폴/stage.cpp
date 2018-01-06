@@ -29,7 +29,7 @@ HRESULT stage::init()
 	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&_rc);
+	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
@@ -482,20 +482,21 @@ void stage::pixelCollison()
 	int r, g, b;
 
 	// 머리 충돌판정
+	
 	if (_player->getJumpPower() > 0)
 	{
 		_player->setProbeY(_player->getPlayerRect()->top - _currentRoom._topY);
-
+	
 		color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, _player->getPlayerRect()->top-_currentRoom._topY);
-
+	
 		r = GetRValue(color);
 		g = GetGValue(color);
 		b = GetBValue(color);
-
+	
 		//	if ()
 	}
 
-	else if (_player->getJumpPower()  <= 0)
+	if (_player->getJumpPower() <= 0)
 	{
 		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
 		bool k = false;
@@ -517,16 +518,20 @@ void stage::pixelCollison()
 				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + _currentRoom._topY);
 				a++;
 			}
+
+		
 		}
+	
 		if (k)
 		{
 			_player->setIsJump(false);
+			_player->setIsLand(true);
 		}
 		else
 		{
 			_player->setIsJump(true);
+			_player->setIsLand(false);
 		}
-
 
 	}
 
