@@ -10,6 +10,7 @@
 #include "moveblock.h"
 #include "potion.h"
 #include "food.h"
+#include "meal.h"
 #include "part.h"
 #include "part2.h"
 #include "bubbles.h"
@@ -26,6 +27,7 @@
 #define POTION 3
 #define PLATTER 4
 #define FOOD 5
+#define MEAL 6
 #define BUBBLE 6
 #define MUSIC_SHEET 7
 
@@ -54,7 +56,6 @@ private:
 	int x, y;		   //여기까지 좌표 저장용 ;
 	int _tempx, _tempy;//여기까지 좌표 저장용 ;
 	int _count;
-	int  col;
 	bool _isOpen;
 	bool _iscrush;
 	bool _istouched;

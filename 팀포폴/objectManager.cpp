@@ -14,12 +14,7 @@ objectManager::~objectManager()
 HRESULT objectManager::init()
 {
 	setPosition();
-	//_hitcount = 9;
-	for (int i = 0; i < _vgem.size(); i++)
-	{
-		_vgem[i]->_canHit = true;
-	}
-	//_pickeffect = new effect;
+	
 
 	EFFECTMANAGER->addEffect("보석", "./image/object/pickupSparkle.bmp", 42, 14, 14, 14, 1.0f, 0.05f, 100);
 	EFFECTMANAGER->addEffect("블록", "./image/object/dirtblock_effect.bmp", 540, 148, 180, 148, 1.0f, 0.1f, 100);
@@ -169,7 +164,7 @@ void objectManager::setPosition()
 	//_vgem.push_back(_obj);
 
 	_obj = new gem;
-	_obj->init(50, 3300, 3450, 3300, 3450, 2.0f, PI);
+	_obj->init(50, 100, 3450, 3300, 3450, 2.0f, PI);
 	_vgem.push_back(_obj);
 	
 	_obj = new ladder;
@@ -259,16 +254,14 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			RECT temp;
 			if(IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtpile[i]->_rc))
 			{
-			
 				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
 				{
 					_vdirtpile[i]->getAni()->setPlayIndex(1);
-					//col = 1;
+					
 					_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
 				{
-					col = 2;
 					_vdirtpile[i]->getAni()->setPlayIndex(2);	
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
@@ -284,47 +277,45 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 					_vdirtpile.erase(_vdirtpile.begin() + i);
 				}
 			}
+
+			if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+			{
+				_obj = new gem;
+				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+				_vgem.push_back(_obj);
+			}
     }
 	for (int i = 0; i < _vgem.size(); i++)
 	{
-		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-		{
-			_obj = new gem;
-			_obj->init(20, _leftX, _topY, _leftX, _topY,2.0f,PI);
-			_vgem.push_back(_obj);
-		
-			//_obj = new gem;
-			//_obj->init("reddia", 10, 30);
-			//_vgem.push_back(_obj);
-		  	
-			//_obj = new gem;
-			//_obj->init("yellowgem", 10, 30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
-			//_vgem.push_back(_obj);
-		}
+		//if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+		//{
+		//	_obj = new gem;
+		//	_obj->init(30, _leftX, _topY, _leftX, _topY,2.0f,PI);
+		//	_vgem.push_back(_obj);
+		//
+		//	//_obj = new gem;
+		//	//_obj->init("reddia", 10, 30);
+		//	//_vgem.push_back(_obj);
+		//  	
+		//	//_obj = new gem;
+		//	//_obj->init("yellowgem", 10, 30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+		//	//_vgem.push_back(_obj);
+		//}
 		//if (PtInRect(&_vgem[i]->_rc, _ptMouse))
 		//{
 			RECT temp;
 			if (IntersectRect(&temp, _p->getPlayerRect(), &_vgem[i]->_rc))
 			{
-				EFFECTMANAGER->play("보석", _vgem[i]->_leftX,_vgem[i]->_topY);
-				_vgem.erase(_vgem.begin() + i);
-				_obj = new gem;
-				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
-				_vgem.push_back(_obj);
 				//충돌메시지 작성
 				tempInfo->_colType = COL_OBJECT;
 				//tempInfo->index_detail = --- 세부번호
 				tempInfo->object = _vgem[i];
+
+				EFFECTMANAGER->play("보석", _vgem[i]->_leftX,_vgem[i]->_topY);
+				_vgem.erase(_vgem.begin() + i);
 			}
 			//if (_vgem.size() >= 10)_vgem.erase(_vgem.begin(),_vgem.end());
-			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
-			{
-				//vector<objects*> temp;
-				//temp.push_back(_vgem[i]);
-				_vgem.erase(_vgem.begin() + i);
-				//_vgem.push_back(_vgem[i]);
-				//_vgem.erase(_vgem.begin() + i);
-			}
+			
 			if (_vdirtpile.size() <= 0)
 			{
 				_vgem[i]->_leftX = 0;
@@ -333,17 +324,21 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		//}
 	}
 	
-	//포션
+	//포션, food , meal
 	for (int i = 0; i < _vUse.size(); i++)
 	{
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_POTION)
 		{
-			//if(_vUse[i]->_type != TYPE_FOOD)
 			_vUse.erase(_vUse.begin() + i);
 		}
 
 		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_FOOD)
+		{
+			_vUse.erase(_vUse.begin() + i);
+		}
+
+		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_MEAL)
 		{
 			_vUse.erase(_vUse.begin() + i);
 		}
@@ -449,7 +444,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 
 	if (_istouched)
 	{
-		EFFECTMANAGER->stretchplay("보석", _tempx, _tempy, IMAGEMANAGER->findImage("sparkle")->getWidth(), IMAGEMANAGER->findImage("sparkle")->getHeight(), 48, true);
+		EFFECTMANAGER->stretchplay("보석", _tempx, _tempy, IMAGEMANAGER->findImage("sparkle")->getWidth(), IMAGEMANAGER->findImage("sparkle")->getHeight(), 52, true);
 		if (_count % 50 == 0)
 		{
 			_istouched = false;
