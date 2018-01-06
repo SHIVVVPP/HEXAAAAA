@@ -4,7 +4,7 @@ class musicsheet : public objects
 {
 public:
 
-	HRESULT init();
+	//HRESULT init();
 	musicsheet();
 	~musicsheet();
 };

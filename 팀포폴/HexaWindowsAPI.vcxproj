@@ -115,7 +115,6 @@
     <ClInclude Include="ladder.h" />
     <ClInclude Include="maiden.h" />
     <ClInclude Include="mainGame.h" />
-    <ClInclude Include="Merchant.h" />
     <ClInclude Include="Molly.h" />
     <ClInclude Include="moveblock.h" />
     <ClInclude Include="musicsheet.h" />
@@ -200,7 +199,6 @@
     <ClCompile Include="maiden.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="mainGame_images.cpp" />
-    <ClCompile Include="Merchant.cpp" />
     <ClCompile Include="Molly.cpp" />
     <ClCompile Include="moveblock.cpp" />
     <ClCompile Include="musicsheet.cpp" />

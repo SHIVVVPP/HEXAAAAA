@@ -29,6 +29,7 @@ HRESULT NPC::init(const char * ImageName, const char * ImageName2, POINT positio
 	_firelod = IMAGEMANAGER->findImage("firelod");
 	_invenMusicSheet = IMAGEMANAGER->findImage("invenMusicSheet");
 	_invenMealTickets = IMAGEMANAGER->findImage("invenMealTickets");
+	_posion = IMAGEMANAGER->findImage("포션");
 	_selectRectimg = IMAGEMANAGER->findImage("선택박스");
 	_done = IMAGEMANAGER->findImage("안삼");
 
@@ -79,29 +80,6 @@ void NPC::update()
 	
 	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 4);
 	//Move(_isMove,_isRight);
-	
-	if (_isSaller && conversationCount == 1)			//조절해야됨;
-	{
-		_tolkBox = RectMakeCenter(WINSIZEX / 2, 187, _storeUI->getWidth(), _storeUI->getHeight());
-		_tolkboxX = 1540;																												//토크박스x
-		_tolkboxY = 160;																												//토크박스y
-		_tolkX = 500;																													//대화위치 x
-		_tolkY = 50;																													//대화위치 y
-		_tolkCout = _tolkMaxsize;																										//토크출력시간;
-	}
-	if (_isSaller && conversationCount == 0)			//조절해야됨;
-	{
-		_tolkBox = RectMakeCenter(WINSIZEX / 2, 97, _conversaion->getWidth(), _conversaion->getHeight());
-		_tolkboxX = 1600;																												//토크박스x
-		_tolkboxY = 384;																												//토크박스y
-		_tolkX = 235;																													//대화위치 x
-		_tolkY = 50;																													//대화위치 y
-		_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());																																//토크출력시간;
-	}
-
-	if (conversationCount == 0) {
-		selectbox = 0;
-	}
 	
 }
 void NPC::render()

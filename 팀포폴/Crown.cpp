@@ -186,5 +186,26 @@ void Crown::Converstion(int tolkCount)
 			}
 		}
 	}
+	if (_isSaller && conversationCount == 0)			//조절해야됨;
+	{
+		_tolkBox = RectMakeCenter(WINSIZEX / 2, 97, _conversaion->getWidth(), _conversaion->getHeight());
+		_tolkboxX = 1600;																												//토크박스x
+		_tolkboxY = 384;																												//토크박스y
+		_tolkX = 235;																													//대화위치 x
+		_tolkY = 50;																													//대화위치 y
+		_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());																																//토크출력시간;
+	}
+	else if (_isSaller && conversationCount == 1)			//조절해야됨;
+	{
+		_tolkBox = RectMakeCenter(WINSIZEX / 2, 187, _storeUI->getWidth(), _storeUI->getHeight());
+		_tolkboxX = 1540;																												//토크박스x
+		_tolkboxY = 160;																												//토크박스y
+		_tolkX = 500;																													//대화위치 x
+		_tolkY = 50;																													//대화위치 y
+		_tolkCout = _tolkMaxsize;																										//토크출력시간;
+	}
 
+	if (conversationCount == 0) {
+		selectbox = 0;
+	}
 }

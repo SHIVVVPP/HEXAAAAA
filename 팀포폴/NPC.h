@@ -24,6 +24,7 @@ protected:
 	image*		_firelod;				//파이어로드
 	image*		_invenMusicSheet;		//악보
 	image*		_invenMealTickets;		//음식티켓
+	image*		_posion;
 	image*		_selectRectimg;			//선택렉트
 	image*		_yesBox;				//yes
 	image*		_noBox;					//no

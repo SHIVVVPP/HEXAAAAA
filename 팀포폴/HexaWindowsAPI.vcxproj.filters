@@ -282,9 +282,6 @@
     <ClInclude Include="maiden.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
-    <ClInclude Include="Merchant.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
     <ClInclude Include="Molly.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
@@ -516,9 +513,6 @@
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="maiden.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
-    <ClCompile Include="Merchant.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="Molly.cpp">

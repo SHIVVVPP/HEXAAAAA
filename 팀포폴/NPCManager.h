@@ -10,7 +10,6 @@
 #include"Molly.h"
 #include"Tim.h"
 #include"Bard.h"
-#include"Merchant.h"
 #include"Sepp.h"
 #include"waterGirl.h"
 #include"Wizard.h"
