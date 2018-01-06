@@ -40,7 +40,7 @@ void NPCManager::render()
 		(*_viNPC)->render();
 
 	}
-	TextOut(getMemDC(), 50, 350, str, strlen(str));
+	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
 void NPCManager::setNpc()
@@ -55,10 +55,10 @@ void NPCManager::setNpc()
 
 	NPC* molly;
 	molly = new Molly;
-	molly->init("몰리", PointMake(2330, 650), "./text/NPC/몰리.txt", "..", true, false, false, false);
+	molly->init("몰리", PointMake(2330, 650), "./text/NPC/몰리.txt", "..", false, false, false, false);
 
 	NPC* gote;
-	gote = new Merchant;
+	gote = new goatician;
 	gote->init("염소", PointMake(3170, 650), "./text/NPC/goatician.txt","./text/NPC/goatician2.txt", false, false, true, true);
 
 	NPC* _wizard;
@@ -67,7 +67,7 @@ void NPCManager::setNpc()
 
 	NPC* _cooker;
 	_cooker = new Sepp;
-	_cooker->init("요리사", PointMake(2935,	280), "./text/NPC/요리사.txt", "./text/NPC/요리사1.txt", false, false, true, false);
+	_cooker->init("요리사", PointMake(50,280), "./text/NPC/요리사.txt", "./text/NPC/요리사1.txt", false, false, true, false);
 
 	NPC* _famer;
 	_famer = new hedgeFarmer;
@@ -130,9 +130,13 @@ void NPCManager::collision()
 		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &RectMake(_ptMouse.x,_ptMouse.y,50,50)))
 		{
 			
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) {
-			
-				(*_viNPC)->setisTolk(true);
+			if (!(*_viNPC)->getisTolk()) 
+			{
+				if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
+				{
+					(*_viNPC)->setisTolk(true);
+					sprintf(str, "a : %d", a);
+				}
 			}
 			if ((*_viNPC)->getisTolk()) {
 				a++;
@@ -142,11 +146,26 @@ void NPCManager::collision()
 				a = 0;
 				
 			}
-			sprintf(str, "a : %d", a);
+		
 			if (KEYMANAGER->isOnceKeyDown('X'))
 			{
 				(*_viNPC)->setcoversationCount(1);
+				if ((*_viNPC)->getcoversationCount() == 1) {
+					a = 0;
+				}
+				if (!(*_viNPC)->getisSaller())
+				{
+					if ((*_viNPC)->getcoversationCount() == 2) {
+						(*_viNPC)->setisTolk(false);
+						(*_viNPC)->setcoversationCount(-2);
+					}
+				}
 			
+			}
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+			{
+				if (!(*_viNPC)->getisTiket())(*_viNPC)->setisgetTiket(true);
+				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
 			}
 			if (a >= (*_viNPC)->gettxtSizeMax()) {
 				a = (*_viNPC)->gettxtSizeMax();

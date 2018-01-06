@@ -62,7 +62,7 @@ void Crown::tolkdrow()
 			_firelod->render(getMemDC(), 400, 50);
 			_invenMusicSheet->render(getMemDC(), 550, 50);
 			_done->render(getMemDC(), 725, 230);
-			if (_isSelect)
+			if (_isSelect&& selectbox == selectNum0 || _isSelect&& selectbox == selectNum1)
 			{
 				_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-0.txt", getMemDC());
 				TXTDATA->render("./text/NPC/Merchant3-0.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
@@ -76,15 +76,17 @@ void Crown::tolkdrow()
 				TXTDATA->render("./text/NPC/Merchant3-1.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 				_noBox->render(getMemDC(), 1100, 270);
 				_yesBox->render(getMemDC(), 1400, 270);
+				_selectBox->render(getMemDC(), _selectBoxX, _selectBoxY);
 			}
 		}
 	}
+	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
 void Crown::Converstion(int tolkCount)
 {
 	_tolkCout = tolkCount;
-
+	
 	if (!_isSelect) {
 		switch (selectbox)
 		{
@@ -121,7 +123,9 @@ void Crown::Converstion(int tolkCount)
 			selectx = 400;
 			selecty = 180;
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum4;
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) selectbox = selectNum0;
+			if (KEYMANAGER->isOnceKeyDown(VK_UP)) 	selectbox = selectNum0;
+				
+		
 		}
 		break;
 		case selectNum4:
@@ -130,7 +134,8 @@ void Crown::Converstion(int tolkCount)
 			selecty = 180;
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum3;
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum5;
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) selectbox = selectNum1;
+			if (KEYMANAGER->isOnceKeyDown(VK_UP)) 	sprintf(str, "selectbox : %d", selectbox);
+			
 		}
 		break;
 		case selectNum5:
@@ -138,7 +143,7 @@ void Crown::Converstion(int tolkCount)
 			selectx = 700;
 			selecty = 180;
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum4;
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) selectbox = selectNum2;
+			if (KEYMANAGER->isOnceKeyDown(VK_UP) && !_isSelect) selectbox = selectNum2;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
 		}
 		break;
@@ -167,7 +172,7 @@ void Crown::Converstion(int tolkCount)
 		if (KEYMANAGER->isOnceKeyDown('C')) 
 		{
 			if (_selectBoxX == 1390) {
-				_isByYes = true;
+				_isBuyYes = true;
 				_isSelect = false;
 				_istolk = false;
 				conversationCount = 0;
@@ -175,10 +180,9 @@ void Crown::Converstion(int tolkCount)
 			}
 			else
 			{
-				_isByYes = false;
+				_isBuyYes = false;
 				_isSelect = false;
-				_istolk = false;
-				conversationCount = 0;
+				
 			}
 		}
 	}

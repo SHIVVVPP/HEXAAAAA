@@ -23,6 +23,7 @@ protected:
 	image*		_storeUI;				//상점UI
 	image*		_firelod;				//파이어로드
 	image*		_invenMusicSheet;		//악보
+	image*		_invenMealTickets;		//음식티켓
 	image*		_selectRectimg;			//선택렉트
 	image*		_yesBox;				//yes
 	image*		_noBox;					//no
@@ -52,11 +53,13 @@ protected:
 	bool		_istolk;				//토크 준비
 	bool		_isMoreConverstion;		//대화가 더있냐?
 	bool		_isSaller;				//상점 역활을 하니?
-	bool		_isByYes;				//yes니?
+	bool		_isBuyYes;				//yes니?
 	bool		_isSelect;				//선택되었니?
-
+	bool		_isgetTiket;			//티켓이 있니?
+	bool		_isgetfirelod;			//지팡이 있니?
 	const char* fileName;				//텍스트 파일 이름 저장
 	const char* fileName2;				//텍스트 파일 이름 저장
+	char str[128];
 public:
 
 	NPC();
@@ -67,6 +70,7 @@ public:
 	void release();
 	void update();
 	void render();
+	virtual void aniMove();
 	virtual void tolkdrow();
 	virtual void Move(bool _isMvoe, bool _isRight);
 	virtual void Converstion(int tolkCount);  
@@ -75,9 +79,13 @@ public:
 	bool getisMove() { return _isMove; }
 	bool getisRight() { return _isRight; }
 	bool getisTolk() { return _istolk; }
+	bool getisSaller() { return _isSaller; }
 	int	 getcoversationCount() { return conversationCount; }
 	int  gettxtSizeMax() { return _tolkMaxsize; }
-
+	bool getisTiket() { return _isgetTiket; }
+	void setisgetTiket(bool Tiket) { _isgetTiket = Tiket; }
+	bool getisfirelod() { return _isgetfirelod; }
+	void setisfirelod(bool Tiket) { _isgetfirelod = Tiket; }
 	void setcoversationCount(int num) { conversationCount += num; }
 	void setisTolk(bool istolk) { _istolk = istolk; }
 

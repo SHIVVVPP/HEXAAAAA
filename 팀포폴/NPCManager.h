@@ -16,6 +16,7 @@
 #include"Wizard.h"
 #include"gard.h"
 #include"Crown.h"
+#include"goatician.h"
 
 class NPCManager : public gameNode
 {

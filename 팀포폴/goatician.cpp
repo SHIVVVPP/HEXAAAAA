@@ -42,8 +42,8 @@ void goatician::tolkdrow()
 				{
 					if (!_isSelect)
 					{
-						_tolkMaxsize = TXTDATA->textSize("./text/Merchant3-1.txt", getMemDC());
-						TXTDATA->render("./text/Merchant3-1.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+						_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-1.txt", getMemDC());
+						TXTDATA->render("./text/NPC/Merchant3-1.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 					}
 				}
 			}
@@ -52,10 +52,9 @@ void goatician::tolkdrow()
 		else if (_isSaller && conversationCount >= 1) {
 			_storeUI->render(getMemDC());
 			_selectRectimg->render(getMemDC(), selectx, selecty);
-			_firelod->render(getMemDC(), 400, 50);
-			_invenMusicSheet->render(getMemDC(), 550, 50);
-			_done->render(getMemDC(), 725, 230);
-			if (_isSelect)
+			_invenMealTickets->render(getMemDC(), 425, 140);
+			_done->render(getMemDC(), 625, 190);
+			if (_isSelect && selectbox == selectNum0)
 			{
 				_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-0.txt", getMemDC());
 				TXTDATA->render("./text/NPC/Merchant3-0.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
@@ -69,6 +68,7 @@ void goatician::tolkdrow()
 				TXTDATA->render("./text/NPC/Merchant3-1.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 				_noBox->render(getMemDC(), 1100, 270);
 				_yesBox->render(getMemDC(), 1400, 270);
+				_selectBox->render(getMemDC(), _selectBoxX, _selectBoxY);
 			}
 		}
 	}
@@ -76,4 +76,63 @@ void goatician::tolkdrow()
 
 void goatician::Converstion(int tolkCount)
 {
+	_tolkCout = tolkCount;
+
+	if (!_isSelect) {
+		switch (selectbox)
+		{
+		case selectNum0:
+		{
+			selectx = 430;
+			selecty = 140;
+			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum1;
+			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
+		}
+		break;
+		case selectNum1:
+		{
+			selectx = 600;
+			selecty = 140;
+			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum0;
+			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
+		}
+		break;
+		}
+	}
+	else
+	{
+
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			_selectBoxX = 1070;
+			_selectBoxY = 260;
+		}
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			_selectBoxX = 1390;
+			_selectBoxY = 260;
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('X'))
+		{
+			_isSelect = false;
+
+		}
+		if (KEYMANAGER->isOnceKeyDown('C'))
+		{
+			if (_selectBoxX == 1390) {
+				_isBuyYes = true;
+				_isSelect = false;
+				_istolk = false;
+				conversationCount = 0;
+
+			}
+			else
+			{
+				_isBuyYes = false;
+				_isSelect = false;
+				
+			}
+		}
+	}
 }

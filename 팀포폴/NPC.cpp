@@ -27,29 +27,13 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 
 	_firelod = IMAGEMANAGER->findImage("firelod");
 	_invenMusicSheet = IMAGEMANAGER->findImage("invenMusicSheet");
+	_invenMealTickets = IMAGEMANAGER->findImage("invenMealTickets");
 	_selectRectimg = IMAGEMANAGER->findImage("선택박스");
 	_done = IMAGEMANAGER->findImage("안삼");
 
 	_yesBox = IMAGEMANAGER->findImage("선택안된YES");
 	_noBox = IMAGEMANAGER->findImage("선택안된NO");
 	_selectBox = IMAGEMANAGER->findImage("선택BOX");
-	if (!isMove) {
-		_aniNpc->setDefPlayFrame(false, true);																							//
-	}
-	/*else {
-		if (isRight) 
-		{
-			int arrAni[] = { 0, 1 };
-			_aniNpc->setPlayFrame(arrAni, 0, true);
-		}
-		else 
-		{
-			int arrAni[] = { 3, 2 };
-			_aniNpc->setPlayFrame(arrAni, 2, true);
-		}
-	}*/
-	_aniNpc->setFPS(1);																												//애니메이션 속도
-	_aniNpc->start();
 
 	_x = _imgrc.left + ((_imgrc.right - _imgrc.left) / 2);																			//npc의 중심좌표 x
 	_y = _imgrc.top + ((_imgrc.bottom - _imgrc.top) / 2);																			//npc의 중심좌표 y
@@ -75,8 +59,14 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 	selectx = 400;
 	selecty = 60;
 	conversationCount = 0;
-	_isSelect = _istolk = false;																												//토크 출력 컨트롤 불값
-	_isByYes = false;																													//처음은 NO;
+	_isSelect = _istolk = false;																									//토크 출력 컨트롤 불값
+	_isBuyYes = false;																												//처음은 NO;
+	_isgetTiket = _isgetfirelod = true;
+	aniMove();
+	_aniNpc->setFPS(1);																												//애니메이션 속도
+	_aniNpc->start();
+
+	
 	return S_OK;
 }
 void NPC::release()
@@ -85,8 +75,8 @@ void NPC::release()
 }
 void NPC::update()
 {
-	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
-
+	//aniMove();
+	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 4);
 	//Move(_isMove,_isRight);
 
 	if (_isSaller && conversationCount == 1)			//조절해야됨;
@@ -126,6 +116,24 @@ void NPC::render()
 	
 	
 }
+void NPC::aniMove()
+{
+	if (!_isMove) {
+		_aniNpc->setDefPlayFrame(false, true);																							//
+	}
+	else {
+		if (_isRight)
+		{
+			int arrAni[] = { 0, 1 };
+			_aniNpc->setPlayFrame(arrAni, 0, true);
+		}
+		else
+		{
+			int arrAni[] = { 3, 2 };
+			_aniNpc->setPlayFrame(arrAni, 2, true);
+		}
+	}
+}
 void NPC::tolkdrow()
 {
 	if (_istolk)
@@ -146,9 +154,13 @@ void NPC::tolkdrow()
 			}
 			
 		}
+
 		else if (_isMoreConverstion && !_isSaller)
 		{
-			if (conversationCount == 0)TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			if (conversationCount == 0) {
+				TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+				_conversaion->render(getMemDC());
+			}
 			else if(conversationCount == 1)
 			{
 				_tolkMaxsize = TXTDATA->textSize(fileName2, getMemDC());
