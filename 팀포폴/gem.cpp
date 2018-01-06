@@ -49,7 +49,7 @@ void gem::update()
 		_imageName = "yellowgem";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 30;
-		_startY = _topY + 24;
+		_range = 40;
 		break;
 	case 3:
 		_imageName = "greengem";
@@ -66,7 +66,7 @@ void gem::update()
 		_imageName = "smalljew";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 5;
-		_startY = _topY + 25;
+		_range = 50;
 		break;
 	case 6:
 		_imageName = "bluedia";

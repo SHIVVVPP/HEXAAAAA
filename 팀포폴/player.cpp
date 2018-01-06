@@ -124,7 +124,7 @@ void player::update()
 		{
 			_dir = 1;
 			_playerMainCondition = PLAYER_RIGHT_MOVE;
-			setPlayerCondition();
+			//setPlayerCondition();
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 		{
@@ -135,7 +135,7 @@ void player::update()
 		{
 			_dir = -1;
 			_playerMainCondition = PLAYER_LEFT_MOVE;
-			setPlayerCondition();
+			//setPlayerCondition();
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 		{
