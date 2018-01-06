@@ -8,7 +8,7 @@ class effect : public gameNode
 protected:
 	int			_x;			//¿Ã∆Â∆Æ ¡¬«•
 	int			_y;
-
+	int			_width;
 	image*		_effectImage;
 	animation*	_effectAnimation;
 	BOOL		_isRunning;
@@ -25,7 +25,7 @@ public:
 	virtual void render(void);
 
 	void startEffect(int x, int y);
-
+	void stretchstartEffect(int x, int y, int width);
 	virtual void killEffect(void);
 
 	BOOL getIsRunning(void) { return _isRunning; }

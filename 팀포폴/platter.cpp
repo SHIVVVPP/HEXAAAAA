@@ -5,6 +5,7 @@
 platters::platters()
 {
 	_type = TYPE_PLATTER;
+	
 }
 
 
