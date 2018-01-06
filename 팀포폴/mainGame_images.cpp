@@ -224,11 +224,11 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("greengem", "./image/object/greengem.bmp", 26, 38, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("smalljew", "./image/object/sjewel.bmp", 17, 20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("yellowgem", "./image/object/yellowgem.bmp", 37, 28, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("bgmusicsheet", "./image/object/bgmusicsheet.bmp", 83, 77, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("skull", "./image/object/skull.bmp", 48, 44, true, RGB(255, 0, 255));
 	//픽업 이펙트
 	IMAGEMANAGER->addFrameImage("sparkle", "./image/object/pickupSparkle.bmp", 42, 14, 3, 1, true, RGB(255, 0, 255));
-
+	
 	//음식
 	IMAGEMANAGER->addImage("chicken", "./image/object/chicken.bmp", 120, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("food", "./image/object/foods.bmp", 120, 75, true, RGB(255, 0, 255));

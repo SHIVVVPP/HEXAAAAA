@@ -134,7 +134,7 @@ void effectManager::play(string effectName, int x, int y)
 	}
 }
 
-void effectManager::stretchplay(string effectName, int x, int y, int width)
+void effectManager::stretchplay(string effectName, int x, int y, int width ,int height,  int scale,bool use)
 {
 	iterTotalEffect vIter;
 	iterEffect mIter;
@@ -150,7 +150,7 @@ void effectManager::stretchplay(string effectName, int x, int y, int width)
 			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
 			{
 				if ((*vArrIter)->getIsRunning()) continue;
-				(*vArrIter)->stretchstartEffect(x,y,width);
+				(*vArrIter)->stretchstartEffect(x,y,width,height,scale,use);
 				return;
 			}
 		}

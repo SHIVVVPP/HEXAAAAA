@@ -73,6 +73,10 @@ void objectManager::update()
 	{
 		_vfakedirt[i]->update();
 	}
+	for (int i = 0; i < _vsheet.size(); i++)
+	{
+		_vsheet[i]->update();
+	}
 	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	player_object_collision();
 	_p->update();
@@ -129,7 +133,10 @@ void objectManager::render()
 	{
 		_vfakedirt[i]->render();
 	}
-
+	for (int i = 0; i < _vsheet.size(); i++)
+	{
+		_vsheet[i]->render();
+	}
 	EFFECTMANAGER->render();
 }
 
@@ -232,6 +239,10 @@ void objectManager::setPosition()
 	_obj = new fakedirt;
 	_obj->init(3500, 3200,500);
 	_vfakedirt.push_back(_obj);  
+
+	_obj = new musicsheet;
+	_obj->init(3400, 3400);
+	_vsheet.push_back(_obj);
 }
 
 LPCOLLISION_INFO objectManager::player_object_collision()
@@ -412,11 +423,40 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		}
 	}
 
+	for (int i = 0; i < _vsheet.size(); i++)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, _p->getPlayerRect(), &_vsheet[i]->_rc))
+		{
+			_istouched = true;
+			_tempx = _vsheet[i]->_leftX;
+			_tempy = _vsheet[i]->_topY;
+			_vsheet[i]->_gainValue += 1;
+			_vsheet.erase(_vsheet.begin() + i);
+		}
+	}
+
+	_count++;
 	if (_iscrush)
 	{
-		EFFECTMANAGER->stretchplay("블록", x, y,IMAGEMANAGER->findImage("leftfakehead")->getWidth()/2);
-		//_iscrush = false;
+		EFFECTMANAGER->stretchplay("블록", x, y,IMAGEMANAGER->findImage("leftfakehead")->getWidth(),0,8,false);
+		if (_count % 50 == 0)
+		{
+			_iscrush = false;
+			_count = 0;
+		}
 	}
+
+	if (_istouched)
+	{
+		EFFECTMANAGER->stretchplay("보석", _tempx, _tempy, IMAGEMANAGER->findImage("sparkle")->getWidth(), IMAGEMANAGER->findImage("sparkle")->getHeight(), 48, true);
+		if (_count % 50 == 0)
+		{
+			_istouched = false;
+			_count = 0;
+		}
+	}
+
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
 	if(tempInfo->_colType != COL_NONE)
 	return tempInfo;

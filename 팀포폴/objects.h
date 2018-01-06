@@ -37,6 +37,7 @@ protected:
 	int _helathValue;
 	int _manaValue;
 	int _alphaValue;
+	int _gainValue;
 	float _speedX;
 	float _angle;
 	const char* _imageName;
@@ -63,5 +64,9 @@ public:
 	RECT getRc() { return _rc; }
 	void setRC(RECT rc) { _rc = rc; }
 	const char* getImage() { return _imageName; }
+
+	int getHealthValue() { return _helathValue; }
+	int getGoldValue() { return _goldValue; }
+	int getManaValue() { return _manaValue; }
 };
 

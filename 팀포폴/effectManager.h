@@ -30,7 +30,7 @@ public:
 	void addEffect(string effectName, const char* imageName, int imageWidth, int imageHeight, int effectWidth, int effectHeight, int fps, float elapsedTime, int buffer);
 
 	void play(string effectName, int x, int y);
-	void stretchplay(string effectName, int x, int y, int width);
+	void stretchplay(string effectName, int x, int y, int width , int height, int scale , bool use);
 
 	effectManager();
 	~effectManager();

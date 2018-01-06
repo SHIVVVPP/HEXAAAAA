@@ -9,6 +9,9 @@ protected:
 	int			_x;			//¿Ã∆Â∆Æ ¡¬«•
 	int			_y;
 	int			_width;
+	int			_height;
+	int			_scale;
+	bool		_useHeight;
 	image*		_effectImage;
 	animation*	_effectAnimation;
 	BOOL		_isRunning;
@@ -25,7 +28,7 @@ public:
 	virtual void render(void);
 
 	void startEffect(int x, int y);
-	void stretchstartEffect(int x, int y, int width);
+	void stretchstartEffect(int x, int y, int width ,int height, int scale , bool use);
 	virtual void killEffect(void);
 
 	BOOL getIsRunning(void) { return _isRunning; }

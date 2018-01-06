@@ -20,7 +20,14 @@
 #include <vector>
 
 
-
+#define GEM 0
+#define DIRTPILE 1
+#define DIRTFAKE 2
+#define POTION 3
+#define PLATTER 4
+#define FOOD 5
+#define BUBBLE 6
+#define MUSIC_SHEET 7
 
 class objectManager : public gameNode
 {
@@ -29,26 +36,28 @@ private:
 	typedef vector<objects*>::iterator viO;
 private:
 	vO _vgem;
-	viO _vigem;
 	vO _vladder;
 	vO _vmoveblock; 
 	vO _vdirtpile;
 	vO _vUse;
-	viO _vidirtpile;
 	vO _vdirtblock;
 	vO _vbubble;
 	vO _vplatter;
 	vO _vpart;
 	vO _vfakedirt;
+	vO _vsheet;
 	objects* _obj;
 	int _hitcount;
-	int _leftX;
-	int _topY;
-	int _x, _y;
-	int x, y;
+	int _leftX;		   //여기까지 좌표 저장용 ;
+	int _topY;		   //여기까지 좌표 저장용 ;
+	int _x, _y;		   //여기까지 좌표 저장용 ;
+	int x, y;		   //여기까지 좌표 저장용 ;
+	int _tempx, _tempy;//여기까지 좌표 저장용 ;
+	int _count;
 	int  col;
 	bool _isOpen;
 	bool _iscrush;
+	bool _istouched;
 	player* _p;
 	effect* _pickeffect;
 public:
