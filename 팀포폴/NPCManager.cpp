@@ -14,7 +14,7 @@ NPCManager::~NPCManager()
 HRESULT NPCManager::init()
 {
 	a = 0;
-	rc = RectMake(WINSIZEX/2, WINSIZEY / 2, 50, 50);
+	
 	
 	return S_OK;
 }
@@ -30,22 +30,7 @@ void NPCManager::update()
 		(*_viNPC)->update();
 		++_viNPC;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
-		rc.left += 5;
-		rc.right += 5;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) {
-		rc.left -= 5;
-		rc.right -= 5;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) {
-		rc.top += 5;
-		rc.bottom += 5;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_UP)) {
-		rc.top -= 5;
-		rc.bottom -= 5;
-	}
+
 
 	_p->update();
 	//collision();
@@ -60,8 +45,6 @@ void NPCManager::render()
 		(*_viNPC)->render();
 
 	}
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc).x,
-								CAMERAMANAGER->CameraRelativePoint(rc).y,  50, 50);
 	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
