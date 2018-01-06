@@ -17,6 +17,7 @@ private:
 	//system_option* sys;
 	gameNode * _inventory;
 	gameNode* _stage;
+	//gameNode* _town;
 	ui* _ui;
 public:
 	virtual HRESULT init();			

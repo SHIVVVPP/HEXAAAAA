@@ -11,17 +11,22 @@ Sepp::~Sepp()
 {
 }
 
+void Sepp::render()
+{
+	if (!_isgetTiket && !isCooking)_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
+	else if(_isgetTiket && isCooking)IMAGEMANAGER->findImage(_imgName2)->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y+87, crrentx, crrenty);
+	else if (!_isgetTiket && isCooking)_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
+	tolkdrow();
+
+}
+
 void Sepp::aniMove()
 {
 	if (!_isgetTiket)
 	{
 		_aniNpc->setDefPlayFrame(false, true);																							//
 	}
-	else if (_isgetTiket)
-	{
-		_Npcimage = IMAGEMANAGER->findImage("조리중");
-		_aniNpc->setDefPlayFrame(false, true);
-	}
+	
 	
 }
 
@@ -73,5 +78,41 @@ void Sepp::Converstion(int tolkCount)
 		if (!_istolk) {
 			conversationCount = 0;
 		}
-	
+		
+		if (_isgetTiket)
+		{
+			isCooking = true;
+		
+			if (isCooking) {
+				
+				count++;
+
+				if (crrentx > IMAGEMANAGER->findImage(_imgName2)->getMaxFrameX()) {
+					crrentx = 0;
+					if (_imgName2 == "조리중")
+						_imgName2 = "조리중1";
+					else if (_imgName2 == "조리중1")
+						_imgName2 = "조리중2-1";
+					else if (_imgName2 == "조리중2-1")
+						_imgName2 = "조리중2-2";
+					else if (_imgName2 == "조리중2-2")
+						_imgName2 = "서빙";
+					else if (_imgName2 == "서빙")
+					{
+
+						_istolk = false;
+						_imgName2 = "조리중";
+						_isgetTiket = false;
+					}
+				}
+
+				else {
+					if (count % 10 == 0)
+						crrentx++;
+				}
+				
+				crrenty = 0;
+			}
+		}
+		
 }

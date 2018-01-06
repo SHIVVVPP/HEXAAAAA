@@ -47,6 +47,7 @@ protected:
 	int			_selectBoxX;
 	int			_selectBoxY;
 	int			selectbox;
+	int			crrentx, crrenty;
 
 	bool		_isMove;				//움직이냐?
 	bool		_isRight;				//오른쪽이냐?
@@ -59,6 +60,8 @@ protected:
 	bool		_isgetfirelod;			//지팡이 있니?
 	const char* fileName;				//텍스트 파일 이름 저장
 	const char* fileName2;				//텍스트 파일 이름 저장
+	const char* _imgName;
+	const char* _imgName2;
 	char str[128];
 public:
 
@@ -66,10 +69,10 @@ public:
 	~NPC();
 
 	//			이미지 이름		이미지의 좌표			 대화 파일				대화파일2			 npc의 움직이니?	npc의 방향			대화가 더있니			상점역활이니
-	HRESULT init(const char * ImageName, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller);
+	HRESULT init(const char * ImageName, const char * ImageName2, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller);
 	void release();
 	void update();
-	void render();
+	virtual void render();
 	virtual void aniMove();
 	virtual void tolkdrow();
 	virtual void Move(bool _isMvoe, bool _isRight);

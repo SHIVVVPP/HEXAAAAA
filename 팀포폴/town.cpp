@@ -13,6 +13,8 @@ town::~town()
 
 HRESULT town::init()
 {
+	//./image/town/goatician_test
+	SOUNDMANAGER->addSound("townBGM", "./Music/townBGM.mp3", true, true);
 	townimage = IMAGEMANAGER->findImage("town");		//마을 이미지
 	townPix = IMAGEMANAGER->findImage("townPix");		//마을 픽셀이미지
 	backsideimg = IMAGEMANAGER->findImage("backsideimg");
@@ -23,6 +25,7 @@ HRESULT town::init()
 	_NPCM->setNpc();
 	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
 	_isvisible = false;
+	SOUNDMANAGER->play("townBGM", 1.0f);
 	return S_OK;
 }
 
@@ -32,6 +35,7 @@ void town::release()
 
 void town::update()
 {
+	
 	_NPCM->update();
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) {
 		_isvisible = true;
@@ -39,6 +43,9 @@ void town::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_F2)) {
 		_isvisible = false;
 	}
+	
+	
+	
 	
 
 }

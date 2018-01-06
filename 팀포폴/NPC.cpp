@@ -12,11 +12,12 @@ NPC::~NPC()
 
 }
 
-HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller)
+HRESULT NPC::init(const char * ImageName, const char * ImageName2, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller)
 {
 	_Npcimage = IMAGEMANAGER->findImage(ImageName);																					//npc의 이미지불러오기
 	_imgrc = RectMake(position.x, position.y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());								//npc의 렉트 생성
-
+	_imgName = ImageName;
+	_imgName2 = ImageName2;
 	_aniNpc = new animation;																										//애니메이션 선언
 	_aniNpc->init(_Npcimage->getWidth(), _Npcimage->getHeight(), _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());			//애니메이션 초기화
 
@@ -58,10 +59,10 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 	selectbox = 0;
 	selectx = 400;
 	selecty = 60;
-	conversationCount = 0;
+	crrentx = crrenty  = conversationCount = 0;
 	_isSelect = _istolk = false;																									//토크 출력 컨트롤 불값
 	_isBuyYes = false;																												//처음은 NO;
-	_isgetTiket = _isgetfirelod = true;
+	_isgetTiket = _isgetfirelod = false;
 	aniMove();
 	_aniNpc->setFPS(1);																												//애니메이션 속도
 	_aniNpc->start();
@@ -75,10 +76,10 @@ void NPC::release()
 }
 void NPC::update()
 {
-	//aniMove();
+	
 	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 4);
 	//Move(_isMove,_isRight);
-
+	
 	if (_isSaller && conversationCount == 1)			//조절해야됨;
 	{
 		_tolkBox = RectMakeCenter(WINSIZEX / 2, 187, _storeUI->getWidth(), _storeUI->getHeight());
@@ -146,6 +147,7 @@ void NPC::tolkdrow()
 		if (!_isMoreConverstion && !_isSaller)
 		{
 			TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			_conversaion->render(getMemDC());
 			if (KEYMANAGER->isOnceKeyDown('X')) {
 				if (_tolkCout == _tolkMaxsize)
 				{

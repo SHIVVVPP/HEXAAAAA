@@ -33,6 +33,8 @@ private:
 	float _y;								//Npc 지정 Y좌표
 
 	int a;							//랜덤한 수를 뽑기 위한 INT
+
+	RECT rc;
 	char str[128];
 public:
 	NPCManager();

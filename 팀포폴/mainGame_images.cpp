@@ -106,15 +106,19 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/바드흥겨운음악.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 186, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 372, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("짐든 남자", "./image/town/bagFellaMove.bmp", 0, 0, 427, 360, 2, 2, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("염소", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("마법사", "./image/town/마법사아가씨믹스.bmp", 7668, 225, 46, 1, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("요리사", "./image/town/음식점주인기쁨.bmp", 797, 300, 4, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("조리중", "./image/town/음식점주인조리중.bmp", 5750, 1400, 23, 5, true, RGB(255, 0, 255));
-	
+	IMAGEMANAGER->addFrameImage("조리중", "./image/town/음식점주인재료손질.bmp", 1030, 225, 4, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중1", "./image/town/음식점주인조리중1.bmp", 4945, 225, 23, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중2-1", "./image/town/음식점주인조리중2-1.bmp", 806, 225, 4, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("조리중2-2", "./image/town/음식점주인조리중2-2.bmp", 1087, 225, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("서빙", "./image/town/음식점주인음식만듬.bmp", 892, 280, 3, 1, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addFrameImage("hedgeFarmer", "./image/town/hedgeFarmer1-1.bmp", 436, 180, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("guard", "./image/town/guard.bmp", 308, 200, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("광대", "./image/town/Merchant.bmp", 339, 150, 2, 1, true, RGB(255, 0, 255));
