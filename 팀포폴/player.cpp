@@ -49,7 +49,7 @@ HRESULT player::init()
 	_equipmentRelic = NULL;
 	_speed = 5.0f;
 	_jumpPower = 11.0f;
-	_gravity = 0.45f;
+	_gravity = 0.35f;
 	_dir = 1;
 	_probeY = 0;
 	_repulsivePower = 3.0f;     // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
@@ -110,11 +110,9 @@ void player::update()
 		_y -= _jumpPower;
 		_jumpPower -= _gravity;
 	}
-	if (_isLand)
-	{
-		_jumpPower = 0.0f;
-		_gravity = 0.45f;
-	}
+	
+	
+	
 
 	////////////////////// 땅 위에서의 기본 동작 ///////////////////////////////
 
@@ -144,19 +142,37 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
-			switch (_dir)
+			_isJump = true;
+			_jumpPower = 11.0f;
+			_gravity = 0.35f;
+			switch (_playerMainCondition)
 			{
-			case 1:
-				_playerMainCondition = PLAYER_RIGHT_JUMP;
-				setPlayerCondition();
+			case PLAYER_RIGHT_IDLE:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
 				break;
-			case -1:
+			case PLAYER_LEFT_IDLE:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				break;
+			case PLAYER_IDLE_JUMP:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				break;
+			case PLAYER_RIGHT_MOVE:
+				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				break;
+			case PLAYER_LEFT_MOVE:
 				_playerMainCondition = PLAYER_LEFT_JUMP;
-				setPlayerCondition();
+				break;
+			case PLAYER_UP_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				break;
+			case PLAYER_DOWN_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				break;
+			case PLAYER_EDGE_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
 				break;
 			}
-			_jumpPower = 11.0f;
-			_gravity = 0.45f;
+			setPlayerCondition();
 		
 		}
 		
@@ -287,7 +303,6 @@ void player::update()
 		_attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
 		break;
 	case PLAYER_LEFT_JUMP_ATTACK:
-	
 		break;
 	case PLAYER_DOWN_ATTACK:
 		_attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
@@ -725,7 +740,7 @@ void player::collisonAttack(RECT * obj)
 	_repulsivePower = 3.0f;
 	_frictionalPower = 0.3f;
 	_jumpPower = 11.0f;
-	_gravity = 0.45f;
+	_gravity = 0.35f;
 
 	if (_playerMainCondition >= 10 && _playerMainCondition <= 13)
 	{

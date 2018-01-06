@@ -149,29 +149,68 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
-	void setIsJump(bool boolValue) 
-	{ 
-		_isJump = boolValue; 
-		if (!boolValue) 
+	void setIsJump(bool boolValue)
+	{
+		//_isJump = boolValue;
+		if (boolValue)
 		{
-			_jumpPower = 11;  
-			if (_dir == 1) {
-				if (_playerMainCondition == PLAYER_IDLE_JUMP)
-					setPlayerMainCondition(PLAYER_RIGHT_IDLE);
-				else
-					setPlayerMainCondition(PLAYER_RIGHT_MOVE);
-			}
-			else if (_dir == -1) {
-				if (_playerMainCondition == PLAYER_IDLE_JUMP)
-					setPlayerMainCondition(PLAYER_LEFT_IDLE);
-				else
-					setPlayerMainCondition(PLAYER_LEFT_MOVE);
+			switch (_playerMainCondition)
+			{
+			case PLAYER_RIGHT_IDLE:
+				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_LEFT_IDLE:
+				_playerMainCondition = PLAYER_LEFT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_RIGHT_MOVE:
+				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_LEFT_MOVE:
+				_playerMainCondition = PLAYER_LEFT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_UP_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_DOWN_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_EDGE_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				setPlayerCondition();
+				break;
 			}
 		}
-		else {
-			_jumpPower -= _gravity;
-		}
+			else if (!boolValue)
+			{
+				switch (_playerMainCondition)
+				{
+					case PLAYER_IDLE_JUMP:
+					if (_dir == 1) 	_playerMainCondition = PLAYER_RIGHT_IDLE;
+					if (_dir == -1)	_playerMainCondition = PLAYER_LEFT_IDLE; 
+					setPlayerCondition();
+					break;
+					case PLAYER_RIGHT_JUMP:
+					_playerMainCondition = PLAYER_RIGHT_MOVE;
+					setPlayerCondition();
+					break;
+					case PLAYER_LEFT_JUMP:
+					_playerMainCondition = PLAYER_LEFT_MOVE;
+					setPlayerCondition();
+					break;
+		
+				}
+
+			}
+
+		_isJump = boolValue;
 	}
+	
 	void setIsLand(bool landvalue) { _isLand = landvalue; }
 
 	// 점프파워 접근자

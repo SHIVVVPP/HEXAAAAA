@@ -518,8 +518,6 @@ void stage::pixelCollison()
 				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + _currentRoom._topY);
 				a++;
 			}
-
-		
 		}
 	
 		if (k)
