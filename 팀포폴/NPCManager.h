@@ -10,12 +10,12 @@
 #include"Molly.h"
 #include"Tim.h"
 #include"Bard.h"
-#include"Merchant.h"
 #include"Sepp.h"
 #include"waterGirl.h"
 #include"Wizard.h"
 #include"gard.h"
 #include"Crown.h"
+#include"goatician.h"
 
 class NPCManager : public gameNode
 {
@@ -32,6 +32,8 @@ private:
 	float _y;								//Npc ÁöÁ¤ YÁÂÇ¥
 
 	int a;							//·£´ýÇÑ ¼ö¸¦ »Ì±â À§ÇÑ INT
+
+	RECT rc;
 	char str[128];
 public:
 	NPCManager();

@@ -12,11 +12,12 @@ NPC::~NPC()
 
 }
 
-HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller)
+HRESULT NPC::init(const char * ImageName, const char * ImageName2, POINT position, const char* _fileName, const char* _fileName2, bool isMove, bool isRight, bool ismoreConversation, bool isSaller)
 {
 	_Npcimage = IMAGEMANAGER->findImage(ImageName);																					//npc의 이미지불러오기
 	_imgrc = RectMake(position.x, position.y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());								//npc의 렉트 생성
-
+	_imgName = ImageName;
+	_imgName2 = ImageName2;
 	_aniNpc = new animation;																										//애니메이션 선언
 	_aniNpc->init(_Npcimage->getWidth(), _Npcimage->getHeight(), _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());			//애니메이션 초기화
 
@@ -27,29 +28,14 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 
 	_firelod = IMAGEMANAGER->findImage("firelod");
 	_invenMusicSheet = IMAGEMANAGER->findImage("invenMusicSheet");
+	_invenMealTickets = IMAGEMANAGER->findImage("invenMealTickets");
+	_posion = IMAGEMANAGER->findImage("포션");
 	_selectRectimg = IMAGEMANAGER->findImage("선택박스");
 	_done = IMAGEMANAGER->findImage("안삼");
 
 	_yesBox = IMAGEMANAGER->findImage("선택안된YES");
 	_noBox = IMAGEMANAGER->findImage("선택안된NO");
 	_selectBox = IMAGEMANAGER->findImage("선택BOX");
-	if (!isMove) {
-		_aniNpc->setDefPlayFrame(false, true);																							//
-	}
-	/*else {
-		if (isRight) 
-		{
-			int arrAni[] = { 0, 1 };
-			_aniNpc->setPlayFrame(arrAni, 0, true);
-		}
-		else 
-		{
-			int arrAni[] = { 3, 2 };
-			_aniNpc->setPlayFrame(arrAni, 2, true);
-		}
-	}*/
-	_aniNpc->setFPS(1);																												//애니메이션 속도
-	_aniNpc->start();
 
 	_x = _imgrc.left + ((_imgrc.right - _imgrc.left) / 2);																			//npc의 중심좌표 x
 	_y = _imgrc.top + ((_imgrc.bottom - _imgrc.top) / 2);																			//npc의 중심좌표 y
@@ -74,9 +60,15 @@ HRESULT NPC::init(const char * ImageName, POINT position, const char* _fileName,
 	selectbox = 0;
 	selectx = 400;
 	selecty = 60;
-	conversationCount = 0;
-	_isSelect = _istolk = false;																												//토크 출력 컨트롤 불값
-	_isByYes = false;																													//처음은 NO;
+	crrentx = crrenty  = conversationCount = 0;
+	_isSelect = _istolk = false;																									//토크 출력 컨트롤 불값
+	_isBuyYes = false;																												//처음은 NO;
+	_isgetTiket = _isgetfirelod = false;
+	aniMove();
+	_aniNpc->setFPS(1);																												//애니메이션 속도
+	_aniNpc->start();
+
+	
 	return S_OK;
 }
 void NPC::release()
@@ -85,32 +77,9 @@ void NPC::release()
 }
 void NPC::update()
 {
-	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
-
+	
+	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 4);
 	//Move(_isMove,_isRight);
-
-	if (_isSaller && conversationCount == 1)			//조절해야됨;
-	{
-		_tolkBox = RectMakeCenter(WINSIZEX / 2, 187, _storeUI->getWidth(), _storeUI->getHeight());
-		_tolkboxX = 1540;																												//토크박스x
-		_tolkboxY = 160;																												//토크박스y
-		_tolkX = 500;																													//대화위치 x
-		_tolkY = 50;																													//대화위치 y
-		_tolkCout = _tolkMaxsize;																										//토크출력시간;
-	}
-	if (_isSaller && conversationCount == 0)			//조절해야됨;
-	{
-		_tolkBox = RectMakeCenter(WINSIZEX / 2, 97, _conversaion->getWidth(), _conversaion->getHeight());
-		_tolkboxX = 1600;																												//토크박스x
-		_tolkboxY = 384;																												//토크박스y
-		_tolkX = 235;																													//대화위치 x
-		_tolkY = 50;																													//대화위치 y
-		_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());																																//토크출력시간;
-	}
-
-	if (conversationCount == 0) {
-		selectbox = 0;
-	}
 	
 }
 void NPC::render()
@@ -122,9 +91,32 @@ void NPC::render()
 //	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
 	_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
 	
+	tolkdrow();
 	
-	if (_istolk) 
-	{	
+	
+}
+void NPC::aniMove()
+{
+	if (!_isMove) {
+		_aniNpc->setDefPlayFrame(false, true);																							//
+	}
+	else {
+		if (_isRight)
+		{
+			int arrAni[] = { 0, 1 };
+			_aniNpc->setPlayFrame(arrAni, 0, true);
+		}
+		else
+		{
+			int arrAni[] = { 3, 2 };
+			_aniNpc->setPlayFrame(arrAni, 2, true);
+		}
+	}
+}
+void NPC::tolkdrow()
+{
+	if (_istolk)
+	{
 		HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
 		Rectangle(getMemDC(), _tolkBox.left, _tolkBox.top, _tolkBox.right, _tolkBox.bottom);
 		FillRect(getMemDC(), &_tolkBox, brush);
@@ -133,75 +125,31 @@ void NPC::render()
 		if (!_isMoreConverstion && !_isSaller)
 		{
 			TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+			_conversaion->render(getMemDC());
+			if (KEYMANAGER->isOnceKeyDown('X')) {
+				if (_tolkCout == _tolkMaxsize)
+				{
+					_istolk = false;
+				}
+			}
 			
 		}
-		else if(_isMoreConverstion&& !_isSaller)
+
+		else if (_isMoreConverstion && !_isSaller)
 		{
-			if(conversationCount == 0)TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-			else 
+			if (conversationCount == 0) {
+				TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+				_conversaion->render(getMemDC());
+			}
+			else if(conversationCount == 1)
 			{
 				_tolkMaxsize = TXTDATA->textSize(fileName2, getMemDC());
 				TXTDATA->NPCrender(fileName2, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 				_conversaion->render(getMemDC());
 			}
-			
-		}
-		if(_isMoreConverstion && _isSaller){
-			if (conversationCount == 0)
+			else if (conversationCount == 2)
 			{
-				TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-			}
-			else if (conversationCount >= 1) 
-			{
-				
-				if (selectbox == selectNum0)
-				{
-					if (!_isSelect)
-					{
-						_tolkMaxsize = TXTDATA->textSize(fileName2, getMemDC());
-						TXTDATA->render(fileName2, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-					}
-				}
-				else if (selectbox == selectNum1)
-				{
-					if (!_isSelect)
-					{
-						_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant2.txt", getMemDC());
-						TXTDATA->render("./text/NPC/Merchant2.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-					}
-				}
-				else if (selectbox == selectNum5)
-				{
-					if (!_isSelect)
-					{
-						_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-1.txt", getMemDC());
-						TXTDATA->render("./text/NPC/Merchant3-1.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-					}
-				}
-			}
-		}
-		if(!_isSaller && conversationCount < 1)_conversaion->render(getMemDC());
-		else if(_isSaller && conversationCount < 1)_conversaion->render(getMemDC());
-		else if (_isSaller && conversationCount >= 1) {
-			_storeUI->render(getMemDC());
-			_selectRectimg->render(getMemDC(),selectx,selecty);
-			_firelod->render(getMemDC(), 400, 50);
-			_invenMusicSheet->render(getMemDC(), 550, 50);
-			_done->render(getMemDC(), 725, 230);
-			if (_isSelect)
-			{
-				_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-0.txt", getMemDC());
-				TXTDATA->render("./text/NPC/Merchant3-0.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-				_noBox->render(getMemDC(), 1100, 270);
-				_yesBox->render(getMemDC(), 1400, 270);
-				_selectBox->render(getMemDC(), _selectBoxX, _selectBoxY);
-			}
-			else if (_isSelect && selectbox == selectNum5)
-			{
-				_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-1.txt", getMemDC());
-				TXTDATA->render("./text/NPC/Merchant3-1.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-				_noBox->render(getMemDC(), 1100, 270);
-				_yesBox->render(getMemDC(), 1400, 270);
+				_istolk = false;
 			}
 		}
 	}

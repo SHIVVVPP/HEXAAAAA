@@ -14,6 +14,7 @@ NPCManager::~NPCManager()
 HRESULT NPCManager::init()
 {
 	a = 0;
+	rc = RectMake(WINSIZEX/2, WINSIZEY / 2, 50, 50);
 	return S_OK;
 }
 
@@ -28,7 +29,22 @@ void NPCManager::update()
 		(*_viNPC)->update();
 		++_viNPC;
 	}
-	
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
+		rc.left += 5;
+		rc.right += 5;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) {
+		rc.left -= 5;
+		rc.right -= 5;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) {
+		rc.top += 5;
+		rc.bottom += 5;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_UP)) {
+		rc.top -= 5;
+		rc.bottom -= 5;
+	}
 	collision();
 
 }
@@ -40,46 +56,48 @@ void NPCManager::render()
 		(*_viNPC)->render();
 
 	}
-	TextOut(getMemDC(), 50, 350, str, strlen(str));
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc).x,
+								CAMERAMANAGER->CameraRelativePoint(rc).y,  50, 50);
+	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
 void NPCManager::setNpc()
 {
 	NPC* watergirl;
 	watergirl = new waterGirl;
-	watergirl->init("watergirl", PointMake(6400, 650), "./text/NPC/waterGirl.txt", "..", true, false, false, false);
+	watergirl->init("watergirl","" ,PointMake(6400, 650), "./text/NPC/waterGirl.txt", "..", true, false, false, false);
 	
 	NPC* bard;
 	bard = new Bard;
-	bard->init("bardnomal", PointMake(1865, 650), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", false, false, true, false);
+	bard->init("bardnomal","", PointMake(1865, 650), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", false, false, true, false);
 
 	NPC* molly;
 	molly = new Molly;
-	molly->init("¸ô¸®", PointMake(2330, 650), "./text/NPC/¸ô¸®.txt", "..", true, false, false, false);
+	molly->init("¸ô¸®","" ,PointMake(2330, 650), "./text/NPC/¸ô¸®.txt", "..", true, false, false, false);
 
 	NPC* gote;
-	gote = new Merchant;
-	gote->init("¿°¼Ò", PointMake(3170, 650), "./text/NPC/goatician.txt","./text/NPC/goatician2.txt", false, false, true, true);
+	gote = new goatician;
+	gote->init("¿°¼Ò", "", PointMake(3170, 650), "./text/NPC/goatician.txt","./text/NPC/goatician2.txt", false, false, true, true);
 
 	NPC* _wizard;
 	_wizard = new Wizard;
-	_wizard->init("¸¶¹ý»ç", PointMake(3710, 365), "./text/NPC/À§ÀÚµå.txt", "./text/NPC/À§ÀÚµå1.txt", false, false, true, true);
+	_wizard->init("¸¶¹ý»ç", "", PointMake(3710, 365), "./text/NPC/À§ÀÚµå.txt", "./text/NPC/À§ÀÚµå1.txt", false, false, true, true);
 
 	NPC* _cooker;
 	_cooker = new Sepp;
-	_cooker->init("¿ä¸®»ç", PointMake(2935,	280), "./text/NPC/¿ä¸®»ç.txt", "./text/NPC/¿ä¸®»ç1.txt", false, false, true, false);
+	_cooker->init("¿ä¸®»ç", "Á¶¸®Áß", PointMake(2970,280), "./text/NPC/¿ä¸®»ç.txt", "./text/NPC/¿ä¸®»ç1.txt", false, false, true, false);
 
 	NPC* _famer;
 	_famer = new hedgeFarmer;
-	_famer->init("hedgeFarmer", PointMake(5450, 650), "...","...", false, false,false,false);
+	_famer->init("hedgeFarmer", "" ,PointMake(5450, 650), "...","...", false, false,false,false);
 
 	NPC* _gard;
 	_gard = new gard;
-	_gard->init("guard", PointMake(300, 650), "./text/NPC/gard.txt", "./text/NPC/gard1.txt", false, false, true, false);
+	_gard->init("guard", "", PointMake(300, 650), "./text/NPC/gard.txt", "./text/NPC/gard1.txt", false, false, true, false);
 
 	NPC* _crown;
 	_crown = new Crown;
-	_crown->init("±¤´ë", PointMake(50, 700), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
+	_crown->init("±¤´ë", "", PointMake(3470, 750), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
 	
 	_vNPC.push_back(watergirl);
 	_vNPC.push_back(bard);
@@ -97,7 +115,7 @@ void NPCManager::setLeftNpc(bool _isRight)
 {
 	NPC* _bagFella;
 	_bagFella = new bagFella;
-	_bagFella->init("Áüµç ³²ÀÚ",PointMake(100, WINSIZEY - 250), "./text/NPC/Áü²Û.txt", "..", true, _isRight, false, false );
+	_bagFella->init("Áüµç ³²ÀÚ", "", PointMake(100, WINSIZEY - 250), "./text/NPC/Áü²Û.txt", "..", true, _isRight, false, false );
 
 	//_vNPC.push_back(_bagFella);
 
@@ -107,7 +125,7 @@ void NPCManager::setRightNpc(bool _isRight)
 {
 	NPC* _deerlady;
 	_deerlady = new maiden;
-	_deerlady->init("deerLadyMove", PointMake(100, WINSIZEY - 330), "./text/NPC/»ç½¿¿©ÀÎ.txt", "..", true, _isRight, false, false);
+	_deerlady->init("deerLadyMove", "", PointMake(100, WINSIZEY - 330), "./text/NPC/»ç½¿¿©ÀÎ.txt", "..", true, _isRight, false, false);
 
 	_vNPC.push_back(_deerlady);
 }
@@ -127,12 +145,16 @@ void NPCManager::collision()
 
 	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end();++_viNPC )
 	{
-		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &RectMake(_ptMouse.x,_ptMouse.y,50,50)))
+		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &rc))
 		{
 			
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) {
-			
-				(*_viNPC)->setisTolk(true);
+			if (!(*_viNPC)->getisTolk()) 
+			{
+				if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
+				{
+					(*_viNPC)->setisTolk(true);
+					sprintf(str, "a : %d", a);
+				}
 			}
 			if ((*_viNPC)->getisTolk()) {
 				a++;
@@ -142,11 +164,26 @@ void NPCManager::collision()
 				a = 0;
 				
 			}
-			sprintf(str, "a : %d", a);
+		
 			if (KEYMANAGER->isOnceKeyDown('X'))
 			{
 				(*_viNPC)->setcoversationCount(1);
+				if ((*_viNPC)->getcoversationCount() == 1) {
+					a = 0;
+				}
+				if (!(*_viNPC)->getisSaller())
+				{
+					if ((*_viNPC)->getcoversationCount() == 2) {
+						(*_viNPC)->setisTolk(false);
+						(*_viNPC)->setcoversationCount(-2);
+					}
+				}
 			
+			}
+			if (KEYMANAGER->isOnceKeyDown('Z'))
+			{
+				if (!(*_viNPC)->getisTiket())(*_viNPC)->setisgetTiket(true);
+				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
 			}
 			if (a >= (*_viNPC)->gettxtSizeMax()) {
 				a = (*_viNPC)->gettxtSizeMax();
