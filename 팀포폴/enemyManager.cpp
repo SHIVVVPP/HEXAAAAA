@@ -20,7 +20,7 @@ HRESULT enemyManager::init()
 	generalFrameCounter = 0;
 
 	enemy* temp = new redBeetle;
-	temp->init(MON_REDBITTLE, { 980,3259 });
+	temp->init(MON_REDBITTLE, { 3289,3419 });
 	_vEnemy.push_back(temp);
 
 	temp = new skeleton;
@@ -37,15 +37,20 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-		
+	vector<int> _eraseArr;
 			
 	for (int i = 0; i < _vEnemy.size(); i++)
 	{
 		_vEnemy[i]->pixelCollisionReact(_pixelColImage,_ptReal);
 		_vEnemy[i]->update();
+		if (_vEnemy[i]->getMainCondition() == DYINGOUT) _eraseArr.push_back(i);
 	}
+	eraseMonster(_eraseArr);
+	
 
 	collisionCheck();
+
+	
 }
 
 void enemyManager::render()
@@ -89,6 +94,18 @@ void enemyManager::collisionCheck()
 	}
 
 
+}
+
+void enemyManager::eraseMonster(vector<int> v)
+{
+	if (v.size() != 0)
+	{
+		while (v.size() != 0)
+		{
+			_vEnemy.erase(_vEnemy.begin() + v[v.size() - 1]);
+			v.pop_back();
+		}
+	}
 }
 
 

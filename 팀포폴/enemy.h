@@ -93,6 +93,7 @@ public:
 
 	//¾÷µ«
 	virtual void setMainCondition(MONSTER_MAINCONDITION mainCondition) {}
+	void setMainConditionF(MONSTER_MAINCONDITION mainCondition) { _mainCondition = mainCondition; }
 	virtual void setSubCondition(MONSTER_SUBCONDITION subCondition) {}
 	virtual void setCondition() {}
 
@@ -102,7 +103,7 @@ public:
 
 	RECT getColRect() { return _collisionRc; }
 	bool canCollisionCheck() { if (_mainCondition == HITTED||_mainCondition == DIE || _mainCondition == DYINGOUT) return false; else return true; }
-
+	int getMainCondition() { return _mainCondition; }
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
 	int getMonsterIndex() { return _index; }
 	enemy();
