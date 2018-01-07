@@ -395,9 +395,9 @@ void objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vbubble[i]->_rc))
 		{
-			_obj = new bubbles;
-			_obj->init(_vbubble[i]->_leftX, _vbubble[i]->_topY, _vbubble[i]->_leftX, _vbubble[i]->_topY, 90);
-			_vbubble.push_back(_obj);
+			//_obj = new bubbles;
+			//_obj->init(_vbubble[i]->_leftX, _vbubble[i]->_topY, _vbubble[i]->_leftX, _vbubble[i]->_topY, 90);
+			//_vbubble.push_back(_obj);
 			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vbubble[i];

@@ -363,17 +363,17 @@ void player::update()
 	case PLAYER_LEFT_JUMP_ATTACK:
 		break;
 	case PLAYER_DOWN_ATTACK:
-		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 70, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_RIGHT_DOWN_ATTACK:
 		if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += _speed;
-		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 70, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_LEFT_DOWN_ATTACK:
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= _speed;
-		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 70, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_RIGHT_HITTED:
@@ -679,7 +679,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 		{ 
 		switch (message->_colType)
 		{
-		case COL_MONSTER:
+			case COL_MONSTER:
 			switch (message->index_detail)
 			{
 			case 0: // µüÁ¤¹ú·¹
@@ -852,11 +852,11 @@ void player::getColMessage(LPCOLLISION_INFO message)
 					}
 					break;
 				}
-			
-		}
+				break;
+			}
 		}
 
-		if(!message->_isPlayer && _canAtk)
+ 		if(!message->_isPlayer && _canAtk)
 		{
 			switch (message->_colType)
 			{
