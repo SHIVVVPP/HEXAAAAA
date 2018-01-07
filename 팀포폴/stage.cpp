@@ -87,7 +87,7 @@ void stage::update()
 	{
 			_currentRoom = _mRoom.find(c_col)->second;
 	}
-	//_player->update();
+	_player->update();
 	_objectManager->update();
 	_objectManager->player_object_collision();
 	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });

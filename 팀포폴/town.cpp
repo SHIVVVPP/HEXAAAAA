@@ -46,8 +46,6 @@ HRESULT town::init()
 
 	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
 	_isvisible = false;
-	_player->setPlayerX(200);
-	_player->setPlayerY(300);
 	return S_OK;
 }
 
