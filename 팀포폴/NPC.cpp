@@ -23,13 +23,13 @@ HRESULT NPC::init(const char * ImageName, const char * ImageName2, POINT positio
 	
 	imgset();																														//이미지 모음
 	
-	_x = _imgrc.left + ((_imgrc.right - _imgrc.left) / 2);																			//npc의 중심좌표 x
-	_y = _imgrc.top + ((_imgrc.bottom - _imgrc.top) / 2);																			//npc의 중심좌표 y
+	_x = 0;																			//npc의 중심좌표 x
+	_y = 0;																			//npc의 중심좌표 y
 																
 	_LeftStartMoveX = -5;																											//MOVEnpc 왼쪽 시작지점
 	_RightStartMoveX = 4210;																										//MOVEnpc 오른쪽 시작지점
 
-	NpcSpeed = 5;																													//NPC의 이동속도
+	NpcSpeed = 0.02;																													//NPC의 이동속도
 
 	_isMove = isMove;																												//움직이는 npc니?
 	_isRight = isRight;																												//시작하는 좌표가 오른쪽이냐
@@ -63,9 +63,11 @@ void NPC::release()
 }
 void NPC::update()
 {
+	_x = _imgrc.left + ((_imgrc.right - _imgrc.left) / 2);																			//npc의 중심좌표 x
+	_y = _imgrc.top + ((_imgrc.bottom - _imgrc.top) / 2);																			//npc의 중심좌표 y
 	
 	_aniNpc->frameUpdate(TIMEMANAGER->getElapsedTime() * 4);
-	//Move(_isMove,_isRight);
+	Move();
 	
 }
 void NPC::render()
@@ -94,8 +96,8 @@ void NPC::aniMove()
 		}
 		else
 		{
-			int arrAni[] = { 3, 2 };
-			_aniNpc->setPlayFrame(arrAni, 2, true);
+			int arrAni2[] = { 3, 2 };
+			_aniNpc->setPlayFrame(arrAni2, 2, true);
 		}
 	}
 }
@@ -140,19 +142,21 @@ void NPC::tolkdrow()
 		}
 	}
 }
-void NPC::Move(bool _isMvoe, bool _isRight)
+void NPC::Move()
 {
-	if (_isMvoe)																												//움직이는 NPC
+	if (_isMove)																												//움직이는 NPC
 	{
 		if (_isRight)
 		{
 			_x = _RightStartMoveX;
 			_x += NpcSpeed;
+			_imgrc=	RectMake(_x, _y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
 		}
 		else
 		{
 			_x = _LeftStartMoveX;
-			_x += NpcSpeed;
+			_x -= NpcSpeed;
+			_imgrc = RectMake(_x, _y, _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());
 		}
 	
 	}

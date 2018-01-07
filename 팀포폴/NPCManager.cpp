@@ -13,7 +13,7 @@ NPCManager::~NPCManager()
 
 HRESULT NPCManager::init()
 {
-	a = 0;
+	_CCount = 0;
 	rc = RectMake(WINSIZEX / 2, 400, 50, 50);
 	SOUNDMANAGER->addSound("TownBGM", "./Music/townBGM.mp3", true, true);
 	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
@@ -22,7 +22,7 @@ HRESULT NPCManager::init()
 	crrentMusicName = "TownBGM";
 	oldMusicName = crrentMusicName;
 	SOUNDMANAGER->play(crrentMusicName, 1.0f);
-
+	_table = RectMake(2610, 510, 260, 20);				//테이블 렉트
 	return S_OK;
 }
 
@@ -58,8 +58,9 @@ void NPCManager::update()
 		rc.bottom -= 15;
 	}*/
 
-	collision();
-	//player_npc_collision();
+	_p->update();
+	//collision();
+	player_npc_collision();
 	
 }
 
@@ -71,6 +72,7 @@ void NPCManager::render()
 
 	}
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(rc.left), CAMERAMANAGER->CameraRelativePointY(rc.top), 50, 50);
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_table.left), CAMERAMANAGER->CameraRelativePointY(_table.top), 260, 5);
 	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
@@ -86,7 +88,7 @@ void NPCManager::setNpc()
 
 	NPC* molly;
 	molly = new Molly;
-	molly->init("몰리","" ,PointMake(2330, 650), "./text/NPC/몰리.txt", "..", true, false, false, false);
+	molly->init("몰리","" ,PointMake(2330, 650), "./text/NPC/몰리.txt", "..", false, false, false, false);
 
 	NPC* gote;
 	gote = new goatician;
@@ -102,7 +104,7 @@ void NPCManager::setNpc()
 
 	NPC* _famer;
 	_famer = new hedgeFarmer;
-	_famer->init("hedgeFarmer", "" ,PointMake(5450, 650), "...","...", false, false,false,false);
+	_famer->init("hedgeFarmer", "" ,PointMake(5450, 650), "./text/NPC/마을사람.txt","...", false, false,false,false);
 
 	NPC* _gard;
 	_gard = new gard;
@@ -113,14 +115,14 @@ void NPCManager::setNpc()
 	_crown->init("광대", "", PointMake(3470, 750), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
 	
 	_vNPC.push_back(watergirl);
-	_vNPC.push_back(bard);
+	_vNPC.push_back(bard);			//음악시트
 	_vNPC.push_back(molly);
-	_vNPC.push_back(gote);
-	_vNPC.push_back(_wizard);
+	_vNPC.push_back(gote);			//음식티켓
+	_vNPC.push_back(_wizard);		//마법사
 	_vNPC.push_back(_cooker);
 	_vNPC.push_back(_famer);
 	_vNPC.push_back(_gard);
-	_vNPC.push_back(_crown);
+	_vNPC.push_back(_crown);		//유물
 
 }
 
@@ -158,7 +160,7 @@ void NPCManager::collision()
 
 	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end();++_viNPC )
 	{
-		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), _p->getPlayerRect()))
+		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &rc))
 		{
 			
 			if (!(*_viNPC)->getisTolk()) 
@@ -166,15 +168,15 @@ void NPCManager::collision()
 				if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
 				{
 					(*_viNPC)->setisTolk(true);
-					sprintf(str, "a : %d", a);
+					
 				}
 			}
 			if ((*_viNPC)->getisTolk()) {
-				a++;
-				(*_viNPC)->Converstion(a);
+				_CCount++;
+				(*_viNPC)->Converstion(_CCount);
 			}
 			if (!(*_viNPC)->getisTolk()) {
-				a = 0;
+				_CCount = 0;
 				
 			}
 			if (KEYMANAGER->isOnceKeyDown('C'))
@@ -190,7 +192,7 @@ void NPCManager::collision()
 			{
 				(*_viNPC)->setcoversationCount(1);
 				if ((*_viNPC)->getcoversationCount() == 1) {
-					a = 0;
+					_CCount = 0;
 				}
 				if (!(*_viNPC)->getisSaller())
 				{
@@ -217,8 +219,8 @@ void NPCManager::collision()
 				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
 				if (!(*_viNPC)->getisMusicSheet())(*_viNPC)->setisMusicSheet(true);
 			}
-			if (a >= (*_viNPC)->gettxtSizeMax()) {
-				a = (*_viNPC)->gettxtSizeMax();
+			if (_CCount >= (*_viNPC)->gettxtSizeMax()) {
+				_CCount = (*_viNPC)->gettxtSizeMax();
 			}
 		
 		}
@@ -229,14 +231,19 @@ void NPCManager::collision()
 		}
 
 	}
+	if (IntersectRect(&temp, &_table, _p->getPlayerRect()))
+	{
+	//	isCollisionReaction(_table, _p->getPlayerRect());
+	}
 }
 
 LPCOLLISION_INFO NPCManager::player_npc_collision()
 {
 	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
+	RECT temp;
 	for (int i =0 ; i< _vNPC.size();i++)
 	{
-		RECT temp;
+		
 		if (IntersectRect(&temp, &_vNPC[i]->getimgRC(), _p->getPlayerRect()))
 		{
 			//충돌메시지 작성
@@ -244,19 +251,54 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 			//tempInfo->index_detail = --- 세부번호
 			if (!_vNPC[i]->getisTolk())
 			{
-				if (KEYMANAGER->isOnceKeyDown('Q'))
+				if (KEYMANAGER->isOnceKeyDown(VK_UP))
 				{
 					_vNPC[i]->setisTolk(true);
 					
 				}
 			}
 			if (_vNPC[i]->getisTolk()) {
-				a++;
-				_vNPC[i]->Converstion(a);
+				_CCount++;
+				_vNPC[i]->Converstion(_CCount);
 			}
 			if (!_vNPC[i]->getisTolk()) {
-				a = 0;
+				_CCount = 0;
 
+			}
+			//체스터 유물파는놈
+			if (i == 8) {
+				if (_vNPC[i]->getisBuyYes())
+				{
+					if (_vNPC[i]->getisfirelod())
+					{
+						_p->setEquipRelic(0);
+					}
+					if (_vNPC[i]->getisMusicSheet())
+					{
+						//악보 어떻게 넣냐?
+					}
+				}
+			}
+			// 유물이 있으면 
+			else if (i == 4)
+			{
+				if (_p->getEquipRelic() == 0)
+				{
+					if (_vNPC[i]->getisBuyYes())
+					{
+						if (_p->getPlayerCurrentMP() != _p->getPlayerMaxMP()) {
+							_p->setPlayerCurrentMP(20);
+						}
+					}
+				}
+			}
+			//염소
+			else if (i == 3)
+			{
+				if (_vNPC[i]->getisBuyYes())
+				{
+					_vNPC[i]->setisgetTiket(true);
+				}
 			}
 			if (KEYMANAGER->isOnceKeyDown('C'))
 			{
@@ -271,7 +313,7 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 			{
 				_vNPC[i]->setcoversationCount(1);
 				if (_vNPC[i]->getcoversationCount() == 1) {
-					a = 0;
+					_CCount = 0;
 				}
 				if (!_vNPC[i]->getisSaller())
 				{
@@ -288,13 +330,13 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				}
 
 			}
-			if (KEYMANAGER->isOnceKeyDown('Z'))
+		/*	if (KEYMANAGER->isOnceKeyDown('Z'))
 			{
 				if (!_vNPC[i]->getisTiket())(*_viNPC)->setisgetTiket(true);
 				if (!_vNPC[i]->getisfirelod())(*_viNPC)->setisfirelod(true);
-			}
-			if (a >= _vNPC[i]->gettxtSizeMax()) {
-				a = _vNPC[i]->gettxtSizeMax();
+			}*/
+			if (_CCount >= _vNPC[i]->gettxtSizeMax()) {
+				_CCount = _vNPC[i]->gettxtSizeMax();
 			}
 
 		}
@@ -304,6 +346,11 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 
 		}
 		
+	}
+	// 테이블 충돌시
+	if (IntersectRect(&temp, &_table, _p->getPlayerRect())) 
+	{
+		//isCollisionReaction(_table, _p->getPlayerRect());
 	}
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
 	if (tempInfo->_colType != COL_NONE)

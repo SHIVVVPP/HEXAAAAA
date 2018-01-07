@@ -62,13 +62,23 @@ void Crown::tolkdrow()
 			_firelod->render(getMemDC(), 400, 50);
 			_invenMusicSheet->render(getMemDC(), 550, 50);
 			_done->render(getMemDC(), 725, 230);
-			if (_isSelect&& selectbox == selectNum0 || _isSelect&& selectbox == selectNum1)
+			if (_isSelect&& selectbox == selectNum0)
 			{
 				_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-0.txt", getMemDC());
 				TXTDATA->render("./text/NPC/Merchant3-0.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 				_noBox->render(getMemDC(), 1100, 270);
 				_yesBox->render(getMemDC(), 1400, 270);
 				_selectBox->render(getMemDC(), _selectBoxX, _selectBoxY);
+				_isgetfirelod = true;
+			}
+			else if (_isSelect&& selectbox == selectNum1)
+			{
+				_tolkMaxsize = TXTDATA->textSize("./text/NPC/Merchant3-0.txt", getMemDC());
+				TXTDATA->render("./text/NPC/Merchant3-0.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+				_noBox->render(getMemDC(), 1100, 270);
+				_yesBox->render(getMemDC(), 1400, 270);
+				_selectBox->render(getMemDC(), _selectBoxX, _selectBoxY);
+				_isgetMusicSheet = true;
 			}
 			else if (_isSelect && selectbox == selectNum5)
 			{
@@ -97,6 +107,7 @@ void Crown::Converstion(int tolkCount)
 			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum1;
 			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD5)) selectbox = selectNum3;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
+			_isgetfirelod = false;
 		}
 		break;
 		case selectNum1:
@@ -107,6 +118,7 @@ void Crown::Converstion(int tolkCount)
 			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum2;
 			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD5)) selectbox = selectNum4;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
+			_isgetMusicSheet = false;
 		}
 		break;
 		case selectNum2:

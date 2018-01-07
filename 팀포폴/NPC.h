@@ -57,7 +57,7 @@ protected:
 	int			_selectBoxY;
 	int			selectbox;
 	int			crrentx, crrenty;
-
+	
 	bool		_isMove;				//움직이냐?
 	bool		_isRight;				//오른쪽이냐?
 	bool		_istolk;				//토크 준비
@@ -89,7 +89,7 @@ public:
 	virtual void render();
 	virtual void aniMove();
 	virtual void tolkdrow();
-	virtual void Move(bool _isMvoe, bool _isRight);
+	virtual void Move();
 	virtual void Converstion(int tolkCount);  
 	void imgset();
 
@@ -101,6 +101,10 @@ public:
 
 	int	 getcoversationCount() { return conversationCount; }
 	int  gettxtSizeMax() { return _tolkMaxsize; }
+
+
+	bool getisBuyYes() { return _isBuyYes; }
+	void setisBuyYes(bool Tiket) { _isBuyYes = Tiket; }
 
 	bool getisTiket() { return _isgetTiket; }
 	void setisgetTiket(bool Tiket) { _isgetTiket = Tiket; }

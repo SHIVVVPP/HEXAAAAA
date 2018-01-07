@@ -17,14 +17,6 @@ stage::~stage()
 HRESULT stage::init()
 {
 	setStageBackgroundInfo();
-
-	
-	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
-	
-
-	
-	SOUNDMANAGER->play("Stage", 1.0f);
-
 	_ui = new ui;
 	_ui->init(UI_STAGE);
 
@@ -37,7 +29,7 @@ HRESULT stage::init()
 	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
+	CAMERAMANAGER->setCameraAim(&_rc);
 
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
@@ -68,28 +60,28 @@ void stage::release()
 void stage::update()
 {
 	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-	{
-		_rc.left += 15;
-		_rc.right += 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-		_rc.left -= 15;
-		_rc.right -= 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		_rc.top += 15;
-		_rc.bottom += 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-		_rc.top -= 15;
-		_rc.bottom -= 15;
-	}
+	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	//{
+	//	_rc.left += 15;
+	//	_rc.right += 15;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	//{
+	//	_rc.left -= 15;
+	//	_rc.right -= 15;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	//{
+	//	_rc.top += 15;
+	//	_rc.bottom += 15;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_UP))
+	//{
+	//	_rc.top -= 15;
+	//	_rc.bottom -= 15;
+	//}
 	
-	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
+	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")
 	{
 		if (_currentRoom.myKey != _mRoom.find(c_col)->second.myKey)
@@ -421,7 +413,7 @@ tagRoomInfo stage::findRoomInfo(string strkey)
 
 void stage::setCameraObject()
 {
-	RECT* rc = _player->getPlayerRect();
+	RECT* rc = &_rc;
 	//1->2
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(6215, 2980, 20, 480),
 	{ 0,6219 }, { 6219,6219 + WINSIZEX }, rc, true, "2");
@@ -546,6 +538,22 @@ void stage::pixelCollison()
 		g = GetGValue(color);
 		b = GetBValue(color);
 	
+		for (int i = _player->getprobeY() + 10; i > _player->getprobeY() - 10; --i)
+		{
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, i);
+
+			r = GetRValue(color);
+			g = GetGValue(color);
+			b = GetBValue(color);
+
+
+			if (r == 0 && g == 255 && b == 0)
+			{
+				_player->setJumpPower(0.0f);
+				_player->setPlayerY(i + getHeight(*_player->getPlayerRect()) / 2  + _currentRoom._topY);
+				
+			}
+		}
 		//	if ()
 	}
 	
