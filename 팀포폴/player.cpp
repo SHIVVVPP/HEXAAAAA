@@ -738,9 +738,9 @@ void player::render()
 	//_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top), 250, 250);
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_attackRC.left), CAMERAMANAGER->CameraRelativePointY(_attackRC.top), 75, 100);
+		//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointY(_attackRC.top),75, 100);
 		sprintf(str, "attackRC LT %d %d RB %d %d", _attackRC.left, _attackRC.top, _attackRC.right, _attackRC.bottom);
 		TextOut(getMemDC(), WINSIZEX / 2, WINSIZEY / 2, str, strlen(str));
 	}
@@ -1000,116 +1000,122 @@ void player::getColMessage(LPCOLLISION_INFO message)
 	{
 		objects* temp;
 		RECT _tempRC;
-		if (message->_isPlayer)
+		switch (message->_colType)
 		{
-			switch (message->_colType)
+		case COL_MONSTER:
+			switch (message->index_detail)
 			{
-			case COL_MONSTER:
-				switch (message->index_detail)
-				{
-				case 1:
-					//static_cast<objects*>(message->object).
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				}
+			case 1:
+				//static_cast<objects*>(message->object).
 				break;
-			case COL_OBJECT:
-				switch (message->index_detail)
-				{
-				case 11: // gem
-					break;
-				case 12: // 흙
-				{
-					static_cast<objects*>(message->object);
-					temp = static_cast<objects*>(message->object);
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case COL_OBJECT:
+			switch (message->index_detail)
+			{
+			case 11: // gem
+				break;
+			case 12: // 흙
+			{
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
 
-					if (isCollisionReaction(temp->getRc(), _playerRC))
+				//if (isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
+
+				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
+				{
+					setPlayerCondition();
+					float _width = _tempRC.right - _tempRC.left;
+					float _height = _tempRC.bottom - _tempRC.top;
+					if (_width > _height)
 					{
-
+						_isLand = true;
+						_isJump = false;
 					}
-					//if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
-					//{
-					//   setPlayerCondition();
-					//   float _width = _tempRC.right - _tempRC.left;
-					//   float _height = _tempRC.bottom - _tempRC.top;
-					//   if (_width > _height)
-					//   {
-					//
-					//   }
-					//
-					//   if (_height > _width)
-					//   {
-					//      //if (_playerRC.bottom < temp->getRc().bottom)
-					//      //{
-					//         _isLand = true;
-					//         _isJump = false;
-					//      //}
-					//   }
-					//}      
-				}
-				break;
-				case 13: //포션
-					break;
-				case 14: //음식
-					break;
-				case 15: // MEAL (체력최대치올리는음식)
-					break;
-				case 16: //방울
-					break;
-				case 17: //음악
-
-					break;
-				case 18: //발판
-				{
-					static_cast<objects*>(message->object);
-					temp = static_cast<objects*>(message->object);
-
-					if (isCollisionReaction(temp->getRc(), _playerRC))
+				
+					if (_height > _width)
 					{
-
+						if (_tempRC.left == temp->getRc().left)
+						{
+							 _x = temp->getRc().left - (_playerRC.right - _playerRC.left) /2;
+				
+							 _tempRC.left = temp->getRc().left;
+						}
+						else
+						{
+							_x = temp->getRc().right + (_playerRC.right - _playerRC.left) / 2;
+							_tempRC.right = temp->getRc().right;
+						}
 					}
-					////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
-					////{
-					//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
-					//{
-					//   //setPlayerCondition();
-					//   float _width = _tempRC.right - _tempRC.left;
-					//   float _height = _tempRC.bottom - _tempRC.top;
-					//
-					//   //if (_playerRC.bottom > temp->getRc().bottom)
-					//   //{
-					//   //   _isLand = true;
-					//   //   _isJump = false;
-					//   //}
-					//
-					//   if (_width > _height)
-					//   {
-					//      
-					//   }
-					//
-					//   if (_height > _width)
-					//   {
-					//      _isLand = true;
-					//      _isJump = false;
-					//   }
-					//}
-					//}
-					//(isCollisionReaction(temp->getRc(), _playerRC))
-					//{
-					//
-					//}
-				}
+				}		
+			}
+			break;
+			case 13: //포션
 				break;
-				case 19: //접시
-					break;
-				case 20: //가짜 벽
-					break;
-				case 21: //광맥
-					break;
-				}break;
+			case 14: //음식
+				break;
+			case 15: // MEAL (체력최대치올리는음식)
+				break;
+			case 16: //방울
+				break;
+			case 17: //음악
+
+				break;
+			case 18: //발판
+			{
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+				
+				if (isCollisionReaction(temp->getRc(), _playerRC))
+				{
+				
+				}
+				////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				////{
+				//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
+				//{
+				//	//setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//
+				//	//if (_playerRC.bottom > temp->getRc().bottom)
+				//	//{
+				//	//	_isLand = true;
+				//	//	_isJump = false;
+				//	//}
+				//
+				//	if (_width > _height)
+				//	{
+				//		
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		_isLand = true;
+				//		_isJump = false;
+				//	}
+				//}
+				//}
+				//(isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
+			}
+			break;
+			case 19: //접시
+				break;
+			case 20: //가짜 벽
+				break;
+			case 21: //광맥
+				break;
+			}break;
 
 			case COL_NPC:
 			{
