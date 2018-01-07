@@ -65,6 +65,7 @@ class player : public gameNode
 	bool _isLand;
 	bool _isJump;
 	bool _canAtk;
+	bool _immune;
 	int prevCondition1;
 	int prevCondition2;
 	

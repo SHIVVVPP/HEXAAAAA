@@ -58,6 +58,7 @@ HRESULT player::init()
 	_isLand = false;
 	_isJump = true;
 	_canAtk = true;
+	_immune = false;
 
 
 	int rightIdle[] = { 0 };
@@ -149,7 +150,7 @@ void player::update()
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
 			_isJump = true;
-			_jumpPower = 11.0f;
+			_jumpPower = 15.0f;
 			_gravity = 0.35f;
 			switch (_playerMainCondition)
 			{
@@ -253,6 +254,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
+			_canAtk = true;
 			_playerMainCondition = PLAYER_DOWN_ATTACK;
 			setPlayerCondition();
 		}
@@ -335,16 +337,32 @@ void player::update()
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_RIGHT_DOWN_ATTACK:
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += _speed;
 		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_LEFT_DOWN_ATTACK:
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x -= _speed;
 		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_RIGHT_HITTED:
+		_x -= _repulsivePower;
+		_repulsivePower -= _frictionalPower;
+		if (_repulsivePower <= 0)
+		{
+			_playerMainCondition = PLAYER_RIGHT_IDLE;
+			setPlayerCondition();
+		} 
 		break;
 	case PLAYER_LEFT_HITTED:
+		_x += _repulsivePower;
+		_repulsivePower -= _frictionalPower;
+		if (_repulsivePower <= 0)
+		{
+			_playerMainCondition = PLAYER_LEFT_IDLE;
+			setPlayerCondition();
+		}
 		break;
 	case PLAYER_DEAD:
 		break;
@@ -354,7 +372,7 @@ void player::update()
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
-	if(!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
+	if(!_canAtk && _playerMainCondition != PLAYER_RIGHT_ATTACK && _playerMainCondition != PLAYER_LEFT_ATTACK) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 
 
 
@@ -451,18 +469,20 @@ void player::collisonAttack()
 
 void player::collisonHitted()
 {
+	
 	_repulsivePower = 9.0f;
 	_frictionalPower = 0.4f;
-	_currentHP -= 1;
-
+	
 	switch (_dir)
 	{
 	case 1:
 		_playerMainCondition = PLAYER_RIGHT_HITTED;
+		setPlayerCondition();
 		break;
 
 	case -1:
 		_playerMainCondition = PLAYER_LEFT_HITTED;
+		setPlayerCondition();
 		break;
 	}
 }
@@ -475,16 +495,12 @@ void player::rightAttack(void* obj)
 	if (!p->getIsJump())
 	{
 		p->setPlayerMainCondition(PLAYER_RIGHT_IDLE);
-		p->setPlayerImage(IMAGEMANAGER->findImage("playerIdle"));
-		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerRightIdle"));
-		p->getPlayerAni()->start();
+		p->setPlayerCondition();
 	}
 	else
 	{
 		p->setPlayerMainCondition(PLAYER_IDLE_JUMP);
-		p->setPlayerImage(IMAGEMANAGER->findImage("playerJump"));
-		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerRightJumpDown"));
-		p->getPlayerAni()->start();
+		p->setPlayerCondition();
 	}
 }
 
@@ -495,17 +511,13 @@ void player::leftAttack(void * obj)
 	if (!p->getIsJump())
 	{
 		p->setPlayerMainCondition(PLAYER_LEFT_IDLE);
-		p->setPlayerImage(IMAGEMANAGER->findImage("playerIdle"));
-		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerLeftIdle"));
-		p->getPlayerAni()->start();
+		p->setPlayerCondition();
 	}
 
 	else
 	{
 		p->setPlayerMainCondition(PLAYER_IDLE_JUMP);
-		p->setPlayerImage(IMAGEMANAGER->findImage("playerJump"));
-		p->setPlayerAni(KEYANIMANAGER->findAnimation("playerLeftJumpDown"));
-		p->getPlayerAni()->start();
+		p->setPlayerCondition();
 	}
 }
 
@@ -522,11 +534,15 @@ void player::setPlayerCondition()
 	switch (_playerMainCondition)
 	{
 	case PLAYER_RIGHT_IDLE:
+		_canAtk = false;
+		_immune = false;
 		_image = IMAGEMANAGER->findImage("playerIdle");
 		_ani = KEYANIMANAGER->findAnimation("playerRightIdle");
 		_ani->start();
 		break;
 	case PLAYER_LEFT_IDLE:
+		_canAtk = false;
+		_immune = false;
 		_image = IMAGEMANAGER->findImage("playerIdle");
 		_ani = KEYANIMANAGER->findAnimation("playerLeftIdle");
 		_ani->start();
@@ -609,8 +625,14 @@ void player::setPlayerCondition()
 		_ani->start();
 		break;
 	case PLAYER_RIGHT_HITTED:
+		_image = IMAGEMANAGER->findImage("playerHitted");
+		_ani = KEYANIMANAGER->findAnimation("playerRightHitted");
+		_ani->start();
 		break;
 	case PLAYER_LEFT_HITTED:
+		_image = IMAGEMANAGER->findImage("playerHitted");
+		_ani = KEYANIMANAGER->findAnimation("playerLeftHitted");
+		_ani->start();
 		break;
 	case PLAYER_DEAD:
 		break;
@@ -624,13 +646,22 @@ void player::getColMessage(LPCOLLISION_INFO message)
 	{
 		objects* temp;
 		RECT _tempRC;
+		if(message->_isPlayer)
+		{ 
 		switch (message->_colType)
 		{
 		case COL_MONSTER:
 			switch (message->index_detail)
 			{
-			case 1:
-				//static_cast<objects*>(message->object).
+			case 0: // µüÁ¤¹ú·¹
+				if(_immune == false) _currentHP -= 1;
+				 _immune = true;
+				collisonHitted();
+				break;
+			case 1: // ÇØ°ñ
+				if (_immune == false) _currentHP -= 1;
+				_immune = true;
+				collisonHitted();
 				break;
 			case 2:
 				break;
@@ -755,6 +786,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			}
 			
+		}
 		}
 		if(!message->_isPlayer && _canAtk)
 		{
