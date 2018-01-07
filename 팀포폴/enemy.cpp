@@ -97,7 +97,7 @@ void enemy::pixelCollisionReact(image * collisionImage, POINT ptReal)
 		int offsetX = 0;
 		for (int i = probeX; i < probeX + _width / 2; i++)
 		{
-			color = GetPixel(collisionImage->getMemDC(), i, _collisionRc.bottom - 10);
+			color = GetPixel(collisionImage->getMemDC(), i, probeY);
 			r = GetRValue(color);
 			g = GetGValue(color);
 			b = GetBValue(color);
@@ -120,7 +120,7 @@ void enemy::pixelCollisionReact(image * collisionImage, POINT ptReal)
 		int offsetX = 0;
 		for (int i = probeX; i > probeX - _width / 2; i--)
 		{
-			color = GetPixel(collisionImage->getMemDC(), i, _collisionRc.bottom - 10);
+			color = GetPixel(collisionImage->getMemDC(), i, probeY);
 			r = GetRValue(color);
 			g = GetGValue(color);
 			b = GetBValue(color);

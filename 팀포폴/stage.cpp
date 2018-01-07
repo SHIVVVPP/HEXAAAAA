@@ -379,106 +379,106 @@ void stage::setCameraObject()
 {
 	//1->2
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(6215, 2980, 20, 480),
-	{ 0,6219 }, { 6219,6219 + WINSIZEX }, &_rc, true, "2");
+	{ 0,6219 }, { 6219,6219 + WINSIZEX }, _player->getPlayerRect(), true, "2");
 
 	//2->3 7811 2991
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(7811, 2994, 20, 480),
-	{ 6219,6219 + WINSIZEX }, { 7819,7819 + WINSIZEX }, &_rc, true, "3");
+	{ 6219,6219 + WINSIZEX }, { 7819,7819 + WINSIZEX }, _player->getPlayerRect(), true, "3");
 
 	//3->4 사다리
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(8955, 2735, 106, 20),
-	{ 2732,2732 + WINSIZEY }, { 1901,1901+WINSIZEY }, &_rc, false, "4");
+	{ 2732,2732 + WINSIZEY }, { 1901,1901+WINSIZEY }, _player->getPlayerRect(), false, "4");
 
 	//4->5 
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(9409, 1964, 20, 331),
-	{ 7819,7819 + WINSIZEX }, { 9419,9419 + WINSIZEX }, &_rc, true, "5");
+	{ 7819,7819 + WINSIZEX }, { 9419,9419 + WINSIZEX }, _player->getPlayerRect(), true, "5");
 
 	//5->6
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(11008, 1962, 20, 728),
-	{ 9419,9419 + WINSIZEX }, { 11019,11019 + WINSIZEX }, &_rc, true, "6");
+	{ 9419,9419 + WINSIZEX }, { 11019,11019 + WINSIZEX }, _player->getPlayerRect(), true, "6");
 
 	//6->7
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(12356, 2794, 100, 20),
-	 { 1901,1901 + WINSIZEY }, { 2732,2732 + WINSIZEY }, &_rc, true, "7");
+	 { 1901,1901 + WINSIZEY }, { 2732,2732 + WINSIZEY }, _player->getPlayerRect(), true, "7");
 
 	//7->8
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(11333, 3626, 100, 20),
-	{ 2732,2732 + WINSIZEY }, { 3632,3632 + WINSIZEY }, &_rc, true, "8");
+	{ 2732,2732 + WINSIZEY }, { 3632,3632 + WINSIZEY }, _player->getPlayerRect(), true, "8");
 
 	//8->8 under
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(12361, 4220, 140, 20),
-	{ 3632,3632 + WINSIZEY }, { 5221-WINSIZEY,5221 }, &_rc, true, "8");
+	{ 3632,3632 + WINSIZEY }, { 5221-WINSIZEY,5221 }, _player->getPlayerRect(), true, "8");
 
 	//8->8_LEFT
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(11010, 4889, 20, 228),
-	{ 11019,12619 }, { 9419,11019 }, &_rc, false, "801");
+	{ 11019,12619 }, { 9419,11019 }, _player->getPlayerRect(), false, "801");
 
 	//8->9
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(12611, 4632, 20, 341),
-	 { 11019,12619 }, { 12619,14219 }, &_rc, true, "9");
+	 { 11019,12619 }, { 12619,14219 }, _player->getPlayerRect(), true, "9");
 
 	//9~10
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(14210, 4387, 20, 714),
-	{ 12619,14219 }, { 14219,15819 }, &_rc, true, "10");
+	{ 12619,14219 }, { 14219,15819 }, _player->getPlayerRect(), true, "10");
 
 	//10~11
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(15812, 4702, 20, 401),
-	{ 14219,15819 }, { 15819,17419 }, &_rc, true, "11");
+	{ 14219,15819 }, { 15819,17419 }, _player->getPlayerRect(), true, "11");
 
 	//11->11 사다리
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17218, 4404, 80, 20),
-	{ 4321,5221 }, { 4371-WINSIZEY,4371 }, &_rc, false, "11");
+	{ 4321,5221 }, { 4371-WINSIZEY,4371 }, _player->getPlayerRect(), false, "11");
 
 	//11->1101
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17410, 3803, 20, 215),
-	{ 15819,17419 }, { 17419,19722 }, &_rc, true, "1101");
+	{ 15819,17419 }, { 17419,19722 }, _player->getPlayerRect(), true, "1101");
 
 	//11->11 사다리
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(15819, 3567, 80, 20),
-	{ 4371 - WINSIZEY,4371 }, { 3577 - WINSIZEY, 3577 }, &_rc, false, "11");
+	{ 4371 - WINSIZEY,4371 }, { 3577 - WINSIZEY, 3577 }, _player->getPlayerRect(), false, "11");
 
 	//11->11 사다리2
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(16198, 2668, 80, 20),
-	{ 3577 - WINSIZEY, 3577 }, { 2730 - WINSIZEY, 2730 }, &_rc, false, "11");
+	{ 3577 - WINSIZEY, 3577 }, { 2730 - WINSIZEY, 2730 }, _player->getPlayerRect(), false, "11");
 
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(16901, 2668, 80, 20),
-	{ 3577 - WINSIZEY, 3577 }, { 2730 - WINSIZEY, 2730 }, &_rc, false, "11");
+	{ 3577 - WINSIZEY, 3577 }, { 2730 - WINSIZEY, 2730 }, _player->getPlayerRect(), false, "11");
 
 	//11->12
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(17411, 1896, 20, 462),
-	{ 15819,17419 }, { 17419,19019 }, &_rc, true, "12");
+	{ 15819,17419 }, { 17419,19019 }, _player->getPlayerRect(), true, "12");
 
 	//12->13
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(19010, 1898, 20, 520),
-	{ 17419,19019 }, { 19019,20619 }, &_rc, true, "13");
+	{ 17419,19019 }, { 19019,20619 }, _player->getPlayerRect(), true, "13");
 
 	//13->14
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(20612, 1898, 20, 322),
-	{ 19019,20619 }, { 20619,22219 }, &_rc, true, "14");
+	{ 19019,20619 }, { 20619,22219 }, _player->getPlayerRect(), true, "14");
 
 	//14->15
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(22210, 1910, 20, 633),
-	{ 20619,22219 }, { 22219,23819 }, &_rc, true, "15");
+	{ 20619,22219 }, { 22219,23819 }, _player->getPlayerRect(), true, "15");
 
 	//15 사다리
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(23691, 1820, 80, 20),
-	{ 2730 - WINSIZEY, 2730 }, { 999, 1899 }, &_rc, false, "15");
+	{ 2730 - WINSIZEY, 2730 }, { 999, 1899 }, _player->getPlayerRect(), false, "15");
 
 	CAMERAMANAGER->addCameraObject(true, true, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(22737, 1059, 80, 20),
-	{ 999, 1899 }, { 169, 1069 }, &_rc, false, "15");
+	{ 999, 1899 }, { 169, 1069 }, _player->getPlayerRect(), false, "15");
 
 	//15 1501
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(22219, 232, 20, 332),
-	 { 22219,23819 }, { 20236,22219 }, &_rc, false, "1501");
+	 { 22219,23819 }, { 20236,22219 }, _player->getPlayerRect(), false, "1501");
 	
 
 	//15->16
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(23807, 232, 20, 718),
-	{ 22219,23819 }, { 23819,25419 }, &_rc, true, "16");
+	{ 22219,23819 }, { 23819,25419 }, _player->getPlayerRect(), true, "16");
 
 	//16->boss
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(25407, 232, 20, 718),
-	{ 23819,25419 }, { 25419,27019 }, &_rc, true, "17");
+	{ 23819,25419 }, { 25419,27019 }, _player->getPlayerRect(), true, "17");
 
 }
 
@@ -503,7 +503,7 @@ void stage::pixelCollison()
 	
 		//	if ()
 	}
-
+	
 	if (_player->getJumpPower() <= 0)
 	{
 		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
@@ -532,13 +532,23 @@ void stage::pixelCollison()
 		{
 			_player->setIsJump(false);
 			_player->setIsLand(true);
-			
+						
 		}
 		else
 		{
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 + _currentRoom._leftX, _player->getprobeY() + 1);
+			r = GetRValue(color);
+			g = GetGValue(color);
+			b = GetBValue(color);
+
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, _player->getprobeY() + 1);
+			int r1 = GetRValue(color);
+			int g1 = GetGValue(color);
+			int b1 = GetBValue(color);
+
+
 			_player->setIsJump(true);
 			_player->setIsLand(false);
-		
 		}
 
 	}

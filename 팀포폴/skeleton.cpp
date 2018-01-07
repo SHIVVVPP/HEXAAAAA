@@ -64,39 +64,23 @@ void skeleton::release()
 }
 void skeleton::update()
 {
-	float d = getDistance(_collisionRc.left + _width / 2, _collisionRc.top + _height / 2, (_playerC->left + _playerC->right) / 2, (_playerC->top + _playerC->bottom) / 2);
-	float angle = getAngle(_collisionRc.left + _width / 2, _collisionRc.top + _height / 2, (_playerC->left + _playerC->right) / 2, (_playerC->top + _playerC->bottom) / 2);
+	float d = getDistance( (_playerC->left + _playerC->right) / 2, (_playerC->top + _playerC->bottom) / 2, _collisionRc.left + _width / 2, _collisionRc.top + _height / 2);
+	float angle = getAngle((_playerC->left + _playerC->right) / 2, (_playerC->top + _playerC->bottom) / 2, _collisionRc.left + _width / 2, _collisionRc.top + _height / 2);
 
-	if (d < 400) _detect = true;
+	if (d < 300) _detect = true;
 	else _detect = false;
 
 	if (_detect)
 	{
 		if (cosf(angle) > 0)
 		{
-			if (d < 100)
-			{
-				if(!_isRight) changeDirection();
-				setMainCondition(BACKMOVE);
-			}
-			else
-			{
 				if (_isRight) changeDirection();
 				setMainCondition(MOVE);
-			}
 		}
 		else if (cosf(angle) < 0)
 		{
-			if (d < 100)
-			{
-				if (_isRight) changeDirection();
-				setMainCondition(BACKMOVE);
-			}
-			else
-			{
 				if (!_isRight) changeDirection();
 				setMainCondition(MOVE);
-			}
 		}
 	}
 
@@ -239,6 +223,5 @@ void skeleton::setCondition()
 
 void skeleton::changeDirection()
 {
-	if (_isRight) _leftX -= 100;
 	enemy::changeDirection();
 }
