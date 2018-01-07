@@ -122,6 +122,9 @@ void option::update()
 
 void option::render()
 {
+	IMAGEMANAGER->findImage("¾ËÆÄ¿ë")->alphaRender(getMemDC(), 255);
+
+
 	_background->render(getMemDC(), WINSIZEX / 2 - _background->getWidth() / 2, WINSIZEY / 2 - _background->getHeight() / 2);
 
 	for (int i = 0; i < _vOptions.size(); i++)

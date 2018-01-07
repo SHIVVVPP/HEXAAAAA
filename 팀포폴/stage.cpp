@@ -100,7 +100,7 @@ void stage::update()
 	}
 	
 	Tool->update();
-	_player->getColMessage(_objectManager->player_object_collision());
+	_objectManager->player_object_collision();
 
 	RECT temp;
 	if (IntersectRect(&temp, _player->getPlayerRect(), &_changeSceneRc))

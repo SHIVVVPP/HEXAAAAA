@@ -85,5 +85,4 @@ public:
 	}
 
 	virtual void setDefault();
-
 };

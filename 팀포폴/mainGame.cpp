@@ -87,7 +87,9 @@ void mainGame::update()				//연산 함수
 	//	rc.top -= 5;
 	//	rc.bottom -= 5;
 	//}
-	
+
+	SCENEMANAGER->update();
+
 	if (KEYMANAGER->isOnceKeyDown('I'))
 	{
 		if (_Nowinventory)
@@ -117,7 +119,6 @@ void mainGame::update()				//연산 함수
 	
 
 	//sys->update();
-	SCENEMANAGER->update();
 	//_player->update();
 	//_ui->update();
 	//_town->update();
@@ -129,6 +130,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	//sys->render();
+	
 	SCENEMANAGER->render();
 	//_town->render();
 	//_player->render();

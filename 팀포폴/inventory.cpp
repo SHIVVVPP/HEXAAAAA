@@ -133,6 +133,8 @@ void inventory::update()
 
 void inventory::render()
 {
+	IMAGEMANAGER->findImage("¾ËÆÄ¿ë")->alphaRender(getMemDC(), 255);
+
 	_invenImage->aniRender(getMemDC(), _invenImage->getX(), _invenImage->getY(), _invenani);
 	if (KEYMANAGER->isToggleKey(VK_F1)) RectangleMake(getMemDC(), _center.x, _center.y, _cursor->getWidth(), _cursor->getHeight());
 	_cursor->alphaRender(getMemDC(), _center.x, _center.y, _cursorAlpha);
