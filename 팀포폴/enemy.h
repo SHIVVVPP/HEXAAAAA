@@ -99,6 +99,7 @@ public:
 
 	virtual void chagePattern(MON_PATTERN pattern) {}
 
+	RECT getColRect() { return _collisionRc; }
 
 
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }

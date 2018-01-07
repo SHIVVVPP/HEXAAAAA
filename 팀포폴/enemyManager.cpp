@@ -54,4 +54,20 @@ void enemyManager::render()
 	}
 }
 
+void enemyManager::collisionCheck()
+{
+	LPCOLLISION_INFO tempColInfo = new COLLISION_INFO;
+
+	RECT temp;
+	for (int i = 0; i < _vEnemy.size(); i++)
+	{
+		if (!IntersectRect(&temp, _player->getPlayerRect(), &_vEnemy[i]->getColRect())) continue;
+		
+		tempColInfo->_colType = COL_MONSTER;
+
+	}
+
+
+}
+
 
