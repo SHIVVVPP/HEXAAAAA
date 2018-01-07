@@ -66,6 +66,7 @@ class player : public gameNode
 	bool _isJump;
 	bool _canAtk;
 	bool _offPicxel;
+	bool _immune;
 	int prevCondition1;
 	int prevCondition2;
 
@@ -86,8 +87,8 @@ public:
 	void usage();
 	void setPlayerCondition();
 	void collisonAttack();
-	void collisonHitted(RECT* obj);
-	void collisonObject(int objType, int objValue);
+	void collisonHitted();
+	
 	
 	
 
@@ -205,7 +206,22 @@ public:
 					_playerMainCondition = PLAYER_LEFT_MOVE;
 					setPlayerCondition();
 					break;
-		
+
+					case PLAYER_DOWN_ATTACK:
+					if (_dir == 1) 	_playerMainCondition = PLAYER_RIGHT_IDLE;
+					if (_dir == -1)	_playerMainCondition = PLAYER_LEFT_IDLE;
+					setPlayerCondition();
+					break;
+
+					case PLAYER_RIGHT_DOWN_ATTACK:
+						_playerMainCondition = PLAYER_RIGHT_IDLE;
+						setPlayerCondition();
+						break;
+
+					case PLAYER_LEFT_DOWN_ATTACK:
+						_playerMainCondition = PLAYER_LEFT_IDLE;
+						setPlayerCondition();
+						break;
 				}
 
 			}

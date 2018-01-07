@@ -20,6 +20,7 @@ enum MONSTER_MAINCONDITION
 	BACKMOVE,
 	HITTED,
 	DIE,
+	DYINGOUT,
 };
 
 enum MONSTER_SUBCONDITION
@@ -60,6 +61,7 @@ protected:
 	int _width, _height;
 
 	int _hp;
+	BYTE _alpha;
 
 	bool _detect;
 	bool _isRight;
@@ -91,6 +93,7 @@ public:
 
 	//¾÷µ«
 	virtual void setMainCondition(MONSTER_MAINCONDITION mainCondition) {}
+	void setMainConditionF(MONSTER_MAINCONDITION mainCondition) { _mainCondition = mainCondition; }
 	virtual void setSubCondition(MONSTER_SUBCONDITION subCondition) {}
 	virtual void setCondition() {}
 
@@ -98,10 +101,11 @@ public:
 
 	virtual void chagePattern(MON_PATTERN pattern) {}
 
-
-
+	RECT getColRect() { return _collisionRc; }
+	bool canCollisionCheck() { if (_mainCondition == HITTED||_mainCondition == DIE || _mainCondition == DYINGOUT) return false; else return true; }
+	int getMainCondition() { return _mainCondition; }
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
-
+	int getMonsterIndex() { return _index; }
 	enemy();
 	~enemy();
 };
