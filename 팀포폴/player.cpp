@@ -855,7 +855,6 @@ void player::getColMessage(LPCOLLISION_INFO message)
 							{
 								_x -= 2;
 							}
-							
 						}
 						if (_isLand)
 						{

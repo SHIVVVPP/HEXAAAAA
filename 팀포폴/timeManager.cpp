@@ -43,18 +43,18 @@ void timeManager::render(HDC hdc)
 	char str[256];
 	string frameRate;
 	//Set Background Mode FONT µÞ¹è°æ
-	//SetBkMode(hdc, TRANSPARENT);
+	SetBkMode(hdc, TRANSPARENT);
 
 #ifdef _DEBUG
 	{
 		wsprintf(str, "framePerSec(FPS) : %d", _timer->getFrameRate());
-		TextOut(hdc, 0, 0, str, strlen(str));
+		TextOut(hdc, 200, 200, str, strlen(str));
 
 		sprintf_s(str, "worldTime : %f", _timer->getWorldTime());
-		TextOut(hdc, 0, 20, str, strlen(str));
+		TextOut(hdc, 200, 220, str, strlen(str));
 
 		sprintf_s(str, "elapsedTime : %f", _timer->getElapsedTime());
-		TextOut(hdc, 0, 40, str, strlen(str));
+		TextOut(hdc, 200, 240, str, strlen(str));
 	}
 #else
 	{
