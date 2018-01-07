@@ -61,6 +61,7 @@ protected:
 	int _width, _height;
 
 	int _hp;
+	BYTE _alpha;
 
 	bool _detect;
 	bool _isRight;
@@ -100,7 +101,7 @@ public:
 	virtual void chagePattern(MON_PATTERN pattern) {}
 
 	RECT getColRect() { return _collisionRc; }
-
+	bool canCollisionCheck() { if (_mainCondition == HITTED||_mainCondition == DIE || _mainCondition == DYINGOUT) return false; else return true; }
 
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
 	int getMonsterIndex() { return _index; }

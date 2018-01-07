@@ -81,7 +81,9 @@ void redBeetle::render()
 
 void redBeetle::CollisionReact()
 {
-
+	_hp--;
+	if (_hp <= 0)
+		setMainCondition(DIE);
 }
 
 void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		
