@@ -106,6 +106,7 @@ public:
 	int getMainCondition() { return _mainCondition; }
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
 	int getMonsterIndex() { return _index; }
+	POINT getPOINT() { return { _leftX+ _width/2,_topY+_height/2 }; }
 	enemy();
 	~enemy();
 };

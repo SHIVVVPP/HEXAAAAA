@@ -61,4 +61,6 @@ public:
 
 	void sendColMessage();
 	void pixelCollison();
+
+	static void CreateGem(void* obj);
 };

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "enemyManager.h"
 #include "player.h"
+#include "objectManager.h"
 
 
 
@@ -102,7 +103,12 @@ void enemyManager::eraseMonster(vector<int> v)
 	{
 		while (v.size() != 0)
 		{
-			_vEnemy.erase(_vEnemy.begin() + v[v.size() - 1]);
+			int i = v.size() - 1;
+			for (int k = 0; k < 3; k++)
+			{
+				objM->createGem(40, _vEnemy[v[i]]->getPOINT().x, _vEnemy[v[i]]->getPOINT().y, _vEnemy[v[i]]->getPOINT().x, _vEnemy[v[i]]->getPOINT().y);
+			}
+			_vEnemy.erase(_vEnemy.begin() + v[i]);
 			v.pop_back();
 		}
 	}

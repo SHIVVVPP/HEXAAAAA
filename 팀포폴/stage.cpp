@@ -41,6 +41,7 @@ HRESULT stage::init()
 
 	_enemyManager = new enemyManager;
 	_enemyManager->LinkPlayer(_player);
+	_enemyManager->LinkObjM(_objectManager);
 	_enemyManager->init();
 
 
@@ -599,4 +600,9 @@ void stage::pixelCollison()
 	}
 
 	
+}
+
+void stage::CreateGem(void* obj)
+{
+
 }
