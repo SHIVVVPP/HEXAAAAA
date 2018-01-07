@@ -671,7 +671,7 @@ void player::setPlayerCondition()
 }
 void player::getColMessage(LPCOLLISION_INFO message)
 {
-	if (message != NULL)
+ 	if (message != NULL)
 	{
 		objects* temp;
 		RECT _tempRC;
@@ -710,8 +710,6 @@ void player::getColMessage(LPCOLLISION_INFO message)
 
 				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
 				{
-					//setPlayerCondition();
-			
 					float _width = _tempRC.right - _tempRC.left;
 					float _height = _tempRC.bottom - _tempRC.top;
 					float _tempWidth = (temp->getRc().right - temp->getRc().left) / 2;
@@ -836,22 +834,23 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			}break;
 
-			case COL_NPC:
-			{
-				switch (message->index_detail)
+				case COL_NPC:
 				{
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
+					switch (message->index_detail)
+					{
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					}
 					break;
 				}
-				break;
-			}
 			
 		}
 		}
+
 		if(!message->_isPlayer && _canAtk)
 		{
 			switch (message->_colType)
