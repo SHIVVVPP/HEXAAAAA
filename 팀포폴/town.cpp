@@ -20,10 +20,10 @@ HRESULT town::init()
 
 	townimage = IMAGEMANAGER->findImage("town");		//마을 이미지
 	townPix = IMAGEMANAGER->findImage("townPix");		//마을 픽셀이미지
-	backsideimg = IMAGEMANAGER->findImage("backsideimg");
+	backsideimg = IMAGEMANAGER->findImage("backsideimg"); // 후경 이미지
 	_NPCM = new NPCManager;								//
+	_NPCM->connectPlayer(_player);
 	_NPCM->init();
-
 	CAMERAMANAGER->setBackground(8137, 900);
 	CAMERAMANAGER->setStartBackground(0, 0);
 	_rc = RectMake(50, 400, 50, 50);
@@ -40,7 +40,7 @@ HRESULT town::init()
 
 	_NPCM->setLeftNpc(false);
 	_NPCM->setNpc();
-	_NPCM->connectPlayer(_player);
+	
 	_ui = new ui;
 	_ui->init(UI_STAGE);
 
@@ -65,7 +65,7 @@ void town::update()
 		_isvisible = false;
 	}
 	
-	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -84,15 +84,15 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}*/
-	
+	}
+	pixelCollison();
 	_player->update();
 	_NPCM->update();
 	_objectManager->update();
 
 	_ui->update();
 
-	pixelCollison();
+	
 
 }
 
