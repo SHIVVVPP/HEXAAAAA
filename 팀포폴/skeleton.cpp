@@ -48,7 +48,7 @@ HRESULT skeleton::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_ATTACK", "ÇØ°ñ", rightAttack, 2, 1, false,attackReturn,this);
 	int leftAttack[] = { 33,32 };
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_ATTACK", "ÇØ°ñ", leftAttack, 2, 1, false, attackReturn, this);
-	int rightDie[] = { 16,17,18,19 };
+	int rightDie[] = { 19,18,17,16};
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_DIE", "ÇØ°ñ", rightDie, 4, 1, false, dieReturn,this);
 	int leftDie[] = { 36,37,38,39 };
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_DIE", "ÇØ°ñ", leftDie, 4, 1, false, dieReturn,this);
@@ -162,7 +162,7 @@ void skeleton::render()
 	else
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRc.left), CAMERAMANAGER->CameraRelativePointY(_imageRc.top), _ani);
 
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_collisionRc.left), CAMERAMANAGER->CameraRelativePointY(_collisionRc.top), _collisionRc.right - _collisionRc.left, _collisionRc.bottom - _collisionRc.top);
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_collisionRc.left), CAMERAMANAGER->CameraRelativePointY(_collisionRc.top), _collisionRc.right - _collisionRc.left, _collisionRc.bottom - _collisionRc.top);
 
 }
 
@@ -182,16 +182,15 @@ void skeleton::CollisionReact()
 
 void skeleton::setMainCondition(MONSTER_MAINCONDITION mainCondition)
 {
-	if (_mainCondition != mainCondition && _subCondition != ATTACK && _mainCondition != HITTED && _mainCondition != DIE)
+	if (_mainCondition != mainCondition && _subCondition != ATTACK && _mainCondition != HITTED && _mainCondition != DIE &&_mainCondition != DYINGOUT)
 	{
 		_mainCondition = mainCondition;
-		if(_mainCondition != DYINGOUT)
 		setCondition();
 	}
 }
 void skeleton::setSubCondition(MONSTER_SUBCONDITION subCondition)	
 {
-	if (_subCondition != subCondition && _mainCondition != HITTED)
+	if (_subCondition != subCondition && _mainCondition != HITTED && _mainCondition != DYINGOUT)
 	{
 		_subCondition = subCondition;
 		setCondition();
@@ -318,5 +317,5 @@ void skeleton::dieReturn(void * obj)
 {
 	enemy* e = (enemy*)obj;
 
-	e->setMainCondition(DYINGOUT);
+	e->setMainConditionF(DYINGOUT);
 }
