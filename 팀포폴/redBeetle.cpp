@@ -76,11 +76,12 @@ void redBeetle::update()
 void redBeetle::render()												   
 {
 	_image->aniRender(getMemDC(),CAMERAMANAGER->CameraRelativePointX( _leftX),CAMERAMANAGER->CameraRelativePointY( _topY), _ani);
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), _width, _height);
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), _width, _height);
 }
 
 void redBeetle::CollisionReact()
 {
+
 }
 
 void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		

@@ -20,6 +20,7 @@ enum MONSTER_MAINCONDITION
 	BACKMOVE,
 	HITTED,
 	DIE,
+	DYINGOUT,
 };
 
 enum MONSTER_SUBCONDITION
@@ -98,10 +99,11 @@ public:
 
 	virtual void chagePattern(MON_PATTERN pattern) {}
 
+	RECT getColRect() { return _collisionRc; }
 
 
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
-
+	int getMonsterIndex() { return _index; }
 	enemy();
 	~enemy();
 };

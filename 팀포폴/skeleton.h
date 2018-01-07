@@ -19,5 +19,6 @@ public:
 	void changeDirection();
 
 	static void attackReturn(void* obj);
+	static void dieReturn(void* obj);
 };
 
