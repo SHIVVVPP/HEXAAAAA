@@ -39,6 +39,7 @@ public:
 	void setPixelColInfo(image* image, POINT ptReal) { _pixelColImage = image; _ptReal = ptReal; }
 	void collisionCheck();
 	void LinkPlayer(player* p) { _player = p; }
+	void eraseMonster(vector<int> v);
 	
 	enemyManager();
 	~enemyManager();

@@ -83,7 +83,7 @@ void redBeetle::CollisionReact()
 {
 	_hp--;
 	if (_hp <= 0)
-		setMainCondition(DIE);
+		setMainCondition(DYINGOUT);
 }
 
 void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		
@@ -141,6 +141,24 @@ void redBeetle::setCondition()
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
 		break;
+		}
+		break;
+	case DYINGOUT:
+		switch (_subCondition)
+		{
+		case LAND:
+			if (_isRight)
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+			else
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
+			_sumGravity = 0;
+			break;
+		case FALL:
+			if (_isRight)
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+			else
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
+			break;
 		}
 		break;
 	}
