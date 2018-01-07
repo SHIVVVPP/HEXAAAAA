@@ -503,7 +503,7 @@ void stage::pixelCollison()
 	
 		//	if ()
 	}
-
+	
 	if (_player->getJumpPower() <= 0)
 	{
 		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
@@ -532,13 +532,23 @@ void stage::pixelCollison()
 		{
 			_player->setIsJump(false);
 			_player->setIsLand(true);
-			
+						
 		}
 		else
 		{
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 + _currentRoom._leftX, _player->getprobeY() + 1);
+			r = GetRValue(color);
+			g = GetGValue(color);
+			b = GetBValue(color);
+
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, _player->getprobeY() + 1);
+			int r1 = GetRValue(color);
+			int g1 = GetGValue(color);
+			int b1 = GetBValue(color);
+
+
 			_player->setIsJump(true);
 			_player->setIsLand(false);
-		
 		}
 
 	}
