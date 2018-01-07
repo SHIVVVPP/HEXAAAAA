@@ -17,5 +17,7 @@ public:
 	void setSubCondition(MONSTER_SUBCONDITION subCondition);
 	void setCondition();
 	void changeDirection();
+
+	static void attackReturn(void* obj);
 };
 

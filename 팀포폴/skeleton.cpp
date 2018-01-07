@@ -20,7 +20,7 @@ HRESULT skeleton::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	_image = IMAGEMANAGER->findImage("ÇØ°ñ");
 	_width = 100;//28  37
 	_height = 144;
-
+	_attackCount = 0;
 	_hp = 3;
 
 	_isRight = false;
@@ -43,9 +43,9 @@ HRESULT skeleton::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	int leftBackMove[] = { 28,29 };
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_BACKMOVE", "ÇØ°ñ", leftBackMove, 2, 1, true);
 	int rightAttack[] = { 12,13 };
-	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_ATTACK", "ÇØ°ñ", rightAttack, 2, 1, false);
-	int leftAttack[] = { 30,31 };
-	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_ATTACK", "ÇØ°ñ", leftAttack, 2, 1, false);
+	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_ATTACK", "ÇØ°ñ", rightAttack, 2, 1, false,attackReturn,this);
+	int leftAttack[] = { 32,33 };
+	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_ATTACK", "ÇØ°ñ", leftAttack, 2, 1, false, attackReturn, this);
 	int rightDie[] = { 16,17,18,19 };
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_DIE", "ÇØ°ñ", rightDie, 4, 1, false);
 	int leftDie[] = { 36,37,38,39 };
@@ -72,6 +72,14 @@ void skeleton::update()
 
 	if (_detect)
 	{
+		if (d < 150 && _attackCount % 100 == 0)
+		{
+			setMainCondition(STAND);
+			setSubCondition(ATTACK);
+			_attackCount = 0;
+		}
+
+		
 		if (cosf(angle) > 0)
 		{
 				if (_isRight) changeDirection();
@@ -93,13 +101,6 @@ void skeleton::update()
 			_leftX -= _speedX;
 	}
 
-	if (_mainCondition == BACKMOVE)
-	{
-		if (_isRight)
-			_leftX -= _speedX;
-		else
-			_leftX += _speedX;
-	}
 
 	if (_subCondition == FALL)
 	{
@@ -110,7 +111,7 @@ void skeleton::update()
 
 	_imageRc = RectMake(_leftX+_width/2- _image->getFrameWidth()/2, _topY-40, _image->getFrameWidth(), _image->getFrameHeight());
 	_collisionRc = RectMake(_leftX, _topY, _width, _height);
-
+	_attackCount++;
 	_ani->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
 }
 void skeleton::render()												 
@@ -125,7 +126,7 @@ void skeleton::CollisionReact()
 
 void skeleton::setMainCondition(MONSTER_MAINCONDITION mainCondition)
 {
-	if (_mainCondition != mainCondition)
+	if (_mainCondition != mainCondition && _subCondition != ATTACK)
 	{
 		_mainCondition = mainCondition;
 		setCondition();
@@ -193,18 +194,6 @@ void skeleton::setCondition()
 		break;
 		}
 	break;
-	case BACKMOVE:
-		switch (_subCondition)
-		{
-		case LAND:
-			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("SKELETON_RIGHT_BACKMOVE");
-			else
-				_ani = KEYANIMANAGER->findAnimation("SKELETON_LEFT_BACKMOVE");
-			_sumGravity = 0;
-		break;
-		}
-	break;
 	case DIE:
 			if (_isRight)
 				_ani = KEYANIMANAGER->findAnimation("SKELETON_RIGHT_DIE");
@@ -224,4 +213,11 @@ void skeleton::setCondition()
 void skeleton::changeDirection()
 {
 	enemy::changeDirection();
+}
+
+void skeleton::attackReturn(void * obj)
+{
+	enemy* e = (enemy*)obj;
+
+	e->setSubCondition(LAND);
 }
