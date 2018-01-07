@@ -707,7 +707,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			{
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
-
+				
 				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
 				{
 					float _width = _tempRC.right - _tempRC.left;
@@ -799,7 +799,17 @@ void player::getColMessage(LPCOLLISION_INFO message)
 						{
 							_offPicxel = true;
 							_isLand = true;
-							_isJump = false;
+							//_isJump = false;
+							setIsJump(false);
+							if (!temp->getDirection() && temp->getisRight()) 
+							{
+								_x += 2;
+							}
+							else if (!temp->getDirection() && !temp->getisRight())
+							{
+								_x -= 2;
+							}
+							
 						}
 						if (_isLand)
 						{
@@ -807,7 +817,14 @@ void player::getColMessage(LPCOLLISION_INFO message)
 							//_y += _jumpPower;
 							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 5;
 						}
-						
+						if (_playerRC.right <= _templeft + _tempWidth || _playerRC.left >= _tempright - _tempWidth
+							|| _playerRC.right <= _templeft + _tempWidth && _isJump == true || _playerRC.left >= _tempright - _tempWidth && _isJump == true)
+						{
+							_isLand = false;
+							_offPicxel = false;
+							//_isJump = true;
+							setIsJump(true);
+						}
 						if (_tempRC.bottom == temp->getRc().bottom)
 						{
 							_y = temp->getRc().bottom - (_playerRC.top - _playerRC.bottom) / 2 + 25;

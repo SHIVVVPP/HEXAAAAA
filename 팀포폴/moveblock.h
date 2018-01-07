@@ -6,7 +6,7 @@ public:
 	moveblock();
 	~moveblock();
 
-	HRESULT init(int x, int y,int range,bool isRight);
+	HRESULT init(int x, int y,int range,bool isRight,bool isUp , bool type);
 	void update();
 	void render();
 };

@@ -146,11 +146,11 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2800, 3150,50,false);
+	_obj->init(2800, 3150,50,false,true,true);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2000, 3150, 200, false);
+	_obj->init(2000, 3150, 200, false,true,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;

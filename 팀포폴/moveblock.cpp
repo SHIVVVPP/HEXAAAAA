@@ -9,6 +9,9 @@ moveblock::moveblock()
 	_canLand = true;
 	_hang = false;
 	_picked = false;
+	_isRight = false;
+	_isUp = false;
+	_direction = false;
 	//_isHit = false;
 }
 
@@ -17,7 +20,7 @@ moveblock::~moveblock()
 {
 }
 
-HRESULT moveblock::init(int x, int y,int range,bool isRight)
+HRESULT moveblock::init(int x, int y,int range,bool isRight,bool isUp , bool type)
 {
 	_width = IMAGEMANAGER->findImage("movingrock")->getWidth();
 	_height = IMAGEMANAGER->findImage("movingrock")->getHeight();
@@ -28,17 +31,48 @@ HRESULT moveblock::init(int x, int y,int range,bool isRight)
 	_startY = y;
 	_range = range;
 	_speedX = 2;
+	_speedY = 2;
+	_isRight = isRight;
+	_isUp = isUp;
+	_direction = type;
 	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("movingrock")->getWidth(), IMAGEMANAGER->findImage("movingrock")->getHeight());
 	return S_OK;
 }
 
 void moveblock::update()
 {
-	_leftX += _speedX;
+	
+	
 	_rc = RectMake(_leftX, _topY, _width, _height);
 
-	if (_range <= getDistance(_leftX, _topY, _startX, _startY)) _speedX = -2;
-	if (_leftX <= _startX) _speedX = 2;
+	if (!_direction)
+	{
+		_leftX += _speedX;
+		if (_range <= getDistance(_leftX, _topY, _startX, _startY))
+		{
+			_speedX = -2;
+			_isRight = false;
+		}
+		if (_leftX <= _startX)
+		{
+			_speedX = 2;
+			_isRight = true;
+		}
+	}
+	else if(_direction)
+	{
+		_topY += _speedY;
+		if (_range <= getDistance(_leftX, _topY, _startX, _startY))
+		{
+			_speedY = -2;
+			_isUp = false;
+		}
+		if (_topY <= _startY)
+		{
+			_speedY = 2;
+			_isUp = true;
+		}
+	}
 }
 
 void moveblock::render()
