@@ -73,7 +73,6 @@ private:
 	vector<tagGear>::iterator _viGear;
 private:
 	const char* _GearName;
-
 	bool _isGet;
 public:
 	HRESULT init(const char* imageName, int itemNum, bool isGear, bool isGet);
@@ -91,6 +90,7 @@ public:
 class inventory : public gameNode
 {
 private:
+
 	inventoryRelic* _invenRelic;
 	inventoryGear* _invenGear;
 	RECT _checkRect; //아이템 확인용 렉트.

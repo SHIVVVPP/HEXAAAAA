@@ -46,10 +46,13 @@ void enemyManager::update()
 		_vEnemy[i]->update();
 		if (_vEnemy[i]->getMainCondition() == DYINGOUT) _eraseArr.push_back(i);
 	}
+	collisionCheck();
+
+
 	eraseMonster(_eraseArr);
 	
 
-	collisionCheck();
+	
 
 	
 }

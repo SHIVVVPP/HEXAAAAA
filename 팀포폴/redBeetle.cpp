@@ -32,7 +32,7 @@ HRESULT redBeetle::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	_ani = new animation;
 	
 	int rightMove[] = { 0,1,2,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_Right_MOVE", "레드비틀", rightMove, 4, 1, true);
+	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_RIGHT_MOVE", "레드비틀", rightMove, 4, 1, true);
 	int leftMove[] = { 8,9,10,11 };
 	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_LEFT_MOVE", "레드비틀", leftMove, 4, 1, true);
 	int rightDie[] = { 4,5 };
@@ -119,14 +119,14 @@ void redBeetle::setCondition()
 		{
 		case LAND:
 			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_MOVE");
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_RIGHT_MOVE");
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_MOVE");
 			_sumGravity = 0;
 		break;
 		case FALL:
 			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_MOVE");
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_RIGHT_MOVE");
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_MOVE");
 		break;
@@ -137,14 +137,14 @@ void redBeetle::setCondition()
 		{
 		case LAND:
 			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_RIGHT_DIE");
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
 			_sumGravity = 0;
 		break;
 		case FALL:
 			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_RIGHT_DIE");
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
 		break;
@@ -155,14 +155,14 @@ void redBeetle::setCondition()
 		{
 		case LAND:
 			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_RIGHT_DIE");
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
 			_sumGravity = 0;
 			break;
 		case FALL:
 			if (_isRight)
-				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_RIGHT_DIE");
 			else
 				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
 			break;

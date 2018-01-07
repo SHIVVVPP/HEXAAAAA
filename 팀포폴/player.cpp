@@ -78,9 +78,9 @@ HRESULT player::init()
 	int leftJumpDown[] = { 3 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpDown", "playerJump", leftJumpDown, 1, 8, true);
 	int rightAttackarr[] = { 0,1,2,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttackarr, 4, 15, false, rightAttack, this);
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttackarr, 4, 8, false, rightAttack, this);
 	int leftAttackarr[] = { 7,6,5,4 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttackarr, 4, 15, false, leftAttack, this);
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttackarr, 4, 8, false, leftAttack, this);
 	int leftDownAttack[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftDownAttack", "playerDownAtk", leftDownAttack, 1, 8, true);
 	int rightDownAttack[] = { 1 };
@@ -282,6 +282,24 @@ void player::update()
 			_canAtk = true;
 			_playerMainCondition = PLAYER_DOWN_ATTACK;
 			setPlayerCondition();
+		}
+		if (KEYMANAGER->isOnceKeyDown('A'))
+		{
+			_canAtk = true;
+			switch (_dir)
+			{
+			case 1:
+				_playerMainCondition = PLAYER_RIGHT_ATTACK;
+				setPlayerCondition();
+				break;
+
+			case -1:
+				_playerMainCondition = PLAYER_LEFT_ATTACK;
+				setPlayerCondition();
+				break;
+
+			}
+
 		}
 	}
 	else if (_playerMainCondition == PLAYER_DOWN_ATTACK
@@ -702,6 +720,30 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			switch (message->index_detail)
 			{
 			case 11: // gem
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+
+				switch (temp->getGemType())
+				{
+				case 120:
+					_playerGold += 5;
+					break;
+				case 121:
+					_playerGold += 10;
+					break;
+				case 122:
+					_playerGold += 20;
+					break;
+				case 123:
+					_playerGold += 50;
+					break;
+				case 124:
+					_playerGold += 100;
+					break;
+				case 125:
+					_playerGold += 200;
+					break;
+				}
 				break;
 			case 12: // Èë
 			{
@@ -876,6 +918,16 @@ void player::getColMessage(LPCOLLISION_INFO message)
 		{
 			switch (message->_colType)
 			{
+			case COL_MONSTER:
+				switch (message->index_detail)
+				{
+				case 0: // µüÁ¤¹ú·¹
+					collisonAttack();
+					break;
+				case 1: // ÇØ°ñ
+					collisonAttack();
+					break;
+				}
 			case COL_OBJECT:
 				switch (message->index_detail)
 				{
@@ -886,7 +938,26 @@ void player::getColMessage(LPCOLLISION_INFO message)
 					collisonAttack();
 					break;
 				case 21:
-					_canAtk = false;
+					switch (_playerMainCondition)
+					{
+					case 10:
+						_canAtk = false;
+						break;
+
+					case 12:
+						_canAtk = false;
+						break;
+					case 14:
+						collisonAttack();
+						break;
+					case 15:
+						collisonAttack();
+						break;
+					case 16:
+						collisonAttack();
+						break;
+					}
+							
 					break;
 				}
 			break;

@@ -1,7 +1,7 @@
 #pragma once
 #include "option.h"
 
-class option_audio: public option
+class option_audio : public option
 {
 public:
 	option_audio();
@@ -11,5 +11,6 @@ public:
 	void release();
 	void update();
 	void render();
-};
 
+	void setDefault();
+};

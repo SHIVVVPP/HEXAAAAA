@@ -3,8 +3,8 @@
 
 void mainGame::setImages()
 {
-
-	
+	IMAGEMANAGER->addImage("배경용", WINSIZEX, WINSIZEY);
+	IMAGEMANAGER->addImage("알파용", "./image./alpha.bmp", 1600, 900, false, RGB(255, 0, 255));
 
 	//------------------------------------------------------
 	//**************플레이어 이미지*********************
