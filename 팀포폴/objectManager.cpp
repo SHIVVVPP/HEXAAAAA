@@ -346,7 +346,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		tempInfo->_colType = COL_OBJECT;
 		tempInfo->object = _vdirtblock[i];
 		tempInfo->index_detail = DIRTPILE;
-
+		tempInfo->_isPlayer = false;
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtblock[i]->_rc))
 		{
@@ -369,7 +369,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vbubble[i];
 			tempInfo->index_detail = BUBBLE;
-
+			tempInfo->_isPlayer = false;
 			EFFECTMANAGER->play("¹öºí", _vbubble[i]->_leftX, _vbubble[i]->_topY);
 			_vbubble.erase(_vbubble.begin() + i);
 
@@ -383,7 +383,10 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		{
 			_x = _vplatter[i]->_leftX + 10;
 			_y = _vplatter[i]->_topY + 10;
-			
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vplatter[i];
+			tempInfo->index_detail = PLATTER;
+			tempInfo->_isPlayer = false;
 			_vplatter.erase(_vplatter.begin() + i);
 			_isOpen = true;
 			//_obj = new part;
@@ -417,6 +420,11 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp,_p->getPlayerAttackRect(), &_vfakedirt[i]->_rc))
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vfakedirt[i];
+			tempInfo->index_detail = PLATTER;
+			tempInfo->_isPlayer = false;
+
 			x = _vfakedirt[i]->_leftX;
 			y = _vfakedirt[i]->_topY;
 			_iscrush = true;
