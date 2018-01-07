@@ -88,13 +88,17 @@ void stage::update()
 	}
 	_player->update();
 	_objectManager->update();
-	_player->getColMessage(_objectManager->player_object_collision());
 	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });
 	_enemyManager->update();
 	_ui->update();
 	
-	pixelCollison();
+	if (_player->getPlayerMainCondition() != 7 && _player->getPlayerMainCondition() != 8 && _player->getPlayerMainCondition() != 9)
+	{
+		pixelCollison();
+	}
+	
 	Tool->update();
+	_player->getColMessage(_objectManager->player_object_collision());
 }
 
 void stage::render()
@@ -505,54 +509,57 @@ void stage::pixelCollison()
 		//	if ()
 	}
 	
-	if (_player->getJumpPower() <= 0)
+	if (_player->getOffPicxel() == false)
 	{
-		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
-		bool k = false;
-		int a = 0;
-		int b = 0;
-		bool istop = false;
-		for (int i = _player->getprobeY() + 30; i >  _player->getprobeY() - 30; --i)
+		if (_player->getJumpPower() <= 0)
 		{
-			color = GetPixel(_currentRoom._pixelColImage->getMemDC(),(_player->getPlayerRect()->left+ _player->getPlayerRect()->right)/2 - _currentRoom._leftX, i);
-
-			r = GetRValue(color);
-			g = GetGValue(color);
-			b = GetBValue(color);
-
-
-			if (r == 0 && g == 255 && b == 0)
+			_player->setProbeY(_player->getPlayerRect()->bottom - _currentRoom._topY);
+			bool k = false;
+			int a = 0;
+			int b = 0;
+			bool istop = false;
+			for (int i = _player->getprobeY() + 30; i > _player->getprobeY() - 30; --i)
 			{
-				k = true;
-				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + _currentRoom._topY);
-				a++;
+				color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, i);
+
+				r = GetRValue(color);
+				g = GetGValue(color);
+				b = GetBValue(color);
+
+
+				if (r == 0 && g == 255 && b == 0)
+				{
+					k = true;
+					_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + _currentRoom._topY);
+					a++;
+				}
+			}
+
+			if (k)
+			{
+				_player->setIsJump(false);
+				_player->setIsLand(true);
+
+			}
+			else
+			{
+				color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 + _currentRoom._leftX, _player->getprobeY() + 1);
+				r = GetRValue(color);
+				g = GetGValue(color);
+				b = GetBValue(color);
+
+				color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, _player->getprobeY() + 1);
+				int r1 = GetRValue(color);
+				int g1 = GetGValue(color);
+				int b1 = GetBValue(color);
+
+
+				_player->setIsJump(true);
+				_player->setIsLand(false);
 			}
 		}
-	
-		if (k)
-		{
-			_player->setIsJump(false);
-			_player->setIsLand(true);
-						
-		}
-		else
-		{
-			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 + _currentRoom._leftX, _player->getprobeY() + 1);
-			r = GetRValue(color);
-			g = GetGValue(color);
-			b = GetBValue(color);
-
-			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, _player->getprobeY() + 1);
-			int r1 = GetRValue(color);
-			int g1 = GetGValue(color);
-			int b1 = GetBValue(color);
-
-
-			_player->setIsJump(true);
-			_player->setIsLand(false);
-		}
-
 	}
+	
 
 	//º®Ãæµ¹
 	color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, _player->getPlayerRect()->bottom - 10 - _currentRoom._topY);
