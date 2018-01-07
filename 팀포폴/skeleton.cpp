@@ -74,29 +74,13 @@ void skeleton::update()
 	{
 		if (cosf(angle) > 0)
 		{
-			if (d < 100)
-			{
-				if(!_isRight) changeDirection();
-				setMainCondition(BACKMOVE);
-			}
-			else
-			{
 				if (_isRight) changeDirection();
 				setMainCondition(MOVE);
-			}
 		}
 		else if (cosf(angle) < 0)
 		{
-			if (d < 100)
-			{
-				if (_isRight) changeDirection();
-				setMainCondition(BACKMOVE);
-			}
-			else
-			{
 				if (!_isRight) changeDirection();
 				setMainCondition(MOVE);
-			}
 		}
 	}
 
