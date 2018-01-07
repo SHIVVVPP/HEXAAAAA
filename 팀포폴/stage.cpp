@@ -58,8 +58,8 @@ void stage::release()
 
 void stage::update()
 {
-
-	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -78,8 +78,8 @@ void stage::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}*/
-
+	}
+	*/
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")
 	{
@@ -87,7 +87,7 @@ void stage::update()
 	}
 	_player->update();
 	_objectManager->update();
-
+	_player->getColMessage(_objectManager->player_object_collision());
 	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });
 	_enemyManager->update();
 	_ui->update();
