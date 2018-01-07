@@ -48,9 +48,9 @@ HRESULT skeleton::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	int leftAttack[] = { 33,32 };
 	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_ATTACK", "ÇØ°ñ", leftAttack, 2, 1, false, attackReturn, this);
 	int rightDie[] = { 16,17,18,19 };
-	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_DIE", "ÇØ°ñ", rightDie, 4, 1, false);
+	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_RIGHT_DIE", "ÇØ°ñ", rightDie, 4, 1, false, dieReturn,this);
 	int leftDie[] = { 36,37,38,39 };
-	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_DIE", "ÇØ°ñ", leftDie, 4, 1, false);
+	KEYANIMANAGER->addArrayFrameAnimation("SKELETON_LEFT_DIE", "ÇØ°ñ", leftDie, 4, 1, false, dieReturn,this);
 
 
 	_mainCondition = STAND;
@@ -73,6 +73,12 @@ void skeleton::update()
 
 	if (KEYMANAGER->isOnceKeyDown('K')) {
 		setMainCondition(HITTED);
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('L'))
+	{
+		_mainCondition = DIE;  
+		setCondition();
 	}
 	 
 	if (_detect)
@@ -164,9 +170,10 @@ void skeleton::CollisionReact()
 
 void skeleton::setMainCondition(MONSTER_MAINCONDITION mainCondition)
 {
-	if (_mainCondition != mainCondition && _subCondition != ATTACK && _mainCondition != HITTED)
+	if (_mainCondition != mainCondition && _subCondition != ATTACK && _mainCondition != HITTED && _mainCondition != DIE)
 	{
 		_mainCondition = mainCondition;
+		if(_mainCondition != DYINGOUT)
 		setCondition();
 	}
 }
@@ -260,7 +267,7 @@ void skeleton::setCondition()
 	break;
 	}
 
-	if (_subCondition == ATTACK)
+	if (_subCondition == ATTACK &&_mainCondition != DIE)
 	{
 		if (_isRight)
 		{
@@ -293,4 +300,11 @@ void skeleton::attackReturn(void * obj)
 	enemy* e = (enemy*)obj;
 
 	e->setSubCondition(LAND);
+}
+
+void skeleton::dieReturn(void * obj)
+{
+	enemy* e = (enemy*)obj;
+
+	e->setMainCondition(DYINGOUT);
 }
