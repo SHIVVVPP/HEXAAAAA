@@ -36,7 +36,7 @@ private:
 
 	player* _p;
 
-	int a;							//랜덤한 수를 뽑기 위한 INT
+	int _CCount;							//랜덤한 수를 뽑기 위한 INT
 
 	RECT rc;
 	RECT _table;			// 중점 x = 2770, y= 530

@@ -13,7 +13,7 @@ NPCManager::~NPCManager()
 
 HRESULT NPCManager::init()
 {
-	a = 0;
+	_CCount = 0;
 	rc = RectMake(WINSIZEX / 2, 400, 50, 50);
 	SOUNDMANAGER->addSound("TownBGM", "./Music/townBGM.mp3", true, true);
 	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
@@ -104,7 +104,7 @@ void NPCManager::setNpc()
 
 	NPC* _famer;
 	_famer = new hedgeFarmer;
-	_famer->init("hedgeFarmer", "" ,PointMake(5450, 650), "...","...", false, false,false,false);
+	_famer->init("hedgeFarmer", "" ,PointMake(5450, 650), "./text/NPC/¸¶À»»ç¶÷.txt","...", false, false,false,false);
 
 	NPC* _gard;
 	_gard = new gard;
@@ -132,7 +132,7 @@ void NPCManager::setLeftNpc(bool _isRight)
 	_bagFella = new bagFella;
 	_bagFella->init("Áüµç ³²ÀÚ", "", PointMake(100, WINSIZEY - 250), "./text/NPC/Áü²Û.txt", "..", true, _isRight, false, false );
 
-	//_vNPC.push_back(_bagFella);
+	_vNPC.push_back(_bagFella);
 
 }
 
@@ -168,15 +168,15 @@ void NPCManager::collision()
 				if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
 				{
 					(*_viNPC)->setisTolk(true);
-					sprintf(str, "a : %d", a);
+					
 				}
 			}
 			if ((*_viNPC)->getisTolk()) {
-				a++;
-				(*_viNPC)->Converstion(a);
+				_CCount++;
+				(*_viNPC)->Converstion(_CCount);
 			}
 			if (!(*_viNPC)->getisTolk()) {
-				a = 0;
+				_CCount = 0;
 				
 			}
 			if (KEYMANAGER->isOnceKeyDown('C'))
@@ -192,7 +192,7 @@ void NPCManager::collision()
 			{
 				(*_viNPC)->setcoversationCount(1);
 				if ((*_viNPC)->getcoversationCount() == 1) {
-					a = 0;
+					_CCount = 0;
 				}
 				if (!(*_viNPC)->getisSaller())
 				{
@@ -219,8 +219,8 @@ void NPCManager::collision()
 				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
 				if (!(*_viNPC)->getisMusicSheet())(*_viNPC)->setisMusicSheet(true);
 			}
-			if (a >= (*_viNPC)->gettxtSizeMax()) {
-				a = (*_viNPC)->gettxtSizeMax();
+			if (_CCount >= (*_viNPC)->gettxtSizeMax()) {
+				_CCount = (*_viNPC)->gettxtSizeMax();
 			}
 		
 		}
@@ -258,11 +258,11 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				}
 			}
 			if (_vNPC[i]->getisTolk()) {
-				a++;
-				_vNPC[i]->Converstion(a);
+				_CCount++;
+				_vNPC[i]->Converstion(_CCount);
 			}
 			if (!_vNPC[i]->getisTolk()) {
-				a = 0;
+				_CCount = 0;
 
 			}
 			//Ã¼½ºÅÍ À¯¹°ÆÄ´Â³ð
@@ -313,7 +313,7 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 			{
 				_vNPC[i]->setcoversationCount(1);
 				if (_vNPC[i]->getcoversationCount() == 1) {
-					a = 0;
+					_CCount = 0;
 				}
 				if (!_vNPC[i]->getisSaller())
 				{
@@ -335,8 +335,8 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				if (!_vNPC[i]->getisTiket())(*_viNPC)->setisgetTiket(true);
 				if (!_vNPC[i]->getisfirelod())(*_viNPC)->setisfirelod(true);
 			}*/
-			if (a >= _vNPC[i]->gettxtSizeMax()) {
-				a = _vNPC[i]->gettxtSizeMax();
+			if (_CCount >= _vNPC[i]->gettxtSizeMax()) {
+				_CCount = _vNPC[i]->gettxtSizeMax();
 			}
 
 		}
