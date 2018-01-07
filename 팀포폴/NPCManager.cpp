@@ -22,7 +22,7 @@ HRESULT NPCManager::init()
 	crrentMusicName = "TownBGM";
 	oldMusicName = crrentMusicName;
 	SOUNDMANAGER->play(crrentMusicName, 1.0f);
-
+	_table = RectMake(2610, 510, 260, 20);				//테이블 렉트
 	return S_OK;
 }
 
@@ -72,6 +72,7 @@ void NPCManager::render()
 
 	}
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(rc.left), CAMERAMANAGER->CameraRelativePointY(rc.top), 50, 50);
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_table.left), CAMERAMANAGER->CameraRelativePointY(_table.top), 260, 5);
 	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
@@ -87,7 +88,7 @@ void NPCManager::setNpc()
 
 	NPC* molly;
 	molly = new Molly;
-	molly->init("몰리","" ,PointMake(2330, 650), "./text/NPC/몰리.txt", "..", true, false, false, false);
+	molly->init("몰리","" ,PointMake(2330, 650), "./text/NPC/몰리.txt", "..", false, false, false, false);
 
 	NPC* gote;
 	gote = new goatician;
@@ -131,7 +132,7 @@ void NPCManager::setLeftNpc(bool _isRight)
 	_bagFella = new bagFella;
 	_bagFella->init("짐든 남자", "", PointMake(100, WINSIZEY - 250), "./text/NPC/짐꾼.txt", "..", true, _isRight, false, false );
 
-	_vNPC.push_back(_bagFella);
+	//_vNPC.push_back(_bagFella);
 
 }
 
@@ -230,14 +231,19 @@ void NPCManager::collision()
 		}
 
 	}
+	if (IntersectRect(&temp, &_table, _p->getPlayerRect()))
+	{
+	//	isCollisionReaction(_table, _p->getPlayerRect());
+	}
 }
 
 LPCOLLISION_INFO NPCManager::player_npc_collision()
 {
 	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
+	RECT temp;
 	for (int i =0 ; i< _vNPC.size();i++)
 	{
-		RECT temp;
+		
 		if (IntersectRect(&temp, &_vNPC[i]->getimgRC(), _p->getPlayerRect()))
 		{
 			//충돌메시지 작성
@@ -305,6 +311,11 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 
 		}
 		
+	}
+	// 테이블 충돌시
+	if (IntersectRect(&temp, &_table, _p->getPlayerRect())) 
+	{
+		//isCollisionReaction(_table, _p->getPlayerRect());
 	}
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
 	if (tempInfo->_colType != COL_NONE)

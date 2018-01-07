@@ -26,7 +26,7 @@ HRESULT town::init()
 
 	CAMERAMANAGER->setBackground(8137, 900);
 	CAMERAMANAGER->setStartBackground(0, 0);
-	_rc = RectMake(WINSIZEX / 2, 400, 50, 50);
+	_rc = RectMake(6000, 400, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&_rc);
@@ -44,7 +44,7 @@ HRESULT town::init()
 	_ui = new ui;
 	_ui->init(UI_STAGE);
 
-	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
+	
 	_isvisible = false;
 
 	return S_OK;
@@ -107,7 +107,7 @@ void town::render()
 		townimage->render(getMemDC(),0,0,CAMERAMANAGER->getCameraPoint().x,CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	else {
-		Rectangle(getMemDC(), _table.left, _table.top, _table.right, _table.bottom);
+		
 		//townPix->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	_ui->render();

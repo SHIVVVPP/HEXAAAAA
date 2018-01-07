@@ -39,6 +39,7 @@ private:
 	int a;							//랜덤한 수를 뽑기 위한 INT
 
 	RECT rc;
+	RECT _table;			// 중점 x = 2770, y= 530
 	const char* crrentMusicName;
 	const char* oldMusicName;
 	char str[128];
