@@ -352,359 +352,6 @@ void player::update()
 	}
 
 
-
-	//if (_isJump && !_isLand && !_isLadder)
-	//{
-	//   _y -= _jumpPower;
-	//   _jumpPower -= _gravity;
-	//}
-
-	//if (_isLand || _isLadder)
-	//{
-	//   _isJump = false;
-	//}
-	//
-
-	////////////////////////////// 피격 상태가  아닐때에만 동작하는 플레이어 기본조작 //////////////////////////////////////////
-
-	//if (_playerMainCondition != PLAYER_RIGHT_HITTED && _playerMainCondition != PLAYER_LEFT_HITTED)
-	//{
-	//   if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))                    // 우측 방향키 입력 시 
-	//   {
-	//      if (_isJump)                                      // 점프 중일 때
-	//      {
-	//         if (_playerMainCondition == PLAYER_DOWN_ATTACK)           // 아래 공격일 경우
-	//         {
-	//            _playerMainCondition = PLAYER_RIGHT_DOWN_ATTACK;     // 오른쪽 아래 공격 상태로 
-	//         }
-	//         else if (_playerMainCondition != PLAYER_DOWN_ATTACK)     // 아래공격이 아닐 경우엔 오른쪽 점프 상태로 
-	//         {
-	//            _playerMainCondition = PLAYER_RIGHT_JUMP;
-	//         }
-	//         
-	//         
-	//      }
-	//      if (_isLand && !_isLadder )                                      // 바닥 착지상태
-	//      {   
-	//         _playerMainCondition = PLAYER_RIGHT_MOVE;               // 플레이어 상태를 오른쪽 이동으로 변경 
-	//         _image = IMAGEMANAGER->findImage("playerWalk");      
-	//         _ani = KEYANIMANAGER->findAnimation("playerRightMove");
-	//         _ani->start();
-	//      }
-	//      _dir = 1;                                       // 방향 판별용 변수값을 1로 변경
-
-	//   }
-	//   if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _dir == 1)      // 방향 판별 변수가 1인 상태에서 키를 떼었을 경우
-	//   {
-	//      if (_isJump)                                    // 점프 상태인지 확인 하고 
-	//      {
-	//         if (_playerMainCondition == PLAYER_RIGHT_DOWN_ATTACK) _playerMainCondition = PLAYER_DOWN_ATTACK;         // 아래 공격 상태가 아닐경우 
-	//         else _playerMainCondition = PLAYER_IDLE_JUMP;                                             // 기본 점프상태로 변경
-	//      }
-	//      else if (_isLand && !_isLadder)  
-	//      {                                                                                 // 점프 상태가 아니고  사다리에 올라탄 상태가 아닐경우 
-	//         _playerMainCondition = PLAYER_RIGHT_IDLE;
-	//         _image = IMAGEMANAGER->findImage("playerIdle");
-	//         _ani = KEYANIMANAGER->findAnimation("playerRightIdle");
-	//         _ani->start();
-	//      }
-	//   }
-
-	//   if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
-	//   {
-	//      if (_isJump)
-	//      {
-	//         if (_playerMainCondition == PLAYER_DOWN_ATTACK)
-	//         {
-	//            _playerMainCondition = PLAYER_LEFT_DOWN_ATTACK;
-	//         }
-	//         else if (_playerMainCondition != PLAYER_DOWN_ATTACK)
-	//         {
-	//            _playerMainCondition = PLAYER_LEFT_JUMP;
-	//         }
-	//      }
-	//      else if (_isLand && !_isLadder)
-	//      {
-	//         _playerMainCondition = PLAYER_LEFT_MOVE;
-	//         _image = IMAGEMANAGER->findImage("playerWalk");
-	//         _ani = KEYANIMANAGER->findAnimation("playerLeftMove");
-	//         _ani->start();
-	//      }
-	//      _dir = -1;
-
-	//   }
-	//   else if (KEYMANAGER->isOnceKeyUp(VK_LEFT) && _dir == -1)
-	//   {
-	//      if (_isJump)
-	//      {
-	//         if (_playerMainCondition == PLAYER_LEFT_DOWN_ATTACK) _playerMainCondition = PLAYER_DOWN_ATTACK;
-	//         else _playerMainCondition = PLAYER_IDLE_JUMP;
-	//      }
-	//      else if (_isLand && !_isLadder)
-	//      {
-	//         _ani->stop();
-	//         _playerMainCondition = PLAYER_LEFT_IDLE;
-	//         _image = IMAGEMANAGER->findImage("playerIdle");
-	//         _ani = KEYANIMANAGER->findAnimation("playerLeftIdle");
-	//         _ani->start();
-	//      }
-
-	//   }
-
-	//   if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
-	//   {
-	//      if (_isJump)
-	//      {
-	//         _playerMainCondition = PLAYER_DOWN_ATTACK;
-	//         _image = IMAGEMANAGER->findImage("playerDownAtk");
-
-	//         switch (_dir)
-	//         {
-	//         case 1:
-	//            _ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
-
-	//            break;
-
-	//         case -1:
-	//            _ani = KEYANIMANAGER->findAnimation("playerLeftDownAttack");
-
-	//            break;
-	//         }
-	//         _ani->start();
-	//      }
-	//   
-
-	//   }
-
-	//   ///////////////////////  플레이어가 사다리에 겹쳤을때 조작/////////////////////////////////////
-	//   if (_playerSubCondition == PLAYER_LADDER)      
-	//   {
-	//      if (KEYMANAGER->isOnceKeyDown(VK_UP))
-	//      {
-	//         _playerMainCondition = PLAYER_UP_CLIMB;
-	//         _isJump = false;
-	//         _isLand = true;
-	//         _image = IMAGEMANAGER->findImage("playerClimb");
-	//         _ani = KEYANIMANAGER->findAnimation("playerClimb");
-	//         _ani->start();
-	//      }
-	//      if (KEYMANAGER->isOnceKeyUp(VK_UP))
-	//      {
-	//         _ani->stop();
-	//      }
-	//      
-	//      if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
-	//      {
-	//         _playerMainCondition = PLAYER_DOWN_CLIMB;
-	//         _isJump = false;
-	//         _isLand = true;
-	//         _image = IMAGEMANAGER->findImage("playerClimb");
-	//         _ani = KEYANIMANAGER->findAnimation("playerClimb");
-	//         _ani->start();
-	//      }
-	//      if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-	//      {
-	//         _ani->stop();
-	//      }
-	//   }
-	//
-
-	//   ////////////////////////////////// 플레이어 점프 상태 관련////////////////////////////////////////
-	//   if (KEYMANAGER->isOnceKeyDown(VK_SPACE) && _isJump == false && _isLand == true)
-	//   {
-
-	//   }
-
-	//   {   //// 우측 보는 상태로 점프 키
-	//      if (_playerMainCondition == PLAYER_RIGHT_IDLE)
-	//      {
-	//         _ani->stop();
-	//         _playerMainCondition = PLAYER_IDLE_JUMP;
-	//         _image = IMAGEMANAGER->findImage("playerJump");
-	//         _ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
-	//         _ani->start();
-	//      }
-	//      //// 우측으로 달리면서 점프
-	//      if (_playerMainCondition == PLAYER_RIGHT_MOVE)
-	//      {
-	//         _ani->stop();
-	//         _playerMainCondition = PLAYER_RIGHT_JUMP;
-	//         _image = IMAGEMANAGER->findImage("playerJump");
-	//         _ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
-	//         _ani->start();
-	//      }
-	//      //// 좌측 보는 상태로 점프키
-	//      if (_playerMainCondition == PLAYER_LEFT_IDLE)
-	//      {
-	//         _ani->stop();
-	//         _playerMainCondition = PLAYER_IDLE_JUMP;
-	//         _image = IMAGEMANAGER->findImage("playerJump");
-	//         _ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
-	//         _ani->start();
-	//      }
-	//      //// 좌측으로 달리면서 점프
-	//      if (_playerMainCondition == PLAYER_LEFT_MOVE)
-	//      {
-	//         //_ani->stop();
-	//         _playerMainCondition = PLAYER_LEFT_JUMP;
-	//         _image = IMAGEMANAGER->findImage("playerJump");
-	//         _ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
-	//         _ani->start();
-	//      }
-	//      _isJump = true;
-	//   }
-
-	//   if (KEYMANAGER->isOnceKeyDown('A'))
-	//   {
-	//      switch (_dir)
-	//      {
-	//      case 1:
-	//         //_ani->stop();
-	//         _playerMainCondition = PLAYER_RIGHT_ATTACK;
-	//         _image = IMAGEMANAGER->findImage("playerAtk");
-	//         _ani = KEYANIMANAGER->findAnimation("playerRightAttack");
-	//         _ani->start();
-	//         break;
-
-	//      case -1:
-	//         //_ani->stop();
-	//         _playerMainCondition = PLAYER_LEFT_ATTACK;
-	//         _image = IMAGEMANAGER->findImage("playerAtk");
-	//         _ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
-	//         _ani->start();
-	//         break;
-	//      }
-
-	//   }
-	//}
-	//   
-
-	//if (_isJump && !_isLand)
-	//{
-	//   switch (_dir)
-	//   {
-	//   case 1 :
-	//      if (_playerMainCondition == PLAYER_RIGHT_DOWN_ATTACK) _ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
-	//      else if (_playerMainCondition == PLAYER_DOWN_ATTACK) _ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
-	//         else if (_jumpPower >= 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpUp");
-	//      else if (_jumpPower < 0) _ani = KEYANIMANAGER->findAnimation("playerRightJumpDown");
-	//      break;
-
-	//   case -1:
-	//      if (_playerMainCondition == PLAYER_LEFT_DOWN_ATTACK) _ani = KEYANIMANAGER->findAnimation("playerLeftDownAttack");
-	//      else if (_playerMainCondition == PLAYER_DOWN_ATTACK) _ani = KEYANIMANAGER->findAnimation("playerLeftDownAttack");
-	//      else if (_jumpPower >= 0) _ani = KEYANIMANAGER->findAnimation("playerLeftJumpUp");
-	//      else if (_jumpPower < 0) _ani = KEYANIMANAGER->findAnimation("playerLeftJumpDown");
-	//      break;
-	//   }
-	//}
-	//
-	//switch (_playerMainCondition)
-	//{
-	//case PLAYER_RIGHT_IDLE:
-	//   _image = IMAGEMANAGER->findImage("playerIdle");
-	//   _ani = KEYANIMANAGER->findAnimation("playerRightIdle");
-	//   break;
-	//case PLAYER_LEFT_IDLE:
-	//   _image = IMAGEMANAGER->findImage("playerIdle");
-	//   _ani = KEYANIMANAGER->findAnimation("playerLeftIdle");
-	//   break;
-	//case PLAYER_IDLE_JUMP:
-	//   break;
-	//case PLAYER_RIGHT_JUMP:
-	//   _x += _speed;
-	//   break;
-	//case PLAYER_LEFT_JUMP:
-	//   _x -= _speed;
-	//   break;
-	//case PLAYER_RIGHT_MOVE:
-	//   _x += _speed;
-	//   break;
-	//case PLAYER_LEFT_MOVE:
-	//   _x -= _speed;
-	//   break;
-	//case PLAYER_UP_CLIMB:
-	//   if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= _speed;      
-	//   break;
-	//case PLAYER_DOWN_CLIMB:   
-	//   if (KEYMANAGER->isStayKeyDown(VK_DOWN))_y += _speed;
-	//   break;
-	////case PLAYER_EDGE_CLIMB:
-	////   if (KEYMANAGER->isStayKeyDown(VK_UP))
-	////   {
-	////      _y -= _speed;
-	////      _playerMainCondition = PLAYER_RIGHT_CLIMB;
-	////   }
-	////   if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	////   {
-	////      _y += _speed;
-	////      _playerMainCondition = PLAYER_RIGHT_CLIMB;
-	////   }
-	////   break;
-	//case PLAYER_RIGHT_ATTACK:
-	//   _attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
-	//   
-	//   break;
-	//case PLAYER_RIGHT_JUMP_ATTACK:
-	//   _attackRC = RectMakeCenter(_x + 100, _y + 30, 75, 100);
-	//   
-	//   break;
-	//case PLAYER_LEFT_ATTACK:
-	//   _attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
-	//
-	//   break;
-	//case PLAYER_LEFT_JUMP_ATTACK:
-	//   _attackRC = RectMakeCenter(_x - 100, _y + 30, 75, 100);
-	//
-	//   break;
-	//case PLAYER_DOWN_ATTACK:
-	//   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
-	//   break;
-	//case PLAYER_RIGHT_DOWN_ATTACK:
-	//   _x += _speed;
-	//   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
-	//   break;
-	//case PLAYER_LEFT_DOWN_ATTACK:
-	//   _x -= _speed;
-	//   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
-	//   break;
-	//case PLAYER_RIGHT_HITTED:
-	//   _image = IMAGEMANAGER->findImage("playerHitted");
-	//   _ani = KEYANIMANAGER->findAnimation("playerRightHitted");
-	//   _x -= _repulsivePower;
-	//   _repulsivePower -= _frictionalPower;
-	//   if (_repulsivePower <= 0) _playerMainCondition = PLAYER_RIGHT_IDLE;
-	//   break;
-	//case PLAYER_LEFT_HITTED:
-	//   _image = IMAGEMANAGER->findImage("playerHitted");
-	//   _ani = KEYANIMANAGER->findAnimation("playerLeftHitted");
-	//   _x += _repulsivePower;
-	//   _repulsivePower -= _frictionalPower;
-	//   if (_repulsivePower <= 0) _playerMainCondition = PLAYER_LEFT_IDLE;
-	//   break;
-	//case PLAYER_DEAD:
-	//   break;
-	//}
-	RECT temp1;
-	if (IntersectRect(&temp1, &_playerRC, &LadderRC))
-	{
-		_playerSubCondition = PLAYER_LADDER;
-	}
-	else _playerSubCondition = PLAYER_NOTHING;
-
-	
-	RECT temp3;
-	if (IntersectRect(&temp3, &_playerRC, &enemyRC))
-	{
-		collisonHitted(&enemyRC);
-	}
-
-
-	//if (_playerMainCondition < 10 || _playerMainCondition >= 17)
-	//{
-	//	_attackRC = RectMakeCenter(-150, 150, 100, 150);
-	//}
-
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	if(!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
@@ -802,10 +449,11 @@ void player::collisonAttack()
 	_canAtk = true;
 }
 
-void player::collisonHitted(RECT * obj)
+void player::collisonHitted()
 {
 	_repulsivePower = 9.0f;
 	_frictionalPower = 0.4f;
+	_currentHP -= 1;
 
 	switch (_dir)
 	{
@@ -816,31 +464,6 @@ void player::collisonHitted(RECT * obj)
 	case -1:
 		_playerMainCondition = PLAYER_LEFT_HITTED;
 		break;
-	}
-}
-
-void player::collisonObject(int objType, int objValue)
-{
-	switch (objType)
-	{
-	case 0:   // 사다리
-		_playerSubCondition = PLAYER_LADDER;
-		break;
-	case 1:   // 보석
-		_playerGold += objValue;
-
-		break;
-
-	case 2: // 스테이지에서 피채워주는 음식
-		_currentHP += objValue;
-		if (_currentHP > _maxHP) _currentHP = _maxHP;
-		break;
-
-	case 7:  // 물약
-		_currentMP += objValue;
-		if (_currentMP > _maxMP) _currentMP = _maxMP;
-		break;
-
 	}
 }
 
@@ -971,18 +594,18 @@ void player::setPlayerCondition()
 		break;
 	case PLAYER_DOWN_ATTACK:
 		_image = IMAGEMANAGER->findImage("playerDownAtk");
-		if (_dir == 1) _ani = KEYANIMANAGER->findAnimation("playerRightAttack");
-		else if (_dir == -1) _ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
+		if (_dir == 1) _ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
+		else if (_dir == -1) _ani = KEYANIMANAGER->findAnimation("playerLeftDownAttack");
 		_ani->start();
 		break;
 	case PLAYER_RIGHT_DOWN_ATTACK:
 		_image = IMAGEMANAGER->findImage("playerDownAtk");
-		_ani = KEYANIMANAGER->findAnimation("playerRightAttack");
+		_ani = KEYANIMANAGER->findAnimation("playerRightDownAttack");
 		_ani->start();
 		break;
 	case PLAYER_LEFT_DOWN_ATTACK:
 		_image = IMAGEMANAGER->findImage("playerDownAtk");
-		_ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
+		_ani = KEYANIMANAGER->findAnimation("playerLeftDownAttack");
 		_ani->start();
 		break;
 	case PLAYER_RIGHT_HITTED:
