@@ -18,6 +18,13 @@ HRESULT stage::init()
 {
 	setStageBackgroundInfo();
 
+	
+	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
+	
+
+	
+	SOUNDMANAGER->play("Stage", 1.0f);
+
 	_ui = new ui;
 	_ui->init(UI_STAGE);
 
