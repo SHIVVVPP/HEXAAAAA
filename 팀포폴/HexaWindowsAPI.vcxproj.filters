@@ -366,16 +366,10 @@
     <ClInclude Include="musicsheet.h">
       <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
     </ClInclude>
-    <ClInclude Include="blueSlime.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="boss.h">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="greenDragon.h">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="redBeetle.h">
@@ -387,8 +381,8 @@
     <ClInclude Include="yellowDragon.h">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="bubble.h">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    <ClInclude Include="fakedirt.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -605,16 +599,10 @@
     <ClCompile Include="musicsheet.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\musicsheet</Filter>
     </ClCompile>
-    <ClCompile Include="blueSlime.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="boss.cpp">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="enemy.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="greenDragon.cpp">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="redBeetle.cpp">
@@ -626,8 +614,8 @@
     <ClCompile Include="yellowDragon.cpp">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="bubble.cpp">
-      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    <ClCompile Include="fakedirt.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

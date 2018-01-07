@@ -3,6 +3,7 @@
 #include "player.h"
 #include "ui.h"
 #include "objectManager.h"
+#include "enemyManager.h"
 
 stage::stage()
 {
@@ -37,6 +38,10 @@ HRESULT stage::init()
 	_objectManager = new objectManager;
 	_objectManager->connectPlayer(_player);
 	_objectManager->init();
+
+	_enemyManager = new enemyManager;
+	_enemyManager->init();
+
 
 
 	Tool = new settingTool;
@@ -82,6 +87,8 @@ void stage::update()
 	_player->update();
 	_objectManager->update();
 
+	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });
+	_enemyManager->update();
 	_ui->update();
 	
 	pixelCollison();
@@ -103,7 +110,7 @@ void stage::render()
 	_player->render();
 
 	_objectManager->render();
-
+	_enemyManager->render();
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
 	_ui->render();
 

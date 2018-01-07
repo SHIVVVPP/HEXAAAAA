@@ -4,18 +4,7 @@
 
 redBeetle::redBeetle()
 {
-	_imageName = IMAGEMANAGER->findImage("레드비틀");
-	slowFrameCounter = 0;
-	frameCounter = 0;
-	_speed = 3.0f;
-	_rcPlaceX = 0;
-	_rcPlaceY = 0;
-	_rcX = 60;
-	_rcY = 35;
-	_hitCounter = 1;
-	_jumpPower = _gravity = 0;
-
-	_attackChance = false;
+	
 }
 
 
@@ -23,52 +12,137 @@ redBeetle::~redBeetle()
 {
 }
 
-HRESULT redBeetle::init(MONSTER_INDEX mon_index, POINT leftX_topY)
+HRESULT redBeetle::init(MONSTER_INDEX mon_index, POINT leftX_topY)		   
 {
-	enemy::init(mon_index, leftX_topY);
+	_index = mon_index;
+	_leftX = leftX_topY.x;
+	_topY = leftX_topY.y;
+	_image = IMAGEMANAGER->findImage("레드비틀");
+	_width = _image->getFrameWidth();
+	_height = _image->getFrameHeight();
+	_cx = _leftX + _width / 2;
+	_cy = _topY + _height / 2;
+
+	_hp = 1;
+
+	_isRight = false;
+
+	_range.x = _cx - 100;
+	_range.y = _cx + 100;
+
+	_speedX = 1;
+	_sumGravity = 0;
+	
+	_ani = new animation;
+	
+	int rightMove[] = { 0,1,2,3 };
+	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_Right_MOVE", "레드비틀", rightMove, 4, 1, true);
+	int leftMove[] = { 8,9,10,11 };
+	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_LEFT_MOVE", "레드비틀", leftMove, 4, 1, true);
+	int rightDie[] = { 4,5 };
+	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_RIGHT_DIE", "레드비틀", rightDie, 2, 1, false);
+	int leftDie[] = { 14,15 };
+	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_LEFT_DIE", "레드비틀", leftDie, 2, 1, false);
+	
+	_mainCondition = MOVE;
+	_subCondition = LAND;
+	setCondition();
 
 	return S_OK;
 }
-
-void redBeetle::frameMove()
+void redBeetle::release()												   
 {
-	frameCounter++;
-
-	if (frameCounter % 10 == 0)
+}
+void redBeetle::update()												   
+{
+	if (_mainCondition == MOVE)
 	{
-		if (_monsterDirection == rightMove)
-		{
-			_currentFrameY = 0;
-
-			if (_currentFrameX >= 3)_currentFrameX = -1;
-			_currentFrameX++;
-
-			frameCounter = 0;
-		}
-		if (_monsterDirection == leftMove)
-		{
-			_currentFrameY = 2;
-			if (_currentFrameX <= 0)_currentFrameX = 4;
-			_currentFrameX--;
-
-			frameCounter = 0;
-		}
-
-		if (_monsterDirection == rightDead)
-		{
-			if (_currentFrameX >= 1)_currentFrameX = -1;
-			_currentFrameX++;
-
-			frameCounter = 0;
-		}
-		if (_monsterDirection == leftDead)
-		{
-			if (_currentFrameX <= 0)_currentFrameX = 2;
-			_currentFrameX--;
-
-			frameCounter = 0;
-		}
-		_imageName->setFrameX(_currentFrameX);
+		if (_isRight)
+			_leftX += _speedX;
+		else
+			_leftX -= _speedX;
 	}
+	
+	if (_subCondition == FALL)
+	{
+		_sumGravity += 0.01f;
+		_topY += _sumGravity;
+	}
+
+
+	if ((_isRight && _leftX + _width > _range.y) || (!_isRight && _leftX < _range.x))
+		changeDirection();
+
+	_imageRc = RectMake(_leftX, _topY, _width, _height);
+	_collisionRc = RectMakeCenter(_leftX+_width/2, _topY+_height/2, _width, _height);
+	
+	_ani->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
+}
+void redBeetle::render()												   
+{
+	_image->aniRender(getMemDC(),CAMERAMANAGER->CameraRelativePointX( _leftX),CAMERAMANAGER->CameraRelativePointY( _topY), _ani);
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_leftX), CAMERAMANAGER->CameraRelativePointY(_topY), _width, _height);
 }
 
+void redBeetle::CollisionReact()
+{
+}
+
+void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		
+{
+	_mainCondition = mainCondition;
+	setCondition();
+}
+void redBeetle::setSubCondition(MONSTER_SUBCONDITION subCondition)			
+{
+	_subCondition = subCondition;
+	setCondition();
+}
+
+void redBeetle::setCondition()
+{
+	switch (_mainCondition)
+	{
+	case MOVE:
+		switch (_subCondition)
+		{
+		case LAND:
+			if (_isRight)
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_MOVE");
+			else
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_MOVE");
+			_sumGravity = 0;
+		break;
+		case FALL:
+			if (_isRight)
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_MOVE");
+			else
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_MOVE");
+		break;
+		}
+		break;
+	case DIE:
+		switch (_subCondition)
+		{
+		case LAND:
+			if (_isRight)
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+			else
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
+			_sumGravity = 0;
+		break;
+		case FALL:
+			if (_isRight)
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_Right_DIE");
+			else
+				_ani = KEYANIMANAGER->findAnimation("REDBEETLE_LEFT_DIE");
+		break;
+		}
+		break;
+	}
+
+
+	_imageRc = RectMake(_leftX, _topY, _width, _height);
+	_collisionRc = RectMake(_leftX, _topY, _width, _height);
+	_ani->start();
+}

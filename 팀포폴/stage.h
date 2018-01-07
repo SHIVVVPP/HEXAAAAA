@@ -4,6 +4,7 @@
 #include <map>
 
 class objectManager;
+class enemyManager;
 class player;
 class ui;
 
@@ -33,6 +34,7 @@ private:
 	player* _player;
 	ui* _ui;
 	objectManager* _objectManager;
+	enemyManager* _enemyManager;
 
 	//임시 렉트
 
