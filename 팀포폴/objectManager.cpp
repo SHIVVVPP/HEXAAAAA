@@ -141,80 +141,290 @@ void objectManager::setPosition()
 	_obj->init(50, 100, 3450, 3300, 3450, 2.0f, PI);
 	_vgem.push_back(_obj);
 	
-	_obj = new ladder;
-	_obj->init(50, 50, 100);
-	_vladder.push_back(_obj);
-
-	_obj = new moveblock;
-	_obj->init(2800, 3150,50,false,true,true);
-	_vmoveblock.push_back(_obj);
-
-	_obj = new moveblock;
-	_obj->init(2000, 3150, 200, false,true,false);
-	_vmoveblock.push_back(_obj);
-
-	_obj = new dirtpile;
-	_obj->init(3100, 3450);
-	_vdirtpile.push_back(_obj);
-
-	_obj = new dirtpile;
-	_obj->init(3300, 3450);
-	_vdirtpile.push_back(_obj);
-
-	_obj = new dirtpile;
-	_obj->init(3700, 3450);
-	_vdirtpile.push_back(_obj);
-
-	_obj = new potion;
-	_obj->init(3500, 3200);
-	_vUse.push_back(_obj);
-
-	_obj = new potion;
-	_obj->init(3900, 3200);
-	_vUse.push_back(_obj);
-	
 	_obj = new meal;
 	_obj->init(3200, 3200);
 	_vUse.push_back(_obj);
 
+	//****레아루 좌표//
 	_obj = new dirtblock;
-	_obj->init(1500, 3350);
+	_obj->init(2127, 3378);
 	_vdirtblock.push_back(_obj);
-
 	_obj = new dirtblock;
-	_obj->init(1900, 3350);
+	_obj->init(2387, 3249);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(5965, 2990);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(5965, 3118);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(5965, 3246);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(6602, 3250);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(6988, 3119);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(16332, 2476);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(16523, 2348);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(14796, 4702);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(14796, 4817);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(14796, 4965);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(20810, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(20938, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(21066, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(21194, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(21322, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(21450, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(21578, 2564);
+	_vdirtblock.push_back(_obj);
+	_obj = new dirtblock;
+	_obj->init(21706, 2564);
+	_vdirtblock.push_back(_obj);
+	//=====블락 끝 //
+	_obj = new smalldirtblock;
+	_obj->init(13259, 4712);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13317, 4712);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13375, 4712);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13433, 4712);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13491, 4712);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13549, 4712);
 	_vdirtblock.push_back(_obj);
 
 	_obj = new smalldirtblock;
-	_obj->init(1100, 3350);
+	_obj->init(13259, 4770);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13317, 4770);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13375, 4770);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13433, 4770);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13491, 4770);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(13549, 4770);
 	_vdirtblock.push_back(_obj);
 
+	_obj = new smalldirtblock;
+	_obj->init(23117, 1329);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23117, 1387);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23117, 1445);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23117, 1503);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23117, 1561);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new smalldirtblock;
+	_obj->init(23175, 1329);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23175, 1387);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23175, 1445);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23175, 1503);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23175, 1561);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new smalldirtblock;
+	_obj->init(23233, 1329);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23233, 1387);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23233, 1445);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23233, 1503);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23233, 1561);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new smalldirtblock;
+	_obj->init(23291, 1329);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23291, 1387);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23291, 1445);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23291, 1503);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23291, 1561);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new smalldirtblock;
+	_obj->init(23349, 1329);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23349, 1387);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23349, 1445);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23349, 1503);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23349, 1561);
+	_vdirtblock.push_back(_obj);
+
+	_obj = new smalldirtblock;
+	_obj->init(23407, 1329);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23407, 1387);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23407, 1445);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23407, 1503);
+	_vdirtblock.push_back(_obj);
+	_obj = new smalldirtblock;
+	_obj->init(23407, 1561);
+	_vdirtblock.push_back(_obj);
+	//작은블락 배치끝
+	_obj = new potion;
+	_obj->init(18433, 4075);
+	_vUse.push_back(_obj);
+	//포션 끝.
 	_obj = new bubbles;
-	_obj->init(3464, 3100,3464,3100,90);
+	_obj->init(8515, 3400, 8515, 3400, 90);
 	_vbubble.push_back(_obj);
 
 	_obj = new bubbles;
-	_obj->init(3200, 3100, 3200, 3100, 90);
+	_obj->init(16500, 4982, 16500, 4982, 90);
 	_vbubble.push_back(_obj);
 
+	_obj = new bubbles;
+	_obj->init(17817, 4111, 17817, 4111, 90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(18089, 4111, 18089, 4111, 90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(18767, 4111, 18767, 4111, 90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(18957, 4111, 18957, 4111, 90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(19132, 4111, 19132, 4111, 90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(21241, 793, 21241, 793, 90);
+	_vbubble.push_back(_obj);
+
+	_obj = new bubbles;
+	_obj->init(21047, 793, 21047, 793, 90);
+	_vbubble.push_back(_obj);
+
+	//버블 배치 끝;
+	_obj = new moveblock;
+	_obj->init(8200, 2284, 500, false, true, false);
+	_vmoveblock.push_back(_obj);
+
+	_obj = new moveblock;
+	_obj->init(10000, 2667, 350, false, true, false);
+	_vmoveblock.push_back(_obj);
+
+	_obj = new moveblock;
+	_obj->init(16462, 4005, 350, false, true, false);
+	_vmoveblock.push_back(_obj);
+
+	_obj = new moveblock;
+	_obj->init(16012, 3930, 330, false, true, true);
+	_vmoveblock.push_back(_obj);
+
+	_obj = new moveblock;
+	_obj->init(19788, 2168, 400, false, true, true);
+	_vmoveblock.push_back(_obj);
+	//발판 끝
+	_obj = new musicsheet;
+	_obj->init(9547, 4917);
+	_vsheet.push_back(_obj);
+	_obj = new musicsheet;
+	_obj->init(19447, 3949);
+	_vsheet.push_back(_obj);
+	//음악 끝
+
 	_obj = new platters;
-	_obj->init(3600, 3200);
+	_obj->init(4395, 3105);
 	_vplatter.push_back(_obj);
 
 	_obj = new platters;
-	_obj->init(4000, 3200);
+	_obj->init(24530, 610);
 	_vplatter.push_back(_obj);
+	//
+	_obj = new fakedirt;
+	_obj->init(11535, 4138, 523);
+	_vfakedirt.push_back(_obj);
 
 	_obj = new fakedirt;
-	_obj->init(3500, 3200,500);
-	_vfakedirt.push_back(_obj);  
-
-	_obj = new musicsheet;
-	_obj->init(3400, 3400);
-	_vsheet.push_back(_obj);
-
-	//****레아루 좌표//
-	
+	_obj->init(16311, 3175, 700);
+	_vfakedirt.push_back(_obj);
 }
 
 void objectManager::player_object_collision()
@@ -395,9 +605,13 @@ void objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vbubble[i]->_rc))
 		{
-			//_obj = new bubbles;
-			//_obj->init(_vbubble[i]->_leftX, _vbubble[i]->_topY, _vbubble[i]->_leftX, _vbubble[i]->_topY, 90);
-			//_vbubble.push_back(_obj);
+			
+			addY = 200;
+			_rangeCount = 200;
+			_obj = new bubbles;
+			_obj->init(_vbubble[i]->_leftX , _vbubble[i]->_topY + addY, _vbubble[i]->_leftX, _vbubble[i]->_topY + addY, _rangeCount);
+			_vbubble.push_back(_obj);
+
 			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vbubble[i];

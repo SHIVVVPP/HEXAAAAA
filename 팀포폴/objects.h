@@ -34,6 +34,7 @@ protected:
 	animation* _objAni;
 	int _type;
 	int _gemType;
+	int _initY;
 	RECT _rc;
 	bool _move;
 	bool _hang;
@@ -43,6 +44,7 @@ protected:
 	bool _isRight;
 	bool _isUp;
 	bool _direction;
+	int _destY;
 	int _leftX;
 	int _topY;
 	int _startX, _startY;
@@ -66,7 +68,7 @@ public:
 	virtual HRESULT init(int x, int y, int range, bool isRight , bool isUp , bool type);
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y, int width);
-	virtual HRESULT init(int x, int y, int startx, int startY, int range);
+	virtual HRESULT init(int x, int y, int startx, int startY, int range );
 	virtual HRESULT init(int x, int y);	
 	virtual	HRESULT init(int x, int y, float length);
 	virtual HRESULT init(int range  ,int x, int y, int startX, int startY, float speed, float angle);
@@ -87,5 +89,6 @@ public:
 	int getManaValue() { return _manaValue; }
 	bool getDirection() { return _direction; }
 	int getGemType() { return _gemType; }
+	int getInitY() { return _initY; }
 };
 
