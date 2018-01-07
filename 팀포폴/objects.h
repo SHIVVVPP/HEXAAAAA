@@ -35,6 +35,7 @@ protected:
 	int _width, _height;
 	int _goldValue;
 	int _helathValue;
+	int _maxHelathValue;
 	int _manaValue;
 	int _alphaValue;
 	int _gainValue;

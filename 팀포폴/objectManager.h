@@ -23,13 +23,11 @@
 
 #define GEM 0
 #define DIRTPILE 1
-#define DIRTFAKE 2
-#define POTION 3
-#define PLATTER 4
-#define FOOD 5
-#define MEAL 6
-#define BUBBLE 6
-#define MUSIC_SHEET 7
+#define POTION 2
+#define FOOD 3
+#define MEAL 4
+#define BUBBLE 5
+#define MUSIC_SHEET 6
 
 class objectManager : public gameNode
 {
