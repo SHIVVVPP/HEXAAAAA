@@ -23,12 +23,14 @@ typedef struct tagCollisionInfo
 	COLLISION_TYPE _colType;
 	int index_detail;
 	void* object;
+	bool _isPlayer;
 
 	tagCollisionInfo()
 	{
 		_colType = COL_NONE;
 		index_detail = 0;
 		object = NULL;
+		_isPlayer = true;
 	}
 }COLLISION_INFO,*LPCOLLISION_INFO;
 

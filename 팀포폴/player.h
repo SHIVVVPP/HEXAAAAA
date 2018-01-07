@@ -84,7 +84,7 @@ public:
 	void render();
 	void usage();
 	void setPlayerCondition();
-	void collisonAttack(RECT* obj);
+	void collisonAttack();
 	void collisonHitted(RECT* obj);
 	void collisonObject(int objType, int objValue);
 	
@@ -152,62 +152,62 @@ public:
 	bool getIsJump() { return _isJump; }
 	void setIsJump(bool boolValue)
 	{
-		////_isJump = boolValue;
-		//if (boolValue)
-		//{
-		//	switch (_playerMainCondition)
-		//	{
-		//	case PLAYER_RIGHT_IDLE:
-		//		_playerMainCondition = PLAYER_RIGHT_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	case PLAYER_LEFT_IDLE:
-		//		_playerMainCondition = PLAYER_LEFT_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	case PLAYER_RIGHT_MOVE:
-		//		_playerMainCondition = PLAYER_RIGHT_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	case PLAYER_LEFT_MOVE:
-		//		_playerMainCondition = PLAYER_LEFT_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	case PLAYER_UP_CLIMB:
-		//		_playerMainCondition = PLAYER_IDLE_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	case PLAYER_DOWN_CLIMB:
-		//		_playerMainCondition = PLAYER_IDLE_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	case PLAYER_EDGE_CLIMB:
-		//		_playerMainCondition = PLAYER_IDLE_JUMP;
-		//		setPlayerCondition();
-		//		break;
-		//	}
-		//}
-		//	else if (!boolValue)
-		//	{
-		//		switch (_playerMainCondition)
-		//		{
-		//			case PLAYER_IDLE_JUMP:
-		//			if (_dir == 1) 	_playerMainCondition = PLAYER_RIGHT_IDLE;
-		//			if (_dir == -1)	_playerMainCondition = PLAYER_LEFT_IDLE; 
-		//			setPlayerCondition();
-		//			break;
-		//			case PLAYER_RIGHT_JUMP:
-		//			_playerMainCondition = PLAYER_RIGHT_MOVE;
-		//			setPlayerCondition();
-		//			break;
-		//			case PLAYER_LEFT_JUMP:
-		//			_playerMainCondition = PLAYER_LEFT_MOVE;
-		//			setPlayerCondition();
-		//			break;
-		//
-		//		}
+		//_isJump = boolValue;
+		if (boolValue)
+		{
+			switch (_playerMainCondition)
+			{
+			case PLAYER_RIGHT_IDLE:
+				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_LEFT_IDLE:
+				_playerMainCondition = PLAYER_LEFT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_RIGHT_MOVE:
+				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_LEFT_MOVE:
+				_playerMainCondition = PLAYER_LEFT_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_UP_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_DOWN_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				setPlayerCondition();
+				break;
+			case PLAYER_EDGE_CLIMB:
+				_playerMainCondition = PLAYER_IDLE_JUMP;
+				setPlayerCondition();
+				break;
+			}
+		}
+			else if (!boolValue)
+			{
+				switch (_playerMainCondition)
+				{
+					case PLAYER_IDLE_JUMP:
+					if (_dir == 1) 	_playerMainCondition = PLAYER_RIGHT_IDLE;
+					if (_dir == -1)	_playerMainCondition = PLAYER_LEFT_IDLE; 
+					setPlayerCondition();
+					break;
+					case PLAYER_RIGHT_JUMP:
+					_playerMainCondition = PLAYER_RIGHT_MOVE;
+					setPlayerCondition();
+					break;
+					case PLAYER_LEFT_JUMP:
+					_playerMainCondition = PLAYER_LEFT_MOVE;
+					setPlayerCondition();
+					break;
+		
+				}
 
-		//	}
+			}
 
 		_isJump = boolValue;
 	}

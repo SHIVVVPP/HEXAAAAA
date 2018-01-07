@@ -286,9 +286,13 @@ void mainGame::setImages()
 		277, 639,
 		3, 8, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addFrameImage("ÇØ°ñ", "½ºÄÌ·¹Åæ¿Ï¼º.bmp",
+	/*IMAGEMANAGER->addFrameImage("ÇØ°ñ", "½ºÄÌ·¹Åæ¿Ï¼º.bmp",
 		580, 3060,
 		4, 24, true, RGB(255, 0, 255));
+*/
+	IMAGEMANAGER->addFrameImage("ÇØ°ñ", "skeleton.bmp",
+		1328, 1840,
+		4, 10, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("¹öºí", "ºñ´°¹æ¿ï¿Ï¼º.bmp",
 		925, 438,

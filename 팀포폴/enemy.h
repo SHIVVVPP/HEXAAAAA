@@ -18,6 +18,7 @@ enum MONSTER_MAINCONDITION
 	STAND,
 	MOVE,
 	BACKMOVE,
+	HITTED,
 	DIE,
 };
 
@@ -48,18 +49,23 @@ protected:
 	RECT _imageRc;
 	RECT _collisionRc; //_collisionRc -> 몬스터 실제 size
 
+	RECT* _playerC;
 
+	int _attackCount;
 	
 	//image 기준 
 	int _leftX, _topY;
-	int _cx, _cy;
+
+	//충돌렉트 기준
 	int _width, _height;
 
 	int _hp;
 
+	bool _detect;
 	bool _isRight;
 	int _speedX;
 	float _sumGravity;
+	float _sumNuckBack;
 	POINT _range;
 
 	MON_PATTERN _pattern;
@@ -75,8 +81,10 @@ public:
 	virtual void update();
 	virtual void render();
 
-	void changeDirection();
+	virtual void changeDirection();
+	virtual void changeDirection(bool state);
 	void pixelCollisionReact(image* collisionImage, POINT ptReal);
+	virtual void move() {}
 	
 	virtual void CollisionReact() {}
 
@@ -89,6 +97,10 @@ public:
 	
 
 	virtual void chagePattern(MON_PATTERN pattern) {}
+
+
+
+	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
 
 	enemy();
 	~enemy();

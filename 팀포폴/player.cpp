@@ -105,6 +105,7 @@ void player::release()
 }
 void player::update()
 {
+	
 	///// 상태에 따른 중력 작용 여부 //////
 	if (_isJump)
 	{
@@ -182,6 +183,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
+			_canAtk = true;
 			switch (_dir)
 			{
 			case 1:
@@ -685,28 +687,26 @@ void player::update()
 	}
 	else _playerSubCondition = PLAYER_NOTHING;
 
-	RECT temp2;
-	if (IntersectRect(&temp2, &_attackRC, &enemyRC))
-	{
-		collisonAttack(&enemyRC);
-	}
-
-	RECT temp3;
+	
+	
+	
+	
+														  	RECT temp3;
 	if (IntersectRect(&temp3, &_playerRC, &enemyRC))
 	{
 		collisonHitted(&enemyRC);
 	}
 
 
-	// if (_playerMainCondition < 10 || _playerMainCondition >= 17)
-	//{
-	//	_attackRC = RectMakeCenter(-150, 150, 100, 150);
-	//}
+	 if (!_canAtk )
+	{
+		  _attackRC = RectMakeCenter(-150, 150, 100, 150);
+	}
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	
-	if(!_canAtk)_attackRC = RectMakeCenter(_x, _y, 50, 50);
+	
 	
 	KEYANIMANAGER->update();
 	//pixelCollison();
@@ -760,7 +760,7 @@ void player::render()
 	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top) + 160, str5, strlen(str5));
 }
 
-void player::collisonAttack(RECT * obj)
+void player::collisonAttack()
 {
 	_canAtk = false;
 	_repulsivePower = 3.0f;
@@ -792,7 +792,7 @@ void player::collisonAttack(RECT * obj)
 		_jumpPower -= _gravity;
 	}
 
-	_canAtk = true;
+	
 }
 
 void player::collisonHitted(RECT * obj)
@@ -992,6 +992,9 @@ void player::getColMessage(LPCOLLISION_INFO message)
 {
 	if (message != NULL)
 	{
+	
+		objects* temp;
+		RECT _tempRC;
 		switch (message->_colType)
 		{
 		case COL_MONSTER:
@@ -1009,26 +1012,113 @@ void player::getColMessage(LPCOLLISION_INFO message)
 		case COL_OBJECT:
 			switch (message->index_detail)
 			{
-			case 1:
+			case 11: // gem
 				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			}
-			break;
-		case COL_NPC:
-			switch (message->index_detail)
+			case 12: // 흙
 			{
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
+
+
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+
+				if (isCollisionReaction(temp->getRc(), _playerRC))
+				{
+
+				}
+				//if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
+				//{
+				//	setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//	if (_width > _height)
+				//	{
+				//
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		//if (_playerRC.bottom < temp->getRc().bottom)
+				//		//{
+				//			_isLand = true;
+				//			_isJump = false;
+				//		//}
+				//	}
+				//}		
 			}
 			break;
+			case 13: //포션
+				break;
+			case 14: //음식
+				break;
+			case 15: // MEAL (체력최대치올리는음식)
+				break;
+			case 16: //방울
+				break;
+			case 17: //음악
+
+				break;
+			case 18: //발판
+			{
+				//static_cast<objects*>(message->object);
+				//temp = static_cast<objects*>(message->object);
+				//
+				//if (isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
+				////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				////{
+				//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
+				//{
+				//	//setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//
+				//	//if (_playerRC.bottom > temp->getRc().bottom)
+				//	//{
+				//	//	_isLand = true;
+				//	//	_isJump = false;
+				//	//}
+				//
+				//	if (_width > _height)
+				//	{
+				//		
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		_isLand = true;
+				//		_isJump = false;
+				//	}
+				//}
+				//}
+				//(isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
+			}
+			break;
+			case 19: //접시
+				break;
+			case 20: //가짜 벽
+				break;
+			}break;
+
+			case COL_NPC:
+			{
+				switch (message->index_detail)
+				{
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				}
+				break;
+			}
 		}
-	}
-	SAFE_DELETE(message);
+
+	}SAFE_DELETE(message);
 }
+

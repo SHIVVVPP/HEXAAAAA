@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "enemyManager.h"
-
+#include "player.h"
 
 
 
@@ -32,6 +32,14 @@ void enemyManager::update()
 	{
 		enemy* temp = new redBeetle;
 		temp->init(MON_REDBITTLE, { _ptMouse.x + CAMERAMANAGER->getCameraPoint().x,_ptMouse.y + CAMERAMANAGER->getCameraPoint().y });
+		_vEnemy.push_back(temp);
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('P'))
+	{
+		enemy* temp = new skeleton;
+		temp->init(MON_SKELETON, { _ptMouse.x + CAMERAMANAGER->getCameraPoint().x,_ptMouse.y + CAMERAMANAGER->getCameraPoint().y });
+		temp->setPlayerRc(_player->getPlayerRect());
 		_vEnemy.push_back(temp);
 	}
 			

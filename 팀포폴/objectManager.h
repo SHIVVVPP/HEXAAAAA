@@ -21,14 +21,16 @@
 #include <vector>
 
 
-#define GEM 0
-#define DIRTPILE 1
-#define POTION 2
-#define FOOD 3
-#define MEAL 4
-#define BUBBLE 5
-#define MUSIC_SHEET 6
-
+#define GEM 11
+#define DIRTPILE 12
+#define POTION 13
+#define FOOD 14
+#define MEAL 15
+#define BUBBLE 16
+#define MUSIC_SHEET 17
+#define MOVING_PILE 18
+#define PLATTER 19
+#define FAKEDIRT 20
 class objectManager : public gameNode
 {
 private:

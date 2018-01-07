@@ -390,6 +390,9 @@
     <ClInclude Include="yellowDragon.h">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="collision.h">
+      <Filter>2DFramework\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -566,9 +569,6 @@
     <ClCompile Include="bullet.cpp">
       <Filter>MainGame\bullet</Filter>
     </ClCompile>
-    <ClCompile Include="yellowDragon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
     </ClCompile>
@@ -625,6 +625,12 @@
     </ClCompile>
     <ClCompile Include="skeleton.cpp">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="yellowDragon.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="collision.cpp">
+      <Filter>2DFramework\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

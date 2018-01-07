@@ -29,6 +29,7 @@ private:
 	DWORD		_nowPlayIndex;
 	BOOL		_play;
 
+
 	void*						_obj;
 	CALLBACK_FUNCTION			_callbackFunction;
 	CALLBACK_FUNCTION_PARAMETER _callbackFunctionParameter;
