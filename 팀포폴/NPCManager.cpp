@@ -37,7 +37,7 @@ void NPCManager::update()
 		(*_viNPC)->update();
 		++_viNPC;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		rc.left += 15;
 		rc.right += 15;
@@ -56,7 +56,7 @@ void NPCManager::update()
 	{
 		rc.top -= 15;
 		rc.bottom -= 15;
-	}
+	}*/
 
 	_p->update();
 	//collision();

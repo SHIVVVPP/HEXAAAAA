@@ -12,6 +12,7 @@
 
 
 class player;
+class objectManager;
 
 class enemyManager : gameNode
 {
@@ -21,13 +22,12 @@ private:
 
 	int generalFrameCounter;
 
-	
-
 public:
 
 	vEnemy	_vEnemy;
 
 	image* _pixelColImage;
+	objectManager* objM;
 	player* _player;
 	POINT _ptReal;
 
@@ -40,7 +40,7 @@ public:
 	void collisionCheck();
 	void LinkPlayer(player* p) { _player = p; }
 	void eraseMonster(vector<int> v);
-	
+	void LinkObjM(objectManager* obj) { objM = obj; }
 	enemyManager();
 	~enemyManager();
 };

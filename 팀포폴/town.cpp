@@ -46,7 +46,6 @@ HRESULT town::init()
 
 	
 	_isvisible = false;
-
 	return S_OK;
 }
 
@@ -65,7 +64,7 @@ void town::update()
 		_isvisible = false;
 	}
 	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -151,10 +150,12 @@ void town::pixelCollison()
 		if (k)
 		{
 			_player->setIsJump(false);
+			_player->setIsLand(true);
 		}
 		else
 		{
 			_player->setIsJump(true);
+			_player->setIsLand(false);
 		}
 
 

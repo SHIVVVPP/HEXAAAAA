@@ -57,9 +57,13 @@ private:
 	int x, y;		   //여기까지 좌표 저장용 ;
 	int _tempx, _tempy;//여기까지 좌표 저장용 ;
 	int _count;
+	int _rangeCount;
+	int tempY;
 	bool _isOpen;
 	bool _iscrush;
 	bool _istouched;
+	bool _isHit;
+	int addY;
 	player* _p;
 	effect* _pickeffect;
 public:
@@ -71,7 +75,12 @@ public:
 	void update();
 	void render();
 	void setPosition();
-	LPCOLLISION_INFO player_object_collision();
+	void player_object_collision();
 	void connectPlayer(player* p) { _p = p; }
+	void createGem(int range, int leftX,int topY, int leftX2, int topY2){
+		_obj = new gem;
+		_obj->init(range, leftX, topY, leftX2, topY2, 3.0f, PI);
+		_vgem.push_back(_obj);
+	}
 };
 
