@@ -29,7 +29,7 @@ HRESULT gem::init(int range , int x, int y, int startX, int startY, float speed,
 
 	_speedX = speed;
 	_angle = angle;
-
+	
 	_shuf = RND->getFromIntTo(1,6);
 	return S_OK;
 }
@@ -44,35 +44,41 @@ void gem::update()
 		_imageName = "reddia";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 50;
+		_gemType = REDDIA;
 		break;
 	case 2:
 		_imageName = "yellowgem";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 30;
 		_range = 40;
+		_gemType = YELLOWGEM;
 		break;
 	case 3:
 		_imageName = "greengem";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 20;
+		_gemType = GREENGEM;
 		break;
 	case 4:
 		_imageName = "bluegem";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 40;
 		_startY = _topY + 6;
+		_gemType = BLUEGEM;
 		break;
 	case 5:
 		_imageName = "smalljew";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 5;
 		_range = 50;
+		_gemType = SMALLGEM;
 		break;
 	case 6:
 		_imageName = "bluedia";
 		_image = IMAGEMANAGER->findImage(_imageName);
 		_goldValue = 100;
 		_startY = _topY - 25;
+		_gemType = BLUEDIA;
 	}
 }
 

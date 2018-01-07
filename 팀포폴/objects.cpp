@@ -11,7 +11,7 @@ objects::~objects()
 {
 }
 
-HRESULT objects::init(int x, int y, int range, bool isRight)
+HRESULT objects::init(int x, int y, int range, bool isRight, bool isUp , bool type)
 {
 	return E_NOTIMPL;
 }

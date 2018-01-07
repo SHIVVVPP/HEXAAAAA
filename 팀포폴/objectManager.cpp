@@ -146,11 +146,11 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2800, 3150,50,false);
+	_obj->init(2800, 3150,50,false,true,true);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2000, 3150, 200, false);
+	_obj->init(2000, 3150, 200, false,true,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;
@@ -217,9 +217,9 @@ void objectManager::setPosition()
 	
 }
 
-LPCOLLISION_INFO objectManager::player_object_collision()
+void objectManager::player_object_collision()
 {
-	LPCOLLISION_INFO tempInfo = new COLLISION_INFO;
+	LPCOLLISION_INFO tempInfo;
 
 
 	for (int i = 0; i < _vdirtpile.size(); i++)
@@ -231,10 +231,12 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			RECT temp;
 			if(IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtpile[i]->_rc))
 			{
+				tempInfo = new COLLISION_INFO;
 				tempInfo->_colType = COL_OBJECT;
 				tempInfo->object = _vdirtpile[i];
 				tempInfo->index_detail = DIRTPILE;
 				tempInfo->_isPlayer = false;
+				_p->getColMessage(tempInfo);
 
 				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
 				{
@@ -296,10 +298,12 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			if (IntersectRect(&temp, _p->getPlayerRect(), &_vgem[i]->_rc))
 			{
 				//충돌메시지 작성
+				tempInfo = new COLLISION_INFO;
 				tempInfo->_colType = COL_OBJECT;
 				//tempInfo->index_detail = --- 세부번호
 				tempInfo->object = _vgem[i];
 				tempInfo->index_detail = GEM;
+				_p->getColMessage(tempInfo);
 
 				EFFECTMANAGER->play("보석", _vgem[i]->_leftX,_vgem[i]->_topY);
 				_vgem.erase(_vgem.begin() + i);
@@ -320,17 +324,21 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_POTION)
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vUse[i];
 			tempInfo->index_detail = POTION;
+			_p->getColMessage(tempInfo);
 			_vUse.erase(_vUse.begin() + i);
 		}
 
 		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_FOOD)
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vUse[i];
 			tempInfo->index_detail = FOOD;
+			_p->getColMessage(tempInfo);
 			_istouched = true;
 			_tempx = _vUse[i]->_leftX;
 			_tempy = _vUse[i]->_topY;
@@ -339,9 +347,11 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 
 		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_MEAL)
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vUse[i];
 			tempInfo->index_detail = MEAL;
+			_p->getColMessage(tempInfo);
 			_istouched = true;
 			_tempx = _vUse[i]->_leftX;
 			_tempy = _vUse[i]->_topY;
@@ -354,26 +364,30 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vdirtblock[i]->_rc))
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vdirtblock[i];
 			tempInfo->index_detail = DIRTBLOCK;
-			tempInfo->_isPlayer = false;
+			
+			_p->getColMessage(tempInfo);
 		}
+	}
+	for (int i = 0; i<_vdirtblock.size(); i++)
+	{
+		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtblock[i]->_rc))
 		{
 			if(_vdirtblock[i]->_type == TYPE_BLOCK)EFFECTMANAGER->play("블록",_vdirtblock[i]->_leftX - 30 , _vdirtblock[i]->_topY - 15);
 
 			else if (_vdirtblock[i]->_type == TYPE_SMALL_BLOCK)EFFECTMANAGER->play("작은블록", _vdirtblock[i]->_leftX - 30, _vdirtblock[i]->_topY - 15);
-
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vdirtblock[i];
 			tempInfo->index_detail = DIRTBLOCK;
 			tempInfo->_isPlayer = false;
-
+			_p->getColMessage(tempInfo);
 			_vdirtblock.erase(_vdirtblock.begin() + i);
 		}
-
-
 	}
 
 	for (int i = 0; i < _vbubble.size(); i++)
@@ -384,10 +398,12 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			//_obj = new bubbles;
 			//_obj->init(_vbubble[i]->_leftX, _vbubble[i]->_topY, _vbubble[i]->_leftX, _vbubble[i]->_topY, 90);
 			//_vbubble.push_back(_obj);
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vbubble[i];
 			tempInfo->index_detail = BUBBLE;
 			tempInfo->_isPlayer = false;
+			_p->getColMessage(tempInfo);
 			EFFECTMANAGER->play("버블", _vbubble[i]->_leftX, _vbubble[i]->_topY);
 			_vbubble.erase(_vbubble.begin() + i);
 
@@ -401,10 +417,12 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		{
 			_x = _vplatter[i]->_leftX + 10;
 			_y = _vplatter[i]->_topY + 10;
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vplatter[i];
 			tempInfo->index_detail = PLATTER;
 			tempInfo->_isPlayer = false;
+			_p->getColMessage(tempInfo);
 			_vplatter.erase(_vplatter.begin() + i);
 			_isOpen = true;
 			//_obj = new part;
@@ -438,11 +456,12 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp,_p->getPlayerAttackRect(), &_vfakedirt[i]->_rc))
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vfakedirt[i];
 			tempInfo->index_detail = PLATTER;
 			tempInfo->_isPlayer = false;
-
+			_p->getColMessage(tempInfo);
 			x = _vfakedirt[i]->_leftX;
 			y = _vfakedirt[i]->_topY;
 			_iscrush = true;
@@ -455,9 +474,11 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vsheet[i]->_rc))
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vsheet[i];
 			tempInfo->index_detail = MUSIC_SHEET;
+			_p->getColMessage(tempInfo);
 			_istouched = true;
 			_tempx = _vsheet[i]->_leftX;
 			_tempy = _vsheet[i]->_topY;
@@ -471,9 +492,11 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vmoveblock[i]->_rc))
 		{
+			tempInfo = new COLLISION_INFO;
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vmoveblock[i];
 			tempInfo->index_detail = MOVING_PILE;
+			_p->getColMessage(tempInfo);
 		}
 	}
 	_count++;
@@ -498,7 +521,6 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 	}
 
 	//충돌메시지 반환 -> 플레이어에 넘겨주면 플레이어가 _colType과 index_detail을 가지고 판단, 처리
-	if(tempInfo->_colType != COL_NONE)
-	return tempInfo;
-	else return NULL;
+	
+	
 }

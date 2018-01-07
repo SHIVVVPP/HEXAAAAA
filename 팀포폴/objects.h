@@ -15,19 +15,34 @@
 #define TYPE_PART 11
 
 
+//bluedia
+//reddia"
+//bluegem
+//greengem
+//smalljew
+//yellowgem
+#define SMALLGEM 120
+#define GREENGEM 121
+#define YELLOWGEM 122
+#define BLUEGEM 123
+#define REDDIA 124
+#define BLUEDIA 125
 class objects : public gameNode
 {
 	friend class objectManager;
 protected:
 	animation* _objAni;
 	int _type;
+	int _gemType;
 	RECT _rc;
 	bool _move;
 	bool _hang;
 	bool _canHit;
 	bool _picked;
 	bool _canLand;
-	
+	bool _isRight;
+	bool _isUp;
+	bool _direction;
 	int _leftX;
 	int _topY;
 	int _startX, _startY;
@@ -40,6 +55,7 @@ protected:
 	int _alphaValue;
 	int _gainValue;
 	float _speedX;
+	float _speedY;
 	float _angle;
 	const char* _imageName;
 	image* _image;
@@ -47,7 +63,7 @@ protected:
 public:
 	objects();
 	~objects();
-	virtual HRESULT init(int x, int y, int range, bool isRight);
+	virtual HRESULT init(int x, int y, int range, bool isRight , bool isUp , bool type);
 	virtual HRESULT init(int x, int y, int startX, int startY);
 	virtual HRESULT init(int x, int y, int width);
 	virtual HRESULT init(int x, int y, int startx, int startY, int range);
@@ -65,9 +81,11 @@ public:
 	RECT getRc() { return _rc; }
 	void setRC(RECT rc) { _rc = rc; }
 	const char* getImage() { return _imageName; }
-
+	bool getisRight() { return _isRight; }
 	int getHealthValue() { return _helathValue; }
 	int getGoldValue() { return _goldValue; }
 	int getManaValue() { return _manaValue; }
+	bool getDirection() { return _direction; }
+	int getGemType() { return _gemType; }
 };
 

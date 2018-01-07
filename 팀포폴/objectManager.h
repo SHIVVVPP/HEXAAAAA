@@ -71,7 +71,7 @@ public:
 	void update();
 	void render();
 	void setPosition();
-	LPCOLLISION_INFO player_object_collision();
+	void player_object_collision();
 	void connectPlayer(player* p) { _p = p; }
 	void createGem(int range, int leftX,int topY, int leftX2, int topY2){
 		_obj = new gem;

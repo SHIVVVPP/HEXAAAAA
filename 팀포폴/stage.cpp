@@ -89,6 +89,7 @@ void stage::update()
 	}
 	//_player->update();
 	_objectManager->update();
+	_objectManager->player_object_collision();
 	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });
 	_enemyManager->update();
 	_ui->update();

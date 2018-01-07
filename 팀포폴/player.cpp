@@ -363,17 +363,17 @@ void player::update()
 	case PLAYER_LEFT_JUMP_ATTACK:
 		break;
 	case PLAYER_DOWN_ATTACK:
-		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 70, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_RIGHT_DOWN_ATTACK:
 		if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += _speed;
-		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 70, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_LEFT_DOWN_ATTACK:
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= _speed;
-		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
+		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 70, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_RIGHT_HITTED:
@@ -671,7 +671,7 @@ void player::setPlayerCondition()
 }
 void player::getColMessage(LPCOLLISION_INFO message)
 {
-	if (message != NULL)
+ 	if (message != NULL)
 	{
 		objects* temp;
 		RECT _tempRC;
@@ -679,7 +679,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 		{ 
 		switch (message->_colType)
 		{
-		case COL_MONSTER:
+			case COL_MONSTER:
 			switch (message->index_detail)
 			{
 			case 0: // 딱정벌레
@@ -707,11 +707,9 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			{
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
-
+				
 				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
 				{
-					//setPlayerCondition();
-			
 					float _width = _tempRC.right - _tempRC.left;
 					float _height = _tempRC.bottom - _tempRC.top;
 					float _tempWidth = (temp->getRc().right - temp->getRc().left) / 2;
@@ -765,10 +763,15 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			}
 			break;
 			case 13: //포션
+				_currentMP += 6;
+				if (_currentMP > _maxMP) _currentMP = _maxMP;
 				break;
 			case 14: //음식
+				_currentHP = _maxHP;
 				break;
 			case 15: // MEAL (체력최대치올리는음식)
+				_maxHP += 2;
+				_currentHP = _maxHP;
 				break;
 			case 16: //방울
 				break;
@@ -796,7 +799,17 @@ void player::getColMessage(LPCOLLISION_INFO message)
 						{
 							_offPicxel = true;
 							_isLand = true;
-							_isJump = false;
+							//_isJump = false;
+							setIsJump(false);
+							if (!temp->getDirection() && temp->getisRight()) 
+							{
+								_x += 2;
+							}
+							else if (!temp->getDirection() && !temp->getisRight())
+							{
+								_x -= 2;
+							}
+							
 						}
 						if (_isLand)
 						{
@@ -804,7 +817,14 @@ void player::getColMessage(LPCOLLISION_INFO message)
 							//_y += _jumpPower;
 							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 5;
 						}
-						
+						if (_playerRC.right <= _templeft + _tempWidth || _playerRC.left >= _tempright - _tempWidth
+							|| _playerRC.right <= _templeft + _tempWidth && _isJump == true || _playerRC.left >= _tempright - _tempWidth && _isJump == true)
+						{
+							_isLand = false;
+							_offPicxel = false;
+							//_isJump = true;
+							setIsJump(true);
+						}
 						if (_tempRC.bottom == temp->getRc().bottom)
 						{
 							_y = temp->getRc().bottom - (_playerRC.top - _playerRC.bottom) / 2 + 25;
@@ -836,23 +856,24 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			}break;
 
-			case COL_NPC:
-			{
-				switch (message->index_detail)
+				case COL_NPC:
 				{
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
+					switch (message->index_detail)
+					{
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					}
 					break;
 				}
 				break;
 			}
-			
 		}
-		}
-		if(!message->_isPlayer && _canAtk)
+
+ 		if(!message->_isPlayer && _canAtk)
 		{
 			switch (message->_colType)
 			{
