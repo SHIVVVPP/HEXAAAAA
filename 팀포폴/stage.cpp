@@ -92,7 +92,11 @@ void stage::update()
 	_enemyManager->update();
 	_ui->update();
 	
-	pixelCollison();
+	if (_player->getPlayerMainCondition() != 7 && _player->getPlayerMainCondition() != 8 && _player->getPlayerMainCondition() != 9)
+	{
+		pixelCollison();
+	}
+	
 	Tool->update();
 }
 

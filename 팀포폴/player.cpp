@@ -118,6 +118,15 @@ void player::update()
 		_jumpPower = 0.0f;
 	}
 
+	if (KEYMANAGER->isStayKeyDown('K'))
+	{
+		_playerSubCondition = PLAYER_LADDER;
+	}
+
+	if (KEYMANAGER->isStayKeyDown('J'))
+	{
+		_playerSubCondition = PLAYER_NOTHING;
+	}
 
 
 
@@ -207,7 +216,7 @@ void player::update()
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_UP))
 		{
-			_isLadder = true;
+			
 			_playerMainCondition = PLAYER_UP_CLIMB;
 			setPlayerCondition();
 		}
@@ -218,13 +227,28 @@ void player::update()
 
 		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
-			_isLadder = true;
+			
 			_playerMainCondition = PLAYER_DOWN_CLIMB;
 			setPlayerCondition();
 		}
 		if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
 		{
 			_ani->stop();
+		}
+		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		{
+			switch (_dir)
+			{
+			case 1:
+				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				setPlayerCondition();
+				break;
+
+			case -1:
+				_playerMainCondition = PLAYER_LEFT_JUMP;
+				setPlayerCondition();
+				break;
+			}
 		}
 	}
 	/////////////////////  점프 상태에서 동작 ///////////////////////
@@ -288,6 +312,7 @@ void player::update()
 
 	}
 
+	
 	///////////////////////////// 플레이어 상태에 따른 이동 조작  /////////////////////////////////////
 
 	switch (_playerMainCondition)
@@ -299,11 +324,15 @@ void player::update()
 
 		break;
 	case PLAYER_IDLE_JUMP:
+		if (_jumpPower < 0 && _dir == 1) _ani = KEYANIMANAGER->findAnimation("playerRightJumpDown");
+		if (_jumpPower < 0 && _dir == -1) _ani = KEYANIMANAGER->findAnimation("playerLeftJumpDown");
 		break;
 	case PLAYER_RIGHT_JUMP:
+		if (_jumpPower < 0 ) _ani = KEYANIMANAGER->findAnimation("playerRightJumpDown");
 		_x += _speed;
 		break;
 	case PLAYER_LEFT_JUMP:
+		if (_jumpPower < 0 ) _ani = KEYANIMANAGER->findAnimation("playerLeftJumpDown");
 		_x -= _speed;
 		break;
 	case PLAYER_RIGHT_MOVE:
@@ -342,7 +371,7 @@ void player::update()
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
 	case PLAYER_LEFT_DOWN_ATTACK:
-		if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x -= _speed;
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= _speed;
 		if (_canAtk)   _attackRC = RectMakeCenter(_x, _y + 50, 100, 100);
 		if (!_canAtk) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 		break;
