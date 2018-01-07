@@ -39,6 +39,8 @@ private:
 	int a;							//·£´ýÇÑ ¼ö¸¦ »Ì±â À§ÇÑ INT
 
 	RECT rc;
+	const char* crrentMusicName;
+	const char* oldMusicName;
 	char str[128];
 public:
 	NPCManager();

@@ -7,7 +7,9 @@ enum selectNum
 	selectNum2,
 	selectNum3,
 	selectNum4,
-	selectNum5
+	selectNum5,
+	selectNum6,
+	selectNum7
 };
 
 class NPC :public gameNode
@@ -29,7 +31,13 @@ protected:
 	image*		_yesBox;				//yes
 	image*		_noBox;					//no
 	image*		_selectBox;				//박스박스박스
-	image*		_done;
+	image*		_done;					//끝남
+	
+	image*		_bardUI;				//바드 신청곡
+	image*		_bardUI2;				//바드 안내창
+	image*		_bardselectRectimg;		//바드 신청곡내의 선택창
+	image*		_bardYes;				//연주해줘
+	image*		_bardNo;				//다음에 보자
 
 	float		_x;						//중심좌표 x
 	float		_y;						//중심좌표 y
@@ -59,10 +67,15 @@ protected:
 	bool		_isSelect;				//선택되었니?
 	bool		_isgetTiket;			//티켓이 있니?
 	bool		_isgetfirelod;			//지팡이 있니?
+	bool        _isgetMusicSheet;		//시트지 있니?
+	bool		_musicStart;			//음악시작
+
 	const char* fileName;				//텍스트 파일 이름 저장
 	const char* fileName2;				//텍스트 파일 이름 저장
 	const char* _imgName;
 	const char* _imgName2;
+	const char* MusicName;
+
 	char str[128];
 public:
 
@@ -78,21 +91,32 @@ public:
 	virtual void tolkdrow();
 	virtual void Move(bool _isMvoe, bool _isRight);
 	virtual void Converstion(int tolkCount);  
+	void imgset();
 
 	RECT getimgRC() { return _imgrc; }
 	bool getisMove() { return _isMove; }
 	bool getisRight() { return _isRight; }
 	bool getisTolk() { return _istolk; }
 	bool getisSaller() { return _isSaller; }
+
 	int	 getcoversationCount() { return conversationCount; }
 	int  gettxtSizeMax() { return _tolkMaxsize; }
+
 	bool getisTiket() { return _isgetTiket; }
 	void setisgetTiket(bool Tiket) { _isgetTiket = Tiket; }
+
 	bool getisfirelod() { return _isgetfirelod; }
 	void setisfirelod(bool Tiket) { _isgetfirelod = Tiket; }
+
+	bool getisMusicSheet() { return _isgetMusicSheet; }
+	void setisMusicSheet(bool Tiket) { _isgetMusicSheet = Tiket; }
+
+	bool getMusicStart() { return _musicStart; }
+	void setMusicStart(bool Tiket) { _musicStart = Tiket; }
+
 	void setcoversationCount(int num) { conversationCount += num; }
 	void setisTolk(bool istolk) { _istolk = istolk; }
 
-
+	const char* getMusicname() { return MusicName; }
 };
 

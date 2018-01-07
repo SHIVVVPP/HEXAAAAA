@@ -105,7 +105,7 @@ void Wizard::Converstion(int tolkCount)
 		{
 			selectx = 430;
 			selecty = 140;
-			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum1;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum1;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
 		}
 		break;
@@ -113,7 +113,7 @@ void Wizard::Converstion(int tolkCount)
 		{
 			selectx = 600;
 			selecty = 140;
-			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum0;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4)) selectbox = selectNum0;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
 		}
 		break;
@@ -122,12 +122,12 @@ void Wizard::Converstion(int tolkCount)
 	else
 	{
 
-		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4))
 		{
 			_selectBoxX = 1070;
 			_selectBoxY = 260;
 		}
-		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6))
 		{
 			_selectBoxX = 1390;
 			_selectBoxY = 260;
