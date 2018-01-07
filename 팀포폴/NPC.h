@@ -102,6 +102,10 @@ public:
 	int	 getcoversationCount() { return conversationCount; }
 	int  gettxtSizeMax() { return _tolkMaxsize; }
 
+
+	bool getisBuyYes() { return _isBuyYes; }
+	void setisBuyYes(bool Tiket) { _isBuyYes = Tiket; }
+
 	bool getisTiket() { return _isgetTiket; }
 	void setisgetTiket(bool Tiket) { _isgetTiket = Tiket; }
 

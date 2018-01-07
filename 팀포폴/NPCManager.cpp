@@ -59,8 +59,8 @@ void NPCManager::update()
 	}
 
 	_p->update();
-	collision();
-	//player_npc_collision();
+	//collision();
+	player_npc_collision();
 	
 }
 
@@ -115,14 +115,14 @@ void NPCManager::setNpc()
 	_crown->init("광대", "", PointMake(3470, 750), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
 	
 	_vNPC.push_back(watergirl);
-	_vNPC.push_back(bard);
+	_vNPC.push_back(bard);			//음악시트
 	_vNPC.push_back(molly);
-	_vNPC.push_back(gote);
-	_vNPC.push_back(_wizard);
+	_vNPC.push_back(gote);			//음식티켓
+	_vNPC.push_back(_wizard);		//마법사
 	_vNPC.push_back(_cooker);
 	_vNPC.push_back(_famer);
 	_vNPC.push_back(_gard);
-	_vNPC.push_back(_crown);
+	_vNPC.push_back(_crown);		//유물
 
 }
 
@@ -251,7 +251,7 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 			//tempInfo->index_detail = --- 세부번호
 			if (!_vNPC[i]->getisTolk())
 			{
-				if (KEYMANAGER->isOnceKeyDown('Q'))
+				if (KEYMANAGER->isOnceKeyDown(VK_UP))
 				{
 					_vNPC[i]->setisTolk(true);
 					
@@ -264,6 +264,41 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 			if (!_vNPC[i]->getisTolk()) {
 				a = 0;
 
+			}
+			//체스터 유물파는놈
+			if (i == 8) {
+				if (_vNPC[i]->getisBuyYes())
+				{
+					if (_vNPC[i]->getisfirelod())
+					{
+						_p->setEquipRelic(0);
+					}
+					if (_vNPC[i]->getisMusicSheet())
+					{
+						//악보 어떻게 넣냐?
+					}
+				}
+			}
+			// 유물이 있으면 
+			else if (i == 4)
+			{
+				if (_p->getEquipRelic() == 0)
+				{
+					if (_vNPC[i]->getisBuyYes())
+					{
+						if (_p->getPlayerCurrentMP() != _p->getPlayerMaxMP()) {
+							_p->setPlayerCurrentMP(20);
+						}
+					}
+				}
+			}
+			//염소
+			else if (i == 3)
+			{
+				if (_vNPC[i]->getisBuyYes())
+				{
+					_vNPC[i]->setisgetTiket(true);
+				}
 			}
 			if (KEYMANAGER->isOnceKeyDown('C'))
 			{
@@ -295,11 +330,11 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				}
 
 			}
-			if (KEYMANAGER->isOnceKeyDown('Z'))
+		/*	if (KEYMANAGER->isOnceKeyDown('Z'))
 			{
 				if (!_vNPC[i]->getisTiket())(*_viNPC)->setisgetTiket(true);
 				if (!_vNPC[i]->getisfirelod())(*_viNPC)->setisfirelod(true);
-			}
+			}*/
 			if (a >= _vNPC[i]->gettxtSizeMax()) {
 				a = _vNPC[i]->gettxtSizeMax();
 			}

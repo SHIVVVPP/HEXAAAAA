@@ -142,6 +142,12 @@
     <Filter Include="shovelKnight\ObjectManager\Objects\fakedirt">
       <UniqueIdentifier>{a94dd201-f0c4-48c0-9b34-b5ffa65637f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shovelKnight\NPCManager\NPCs\Merchent">
+      <UniqueIdentifier>{53ffcd77-eae2-46e9-9413-10e9ad57e704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shovelKnight\NPCManager\NPCs\MoveNpc">
+      <UniqueIdentifier>{1601455b-9067-47f2-869d-b4c527807047}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -267,22 +273,10 @@
     <ClInclude Include="NPC.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
-    <ClInclude Include="bagFella.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
     <ClInclude Include="Bard.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
-    <ClInclude Include="goatician.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
-    <ClInclude Include="genericKnight.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
     <ClInclude Include="hedgeFarmer.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
-    <ClInclude Include="maiden.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
     <ClInclude Include="Molly.h">
@@ -292,15 +286,6 @@
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
     <ClInclude Include="Tim.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
-    <ClInclude Include="waterGirl.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
-    <ClInclude Include="Wizard.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClInclude>
-    <ClInclude Include="deerLady.h">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
     <ClInclude Include="gard.h">
@@ -320,9 +305,6 @@
     </ClInclude>
     <ClInclude Include="moveblock.h">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
-    </ClInclude>
-    <ClInclude Include="Crown.h">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClInclude>
     <ClInclude Include="player_usage.h">
       <Filter>헤더 파일</Filter>
@@ -392,6 +374,30 @@
     </ClInclude>
     <ClInclude Include="collision.h">
       <Filter>2DFramework\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown.h">
+      <Filter>shovelKnight\NPCManager\NPCs\Merchent</Filter>
+    </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>shovelKnight\NPCManager\NPCs\Merchent</Filter>
+    </ClInclude>
+    <ClInclude Include="goatician.h">
+      <Filter>shovelKnight\NPCManager\NPCs\Merchent</Filter>
+    </ClInclude>
+    <ClInclude Include="bagFella.h">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClInclude>
+    <ClInclude Include="deerLady.h">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClInclude>
+    <ClInclude Include="genericKnight.h">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClInclude>
+    <ClInclude Include="maiden.h">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClInclude>
+    <ClInclude Include="waterGirl.h">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -500,22 +506,10 @@
     <ClCompile Include="NPC.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
-    <ClCompile Include="bagFella.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
     <ClCompile Include="Bard.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
-    <ClCompile Include="genericKnight.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
-    <ClCompile Include="goatician.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
     <ClCompile Include="hedgeFarmer.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
-    <ClCompile Include="maiden.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="Molly.cpp">
@@ -527,20 +521,11 @@
     <ClCompile Include="Tim.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
-    <ClCompile Include="waterGirl.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="winMain.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Wizard.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
-    </ClCompile>
-    <ClCompile Include="deerLady.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="gard.cpp">
       <Filter>shovelKnight\NPCManager\NPCs</Filter>
@@ -559,9 +544,6 @@
     </ClCompile>
     <ClCompile Include="moveblock.cpp">
       <Filter>shovelKnight\ObjectManager\Objects\movingblock</Filter>
-    </ClCompile>
-    <ClCompile Include="Crown.cpp">
-      <Filter>shovelKnight\NPCManager\NPCs</Filter>
     </ClCompile>
     <ClCompile Include="player_usage.cpp">
       <Filter>shovelKnight\player</Filter>
@@ -631,6 +613,30 @@
     </ClCompile>
     <ClCompile Include="collision.cpp">
       <Filter>2DFramework\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\Merchent</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\Merchent</Filter>
+    </ClCompile>
+    <ClCompile Include="goatician.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\Merchent</Filter>
+    </ClCompile>
+    <ClCompile Include="bagFella.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClCompile>
+    <ClCompile Include="deerLady.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClCompile>
+    <ClCompile Include="genericKnight.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClCompile>
+    <ClCompile Include="maiden.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
+    </ClCompile>
+    <ClCompile Include="waterGirl.cpp">
+      <Filter>shovelKnight\NPCManager\NPCs\MoveNpc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

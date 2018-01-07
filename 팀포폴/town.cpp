@@ -26,12 +26,12 @@ HRESULT town::init()
 
 	CAMERAMANAGER->setBackground(8137, 900);
 	CAMERAMANAGER->setStartBackground(0, 0);
-	_rc = RectMake(6000, 400, 50, 50);
+	_rc = RectMake(50, 400, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&_rc);
 
-	_player->setPlayerX(50.0);
+	_player->setPlayerX(50);
 	_player->setPlayerY(800);
 
 	_objectManager = new objectManager;
@@ -65,7 +65,7 @@ void town::update()
 		_isvisible = false;
 	}
 	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -84,7 +84,7 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}
+	}*/
 	
 	_player->update();
 	_NPCM->update();
@@ -125,23 +125,9 @@ void town::pixelCollison()
 	COLORREF color;
 	int r, g, b;
 
-	// 머리 충돌판정
-	if (_player->getJumpPower() > 0)
+ if (_player->getJumpPower() <= 0)
 	{
-		_player->setProbeY(_player->getPlayerRect()->top - 900);
-
-		color = GetPixel(townPix->getMemDC(), _player->getPlayerRect()->left , _player->getPlayerRect()->top - 2732);
-
-		r = GetRValue(color);
-		g = GetGValue(color);
-		b = GetBValue(color);
-
-		//	if ()
-	}
-
-	else if (_player->getJumpPower() <= 0)
-	{
-		_player->setProbeY(_player->getPlayerRect()->bottom - 900);
+		_player->setProbeY(_player->getPlayerRect()->bottom );
 		bool k = false;
 		int a = 0;
 		int b = 0;
@@ -158,7 +144,7 @@ void town::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				k = true;
-				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + 900);
+				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 );
 				a++;
 			}
 		}
