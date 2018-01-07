@@ -65,9 +65,10 @@ class player : public gameNode
 	bool _isLand;
 	bool _isJump;
 	bool _canAtk;
+	bool _offPicxel;
 	int prevCondition1;
 	int prevCondition2;
-	
+
 	bullet* _Relic;
 	int _currentRelic;
 	float _bulletAngle;
@@ -95,7 +96,7 @@ public:
 	static void rightJumpAttack(void* obj);
 	static void leftJumpAttack(void* obj);
 	//static void downAttack(void* obj);
-
+	bool getOffPicxel() { return _offPicxel; }
 
 	/////////// 캐릭터의 메인상태 접근자, 설정자 
 	PLAYERMAINCONDITION getPlayerMainCondition(void) { return _playerMainCondition; }
@@ -213,7 +214,7 @@ public:
 	}
 	
 	void setIsLand(bool landvalue) { _isLand = landvalue; }
-
+	bool getIsLand() { return _isLand; }
 	// 점프파워 접근자
 
 	float getJumpPower() { return _jumpPower; }

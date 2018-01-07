@@ -146,7 +146,7 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2600, 3150,50,false);
+	_obj->init(2800, 3150,50,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
@@ -212,6 +212,9 @@ void objectManager::setPosition()
 	_obj = new musicsheet;
 	_obj->init(3400, 3400);
 	_vsheet.push_back(_obj);
+
+	//****·¹¾Æ·ç ÁÂÇ¥//
+	
 }
 
 LPCOLLISION_INFO objectManager::player_object_collision()
@@ -229,7 +232,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			if(IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtpile[i]->_rc))
 			{
 				tempInfo->_colType = COL_OBJECT;
-				tempInfo->object = _vdirtblock[i];
+				tempInfo->object = _vdirtpile[i];
 				tempInfo->index_detail = DIRTPILE;
 				tempInfo->_isPlayer = false;
 
