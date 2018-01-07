@@ -80,7 +80,7 @@ void stage::update()
 		_rc.bottom -= 15;
 	}
 	*/
-	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
+	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
 	if (c_col != "empty")
 	{
 			_currentRoom = _mRoom.find(c_col)->second;
