@@ -183,6 +183,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
+			_canAtk = true;
 			switch (_dir)
 			{
 			case 1:
@@ -686,22 +687,20 @@ void player::update()
 	}
 	else _playerSubCondition = PLAYER_NOTHING;
 
-	RECT temp2;
-	if (IntersectRect(&temp2, &_attackRC, &enemyRC))
-	{
-		collisonAttack(&enemyRC);
-	}
-
-	RECT temp3;
+	
+	
+	
+	
+														  	RECT temp3;
 	if (IntersectRect(&temp3, &_playerRC, &enemyRC))
 	{
 		collisonHitted(&enemyRC);
 	}
 
 
-	 if (_playerMainCondition < 10 || _playerMainCondition >= 17)
+	 if (!_canAtk )
 	{
-		_attackRC = RectMakeCenter(-150, 150, 100, 150);
+		  _attackRC = RectMakeCenter(-150, 150, 100, 150);
 	}
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
@@ -761,7 +760,7 @@ void player::render()
 	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top) + 160, str5, strlen(str5));
 }
 
-void player::collisonAttack(RECT * obj)
+void player::collisonAttack()
 {
 	_canAtk = false;
 	_repulsivePower = 3.0f;
@@ -793,7 +792,7 @@ void player::collisonAttack(RECT * obj)
 		_jumpPower -= _gravity;
 	}
 
-	_canAtk = true;
+	
 }
 
 void player::collisonHitted(RECT * obj)
@@ -993,66 +992,18 @@ void player::getColMessage(LPCOLLISION_INFO message)
 {
 	if (message != NULL)
 	{
+	
 		objects* temp;
 		RECT _tempRC;
-		switch (message->_colType)
+		if (message->_isPlayer)
 		{
-		case COL_MONSTER:
-			switch (message->index_detail)
+			switch (message->_colType)
 			{
-			case 1:
-				//static_cast<objects*>(message->object).
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			}
-			break;
-		case COL_OBJECT:
-			switch (message->index_detail)   //GEM 0  // movingblock = 7
-			{								 //DIRTPILE 1
-			case 11:							 //POTION 2
-				break;						 //FOOD 3
-			case 12:							 //MEAL 4
-				break;						 //BUBBLE 5
-			case 13:							 //MUSIC_SHEET 6
-				break;
-			case 14:
-				break;
-			case 15:
-				break;
-			case 16:
-				break;
-			case 17:
-			{
-			}
-			break;
-			case 18:
-			{
-				static_cast<objects*>(message->object);
-				temp = static_cast<objects*>(message->object);
-
-				//if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
-				//{
-				if (isCollisionReaction(temp->getRc(), _playerRC))
-				{
-					_isLand = true;
-					_isJump = false;
-					setPlayerCondition();
-				}
-				//}
-				//(isCollisionReaction(temp->getRc(), _playerRC))
-				//{
-				//
-				//}
-			}
-			break;
-
-			case COL_NPC:
+			case COL_MONSTER:
 				switch (message->index_detail)
 				{
 				case 1:
+					//static_cast<objects*>(message->object).
 					break;
 				case 2:
 					break;
@@ -1060,8 +1011,67 @@ void player::getColMessage(LPCOLLISION_INFO message)
 					break;
 				}
 				break;
+			case COL_OBJECT:
+				switch (message->index_detail)   //GEM 0  // movingblock = 7
+				{								 //DIRTPILE 1
+				case 11:							 //POTION 2
+					break;						 //FOOD 3
+				case 12:							 //MEAL 4
+					break;						 //BUBBLE 5
+				case 13:							 //MUSIC_SHEET 6
+					break;
+				case 14:
+					break;
+				case 15:
+					break;
+				case 16:
+					break;
+				case 17:
+				{
+				}
+				break;
+				case 18:
+				{
+					static_cast<objects*>(message->object);
+					temp = static_cast<objects*>(message->object);
+
+					//if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+					//{
+					if (isCollisionReaction(temp->getRc(), _playerRC))
+					{
+						_isLand = true;
+						_isJump = false;
+						setPlayerCondition();
+					}
+					//}
+					//(isCollisionReaction(temp->getRc(), _playerRC))
+					//{
+					//
+					//}
+				}
+				break;
+
+				case COL_NPC:
+					switch (message->index_detail)
+					{
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					}
+					break;
+				}
 			}
 		}
-		SAFE_DELETE(message);
+		else 
+		{
+			_canAtk = false;
+			collisonAttack();
+		}
+		
+	
 	}
+	SAFE_DELETE(message);
 }
