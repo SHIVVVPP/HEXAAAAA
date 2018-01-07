@@ -514,6 +514,22 @@ void stage::pixelCollison()
 		g = GetGValue(color);
 		b = GetBValue(color);
 	
+		for (int i = _player->getprobeY() + 10; i > _player->getprobeY() - 10; --i)
+		{
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, i);
+
+			r = GetRValue(color);
+			g = GetGValue(color);
+			b = GetBValue(color);
+
+
+			if (r == 0 && g == 255 && b == 0)
+			{
+				_player->setJumpPower(0.0f);
+				_player->setPlayerY(i + getHeight(*_player->getPlayerRect()) / 2  + _currentRoom._topY);
+				
+			}
+		}
 		//	if ()
 	}
 	

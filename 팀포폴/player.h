@@ -234,6 +234,7 @@ public:
 	// 점프파워 접근자
 
 	float getJumpPower() { return _jumpPower; }
+	void setJumpPower(float jumppower) { _jumpPower = jumppower; }
 
 	// 탐사축 접근자  설정자
 	void setProbeY(float probe) { _probeY = probe; }
