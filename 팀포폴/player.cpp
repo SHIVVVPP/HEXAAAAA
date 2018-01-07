@@ -1130,7 +1130,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				}
 				break;
 			}
-			}
+			
 		}
 		if(!message->_isPlayer && _canAtk)
 		{
@@ -1142,7 +1142,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				case 21:
 					_canAtk = false;
 					break;
-				
+					//123123123
 				}
 			break;
 			}
