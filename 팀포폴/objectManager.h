@@ -57,9 +57,13 @@ private:
 	int x, y;		   //여기까지 좌표 저장용 ;
 	int _tempx, _tempy;//여기까지 좌표 저장용 ;
 	int _count;
+	int _rangeCount;
+	int tempY;
 	bool _isOpen;
 	bool _iscrush;
 	bool _istouched;
+	bool _isHit;
+	int addY;
 	player* _p;
 	effect* _pickeffect;
 public:

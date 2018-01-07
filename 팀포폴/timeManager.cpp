@@ -43,7 +43,7 @@ void timeManager::render(HDC hdc)
 	char str[256];
 	string frameRate;
 	//Set Background Mode FONT µÞ¹è°æ
-	//SetBkMode(hdc, TRANSPARENT);
+	SetBkMode(hdc, TRANSPARENT);
 
 #ifdef _DEBUG
 	{

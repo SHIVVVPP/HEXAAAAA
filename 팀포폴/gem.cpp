@@ -9,6 +9,7 @@ gem::gem()
 	_hang = false;
 	_picked = false;
 	_canHit = false;
+	_gemType = SMALLGEM;
 }
 
 gem::~gem()
@@ -31,6 +32,8 @@ HRESULT gem::init(int range , int x, int y, int startX, int startY, float speed,
 	_angle = angle;
 	
 	_shuf = RND->getFromIntTo(1,6);
+
+	_gemType = 120;
 	return S_OK;
 }
 
