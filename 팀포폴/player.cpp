@@ -26,6 +26,8 @@ HRESULT player::init()
 	//IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 500, 500, 2, 2, true, RGB(255, 0, 255));
 	/*_Relic = new bullet;
 	_Relic->init("파볼", 100, 800);*/
+	
+
 	_currentRelic = FIRELOD;
 	_bulletAngle = PI;
 	_playerMainCondition = PLAYER_RIGHT_IDLE;
@@ -47,9 +49,9 @@ HRESULT player::init()
 	_currentMP = _maxMP = 30;
 	_playerGold = 0;
 	_equipmentRelic = NULL;
-	_speed = 5.0f;
-	_jumpPower = 11.0f;
-	_gravity = 0.35f;
+	_speed = 10.0f;
+	_jumpPower = 8.00f;
+	_gravity = 0.95f;
 	_dir = 1;
 	_probeY = 0;
 	_repulsivePower = 3.0f;     // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
@@ -78,9 +80,9 @@ HRESULT player::init()
 	int leftJumpDown[] = { 3 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftJumpDown", "playerJump", leftJumpDown, 1, 8, true);
 	int rightAttackarr[] = { 0,1,2,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttackarr, 4, 8, false, rightAttack, this);
+	KEYANIMANAGER->addArrayFrameAnimation("playerRightAttack", "playerAtk", rightAttackarr, 4, 10, false, rightAttack, this);
 	int leftAttackarr[] = { 7,6,5,4 };
-	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttackarr, 4, 8, false, leftAttack, this);
+	KEYANIMANAGER->addArrayFrameAnimation("playerLeftAttack", "playerAtk", leftAttackarr, 4, 10, false, leftAttack, this);
 	int leftDownAttack[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerLeftDownAttack", "playerDownAtk", leftDownAttack, 1, 8, true);
 	int rightDownAttack[] = { 1 };
@@ -141,7 +143,7 @@ void player::update()
 			_playerMainCondition = PLAYER_RIGHT_MOVE;
 			setPlayerCondition();
 		}
-		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) && _playerMainCondition != PLAYER_LEFT_MOVE)
 		{
 			_playerMainCondition = PLAYER_RIGHT_IDLE;
 			setPlayerCondition();
@@ -152,7 +154,7 @@ void player::update()
 			_playerMainCondition = PLAYER_LEFT_MOVE;
 			setPlayerCondition();
 		}
-		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT) && _playerMainCondition != PLAYER_RIGHT_MOVE)
 		{
 			_playerMainCondition = PLAYER_LEFT_IDLE;
 			setPlayerCondition();
@@ -459,7 +461,7 @@ void player::render()
 	}
 
 	char str2[128];
-	sprintf(str2, " 중력 값 : %0.2f", _gravity);
+	sprintf(str2, " 스피드 : %0.2f", _speed);
 	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top) + 100, str2, strlen(str2));
 
 	char str3[128];
@@ -645,6 +647,7 @@ void player::setPlayerCondition()
 		_image = IMAGEMANAGER->findImage("playerAtk");
 		_ani = KEYANIMANAGER->findAnimation("playerRightAttack");
 		_ani->start();
+		//SOUNDMANAGER->play("공격", 1.0f);
 		break;
 	case PLAYER_RIGHT_JUMP_ATTACK:
 		break;
@@ -652,6 +655,7 @@ void player::setPlayerCondition()
 		_image = IMAGEMANAGER->findImage("playerAtk");
 		_ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
 		_ani->start();
+		//SOUNDMANAGER->play("공격", 1.0f);
 		break;
 	case PLAYER_LEFT_JUMP_ATTACK:
 		break;

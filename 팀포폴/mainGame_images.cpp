@@ -100,6 +100,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("conversationRect", "./image/town/conversationRect.bmp", 1600, 194, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 426, 360, 2, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("watergirlCol", "./image/town/waterGalCollision.bmp", 0, 0, 397, 300, 2, 2, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));

@@ -74,7 +74,7 @@ void objectManager::update()
 	}
 	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
 	//player_object_collision();
-	_p->update();
+	//_p->update();
 	EFFECTMANAGER->update();
 }
 

@@ -20,18 +20,18 @@ HRESULT town::init()
 
 	townimage = IMAGEMANAGER->findImage("town");		//마을 이미지
 	townPix = IMAGEMANAGER->findImage("townPix");		//마을 픽셀이미지
-	backsideimg = IMAGEMANAGER->findImage("backsideimg");
+	backsideimg = IMAGEMANAGER->findImage("backsideimg"); // 후경 이미지
 	_NPCM = new NPCManager;								//
+	_NPCM->connectPlayer(_player);
 	_NPCM->init();
-
 	CAMERAMANAGER->setBackground(8137, 900);
 	CAMERAMANAGER->setStartBackground(0, 0);
-	_rc = RectMake(WINSIZEX / 2, 400, 50, 50);
+	_rc = RectMake(50, 400, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
+	CAMERAMANAGER->setCameraAim(&_rc);
 
-	_player->setPlayerX(500);
+	_player->setPlayerX(50);
 	_player->setPlayerY(800);
 
 	_objectManager = new objectManager;
@@ -40,14 +40,12 @@ HRESULT town::init()
 
 	_NPCM->setLeftNpc(false);
 	_NPCM->setNpc();
-	_NPCM->connectPlayer(_player);
+	
 	_ui = new ui;
 	_ui->init(UI_STAGE);
 
-	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
+	
 	_isvisible = false;
-	_player->setPlayerX(200);
-	_player->setPlayerY(300);
 	return S_OK;
 }
 
@@ -85,15 +83,15 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}*/
-	
+	}
+	pixelCollison();
 	_player->update();
 	_NPCM->update();
 	_objectManager->update();
 
 	_ui->update();
 
-	pixelCollison();
+	
 
 }
 
@@ -108,7 +106,7 @@ void town::render()
 		townimage->render(getMemDC(),0,0,CAMERAMANAGER->getCameraPoint().x,CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	else {
-		Rectangle(getMemDC(), _table.left, _table.top, _table.right, _table.bottom);
+		
 		//townPix->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	_ui->render();
@@ -126,23 +124,9 @@ void town::pixelCollison()
 	COLORREF color;
 	int r, g, b;
 
-	// 머리 충돌판정
-	if (_player->getJumpPower() > 0)
+ if (_player->getJumpPower() <= 0)
 	{
-		_player->setProbeY(_player->getPlayerRect()->top);
-
-		color = GetPixel(townPix->getMemDC(), _player->getPlayerRect()->left , _player->getPlayerRect()->top);
-
-		r = GetRValue(color);
-		g = GetGValue(color);
-		b = GetBValue(color);
-
-		//	if ()
-	}
-
-	else if (_player->getJumpPower() <= 0)
-	{
-		_player->setProbeY(_player->getPlayerRect()->bottom);
+		_player->setProbeY(_player->getPlayerRect()->bottom );
 		bool k = false;
 		int a = 0;
 		int b = 0;
@@ -159,7 +143,7 @@ void town::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				k = true;
-				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2);
+				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 );
 				a++;
 			}
 		}
