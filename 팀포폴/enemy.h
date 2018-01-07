@@ -18,6 +18,7 @@ enum MONSTER_MAINCONDITION
 	STAND,
 	MOVE,
 	BACKMOVE,
+	HITTED,
 	DIE,
 };
 
@@ -64,6 +65,7 @@ protected:
 	bool _isRight;
 	int _speedX;
 	float _sumGravity;
+	float _sumNuckBack;
 	POINT _range;
 
 	MON_PATTERN _pattern;
