@@ -1,6 +1,6 @@
 #pragma once
 #include "option.h"
-class option_controls: public option
+class option_controls : public option
 {
 public:
 	option_controls();
@@ -11,4 +11,3 @@ public:
 	void update();
 	void render();
 };
-

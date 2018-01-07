@@ -29,9 +29,9 @@ HRESULT town::init()
 	_rc = RectMake(WINSIZEX / 2, 400, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&_rc);
+	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
-	_player->setPlayerX(50.0);
+	_player->setPlayerX(500);
 	_player->setPlayerY(800);
 
 	_objectManager = new objectManager;
@@ -46,7 +46,8 @@ HRESULT town::init()
 
 	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
 	_isvisible = false;
-
+	_player->setPlayerX(200);
+	_player->setPlayerY(300);
 	return S_OK;
 }
 
@@ -65,7 +66,7 @@ void town::update()
 		_isvisible = false;
 	}
 	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -84,7 +85,7 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}
+	}*/
 	
 	_player->update();
 	_NPCM->update();
@@ -128,9 +129,9 @@ void town::pixelCollison()
 	// 머리 충돌판정
 	if (_player->getJumpPower() > 0)
 	{
-		_player->setProbeY(_player->getPlayerRect()->top - 900);
+		_player->setProbeY(_player->getPlayerRect()->top);
 
-		color = GetPixel(townPix->getMemDC(), _player->getPlayerRect()->left , _player->getPlayerRect()->top - 2732);
+		color = GetPixel(townPix->getMemDC(), _player->getPlayerRect()->left , _player->getPlayerRect()->top);
 
 		r = GetRValue(color);
 		g = GetGValue(color);
@@ -141,7 +142,7 @@ void town::pixelCollison()
 
 	else if (_player->getJumpPower() <= 0)
 	{
-		_player->setProbeY(_player->getPlayerRect()->bottom - 900);
+		_player->setProbeY(_player->getPlayerRect()->bottom);
 		bool k = false;
 		int a = 0;
 		int b = 0;
@@ -158,17 +159,19 @@ void town::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				k = true;
-				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + 900);
+				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2);
 				a++;
 			}
 		}
 		if (k)
 		{
 			_player->setIsJump(false);
+			_player->setIsLand(true);
 		}
 		else
 		{
 			_player->setIsJump(true);
+			_player->setIsLand(false);
 		}
 
 

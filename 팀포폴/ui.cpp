@@ -54,12 +54,6 @@ void ui::update()
 		if (_gold_render > _gold) _gold_render = _gold;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_UP))
-	{
-		_playerHP++;
-		_gold += 10;
-	}
-
 
 }
 

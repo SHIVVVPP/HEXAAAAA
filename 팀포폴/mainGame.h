@@ -19,6 +19,10 @@ private:
 	gameNode* _stage;
 	//gameNode* _town;
 	ui* _ui;
+
+	bool _Nowsys_option;
+	bool _Nowinventory;
+	
 public:
 	virtual HRESULT init();			
 	virtual void release();			

@@ -26,12 +26,14 @@ DWORD CALLBACK loadingThread(LPVOID prc)
 gameNode* sceneManager::_currentScene = NULL;
 gameNode* sceneManager::_loadingScene = NULL;
 gameNode* sceneManager::_readyScene = NULL;
+gameNode* sceneManager::_prevScene = NULL;
 
 HRESULT sceneManager::init(void)
 {
 	_currentScene = NULL;
 	_loadingScene = NULL;
 	_readyScene = NULL;
+	_prevScene = NULL;
 	return S_OK;
 }
 
@@ -121,5 +123,33 @@ HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName, pla
 	}
 
 	return E_FAIL;
+}
+
+HRESULT sceneManager::tempScene(string sceneName)
+{
+	
+
+	mapSceneIter find = _mSceneList.find(sceneName);
+
+	if (find == _mSceneList.end()) return E_FAIL;
+	if (find->second == _currentScene)return S_OK;
+	
+
+	bool k = SUCCEEDED(find->second->init());
+	if (k)
+	{
+		_prevScene = _currentScene;
+		_currentScene = find->second;
+		return S_OK;
+	}
+	return E_FAIL;
+
+
+}
+
+HRESULT sceneManager::returnScene()
+{
+	_currentScene = _prevScene; 
+	return S_OK; 
 }
 

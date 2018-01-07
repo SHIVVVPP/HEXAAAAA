@@ -302,7 +302,7 @@ void skeleton::setCondition()
 
 void skeleton::changeDirection()
 {
-	if(_mainCondition != HITTED)
+	if(_mainCondition != HITTED &&_mainCondition != DIE && _mainCondition != DYINGOUT)
 	enemy::changeDirection();
 }
 

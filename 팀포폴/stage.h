@@ -39,6 +39,7 @@ private:
 	//임시 렉트
 
 	RECT _rc;
+	RECT _changeSceneRc;
 
 	settingTool* Tool;
 
@@ -63,4 +64,5 @@ public:
 	void pixelCollison();
 
 	static void CreateGem(void* obj);
+	
 };

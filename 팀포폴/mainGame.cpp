@@ -33,10 +33,10 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//sys = new system_option;
 	//sys->init();
-
+	
 	SCENEMANAGER->addScene("스테이지", new stage);
-	SCENEMANAGER->changeScene("스테이지", _player);
-	//SCENEMANAGER->addScene("인벤토리", new inventory);
+	SCENEMANAGER->addScene("인벤토리", new inventory);
+	SCENEMANAGER->addScene("시스템", new system_option);
 	//
 
 	/*_ui = new ui;
@@ -46,13 +46,16 @@ HRESULT mainGame::init()			//초기화 함수
    
 	//_town = new town;
 	//_town->init();
-	//SCENEMANAGER->addScene("마을", new town);
+	SCENEMANAGER->addScene("마을", new town);
 	//SCENEMANAGER->changeScene("마을", _player);
 	//rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	//CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	//CAMERAMANAGER->setCameraAim(&rc);
 
+	SCENEMANAGER->changeScene("스테이지", _player);
 	
+	_Nowsys_option = false;
+	_Nowinventory = false;
 	
 	return S_OK;
 }
@@ -85,10 +88,37 @@ void mainGame::update()				//연산 함수
 	//	rc.bottom -= 5;
 	//}
 	
+	if (KEYMANAGER->isOnceKeyDown('I'))
+	{
+		if (_Nowinventory)
+		{
+			_Nowinventory = false;
+			SCENEMANAGER->returnScene();
+		}
+		else
+		{
+			_Nowinventory = true;
+			SCENEMANAGER->tempScene("인벤토리");
+		}
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('O'))
+	{
+		if (_Nowsys_option) {
+			_Nowsys_option = false;
+			SCENEMANAGER->returnScene();
+		} 
+		else
+		{
+			_Nowsys_option = true;
+			SCENEMANAGER->tempScene("시스템");
+		}
+	}
+	
+
 	//sys->update();
 	SCENEMANAGER->update();
 	//_player->update();
-	
 	//_ui->update();
 	//_town->update();
 }
