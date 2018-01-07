@@ -50,6 +50,7 @@ protected:
 
 	RECT* _playerC;
 
+	int _attackCount;
 	
 	//image ±‚¡ÿ 
 	int _leftX, _topY;
