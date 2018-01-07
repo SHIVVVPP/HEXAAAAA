@@ -146,11 +146,11 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2000, 3000,50,false);
+	_obj->init(1800, 2950,50,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2200, 3200, 200, false);
+	_obj->init(2000, 3150, 200, false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;
@@ -178,15 +178,15 @@ void objectManager::setPosition()
 	_vUse.push_back(_obj);
 
 	_obj = new dirtblock;
-	_obj->init(2550, 3050);
+	_obj->init(1700, 3300);
 	_vdirtblock.push_back(_obj);
 
 	_obj = new dirtblock;
-	_obj->init(2300, 3150);
+	_obj->init(1900, 3300);
 	_vdirtblock.push_back(_obj);
 
 	_obj = new smalldirtblock;
-	_obj->init(2100, 3300);
+	_obj->init(2100, 3350);
 	_vdirtblock.push_back(_obj);
 
 	_obj = new bubbles;
@@ -343,12 +343,14 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 
 	for (int i = 0; i < _vdirtblock.size(); i++)
 	{
+		tempInfo->_colType = COL_OBJECT;
+		tempInfo->object = _vdirtblock[i];
+		tempInfo->index_detail = DIRTPILE;
+		tempInfo->_isPlayer = false;
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtblock[i]->_rc))
 		{
-			tempInfo->_colType = COL_OBJECT;
-			tempInfo->object = _vdirtblock[i];
-			tempInfo->index_detail = DIRTPILE;
+
 			if(_vdirtblock[i]->_type == TYPE_BLOCK)EFFECTMANAGER->play("블록",_vdirtblock[i]->_leftX - 30 , _vdirtblock[i]->_topY - 15);
 
 			else if (_vdirtblock[i]->_type == TYPE_SMALL_BLOCK)EFFECTMANAGER->play("작은블록", _vdirtblock[i]->_leftX - 30, _vdirtblock[i]->_topY - 15);
@@ -367,6 +369,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vbubble[i];
 			tempInfo->index_detail = BUBBLE;
+			tempInfo->_isPlayer = false;
 			EFFECTMANAGER->play("버블", _vbubble[i]->_leftX, _vbubble[i]->_topY);
 			_vbubble.erase(_vbubble.begin() + i);
 
@@ -380,7 +383,10 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		{
 			_x = _vplatter[i]->_leftX + 10;
 			_y = _vplatter[i]->_topY + 10;
-			
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vplatter[i];
+			tempInfo->index_detail = PLATTER;
+			tempInfo->_isPlayer = false;
 			_vplatter.erase(_vplatter.begin() + i);
 			_isOpen = true;
 			//_obj = new part;
@@ -414,6 +420,11 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp,_p->getPlayerAttackRect(), &_vfakedirt[i]->_rc))
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vfakedirt[i];
+			tempInfo->index_detail = PLATTER;
+			tempInfo->_isPlayer = false;
+
 			x = _vfakedirt[i]->_leftX;
 			y = _vfakedirt[i]->_topY;
 			_iscrush = true;
@@ -439,9 +450,9 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 
 	for (int i = 0; i < _vmoveblock.size(); i++)
 	{
-		RECT temp;
+		//RECT temp;
 		//if (IntersectRect(&temp, _p->getPlayerRect(), &_vmoveblock[i]->_rc))
-		//{
+	//	{
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vmoveblock[i];
 			tempInfo->index_detail = MOVING_PILE;
