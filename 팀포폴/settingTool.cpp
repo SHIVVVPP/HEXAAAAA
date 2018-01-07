@@ -94,28 +94,28 @@ void settingTool::update()
 			_image = IMAGEMANAGER->findImage("leftfakehead");
 			break;
 		case 1:
-			_image = IMAGEMANAGER->findImage("rightfakehead");
+			_image = IMAGEMANAGER->findImage("movingrock");
 			break;
 		case 2:
-			_image = IMAGEMANAGER->findImage("leftfakehead");
+			_image = IMAGEMANAGER->findImage("dirtpile");
 			break;
 		case 3:
-			_image = IMAGEMANAGER->findImage("leftfakeline");
+			_image = IMAGEMANAGER->findImage("bubbles");
 			break;
 		case 4:
-			_image = IMAGEMANAGER->findImage("rightfakeline");
+			_image = IMAGEMANAGER->findImage("dirtblock");
 			break;
 		case 5:
-			_image = IMAGEMANAGER->findImage("leftfaketail");
+			_image = IMAGEMANAGER->findImage("dirtblocksmall");
 			break;
 		case 6:
-			_image = IMAGEMANAGER->findImage("rightfaketail");
+			_image = IMAGEMANAGER->findImage("platter");
 			break;
 		case 7:
-			_image = IMAGEMANAGER->findImage("platter");
+			_image = IMAGEMANAGER->findImage("bgmusicsheet");
 			break;
 		case 8:
-			_image = IMAGEMANAGER->findImage("platter");
+			_image = IMAGEMANAGER->findImage("potion");
 			break;
 		}
 		break;
@@ -155,7 +155,7 @@ void settingTool::update()
 	switch (TYPE)
 	{
 	case OBJECT:
-		_rc = RectMakeCenter(_ptMouse.x, _ptMouse.y, _image->getWidth(), _image->getHeight());
+		_rc = RectMake(_ptMouse.x, _ptMouse.y, _image->getWidth(), _image->getHeight());
 		break;
 	case MONSTER:
 		_rc = RectMakeCenter(_ptMouse.x, _ptMouse.y, _image->getFrameWidth(), _image->getFrameHeight());

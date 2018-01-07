@@ -105,6 +105,7 @@ void player::release()
 }
 void player::update()
 {
+	
 	///// 상태에 따른 중력 작용 여부 //////
 	if (_isJump)
 	{
@@ -698,15 +699,15 @@ void player::update()
 	}
 
 
-	// if (_playerMainCondition < 10 || _playerMainCondition >= 17)
-	//{
-	//	_attackRC = RectMakeCenter(-150, 150, 100, 150);
-	//}
+	 if (_playerMainCondition < 10 || _playerMainCondition >= 17)
+	{
+		_attackRC = RectMakeCenter(-150, 150, 100, 150);
+	}
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	
-	if(!_canAtk)_attackRC = RectMakeCenter(_x, _y, 50, 50);
+	
 	
 	KEYANIMANAGER->update();
 	//pixelCollison();
@@ -992,6 +993,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 {
 	if (message != NULL)
 	{
+		objects* temp;
+		RECT _tempRC;
 		switch (message->_colType)
 		{
 		case COL_MONSTER:
@@ -1007,28 +1010,58 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			}
 			break;
 		case COL_OBJECT:
-			switch (message->index_detail)
+			switch (message->index_detail)   //GEM 0  // movingblock = 7
+			{								 //DIRTPILE 1
+			case 11:							 //POTION 2
+				break;						 //FOOD 3
+			case 12:							 //MEAL 4
+				break;						 //BUBBLE 5
+			case 13:							 //MUSIC_SHEET 6
+				break;
+			case 14:
+				break;
+			case 15:
+				break;
+			case 16:
+				break;
+			case 17:
 			{
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
 			}
 			break;
-		case COL_NPC:
-			switch (message->index_detail)
+			case 18:
 			{
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+
+				//if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				//{
+				if (isCollisionReaction(temp->getRc(), _playerRC))
+				{
+					_isLand = true;
+					_isJump = false;
+					setPlayerCondition();
+				}
+				//}
+				//(isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
 			}
 			break;
+
+			case COL_NPC:
+				switch (message->index_detail)
+				{
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				}
+				break;
+			}
 		}
+		SAFE_DELETE(message);
 	}
-	SAFE_DELETE(message);
 }

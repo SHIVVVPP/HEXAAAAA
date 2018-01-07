@@ -390,6 +390,9 @@
     <ClInclude Include="yellowDragon.h">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="collision.h">
+      <Filter>2DFramework\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -625,6 +628,9 @@
     </ClCompile>
     <ClCompile Include="yellowDragon.cpp">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="collision.cpp">
+      <Filter>2DFramework\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -58,8 +58,8 @@ void stage::release()
 
 void stage::update()
 {
-
-	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -78,8 +78,8 @@ void stage::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}*/
-
+	}
+	*/
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")
 	{
@@ -87,7 +87,7 @@ void stage::update()
 	}
 	_player->update();
 	_objectManager->update();
-
+	_player->getColMessage(_objectManager->player_object_collision());
 	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });
 	_enemyManager->update();
 	_ui->update();
@@ -503,7 +503,7 @@ void stage::pixelCollison()
 	
 		//	if ()
 	}
-
+	
 	if (_player->getJumpPower() <= 0)
 	{
 		_player->setProbeY (_player->getPlayerRect()->bottom- _currentRoom._topY);
@@ -532,13 +532,23 @@ void stage::pixelCollison()
 		{
 			_player->setIsJump(false);
 			_player->setIsLand(true);
-			
+						
 		}
 		else
 		{
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 + _currentRoom._leftX, _player->getprobeY() + 1);
+			r = GetRValue(color);
+			g = GetGValue(color);
+			b = GetBValue(color);
+
+			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, _player->getprobeY() + 1);
+			int r1 = GetRValue(color);
+			int g1 = GetGValue(color);
+			int b1 = GetBValue(color);
+
+
 			_player->setIsJump(true);
 			_player->setIsLand(false);
-		
 		}
 
 	}
