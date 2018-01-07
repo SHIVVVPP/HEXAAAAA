@@ -1010,37 +1010,87 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			}
 			break;
 		case COL_OBJECT:
-			switch (message->index_detail)   //GEM 0  // movingblock = 7
-			{								 //DIRTPILE 1
-			case 11:							 //POTION 2
-				break;						 //FOOD 3
-			case 12:							 //MEAL 4
-				break;						 //BUBBLE 5
-			case 13:							 //MUSIC_SHEET 6
-				break;
-			case 14:
-				break;
-			case 15:
-				break;
-			case 16:
-				break;
-			case 17:
+			switch (message->index_detail)
 			{
-			}
-			break;
-			case 18:
+			case 11: // gem
+				break;
+			case 12: // 흙
 			{
+
+
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
 
-				//if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
-				//{
 				if (isCollisionReaction(temp->getRc(), _playerRC))
 				{
-					_isLand = true;
-					_isJump = false;
-					setPlayerCondition();
+
 				}
+				//if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
+				//{
+				//	setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//	if (_width > _height)
+				//	{
+				//
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		//if (_playerRC.bottom < temp->getRc().bottom)
+				//		//{
+				//			_isLand = true;
+				//			_isJump = false;
+				//		//}
+				//	}
+				//}		
+			}
+			break;
+			case 13: //포션
+				break;
+			case 14: //음식
+				break;
+			case 15: // MEAL (체력최대치올리는음식)
+				break;
+			case 16: //방울
+				break;
+			case 17: //음악
+
+				break;
+			case 18: //발판
+			{
+				//static_cast<objects*>(message->object);
+				//temp = static_cast<objects*>(message->object);
+				//
+				//if (isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
+				////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				////{
+				//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
+				//{
+				//	//setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//
+				//	//if (_playerRC.bottom > temp->getRc().bottom)
+				//	//{
+				//	//	_isLand = true;
+				//	//	_isJump = false;
+				//	//}
+				//
+				//	if (_width > _height)
+				//	{
+				//		
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		_isLand = true;
+				//		_isJump = false;
+				//	}
+				//}
 				//}
 				//(isCollisionReaction(temp->getRc(), _playerRC))
 				//{
@@ -1048,7 +1098,11 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				//}
 			}
 			break;
-
+			case 19: //접시
+				break;
+			case 20: //가짜 벽
+				break;
+			}break;
 			case COL_NPC:
 				switch (message->index_detail)
 				{

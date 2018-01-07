@@ -29,7 +29,8 @@
 #define BUBBLE 16
 #define MUSIC_SHEET 17
 #define MOVING_PILE 18
-
+#define PLATTER 19
+#define FAKEDIRT 20
 class objectManager : public gameNode
 {
 private:
