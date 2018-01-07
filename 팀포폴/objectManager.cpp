@@ -73,7 +73,7 @@ void objectManager::update()
 		_vsheet[i]->update();
 	}
 	//player_object_collision()을 stage에서 처리 반환값을 COLLISION_INFO구조체로
-	player_object_collision();
+	//player_object_collision();
 	_p->update();
 	EFFECTMANAGER->update();
 }
@@ -146,11 +146,11 @@ void objectManager::setPosition()
 	_vladder.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2700, 3000,50,false);
+	_obj->init(2000, 3000,50,false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new moveblock;
-	_obj->init(2800, 3200, 200, false);
+	_obj->init(2200, 3200, 200, false);
 	_vmoveblock.push_back(_obj);
 
 	_obj = new dirtpile;
@@ -440,12 +440,12 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 	for (int i = 0; i < _vmoveblock.size(); i++)
 	{
 		RECT temp;
-		if (IntersectRect(&temp, _p->getPlayerRect(), &_vmoveblock[i]->_rc))
-		{
+		//if (IntersectRect(&temp, _p->getPlayerRect(), &_vmoveblock[i]->_rc))
+		//{
 			tempInfo->_colType = COL_OBJECT;
 			tempInfo->object = _vmoveblock[i];
 			tempInfo->index_detail = MOVING_PILE;
-		}
+		//}
 	}
 	_count++;
 	if (_iscrush)

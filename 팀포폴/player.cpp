@@ -105,6 +105,7 @@ void player::release()
 }
 void player::update()
 {
+	
 	///// 상태에 따른 중력 작용 여부 //////
 	if (_isJump)
 	{
@@ -993,7 +994,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 	if (message != NULL)
 	{
 		objects* temp;
-		RECT _temp;
+		RECT _tempRC;
 		switch (message->_colType)
 		{
 		case COL_MONSTER:
@@ -1025,21 +1026,29 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			case 17:
 			{
+			}
+			break;
+			case 18:
+			{
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
 
-
+				//if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				//{
 				if (isCollisionReaction(temp->getRc(), _playerRC))
 				{
 					_isLand = true;
+					_isJump = false;
+					setPlayerCondition();
 				}
+				//}
 				//(isCollisionReaction(temp->getRc(), _playerRC))
 				//{
 				//
 				//}
-				break;
 			}
 			break;
+
 			case COL_NPC:
 				switch (message->index_detail)
 				{
