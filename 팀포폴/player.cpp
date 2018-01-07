@@ -992,6 +992,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 {
 	if (message != NULL)
 	{
+		objects* temp;
+		RECT _temp;
 		switch (message->_colType)
 		{
 		case COL_MONSTER:
@@ -1007,28 +1009,50 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			}
 			break;
 		case COL_OBJECT:
-			switch (message->index_detail)
+			switch (message->index_detail)   //GEM 0  // movingblock = 7
+			{								 //DIRTPILE 1
+			case 11:							 //POTION 2
+				break;						 //FOOD 3
+			case 12:							 //MEAL 4
+				break;						 //BUBBLE 5
+			case 13:							 //MUSIC_SHEET 6
+				break;
+			case 14:
+				break;
+			case 15:
+				break;
+			case 16:
+				break;
+			case 17:
 			{
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+
+
+				if (isCollisionReaction(temp->getRc(), _playerRC))
+				{
+					_isLand = true;
+				}
+				//(isCollisionReaction(temp->getRc(), _playerRC))
+				//{
+				//
+				//}
 				break;
 			}
 			break;
-		case COL_NPC:
-			switch (message->index_detail)
-			{
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
+			case COL_NPC:
+				switch (message->index_detail)
+				{
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				}
 				break;
 			}
-			break;
 		}
+		SAFE_DELETE(message);
 	}
-	SAFE_DELETE(message);
 }

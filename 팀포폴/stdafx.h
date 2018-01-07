@@ -18,6 +18,7 @@
 #include "randomFunction.h"
 #include "keyManager.h"
 #include "utils.h"
+#include "collision.h"
 #include "imageManager.h"
 #include "timeManager.h"
 #include "soundManager.h"
