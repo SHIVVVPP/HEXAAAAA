@@ -737,7 +737,7 @@ void player::render()
 	//_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
+		//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointY(_attackRC.top),75, 100);
 		sprintf(str, "attackRC LT %d %d RB %d %d", _attackRC.left, _attackRC.top, _attackRC.right, _attackRC.bottom);
@@ -1016,34 +1016,40 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			case 12: // Èë
 			{
-
-
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
 
-				if (isCollisionReaction(temp->getRc(), _playerRC))
-				{
-
-				}
-				//if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
+				//if (isCollisionReaction(temp->getRc(), _playerRC))
 				//{
-				//	setPlayerCondition();
-				//	float _width = _tempRC.right - _tempRC.left;
-				//	float _height = _tempRC.bottom - _tempRC.top;
-				//	if (_width > _height)
-				//	{
 				//
-				//	}
-				//
-				//	if (_height > _width)
-				//	{
-				//		//if (_playerRC.bottom < temp->getRc().bottom)
-				//		//{
-				//			_isLand = true;
-				//			_isJump = false;
-				//		//}
-				//	}
-				//}		
+				//}
+
+				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
+				{
+					setPlayerCondition();
+					float _width = _tempRC.right - _tempRC.left;
+					float _height = _tempRC.bottom - _tempRC.top;
+					if (_width > _height)
+					{
+						_isLand = true;
+						_isJump = false;
+					}
+				
+					if (_height > _width)
+					{
+						if (_tempRC.left == temp->getRc().left)
+						{
+							 _x = temp->getRc().left - (_playerRC.right - _playerRC.left) /2;
+				
+							 _tempRC.left = temp->getRc().left;
+						}
+						else
+						{
+							_x = temp->getRc().right + (_playerRC.right - _playerRC.left) / 2;
+							_tempRC.right = temp->getRc().right;
+						}
+					}
+				}		
 			}
 			break;
 			case 13: //Æ÷¼Ç
@@ -1059,13 +1065,13 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			case 18: //¹ßÆÇ
 			{
-				//static_cast<objects*>(message->object);
-				//temp = static_cast<objects*>(message->object);
-				//
-				//if (isCollisionReaction(temp->getRc(), _playerRC))
-				//{
-				//
-				//}
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+				
+				if (isCollisionReaction(temp->getRc(), _playerRC))
+				{
+				
+				}
 				////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
 				////{
 				//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
@@ -1101,6 +1107,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			case 19: //Á¢½Ã
 				break;
 			case 20: //°¡Â¥ º®
+				break;
+			case 21: //±¤¸Æ
 				break;
 			}break;
 
