@@ -39,7 +39,7 @@ HRESULT redBeetle::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_RIGHT_DIE", "레드비틀", rightDie, 2, 1, false);
 	int leftDie[] = { 14,15 };
 	KEYANIMANAGER->addArrayFrameAnimation("REDBEETLE_LEFT_DIE", "레드비틀", leftDie, 2, 1, false);
-	
+	_attackCount = 0;
 	_mainCondition = MOVE;
 	_subCondition = LAND;
 	setCondition();
@@ -65,6 +65,12 @@ void redBeetle::update()
 		_topY += _sumGravity;
 	}
 
+	if (_mainCondition == DIE)
+	{
+		if (_attackCount > 100)
+			_mainCondition = DYINGOUT;
+		_attackCount++;
+	}
 
 	
 
@@ -83,7 +89,7 @@ void redBeetle::CollisionReact()
 {
 	_hp--;
 	if (_hp <= 0)
-		setMainCondition(DYINGOUT);
+		setMainCondition(DIE);
 }
 
 void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		
@@ -105,6 +111,7 @@ void redBeetle::setSubCondition(MONSTER_SUBCONDITION subCondition)
 
 void redBeetle::setCondition()
 {
+	_ani->stop();
 	switch (_mainCondition)
 	{
 	case MOVE:

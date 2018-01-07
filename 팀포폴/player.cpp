@@ -58,8 +58,8 @@ HRESULT player::init()
 	_isLand = false;
 	_isJump = true;
 	_canAtk = true;
+	_offPicxel = false;
 	_immune = false;
-
 
 	int rightIdle[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("playerRightIdle", "playerIdle", rightIdle, 1, 6, true);
@@ -112,6 +112,7 @@ void player::update()
 	{
 		_y -= _jumpPower;
 		_jumpPower -= _gravity;
+		_offPicxel = false;
 	}
 	if (_isLand)
 	{
@@ -403,8 +404,8 @@ void player::update()
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	if(!_canAtk && _playerMainCondition != PLAYER_RIGHT_ATTACK && _playerMainCondition != PLAYER_LEFT_ATTACK) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 
-
-
+	
+	
 	KEYANIMANAGER->update();
 	//pixelCollison();
 	//usage();
@@ -428,7 +429,6 @@ void player::render()
 	char str1[128];
 	sprintf(str1, "케릭터 서브상태값 : %d", _playerSubCondition);
 	TextOut(getMemDC(), 100, 200, str1, strlen(str1));
-
 
 	//_Relic->render();
 	if (KEYMANAGER->isToggleKey(VK_F1))
@@ -708,36 +708,59 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
 
-				//if (isCollisionReaction(temp->getRc(), _playerRC))
-				//{
-				//
-				//}
-
 				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
 				{
-					setPlayerCondition();
+					//setPlayerCondition();
+			
 					float _width = _tempRC.right - _tempRC.left;
 					float _height = _tempRC.bottom - _tempRC.top;
+					float _tempWidth = (temp->getRc().right - temp->getRc().left) / 2;
+					float _tempHeight = (temp->getRc().bottom - temp->getRc().top) / 2;
+					float _templeft = temp->getRc().left;
+					float _tempright = temp->getRc().right;
 					if (_width > _height)
 					{
-						_isLand = true;
-						_isJump = false;
+						float _pwidth = _playerRC.right - _playerRC.left;
+						if (_tempRC.top == temp->getRc().top)
+						{
+							_offPicxel = true;
+							_isLand = true;
+							//_isJump = false;
+							setIsJump(false);
+						}
+						if (_isLand)
+						{
+							//OffsetRect(&_playerRC, 0, _height);
+							//_playerRC = RectMakeCenter(_x, _y, 150, 160);
+							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 5;
+							//_y += _jumpPower + 1;
+						}
+						if (_playerRC.right <= _templeft + _tempWidth || _playerRC.left >= _tempright - _tempWidth
+							|| _playerRC.right <= _templeft + _tempWidth && _isJump == true || _playerRC.left >= _tempright - _tempWidth && _isJump == true)
+						{
+							_isLand = false;
+							_offPicxel = false;
+							//_isJump = true;
+							setIsJump(true);
+						}
 					}
 				
 					if (_height > _width)
 					{
 						if (_tempRC.left == temp->getRc().left)
 						{
-							 _x = temp->getRc().left - (_playerRC.right - _playerRC.left) /2;
-				
-							 _tempRC.left = temp->getRc().left;
+							//OffsetRect(&_playerRC, -_width, 0);
+							//_x -= _speed * 2.5;
+							 _x = temp->getRc().left - (_playerRC.right - _playerRC.left) /2;	
 						}
 						else
 						{
+							//OffsetRect(&_playerRC, _width, 0);
+							//_x += _speed * 2.5;
 							_x = temp->getRc().right + (_playerRC.right - _playerRC.left) / 2;
-							_tempRC.right = temp->getRc().right;
 						}
 					}
+					
 				}		
 			}
 			break;
@@ -762,40 +785,52 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				static_cast<objects*>(message->object);
 				temp = static_cast<objects*>(message->object);
 				
-				if (isCollisionReaction(temp->getRc(), _playerRC))
+				if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
 				{
-				
+					//setPlayerCondition();
+
+					float _width = _tempRC.right - _tempRC.left;
+					float _height = _tempRC.bottom - _tempRC.top;
+					float _tempWidth = (temp->getRc().right - temp->getRc().left) / 2;
+					float _templeft = temp->getRc().left;
+					float _tempright = temp->getRc().right;
+					if (_width > _height)
+					{
+						float _pwidth = _playerRC.right - _playerRC.left;
+						if (_tempRC.top == temp->getRc().top)
+						{
+							_offPicxel = true;
+							_isLand = true;
+							_isJump = false;
+						}
+						if (_isLand)
+						{
+							//OffsetRect(&_playerRC, 0, -_height);
+							//_y += _jumpPower;
+							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 5;
+						}
+						
+						if (_tempRC.bottom == temp->getRc().bottom)
+						{
+							_y = temp->getRc().bottom - (_playerRC.top - _playerRC.bottom) / 2 + 25;
+						}
+					}
+
+					if (_height > _width)
+					{
+						if (_tempRC.left == temp->getRc().left)
+						{
+							//OffsetRect(&_playerRC, -_width, 0);
+							_x = temp->getRc().left - (_playerRC.right - _playerRC.left) /2;	
+						}
+						else
+						{
+							//OffsetRect(&_playerRC, _width, 0);
+							_x = temp->getRc().right + (_playerRC.right - _playerRC.left) / 2;
+						}
+					}
+
 				}
-				////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
-				////{
-				//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
-				//{
-				//	//setPlayerCondition();
-				//	float _width = _tempRC.right - _tempRC.left;
-				//	float _height = _tempRC.bottom - _tempRC.top;
-				//
-				//	//if (_playerRC.bottom > temp->getRc().bottom)
-				//	//{
-				//	//	_isLand = true;
-				//	//	_isJump = false;
-				//	//}
-				//
-				//	if (_width > _height)
-				//	{
-				//		
-				//	}
-				//
-				//	if (_height > _width)
-				//	{
-				//		_isLand = true;
-				//		_isJump = false;
-				//	}
-				//}
-				//}
-				//(isCollisionReaction(temp->getRc(), _playerRC))
-				//{
-				//
-				//}
 			}
 			break;
 			case 19: //접시
