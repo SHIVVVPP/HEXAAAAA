@@ -20,7 +20,7 @@ private:
 	//임시 렉트
 
 	RECT _rc;
-	RECT _table;			// 중점 x = 2770, y= 530
+	
 
 
 	bool _isvisible;		//픽셀이미지 보이게 하는 불값;
