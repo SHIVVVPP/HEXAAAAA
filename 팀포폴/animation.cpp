@@ -46,7 +46,6 @@ HRESULT animation::init(int totalW, int totalH, int frameW, int frameH)
 
 	//처음엔 디폴트 애니메이션 재생으로 둔다
 	setDefPlayFrame();
-
 	return S_OK;
 }
 

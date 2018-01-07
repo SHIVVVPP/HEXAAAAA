@@ -10,6 +10,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <iostream>
+#include <functional>
 
 
 

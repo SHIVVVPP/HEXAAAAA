@@ -36,6 +36,7 @@ void enemy::render()
 
 void enemy::pixelCollisionReact(image * collisionImage, POINT ptReal)
 {
+	COLORREF color;
 	int probeY = _collisionRc.bottom - ptReal.y;
 	int probeX = (_collisionRc.left + _collisionRc.right) / 2 - ptReal.x;
 	int r, g, b;
@@ -44,40 +45,54 @@ void enemy::pixelCollisionReact(image * collisionImage, POINT ptReal)
 
 	//¹Ù´ÚÃæµ¹
 	bool e = false;
-	for (int i = probeY + 10; i > probeY - 10; i--)
+	for (int i = probeY + 10; i > probeY - 10; --i)
 	{
-		COLORREF color = GetPixel(collisionImage->getMemDC(), probeX, i);
+		color = GetPixel(collisionImage->getMemDC(), probeX, i);
 		r = GetRValue(color);
 		g = GetGValue(color);
 		b = GetBValue(color);
 
 		if (r == 0 && g == 255 & b == 0)
 		{
-			offsetY++;
 			e = true;
+			offsetY++;
 		}
 		else break;
 	}
 	if (e)
 	{
-		if (_subCondition != LAND)
-		{
-			this->setSubCondition(LAND);
-			_cy -= offsetY-10;
-		}
+			if (_subCondition == FALL)
+			{
+				this->setSubCondition(LAND);
+				_topY = _collisionRc.bottom + 10 - offsetY - _height;
+			}
 	}
 	else 
 	{
-		this->setSubCondition(FALL);
+		color = GetPixel(collisionImage->getMemDC(), probeX + _width / 2, probeY + 1);
+		r = GetRValue(color);
+		g = GetGValue(color);
+		b = GetBValue(color);
+
+		color = GetPixel(collisionImage->getMemDC(), probeX - _width / 2, probeY + 1);
+		int r1 = GetRValue(color);
+		int g1 = GetGValue(color);
+		int b1 = GetBValue(color);
+
+		if (!(r == 0 && g == 255 & b == 0) && !(r1 == 0 && g1 == 255 & b1 == 0))
+		{
+			this->setSubCondition(FALL);
+		}
 	}
 	
 	//¿·Ãæµ¹
 	probeX = _collisionRc.left - ptReal.x;
-	COLORREF color = GetPixel(collisionImage->getMemDC(),probeX, _collisionRc.bottom-10);
+	probeY = _collisionRc.bottom - 10 - ptReal.y;
+	color = GetPixel(collisionImage->getMemDC(),probeX, probeY);
 	r = GetRValue(color);
 	g = GetGValue(color);
 	b = GetBValue(color);
-	if (r == 0 && g == 255 & b == 0)
+	if (r == 0 && g == 255 && b == 0)
 	{
 		int offsetX = 0;
 		for (int i = probeX; i < probeX + _width / 2; i++)
@@ -91,16 +106,16 @@ void enemy::pixelCollisionReact(image * collisionImage, POINT ptReal)
 				offsetX++;
 			}
 		}
-		_cx += offsetX;
+		_leftX += offsetX;
 		changeDirection();
 	}
 	
 	probeX = _collisionRc.right - ptReal.x;
-	color = GetPixel(collisionImage->getMemDC(), probeX, _collisionRc.bottom - 10);
+	color = GetPixel(collisionImage->getMemDC(), probeX, probeY);
 	r = GetRValue(color);
 	g = GetGValue(color);
 	b = GetBValue(color);
-	if (r == 0 && g == 255 & b == 0)
+	if (r == 0 && g == 255 && b == 0)
 	{
 		int offsetX = 0;
 		for (int i = probeX; i > probeX - _width / 2; i--)
@@ -114,7 +129,7 @@ void enemy::pixelCollisionReact(image * collisionImage, POINT ptReal)
 				offsetX++;
 			}
 		}
-		_cx -= offsetX;
+		_leftX -= offsetX;
 		changeDirection();
 	}
 
@@ -125,5 +140,11 @@ void enemy::changeDirection()
 	if (_isRight) _isRight = false;
 	else _isRight = true;
 
+	this->setCondition();
+}
+
+void enemy::changeDirection(bool state)
+{
+	_isRight = state;
 	this->setCondition();
 }

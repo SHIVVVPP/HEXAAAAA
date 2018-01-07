@@ -40,6 +40,7 @@ HRESULT stage::init()
 	_objectManager->init();
 
 	_enemyManager = new enemyManager;
+	_enemyManager->LinkPlayer(_player);
 	_enemyManager->init();
 
 
@@ -58,7 +59,7 @@ void stage::release()
 void stage::update()
 {
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
@@ -77,7 +78,7 @@ void stage::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}
+	}*/
 
 	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")

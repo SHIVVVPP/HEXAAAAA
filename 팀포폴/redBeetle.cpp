@@ -20,15 +20,11 @@ HRESULT redBeetle::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	_image = IMAGEMANAGER->findImage("레드비틀");
 	_width = _image->getFrameWidth();
 	_height = _image->getFrameHeight();
-	_cx = _leftX + _width / 2;
-	_cy = _topY + _height / 2;
 
 	_hp = 1;
 
 	_isRight = false;
 
-	_range.x = _cx - 100;
-	_range.y = _cx + 100;
 
 	_speedX = 1;
 	_sumGravity = 0;
@@ -65,16 +61,15 @@ void redBeetle::update()
 	
 	if (_subCondition == FALL)
 	{
-		_sumGravity += 0.01f;
+		_sumGravity += 0.1f;
 		_topY += _sumGravity;
 	}
 
 
-	if ((_isRight && _leftX + _width > _range.y) || (!_isRight && _leftX < _range.x))
-		changeDirection();
+	
 
 	_imageRc = RectMake(_leftX, _topY, _width, _height);
-	_collisionRc = RectMakeCenter(_leftX+_width/2, _topY+_height/2, _width, _height);
+	_collisionRc = RectMake(_leftX, _topY, _width, _height);
 	
 	_ani->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
 }
@@ -90,13 +85,19 @@ void redBeetle::CollisionReact()
 
 void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		
 {
-	_mainCondition = mainCondition;
-	setCondition();
+	if (_mainCondition != mainCondition)
+	{
+		_mainCondition = mainCondition;
+		setCondition();
+	}
 }
 void redBeetle::setSubCondition(MONSTER_SUBCONDITION subCondition)			
 {
-	_subCondition = subCondition;
-	setCondition();
+	if (_subCondition != subCondition)
+	{
+		_subCondition = subCondition;
+		setCondition();
+	}
 }
 
 void redBeetle::setCondition()

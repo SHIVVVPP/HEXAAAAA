@@ -11,7 +11,7 @@
 #include <vector>
 
 
-
+class player;
 
 class enemyManager : gameNode
 {
@@ -28,6 +28,7 @@ public:
 	vEnemy	_vEnemy;
 
 	image* _pixelColImage;
+	player* _player;
 	POINT _ptReal;
 
 	virtual HRESULT init();
@@ -37,6 +38,7 @@ public:
 
 	void setPixelColInfo(image* image, POINT ptReal) { _pixelColImage = image; _ptReal = ptReal; }
 	
+	void LinkPlayer(player* p) { _player = p; }
 	
 	enemyManager();
 	~enemyManager();

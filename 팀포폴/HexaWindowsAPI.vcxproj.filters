@@ -566,9 +566,6 @@
     <ClCompile Include="bullet.cpp">
       <Filter>MainGame\bullet</Filter>
     </ClCompile>
-    <ClCompile Include="yellowDragon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ui.cpp">
       <Filter>shovelKnight\UI</Filter>
     </ClCompile>
@@ -624,6 +621,9 @@
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="skeleton.cpp">
+      <Filter>shovelKnight\EnemyManager\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="yellowDragon.cpp">
       <Filter>shovelKnight\EnemyManager\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
