@@ -763,10 +763,15 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			}
 			break;
 			case 13: //포션
+				_currentMP += 6;
+				if (_currentMP > _maxMP) _currentMP = _maxMP;
 				break;
 			case 14: //음식
+				_currentHP = _maxHP;
 				break;
 			case 15: // MEAL (체력최대치올리는음식)
+				_maxHP += 2;
+				_currentHP = _maxHP;
 				break;
 			case 16: //방울
 				break;

@@ -73,5 +73,10 @@ public:
 	void setPosition();
 	void player_object_collision();
 	void connectPlayer(player* p) { _p = p; }
+	void createGem(int range, int leftX,int topY, int leftX2, int topY2){
+		_obj = new gem;
+		_obj->init(range, leftX, topY, leftX2, topY2, 3.0f, PI);
+		_vgem.push_back(_obj);
+	}
 };
 
