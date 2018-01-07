@@ -1103,7 +1103,9 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			case 20: //°¡Â¥ º®
 				break;
 			}break;
+
 			case COL_NPC:
+			{
 				switch (message->index_detail)
 				{
 				case 1:
@@ -1116,6 +1118,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 				break;
 			}
 		}
-		SAFE_DELETE(message);
-	}
+
+	}SAFE_DELETE(message);
 }
+
