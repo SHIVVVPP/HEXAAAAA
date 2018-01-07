@@ -183,6 +183,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
+			_canAtk = true;
 			switch (_dir)
 			{
 			case 1:
@@ -771,8 +772,7 @@ void player::collisonAttack()
 	_canAtk = false;
 	_repulsivePower = 3.0f;
 	_frictionalPower = 0.3f;
-	//_jumpPower = 11.0f;
-	//_gravity = 0.35f;
+	
 
 
 	if (_playerMainCondition >= 10 && _playerMainCondition <= 13)
@@ -793,7 +793,8 @@ void player::collisonAttack()
 
 	else if (_playerMainCondition >= 14 && _playerMainCondition <= 16)
 	{
-
+		_jumpPower = 11.0f;
+		_gravity = 0.35f;
 		_y -= _jumpPower;
 		_jumpPower -= _gravity;
 	}
@@ -1139,10 +1140,15 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			case COL_OBJECT:
 				switch (message->index_detail)
 				{
+				case 12:
+					collisonAttack();
+					break;
+				case 16:
+					collisonAttack();
+					break;
 				case 21:
 					_canAtk = false;
 					break;
-					//123123123
 				}
 			break;
 			}
