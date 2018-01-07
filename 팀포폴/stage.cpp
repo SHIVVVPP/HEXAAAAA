@@ -37,7 +37,7 @@ HRESULT stage::init()
 	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
+	CAMERAMANAGER->setCameraAim(&_rc);
 
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
@@ -89,7 +89,7 @@ void stage::update()
 		_rc.bottom -= 15;
 	}
 	
-	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
+	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
 	if (c_col != "empty")
 	{
 			_currentRoom = _mRoom.find(c_col)->second;
@@ -397,7 +397,7 @@ tagRoomInfo stage::findRoomInfo(string strkey)
 
 void stage::setCameraObject()
 {
-	RECT* rc = _player->getPlayerRect();
+	RECT* rc = &_rc;
 	//1->2
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(6215, 2980, 20, 480),
 	{ 0,6219 }, { 6219,6219 + WINSIZEX }, rc, true, "2");
