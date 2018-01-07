@@ -16,7 +16,7 @@ HRESULT meal::init(int x, int y)
 {
 	_leftX = x;
 	_topY = y;
-	_helathValue = 5;
+	_maxHelathValue += 1;
 	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("food")->getWidth(), IMAGEMANAGER->findImage("food")->getHeight());
 	return S_OK;
 }

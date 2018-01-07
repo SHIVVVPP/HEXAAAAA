@@ -228,7 +228,7 @@ void objectManager::setPosition()
 	_vplatter.push_back(_obj);
 
 	_obj = new platters;
-	_obj->init(3800, 3200);
+	_obj->init(4000, 3200);
 	_vplatter.push_back(_obj);
 
 	_obj = new fakedirt;
@@ -257,32 +257,39 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 				if (_vdirtpile[i]->getAni()->getPlayIndex() == 0)
 				{
 					_vdirtpile[i]->getAni()->setPlayIndex(1);
-					
-					_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
+					_obj = new gem;
+					_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+					_vgem.push_back(_obj);
+					//_p->setPlayerAttackRect(RectMake(-1500, 100, 150, 100));
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 1)
 				{
+					_obj = new gem;
+					_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+					_vgem.push_back(_obj);
 					_vdirtpile[i]->getAni()->setPlayIndex(2);	
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 2)
 				{	
+					_obj = new gem;
+					_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+					_vgem.push_back(_obj);
 					_vdirtpile[i]->getAni()->setPlayIndex(3);
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 3)
 				{
+					_obj = new gem;
+					_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+					_vgem.push_back(_obj);
 					_vdirtpile[i]->getAni()->setPlayIndex(4);
 				}
 				else if (_vdirtpile[i]->getAni()->getPlayIndex() == 4)
 				{
+					_obj = new gem;
+					_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
+					_vgem.push_back(_obj);
 					_vdirtpile.erase(_vdirtpile.begin() + i);
 				}
-			}
-
-			if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-			{
-				_obj = new gem;
-				_obj->init(30, _leftX, _topY, _leftX, _topY, 2.0f, PI);
-				_vgem.push_back(_obj);
 			}
     }
 	for (int i = 0; i < _vgem.size(); i++)
@@ -310,17 +317,18 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 				tempInfo->_colType = COL_OBJECT;
 				//tempInfo->index_detail = --- 세부번호
 				tempInfo->object = _vgem[i];
+				tempInfo->index_detail = GEM;
 
 				EFFECTMANAGER->play("보석", _vgem[i]->_leftX,_vgem[i]->_topY);
 				_vgem.erase(_vgem.begin() + i);
 			}
 			//if (_vgem.size() >= 10)_vgem.erase(_vgem.begin(),_vgem.end());
 			
-			if (_vdirtpile.size() <= 0)
-			{
-				_vgem[i]->_leftX = 0;
-				_vgem[i]->_topY = 0;
-			}
+			//if (_vdirtpile.size() <= 0)
+			//{
+			//	_vgem[i]->_leftX = 0;
+			//	_vgem[i]->_topY = 0;
+			//}
 		//}
 	}
 	
@@ -330,16 +338,25 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_POTION)
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vUse[i];
+			tempInfo->index_detail = POTION;
 			_vUse.erase(_vUse.begin() + i);
 		}
 
 		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_FOOD)
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vUse[i];
+			tempInfo->index_detail = FOOD;
 			_vUse.erase(_vUse.begin() + i);
 		}
 
 		else if (IntersectRect(&temp, _p->getPlayerRect(), &_vUse[i]->_rc) && _vUse[i]->_type == TYPE_MEAL)
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vUse[i];
+			tempInfo->index_detail = MEAL;
 			_vUse.erase(_vUse.begin() + i);
 		}
 	}
@@ -349,6 +366,9 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vdirtblock[i]->_rc))
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vdirtblock[i];
+			tempInfo->index_detail = DIRTPILE;
 			if(_vdirtblock[i]->_type == TYPE_BLOCK)EFFECTMANAGER->play("블록",_vdirtblock[i]->_leftX - 30 , _vdirtblock[i]->_topY - 15);
 
 			else if (_vdirtblock[i]->_type == TYPE_SMALL_BLOCK)EFFECTMANAGER->play("작은블록", _vdirtblock[i]->_leftX - 30, _vdirtblock[i]->_topY - 15);
@@ -364,13 +384,16 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 			//_obj = new bubbles;
 			//_obj->init(_vbubble[i]->_leftX, _vbubble[i]->_topY, _vbubble[i]->_leftX, _vbubble[i]->_topY, 90);
 			//_vbubble.push_back(_obj);
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vbubble[i];
+			tempInfo->index_detail = BUBBLE;
 			EFFECTMANAGER->play("버블", _vbubble[i]->_leftX, _vbubble[i]->_topY);
 			_vbubble.erase(_vbubble.begin() + i);
 
 		}
 	}
 
-	for (int i = 0; i < _vplatter.size(); i++)
+	for (int i = 0; i < _vplatter.size(); i++) //접시는 충돌시 플레이어와 영향이 없음.
 	{
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerAttackRect(), &_vplatter[i]->_rc))
@@ -406,7 +429,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 	}
 	
 
-	for (int i = 0; i < _vfakedirt.size(); i++)
+	for (int i = 0; i < _vfakedirt.size(); i++) //가짜 벽은 충돌시 플레이어에게 주는 영향이 없음.
 	{
 		RECT temp;
 		if (IntersectRect(&temp,_p->getPlayerAttackRect(), &_vfakedirt[i]->_rc))
@@ -423,6 +446,9 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 		RECT temp;
 		if (IntersectRect(&temp, _p->getPlayerRect(), &_vsheet[i]->_rc))
 		{
+			tempInfo->_colType = COL_OBJECT;
+			tempInfo->object = _vsheet[i];
+			tempInfo->index_detail = MUSIC_SHEET;
 			_istouched = true;
 			_tempx = _vsheet[i]->_leftX;
 			_tempy = _vsheet[i]->_topY;
@@ -444,7 +470,7 @@ LPCOLLISION_INFO objectManager::player_object_collision()
 
 	if (_istouched)
 	{
-		EFFECTMANAGER->stretchplay("보석", _tempx, _tempy, IMAGEMANAGER->findImage("sparkle")->getWidth(), IMAGEMANAGER->findImage("sparkle")->getHeight(), 52, true);
+		EFFECTMANAGER->stretchplay("보석", _tempx, _tempy, IMAGEMANAGER->findImage("sparkle")->getWidth(), IMAGEMANAGER->findImage("sparkle")->getHeight(), 58, true);
 		if (_count % 50 == 0)
 		{
 			_istouched = false;
