@@ -1118,4 +1118,4 @@ void player::getColMessage(LPCOLLISION_INFO message)
 		}
 		SAFE_DELETE(message);
 	}
-}
+
