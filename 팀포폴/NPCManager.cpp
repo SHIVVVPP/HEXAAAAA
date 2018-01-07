@@ -14,8 +14,15 @@ NPCManager::~NPCManager()
 HRESULT NPCManager::init()
 {
 	a = 0;
+	rc = RectMake(WINSIZEX / 2, 400, 50, 50);
+	SOUNDMANAGER->addSound("TownBGM", "./Music/townBGM.mp3", true, true);
+	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
+	SOUNDMANAGER->addSound("Rival", "./Music/First Battle.mp3", true, true);
 	
-	
+	crrentMusicName = "TownBGM";
+	oldMusicName = crrentMusicName;
+	SOUNDMANAGER->play(crrentMusicName, 1.0f);
+
 	return S_OK;
 }
 
@@ -30,11 +37,30 @@ void NPCManager::update()
 		(*_viNPC)->update();
 		++_viNPC;
 	}
-
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+		rc.left += 15;
+		rc.right += 15;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		rc.left -= 15;
+		rc.right -= 15;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		rc.top += 15;
+		rc.bottom += 15;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
+	{
+		rc.top -= 15;
+		rc.bottom -= 15;
+	}
 
 	_p->update();
-	//collision();
-	player_npc_collision();
+	collision();
+	//player_npc_collision();
 	
 }
 
@@ -45,6 +71,7 @@ void NPCManager::render()
 		(*_viNPC)->render();
 
 	}
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(rc.left), CAMERAMANAGER->CameraRelativePointY(rc.top), 50, 50);
 	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
 
@@ -151,7 +178,15 @@ void NPCManager::collision()
 				a = 0;
 				
 			}
-		
+			if (KEYMANAGER->isOnceKeyDown('C'))
+			{
+				if ((*_viNPC)->getMusicStart()) {
+					SOUNDMANAGER->stop(oldMusicName);
+					crrentMusicName = (*_viNPC)->getMusicname();
+					SOUNDMANAGER->play(crrentMusicName, 1.0);
+					oldMusicName = crrentMusicName;
+				}
+			}
 			if (KEYMANAGER->isOnceKeyDown('X'))
 			{
 				(*_viNPC)->setcoversationCount(1);
@@ -160,9 +195,19 @@ void NPCManager::collision()
 				}
 				if (!(*_viNPC)->getisSaller())
 				{
-					if ((*_viNPC)->getcoversationCount() == 2) {
-						(*_viNPC)->setisTolk(false);
-						(*_viNPC)->setcoversationCount(-2);
+					
+					if ((*_viNPC)->getisMusicSheet()) {
+						if ((*_viNPC)->getcoversationCount() >= 3) {
+							(*_viNPC)->setisTolk(false);
+							(*_viNPC)->setcoversationCount(-3);
+						}
+					}
+					else
+					{
+						if ((*_viNPC)->getcoversationCount() == 2) {
+							(*_viNPC)->setisTolk(false);
+							(*_viNPC)->setcoversationCount(-2);
+						}
 					}
 				}
 			
@@ -171,6 +216,7 @@ void NPCManager::collision()
 			{
 				if (!(*_viNPC)->getisTiket())(*_viNPC)->setisgetTiket(true);
 				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
+				if (!(*_viNPC)->getisMusicSheet())(*_viNPC)->setisMusicSheet(true);
 			}
 			if (a >= (*_viNPC)->gettxtSizeMax()) {
 				a = (*_viNPC)->gettxtSizeMax();
@@ -213,7 +259,15 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				a = 0;
 
 			}
-
+			if (KEYMANAGER->isOnceKeyDown('C'))
+			{
+				if (_vNPC[i]->getMusicStart()) {
+					SOUNDMANAGER->stop(oldMusicName);
+					crrentMusicName = _vNPC[i]->getMusicname();
+					SOUNDMANAGER->play(crrentMusicName, 1.0);
+					oldMusicName = crrentMusicName;
+				}
+			}
 			if (KEYMANAGER->isOnceKeyDown('X'))
 			{
 				_vNPC[i]->setcoversationCount(1);
@@ -225,6 +279,12 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 					if (_vNPC[i]->getcoversationCount() == 2) {
 						_vNPC[i]->setisTolk(false);
 						_vNPC[i]->setcoversationCount(-2);
+					}
+					if (_vNPC[i]->getisMusicSheet()) {
+						if (_vNPC[i]->getcoversationCount() == 3) {
+							_vNPC[i]->setisTolk(false);
+							_vNPC[i]->setcoversationCount(-3);
+						}
 					}
 				}
 

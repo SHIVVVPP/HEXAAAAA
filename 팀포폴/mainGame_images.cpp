@@ -98,14 +98,14 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("townPix", "./image/town/townPiximage.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("backsideimg", "./image/town/backsidetown.bmp", 8137, 900, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("conversationRect", "./image/town/conversationRect.bmp", 1600, 194, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("상점", "./image/town/상점UI.bmp", 1600, 384, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("선택박스", "./image/town/SelectRect.bmp", 121, 120, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("포션", "./image/town/마법포션.bmp", 76, 70, true, RGB(0, 0, 0));
 
 	IMAGEMANAGER->addFrameImage("watergirl", "./image/town/waterGalMove.bmp", 0, 0, 426, 360, 2, 2, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addFrameImage("bardnomal", "./image/town/바드노말.bmp", 0, 0, 4480, 180, 26, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfirst", "./image/town/바드first.bmp", 0, 0, 2890, 185, 14, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("bardfun", "./image/town/바드흥겨운음악.bmp", 0, 0, 3497, 185, 16, 1, true, RGB(255, 0, 255));
+
+
 	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("몰리", "./image/town/몰리.bmp", 0, 0, 307, 372, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("짐든 남자", "./image/town/bagFellaMove.bmp", 0, 0, 427, 360, 2, 2, true, RGB(255, 0, 255));
@@ -129,6 +129,18 @@ void mainGame::setImages()
 	IMAGEMANAGER->addImage("선택안된NO", "./image/town/NotSelectNO.bmp", 75, 36, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("선택BOX", "./image/town/SelectBox.bmp", 130, 61, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("안삼", "./image/town/Done.bmp", 79, 24, true, RGB(0, 0, 0));
+
+	IMAGEMANAGER->addImage("상점", "./image/town/상점UI.bmp", 1600, 384, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("선택박스", "./image/town/SelectRect.bmp", 121, 120, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("신청곡", "./image/town/바드상점.bmp", 1600, 392, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("알림창", "./image/town/바드상점1-1.bmp", 1344, 88, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("바드선택박스", "./image/town/연주선택창.bmp", 249, 62, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("다음에보자", "./image/town/다음에.bmp", 219, 41, true, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("연주해줘", "./image/town/연주해줘.bmp", 160, 37, true, RGB(0, 0, 0));
+
+	IMAGEMANAGER->addImage("포션", "./image/town/마법포션.bmp", 76, 70, true, RGB(0, 0, 0));
+
 
 	IMAGEMANAGER->addImage("tangtangball", "./image/inventory/tangtangball.bmp", 133, 133, true, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("fishingrod", "./image/inventory/fishingrod.bmp", 133, 133, true, RGB(0, 0, 0));

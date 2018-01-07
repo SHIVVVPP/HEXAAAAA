@@ -94,8 +94,8 @@ void Crown::Converstion(int tolkCount)
 		{
 			selectx = 400;
 			selecty = 60;
-			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum1;
-			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) selectbox = selectNum3;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum1;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD5)) selectbox = selectNum3;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
 		}
 		break;
@@ -103,9 +103,9 @@ void Crown::Converstion(int tolkCount)
 		{
 			selectx = 550;
 			selecty = 60;
-			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum0;
-			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum2;
-			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) selectbox = selectNum4;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4)) selectbox = selectNum0;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum2;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD5)) selectbox = selectNum4;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
 		}
 		break;
@@ -113,8 +113,8 @@ void Crown::Converstion(int tolkCount)
 		{
 			selectx = 700;
 			selecty = 60;
-			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum1;
-			if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) selectbox = selectNum5;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4)) selectbox = selectNum1;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD5)) selectbox = selectNum5;
 
 		}
 		break;
@@ -122,8 +122,8 @@ void Crown::Converstion(int tolkCount)
 		{
 			selectx = 400;
 			selecty = 180;
-			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum4;
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) 	selectbox = selectNum0;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum4;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8)) 	selectbox = selectNum0;
 				
 		
 		}
@@ -132,9 +132,9 @@ void Crown::Converstion(int tolkCount)
 		{
 			selectx = 550;
 			selecty = 180;
-			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum3;
-			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) selectbox = selectNum5;
-			if (KEYMANAGER->isOnceKeyDown(VK_UP)) 	sprintf(str, "selectbox : %d", selectbox);
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4)) selectbox = selectNum3;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) selectbox = selectNum5;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8)) 	sprintf(str, "selectbox : %d", selectbox);
 			
 		}
 		break;
@@ -142,8 +142,8 @@ void Crown::Converstion(int tolkCount)
 		{
 			selectx = 700;
 			selecty = 180;
-			if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) selectbox = selectNum4;
-			if (KEYMANAGER->isOnceKeyDown(VK_UP) && !_isSelect) selectbox = selectNum2;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4)) selectbox = selectNum4;
+			if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD8) && !_isSelect) selectbox = selectNum2;
 			if (KEYMANAGER->isOnceKeyDown('C')) _isSelect = true;
 		}
 		break;
@@ -153,12 +153,12 @@ void Crown::Converstion(int tolkCount)
 	else
 	{
 
-		if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) 
+		if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4))
 		{
 			_selectBoxX = 1070;
 			_selectBoxY = 260;
 		}
-		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) 
+		if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6))
 		{
 			_selectBoxX = 1390;
 			_selectBoxY = 260;

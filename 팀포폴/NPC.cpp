@@ -20,23 +20,9 @@ HRESULT NPC::init(const char * ImageName, const char * ImageName2, POINT positio
 	_imgName2 = ImageName2;
 	_aniNpc = new animation;																										//애니메이션 선언
 	_aniNpc->init(_Npcimage->getWidth(), _Npcimage->getHeight(), _Npcimage->getFrameWidth(), _Npcimage->getFrameHeight());			//애니메이션 초기화
-
-	_conversaion = IMAGEMANAGER->findImage("conversationRect");
-	_tolkBox = RectMakeCenter(WINSIZEX/2, 97, _conversaion->getWidth(), _conversaion->getHeight());
-
-	_storeUI = IMAGEMANAGER->findImage("상점");
-
-	_firelod = IMAGEMANAGER->findImage("firelod");
-	_invenMusicSheet = IMAGEMANAGER->findImage("invenMusicSheet");
-	_invenMealTickets = IMAGEMANAGER->findImage("invenMealTickets");
-	_posion = IMAGEMANAGER->findImage("포션");
-	_selectRectimg = IMAGEMANAGER->findImage("선택박스");
-	_done = IMAGEMANAGER->findImage("안삼");
-
-	_yesBox = IMAGEMANAGER->findImage("선택안된YES");
-	_noBox = IMAGEMANAGER->findImage("선택안된NO");
-	_selectBox = IMAGEMANAGER->findImage("선택BOX");
-
+	
+	imgset();																														//이미지 모음
+	
 	_x = _imgrc.left + ((_imgrc.right - _imgrc.left) / 2);																			//npc의 중심좌표 x
 	_y = _imgrc.top + ((_imgrc.bottom - _imgrc.top) / 2);																			//npc의 중심좌표 y
 																
@@ -61,9 +47,9 @@ HRESULT NPC::init(const char * ImageName, const char * ImageName2, POINT positio
 	selectx = 400;
 	selecty = 60;
 	crrentx = crrenty  = conversationCount = 0;
-	_isSelect = _istolk = false;																									//토크 출력 컨트롤 불값
+	_isSelect = _istolk = _musicStart= false;																						//토크 출력 컨트롤 불값
 	_isBuyYes = false;																												//처음은 NO;
-	_isgetTiket = _isgetfirelod = false;
+	_isgetTiket = _isgetfirelod = _isgetMusicSheet = false;
 	aniMove();
 	_aniNpc->setFPS(1);																												//애니메이션 속도
 	_aniNpc->start();
@@ -180,4 +166,29 @@ void NPC::Converstion(int tolkCount)
 	if (!_istolk) {
 		conversationCount = 0;
 	}
+}
+
+void NPC::imgset()
+{
+	_conversaion = IMAGEMANAGER->findImage("conversationRect");
+	_tolkBox = RectMakeCenter(WINSIZEX / 2, 97, _conversaion->getWidth(), _conversaion->getHeight());
+
+	_storeUI = IMAGEMANAGER->findImage("상점");
+
+	_firelod = IMAGEMANAGER->findImage("firelod");
+	_invenMusicSheet = IMAGEMANAGER->findImage("invenMusicSheet");
+	_invenMealTickets = IMAGEMANAGER->findImage("invenMealTickets");
+	_posion = IMAGEMANAGER->findImage("포션");
+	_selectRectimg = IMAGEMANAGER->findImage("선택박스");
+	_done = IMAGEMANAGER->findImage("안삼");
+
+	_yesBox = IMAGEMANAGER->findImage("선택안된YES");
+	_noBox = IMAGEMANAGER->findImage("선택안된NO");
+	_selectBox = IMAGEMANAGER->findImage("선택BOX");
+
+	_bardUI = IMAGEMANAGER->findImage("신청곡");
+	_bardUI2 = IMAGEMANAGER->findImage("알림창");
+	_bardselectRectimg = IMAGEMANAGER->findImage("바드선택박스");
+	_bardYes = IMAGEMANAGER->findImage("연주해줘");
+	_bardNo = IMAGEMANAGER->findImage("다음에보자");
 }

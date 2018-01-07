@@ -183,6 +183,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
+			_canAtk = true;
 			switch (_dir)
 			{
 			case 1:
@@ -686,22 +687,20 @@ void player::update()
 	}
 	else _playerSubCondition = PLAYER_NOTHING;
 
-	RECT temp2;
-	if (IntersectRect(&temp2, &_attackRC, &enemyRC))
-	{
-		collisonAttack(&enemyRC);
-	}
-
-	RECT temp3;
+	
+	
+	
+	
+														  	RECT temp3;
 	if (IntersectRect(&temp3, &_playerRC, &enemyRC))
 	{
 		collisonHitted(&enemyRC);
 	}
 
 
-	 if (_playerMainCondition < 10 || _playerMainCondition >= 17)
+	 if (!_canAtk )
 	{
-		_attackRC = RectMakeCenter(-150, 150, 100, 150);
+		  _attackRC = RectMakeCenter(-150, 150, 100, 150);
 	}
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
@@ -761,7 +760,7 @@ void player::render()
 	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top) + 160, str5, strlen(str5));
 }
 
-void player::collisonAttack(RECT * obj)
+void player::collisonAttack()
 {
 	_canAtk = false;
 	_repulsivePower = 3.0f;
@@ -793,7 +792,7 @@ void player::collisonAttack(RECT * obj)
 		_jumpPower -= _gravity;
 	}
 
-	_canAtk = true;
+	
 }
 
 void player::collisonHitted(RECT * obj)
@@ -993,6 +992,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 {
 	if (message != NULL)
 	{
+	
 		objects* temp;
 		RECT _tempRC;
 		switch (message->_colType)
