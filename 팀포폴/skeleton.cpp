@@ -23,9 +23,10 @@ HRESULT skeleton::init(MONSTER_INDEX mon_index, POINT leftX_topY)
 	_attackCount = 0;
 	_hp = 3;
 
+	_alpha = 255;
 	_isRight = false;
 	_detect = false;
-	_speedX = 2;
+	_speedX = 1;
 	_sumGravity = 0;
 	_sumNuckBack = 10;
 
@@ -71,16 +72,6 @@ void skeleton::update()
 	if (d < 400) _detect = true;
 	else _detect = false;
 
-	if (KEYMANAGER->isOnceKeyDown('K')) {
-		setMainCondition(HITTED);
-	}
-
-	if (KEYMANAGER->isOnceKeyDown('L'))
-	{
-		_mainCondition = DIE;  
-		setCondition();
-	}
-	 
 	if (_detect)
 	{
 		if (d < 150 )
@@ -125,6 +116,9 @@ void skeleton::update()
 			_mainCondition = STAND;
 			setCondition();
 		}
+
+		_alpha -= 30;
+		if (_alpha <= 0) _alpha = 255;
 	}
 
 	if (_subCondition == FALL)
@@ -160,12 +154,30 @@ void skeleton::update()
 }
 void skeleton::render()												 
 {
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_collisionRc.left), CAMERAMANAGER->CameraRelativePointY(_collisionRc.top), _collisionRc.right-_collisionRc.left, _collisionRc.bottom - _collisionRc.top);
+	if (_mainCondition == HITTED)
+	{
+		_image->aniAlphaRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRc.left), CAMERAMANAGER->CameraRelativePointY(_imageRc.top),_alpha, _ani);
+
+	}
+	else
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRc.left), CAMERAMANAGER->CameraRelativePointY(_imageRc.top), _ani);
+
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_collisionRc.left), CAMERAMANAGER->CameraRelativePointY(_collisionRc.top), _collisionRc.right - _collisionRc.left, _collisionRc.bottom - _collisionRc.top);
+
 }
 
 void skeleton::CollisionReact()
 {
+	_hp--;
+	if (_hp <= 0)
+	{
+		_mainCondition = DIE;
+		setCondition();
+	}
+	else
+	{
+		setMainCondition(HITTED);
+	}
 }
 
 void skeleton::setMainCondition(MONSTER_MAINCONDITION mainCondition)
