@@ -26,6 +26,8 @@ HRESULT player::init()
 	//IMAGEMANAGER->addFrameImage("playerJump", "./image/character/playerJump.bmp", 500, 500, 2, 2, true, RGB(255, 0, 255));
 	/*_Relic = new bullet;
 	_Relic->init("파볼", 100, 800);*/
+	
+
 	_currentRelic = FIRELOD;
 	_bulletAngle = PI;
 	_playerMainCondition = PLAYER_RIGHT_IDLE;
@@ -459,7 +461,7 @@ void player::render()
 	}
 
 	char str2[128];
-	sprintf(str2, " 중력 값 : %0.2f", _gravity);
+	sprintf(str2, " 스피드 : %0.2f", _speed);
 	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top) + 100, str2, strlen(str2));
 
 	char str3[128];
@@ -645,6 +647,7 @@ void player::setPlayerCondition()
 		_image = IMAGEMANAGER->findImage("playerAtk");
 		_ani = KEYANIMANAGER->findAnimation("playerRightAttack");
 		_ani->start();
+		//SOUNDMANAGER->play("공격", 1.0f);
 		break;
 	case PLAYER_RIGHT_JUMP_ATTACK:
 		break;
@@ -652,6 +655,7 @@ void player::setPlayerCondition()
 		_image = IMAGEMANAGER->findImage("playerAtk");
 		_ani = KEYANIMANAGER->findAnimation("playerLeftAttack");
 		_ani->start();
+		//SOUNDMANAGER->play("공격", 1.0f);
 		break;
 	case PLAYER_LEFT_JUMP_ATTACK:
 		break;

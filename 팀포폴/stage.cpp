@@ -17,14 +17,6 @@ stage::~stage()
 HRESULT stage::init()
 {
 	setStageBackgroundInfo();
-
-	
-	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
-	
-
-	
-	SOUNDMANAGER->play("Stage", 1.0f);
-
 	_ui = new ui;
 	_ui->init(UI_STAGE);
 
@@ -68,33 +60,33 @@ void stage::release()
 void stage::update()
 {
 	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-	{
-		_rc.left += 15;
-		_rc.right += 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-		_rc.left -= 15;
-		_rc.right -= 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		_rc.top += 15;
-		_rc.bottom += 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-		_rc.top -= 15;
-		_rc.bottom -= 15;
-	}
+	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	//{
+	//	_rc.left += 15;
+	//	_rc.right += 15;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	//{
+	//	_rc.left -= 15;
+	//	_rc.right -= 15;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	//{
+	//	_rc.top += 15;
+	//	_rc.bottom += 15;
+	//}
+	//if (KEYMANAGER->isStayKeyDown(VK_UP))
+	//{
+	//	_rc.top -= 15;
+	//	_rc.bottom -= 15;
+	//}
 	
 	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
 	if (c_col != "empty")
 	{
 			_currentRoom = _mRoom.find(c_col)->second;
 	}
-	//_player->update();
+	_player->update();
 	_objectManager->update();
 	_objectManager->player_object_collision();
 	_enemyManager->setPixelColInfo(_currentRoom._pixelColImage, { _currentRoom._leftX,_currentRoom._topY });
