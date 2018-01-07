@@ -17,6 +17,9 @@
 #include"Crown.h"
 #include"goatician.h"
 
+
+#include "player.h"
+
 class NPCManager : public gameNode
 {
 private:
@@ -30,6 +33,8 @@ private:
 
 	float _x;								//Npc 지정 X죄표
 	float _y;								//Npc 지정 Y좌표
+
+	player* _p;
 
 	int a;							//랜덤한 수를 뽑기 위한 INT
 
@@ -50,8 +55,9 @@ public:
 	void removeNpc(int arrNum);
 
 	void collision();
-	
+	LPCOLLISION_INFO player_npc_collision();
 	vector<NPC*> getVnpc() { return _vNPC; }
 	vector<NPC*>::iterator getVinpc() { return _viNPC; }
+	void connectPlayer(player* p) { _p = p; }
 };
 

@@ -14,7 +14,12 @@ Sepp::~Sepp()
 void Sepp::render()
 {
 	if (!_isgetTiket && !isCooking)_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
-	else if(_isgetTiket && isCooking)IMAGEMANAGER->findImage(_imgName2)->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y+87, crrentx, crrenty);
+	else if (_isgetTiket && isCooking)
+	{
+		if (_imgName2 == "¼­ºù")IMAGEMANAGER->findImage(_imgName2)->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x-170, CAMERAMANAGER->CameraRelativePoint(_imgrc).y+45 , crrentx, crrenty);
+		else IMAGEMANAGER->findImage(_imgName2)->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y + 87, crrentx, crrenty);
+
+	}
 	else if (!_isgetTiket && isCooking)_Npcimage->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y, _aniNpc);
 	tolkdrow();
 
@@ -51,9 +56,9 @@ void Sepp::tolkdrow()
 				TXTDATA->NPCrender(fileName2, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 				_conversaion->render(getMemDC());
 			}
-			else if (conversationCount == 2)
+			else if (conversationCount >= 2)
 			{
-				_istolk = false;
+				if(!_isgetTiket) _istolk = false;
 			}
 		}
 		else if (_isMoreConverstion && !_isSaller && _isgetTiket)

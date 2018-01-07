@@ -124,15 +124,15 @@ void NPC::tolkdrow()
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
 		if (!_isMoreConverstion && !_isSaller)
 		{
-			TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
-			_conversaion->render(getMemDC());
-			if (KEYMANAGER->isOnceKeyDown('X')) {
-				if (_tolkCout == _tolkMaxsize)
-				{
-					_istolk = false;
-				}
+			if (conversationCount == 0)
+			{
+				TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
+				_conversaion->render(getMemDC());
 			}
-			
+			else {
+				conversationCount = 0;
+					_istolk = false;
+			}
 		}
 
 		else if (_isMoreConverstion && !_isSaller)

@@ -61,7 +61,10 @@ class player : public gameNode
 	float _probeY;
 	float _repulsivePower;      // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
 	float _frictionalPower;		// 반발력을 서서히 삭감시키기 위한 마찰력
+	bool _isLadder;
+	bool _isLand;
 	bool _isJump;
+	bool _canAtk;
 	int prevCondition1;
 	int prevCondition2;
 	
@@ -80,6 +83,7 @@ public:
 	void update();
 	void render();
 	void usage();
+	void setPlayerCondition();
 	void collisonAttack(RECT* obj);
 	void collisonHitted(RECT* obj);
 	void collisonObject(int objType, int objValue);
@@ -146,29 +150,69 @@ public:
 	// 점프여부
 
 	bool getIsJump() { return _isJump; }
-	void setIsJump(bool boolValue) 
-	{ 
-		_isJump = boolValue; 
-		if (!boolValue) 
-		{
-			_jumpPower = 11;  
-			if (_dir == 1) {
-				if (_playerMainCondition == PLAYER_IDLE_JUMP)
-					setPlayerMainCondition(PLAYER_RIGHT_IDLE);
-				else
-					setPlayerMainCondition(PLAYER_RIGHT_MOVE);
-			}
-			else if (_dir == -1) {
-				if (_playerMainCondition == PLAYER_IDLE_JUMP)
-					setPlayerMainCondition(PLAYER_LEFT_IDLE);
-				else
-					setPlayerMainCondition(PLAYER_LEFT_MOVE);
-			}
-		}
-		else {
-			_jumpPower -= _gravity;
-		}
+	void setIsJump(bool boolValue)
+	{
+		////_isJump = boolValue;
+		//if (boolValue)
+		//{
+		//	switch (_playerMainCondition)
+		//	{
+		//	case PLAYER_RIGHT_IDLE:
+		//		_playerMainCondition = PLAYER_RIGHT_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	case PLAYER_LEFT_IDLE:
+		//		_playerMainCondition = PLAYER_LEFT_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	case PLAYER_RIGHT_MOVE:
+		//		_playerMainCondition = PLAYER_RIGHT_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	case PLAYER_LEFT_MOVE:
+		//		_playerMainCondition = PLAYER_LEFT_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	case PLAYER_UP_CLIMB:
+		//		_playerMainCondition = PLAYER_IDLE_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	case PLAYER_DOWN_CLIMB:
+		//		_playerMainCondition = PLAYER_IDLE_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	case PLAYER_EDGE_CLIMB:
+		//		_playerMainCondition = PLAYER_IDLE_JUMP;
+		//		setPlayerCondition();
+		//		break;
+		//	}
+		//}
+		//	else if (!boolValue)
+		//	{
+		//		switch (_playerMainCondition)
+		//		{
+		//			case PLAYER_IDLE_JUMP:
+		//			if (_dir == 1) 	_playerMainCondition = PLAYER_RIGHT_IDLE;
+		//			if (_dir == -1)	_playerMainCondition = PLAYER_LEFT_IDLE; 
+		//			setPlayerCondition();
+		//			break;
+		//			case PLAYER_RIGHT_JUMP:
+		//			_playerMainCondition = PLAYER_RIGHT_MOVE;
+		//			setPlayerCondition();
+		//			break;
+		//			case PLAYER_LEFT_JUMP:
+		//			_playerMainCondition = PLAYER_LEFT_MOVE;
+		//			setPlayerCondition();
+		//			break;
+		//
+		//		}
+
+		//	}
+
+		_isJump = boolValue;
 	}
+	
+	void setIsLand(bool landvalue) { _isLand = landvalue; }
 
 	// 점프파워 접근자
 
