@@ -64,7 +64,7 @@ void enemyManager::collisionCheck()
 	for (int i = 0; i < _vEnemy.size(); i++)
 	{
 		if (!IntersectRect(&temp, _player->getPlayerRect(), &_vEnemy[i]->getColRect())
-			&& _vEnemy[i]->canCollisionCheck()) continue;
+			|| !_vEnemy[i]->canCollisionCheck()) continue;
 		
 		tempColInfo->_colType = COL_MONSTER;
 		tempColInfo->index_detail = _vEnemy[i]->getMonsterIndex();
@@ -77,7 +77,7 @@ void enemyManager::collisionCheck()
 	for (int i = 0; i < _vEnemy.size(); i++)
 	{
 		if (!IntersectRect(&temp, _player->getPlayerAttackRect(), &_vEnemy[i]->getColRect())
-			&& _vEnemy[i]->canCollisionCheck()) continue;
+			|| !_vEnemy[i]->canCollisionCheck()) continue;
 
 		_vEnemy[i]->CollisionReact();
 		tempColInfo->_colType = COL_MONSTER;
