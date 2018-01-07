@@ -130,7 +130,7 @@ void stage::render()
 	DeleteObject(hPen);
 
 	char str[128];
-
+	
 	sprintf(str, "mouse point X %d, Y %d", _ptMouse.x + CAMERAMANAGER->getCameraPoint().x, _ptMouse.y + CAMERAMANAGER->getCameraPoint().y);
 	TextOut(getMemDC(), WINSIZEX / 2, 0, str, strlen(str));
 	sprintf(str, "rc lt %d %d, rb %d %d", _rc.left, _rc.top, _rc.right, _rc.bottom);

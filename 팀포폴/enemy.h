@@ -103,7 +103,7 @@ public:
 
 
 	void setPlayerRc(RECT* pRC) { _playerC = pRC; }
-
+	int getMonsterIndex() { return _index; }
 	enemy();
 	~enemy();
 };

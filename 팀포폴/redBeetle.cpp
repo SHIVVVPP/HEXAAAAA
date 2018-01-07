@@ -81,6 +81,7 @@ void redBeetle::render()
 
 void redBeetle::CollisionReact()
 {
+
 }
 
 void redBeetle::setMainCondition(MONSTER_MAINCONDITION mainCondition)		
