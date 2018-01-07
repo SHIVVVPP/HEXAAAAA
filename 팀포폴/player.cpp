@@ -1014,9 +1014,39 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			{								 //DIRTPILE 1
 			case 11:							 //POTION 2
 				break;						 //FOOD 3
-			case 12:							 //MEAL 4
-				break;						 //BUBBLE 5
-			case 13:							 //MUSIC_SHEET 6
+			case 12:	
+			{
+
+
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+
+				if (isCollisionReaction(temp->getRc(), _playerRC))
+				{
+
+				}
+				//if (IntersectRect(&_tempRC, &temp->getRc(), &_playerRC))
+				//{
+				//	setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//	if (_width > _height)
+				//	{
+				//
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		//if (_playerRC.bottom < temp->getRc().bottom)
+				//		//{
+				//			_isLand = true;
+				//			_isJump = false;
+				//		//}
+				//	}
+				//}		
+			}											//MEAL 4
+				break;													//BUBBLE 5
+			case 13:												 //MUSIC_SHEET 6
 				break;
 			case 14:
 				break;
@@ -1025,22 +1055,42 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			case 16:
 				break;
 			case 17:
-			{
-			}
-			break;
+			
+				break;
 			case 18:
 			{
-				static_cast<objects*>(message->object);
-				temp = static_cast<objects*>(message->object);
-
-				//if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				//static_cast<objects*>(message->object);
+				//temp = static_cast<objects*>(message->object);
+				//
+				//if (isCollisionReaction(temp->getRc(), _playerRC))
 				//{
-				if (isCollisionReaction(temp->getRc(), _playerRC))
-				{
-					_isLand = true;
-					_isJump = false;
-					setPlayerCondition();
-				}
+				//
+				//}
+				////if (IntersectRect(&_tempRC, &_playerRC,&temp->getRc()))
+				////{
+				//if (IntersectRect(&_tempRC,&temp->getRc(), &_playerRC))
+				//{
+				//	//setPlayerCondition();
+				//	float _width = _tempRC.right - _tempRC.left;
+				//	float _height = _tempRC.bottom - _tempRC.top;
+				//
+				//	//if (_playerRC.bottom > temp->getRc().bottom)
+				//	//{
+				//	//	_isLand = true;
+				//	//	_isJump = false;
+				//	//}
+				//
+				//	if (_width > _height)
+				//	{
+				//		
+				//	}
+				//
+				//	if (_height > _width)
+				//	{
+				//		_isLand = true;
+				//		_isJump = false;
+				//	}
+				//}
 				//}
 				//(isCollisionReaction(temp->getRc(), _playerRC))
 				//{
