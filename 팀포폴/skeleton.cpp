@@ -239,6 +239,5 @@ void skeleton::setCondition()
 
 void skeleton::changeDirection()
 {
-	if (_isRight) _leftX -= 100;
 	enemy::changeDirection();
 }
