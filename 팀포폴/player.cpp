@@ -698,15 +698,15 @@ void player::update()
 	}
 
 
-	// if (_playerMainCondition < 10 || _playerMainCondition >= 17)
-	//{
-	//	_attackRC = RectMakeCenter(-150, 150, 100, 150);
-	//}
+	 if (_playerMainCondition < 10 || _playerMainCondition >= 17)
+	{
+		_attackRC = RectMakeCenter(-150, 150, 100, 150);
+	}
 
 	_playerRC = RectMakeCenter(_x, _y, 150, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	
-	if(!_canAtk)_attackRC = RectMakeCenter(_x, _y, 50, 50);
+	
 	
 	KEYANIMANAGER->update();
 	//pixelCollison();
