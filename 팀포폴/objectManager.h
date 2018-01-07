@@ -22,7 +22,7 @@
 
 
 #define GEM 11
-#define DIRTPILE 12
+#define DIRTBLOCK 12
 #define POTION 13
 #define FOOD 14
 #define MEAL 15
@@ -31,6 +31,7 @@
 #define MOVING_PILE 18
 #define PLATTER 19
 #define FAKEDIRT 20
+#define DIRTPILE 21
 class objectManager : public gameNode
 {
 private:

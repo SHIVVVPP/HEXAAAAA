@@ -84,7 +84,7 @@ public:
 	void render();
 	void usage();
 	void setPlayerCondition();
-	void collisonAttack(RECT* obj);
+	void collisonAttack();
 	void collisonHitted(RECT* obj);
 	void collisonObject(int objType, int objValue);
 	

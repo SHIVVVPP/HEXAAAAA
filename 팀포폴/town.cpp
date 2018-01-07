@@ -17,7 +17,7 @@ town::~town()
 HRESULT town::init()
 {
 	//./image/town/goatician_test
-	SOUNDMANAGER->addSound("townBGM", "./Music/townBGM.mp3", true, true);
+
 	townimage = IMAGEMANAGER->findImage("town");		//마을 이미지
 	townPix = IMAGEMANAGER->findImage("townPix");		//마을 픽셀이미지
 	backsideimg = IMAGEMANAGER->findImage("backsideimg");
@@ -46,7 +46,7 @@ HRESULT town::init()
 
 	_table = RectMake(2770, 530, 260, 20);				//테이블 렉트
 	_isvisible = false;
-	SOUNDMANAGER->play("townBGM", 1.0f);
+
 	return S_OK;
 }
 
@@ -128,7 +128,7 @@ void town::pixelCollison()
 	// 머리 충돌판정
 	if (_player->getJumpPower() > 0)
 	{
-		_player->setProbeY(_player->getPlayerRect()->top - 2732);
+		_player->setProbeY(_player->getPlayerRect()->top - 900);
 
 		color = GetPixel(townPix->getMemDC(), _player->getPlayerRect()->left , _player->getPlayerRect()->top - 2732);
 
@@ -141,7 +141,7 @@ void town::pixelCollison()
 
 	else if (_player->getJumpPower() <= 0)
 	{
-		_player->setProbeY(_player->getPlayerRect()->bottom - 2732);
+		_player->setProbeY(_player->getPlayerRect()->bottom - 900);
 		bool k = false;
 		int a = 0;
 		int b = 0;
@@ -158,7 +158,7 @@ void town::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				k = true;
-				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + 2732);
+				_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + 900);
 				a++;
 			}
 		}

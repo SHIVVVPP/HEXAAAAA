@@ -25,7 +25,8 @@ private:
 
 	bool _isvisible;		//픽셀이미지 보이게 하는 불값;
 
-
+	const char* crrentMusicName;
+	const char* oldMusicName;
 public:
 	town();
 	~town();
