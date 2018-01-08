@@ -32,8 +32,9 @@ HRESULT stage::init()
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
-	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
+	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2 - 1500);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
+	
 
 	_objectManager = new objectManager;
 	_objectManager->connectPlayer(_player);
@@ -591,9 +592,9 @@ void stage::pixelCollison()
 				(_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 < _currentRoom._leftX+ 100)
 			{
 				
-				for (int k = 0; k < _currentRoom._vConnectedRoom.size(); k++)
+				for (int j = 0; j < _currentRoom._vConnectedRoom.size(); j++)
 				{
-					tagRoomInfo temp = findRoomInfo(_currentRoom._vConnectedRoom[k]);
+					tagRoomInfo temp = findRoomInfo(_currentRoom._vConnectedRoom[j]);
 					int probeY = _player->getPlayerRect()->bottom - temp._topY;
 					for (int i = probeY + 10; i > probeY - 10; --i)
 					{

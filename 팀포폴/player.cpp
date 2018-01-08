@@ -41,7 +41,7 @@ HRESULT player::init()
 	enemyRC = RectMakeCenter(900, WINSIZEY / 2, 100, 100);
 
 
-	_x = 2800;
+	_x = 2000;
 	_y = 3800;
 
 	_playerRC = RectMakeCenter(_x, _y, 130, 160);
@@ -167,6 +167,8 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
+
+			_objectLanding = false;
 			_isJump = true;
 			_jumpPower = 15.00f;
 			_gravity = 0.65f;
@@ -431,6 +433,8 @@ void player::update()
 
 	if (_objectLanding)
 	{
+		_x += *_landingObjectSpeedX;
+		_y += *_landingObjectSpeedY;
 		if (_x + 75 < _landingObject->left || _x - 75 > _landingObject->right)
 		{
 			_objectLanding = false;
@@ -815,6 +819,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 
 						if (_tempRC.bottom == _playerRC.bottom && _tempRC.top == temp->getRc()->top && !_objectLanding)
 						{
+							_landingObjectSpeedY = temp->getSpeedY();
+							_landingObjectSpeedX = temp->getSpeedX();
 							_landingObject = temp->getRc();
 							_objectLanding = true;
 							_offPicxel = true;
@@ -910,6 +916,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 
 						if (_tempRC.top == temp->getRc()->top && !_objectLanding)
 						{
+							_landingObjectSpeedY = temp->getSpeedY();
+							_landingObjectSpeedX = temp->getSpeedX();
 							_landingObject = temp->getRc();
 							_objectLanding = true;
 							_offPicxel = true;

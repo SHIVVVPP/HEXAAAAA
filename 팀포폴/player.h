@@ -72,6 +72,8 @@ class player : public gameNode
 
 	bool _objectLanding;
 	RECT* _landingObject;
+	float* _landingObjectSpeedX;
+	float* _landingObjectSpeedY;
 
 	bullet* _Relic;
 	int _currentRelic;
@@ -163,11 +165,11 @@ public:
 			switch (_playerMainCondition)
 			{
 			case PLAYER_RIGHT_IDLE:
-				_playerMainCondition = PLAYER_RIGHT_JUMP;
+				_playerMainCondition = PLAYER_IDLE_JUMP;
 				setPlayerCondition();
 				break;
 			case PLAYER_LEFT_IDLE:
-				_playerMainCondition = PLAYER_LEFT_JUMP;
+				_playerMainCondition = PLAYER_IDLE_JUMP;
 				setPlayerCondition();
 				break;
 			case PLAYER_RIGHT_MOVE:
