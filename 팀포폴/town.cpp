@@ -37,7 +37,7 @@ HRESULT town::init()
 	_objectManager = new objectManager;
 	_objectManager->connectPlayer(_player);
 	_objectManager->init();
-
+	_NPCM->setRightNpc(true);
 	_NPCM->setLeftNpc(false);
 	_NPCM->setNpc();
 	

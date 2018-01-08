@@ -46,7 +46,7 @@ HRESULT mainGame::init()			//초기화 함수
    
 	//_town = new town;
 	//_town->init();
-	SCENEMANAGER->addScene("마을", new town);
+	//SCENEMANAGER->addScene("마을", new town);
 	//SCENEMANAGER->changeScene("마을", _player);
 	//rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	//CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
