@@ -34,9 +34,9 @@ HRESULT mainGame::init()			//초기화 함수
 	//sys = new system_option;
 	//sys->init();
 	
-	//SCENEMANAGER->addScene("스테이지", new stage);
-	//SCENEMANAGER->addScene("인벤토리", new inventory);
-	//SCENEMANAGER->addScene("시스템", new system_option);
+	SCENEMANAGER->addScene("스테이지", new stage);
+	SCENEMANAGER->addScene("인벤토리", new inventory);
+	SCENEMANAGER->addScene("시스템", new system_option);
 	//
 
 	/*_ui = new ui;
@@ -46,8 +46,8 @@ HRESULT mainGame::init()			//초기화 함수
    
 	//_town = new town;
 	//_town->init();
-	SCENEMANAGER->addScene("마을", new town);
-	SCENEMANAGER->changeScene("마을", _player);
+	//SCENEMANAGER->addScene("마을", new town);
+	//SCENEMANAGER->changeScene("마을", _player);
 	//rc = RectMake(WINSIZEX / 2, WINSIZEY/2, 50, 50);
 	//CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	//CAMERAMANAGER->setCameraAim(&rc);
