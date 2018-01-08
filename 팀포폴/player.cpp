@@ -27,9 +27,9 @@ HRESULT player::init()
 	/*_Relic = new bullet;
 	_Relic->init("ÆÄº¼", 100, 800);*/
 	
-	SOUNDMANAGER->addSound("°ø°Ý", "./Music/»ð°ø°Ý.wav", false, false);
-	SOUNDMANAGER->addSound("±¤¸Æ", "./Music/±¤¸ÆÈ÷Æ®.wav", false, false);
-	SOUNDMANAGER->addSound("Å«º®", "./Music/Å«º®.wav", false, false);
+	//SOUNDMANAGER->addSound("°ø°Ý", "./Music/»ð°ø°Ý.wav", false, false);
+	//SOUNDMANAGER->addSound("±¤¸Æ", "./Music/±¤¸ÆÈ÷Æ®.wav", false, false);
+	//SOUNDMANAGER->addSound("Å«º®", "./Music/Å«º®.wav", false, false);
 
 	_currentRelic = FIRELOD;
 	_bulletAngle = PI;
@@ -210,7 +210,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
-			SOUNDMANAGER->play("°ø°Ý");
+			//SOUNDMANAGER->play("°ø°Ý");
 			_canAtk = true;
 			switch (_dir)
 			{
@@ -1042,7 +1042,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 					collisonAttack();
 					break;
 				case 21:
-					SOUNDMANAGER->play("±¤¸Æ");
+					//SOUNDMANAGER->play("±¤¸Æ");
 					switch (_playerMainCondition)
 					{
 					case 10:
