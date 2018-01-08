@@ -67,6 +67,7 @@ class player : public gameNode
 	bool _canAtk;
 	bool _offPicxel;
 	bool _immune;
+	bool _video;
 	int prevCondition1;
 	int prevCondition2;
 

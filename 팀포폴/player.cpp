@@ -44,7 +44,7 @@ HRESULT player::init()
 	_x = 2000;
 	_y = 3800;
 
-	_playerRC = RectMakeCenter(_x, _y, 130, 160);
+	_playerRC = RectMakeCenter(_x, _y, 80, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	_attackRC = RectMakeCenter(-100, -100, 150, 160);
 	//플레이어 기본값 초기화
@@ -65,7 +65,7 @@ HRESULT player::init()
 	_canAtk = true;
 	_offPicxel = false;
 	_immune = false;
-
+	_video = false;
 	_objectLanding = false;
 	
 
@@ -116,25 +116,31 @@ void player::update()
 {
 
 	///// 상태에 따른 중력 작용 여부 //////
-	if (_isJump)
+	if (!_video)
 	{
-		_y -= _jumpPower;
-		_jumpPower -= _gravity;
-		_offPicxel = false;
+		if (_isJump)
+		{
+			_y -= _jumpPower;
+			_jumpPower -= _gravity;
+			_offPicxel = false;
+		}
 	}
+	
 	if (_isLand)
 	{
 		_jumpPower = 0.0f;
 	}
 
-	if (KEYMANAGER->isStayKeyDown('K'))
+	if (KEYMANAGER->isOnceKeyDown('K'))
 	{
 		_playerSubCondition = PLAYER_LADDER;
+		_video = true;
 	}
 
-	if (KEYMANAGER->isStayKeyDown('J'))
+	if (KEYMANAGER->isOnceKeyDown('J'))
 	{
 		_playerSubCondition = PLAYER_NOTHING;
+		_video = false;
 	}
 
 
@@ -444,7 +450,7 @@ void player::update()
 	}
 
 
-	_playerRC = RectMakeCenter(_x, _y, 130, 160);
+	_playerRC = RectMakeCenter(_x, _y,80, 160);
 	_imageRC = RectMakeCenter(_x, _y, 250, 250);
 	if(!_canAtk && _playerMainCondition != PLAYER_RIGHT_ATTACK && _playerMainCondition != PLAYER_LEFT_ATTACK) _attackRC = RectMakeCenter(-150, 150, 100, 150);
 
@@ -478,7 +484,7 @@ void player::render()
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_imageRC.left), CAMERAMANAGER->CameraRelativePointY(_imageRC.top),250,250);
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 150, 160);
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _playerRC.left), CAMERAMANAGER->CameraRelativePointY(_playerRC.top), 80, 160);
 		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX( _attackRC.left), CAMERAMANAGER->CameraRelativePointY(_attackRC.top),75, 100);
 		sprintf(str, "attackRC LT %d %d RB %d %d", _attackRC.left, _attackRC.top, _attackRC.right, _attackRC.bottom);
 		TextOut(getMemDC(), WINSIZEX / 2, WINSIZEY / 2, str, strlen(str));
