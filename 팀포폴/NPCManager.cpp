@@ -37,26 +37,7 @@ void NPCManager::update()
 		(*_viNPC)->update();
 		++_viNPC;
 	}
-	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-	{
-		rc.left += 15;
-		rc.right += 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-		rc.left -= 15;
-		rc.right -= 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		rc.top += 15;
-		rc.bottom += 15;
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-		rc.top -= 15;
-		rc.bottom -= 15;
-	}*/
+	
 
 	_p->update();
 	//collision();
@@ -72,6 +53,10 @@ void NPCManager::render()
 
 	}
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(rc.left), CAMERAMANAGER->CameraRelativePointY(rc.top), 50, 50);
+	HBRUSH brush = CreateSolidBrush(RGB(0, 255, 0));
+	Rectangle(getMemDC(), _table.left, _table.top, _table.right, _table.bottom);
+	FillRect(getMemDC(), &_table, brush);
+	DeleteObject(brush);
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_table.left), CAMERAMANAGER->CameraRelativePointY(_table.top), 260, 5);
 	//TextOut(getMemDC(), 50, 350, str, strlen(str));
 }
@@ -152,90 +137,90 @@ void NPCManager::removeNpc(int arrNum)
 	_vNPC.erase(_vNPC.begin() + arrNum);
 }
 
-void NPCManager::collision()
-{
-	
-	
-	RECT temp;
-
-	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end();++_viNPC )
-	{
-		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &rc))
-		{
-			
-			if (!(*_viNPC)->getisTolk()) 
-			{
-				if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
-				{
-					(*_viNPC)->setisTolk(true);
-					
-				}
-			}
-			if ((*_viNPC)->getisTolk()) {
-				_CCount++;
-				(*_viNPC)->Converstion(_CCount);
-			}
-			if (!(*_viNPC)->getisTolk()) {
-				_CCount = 0;
-				
-			}
-			if (KEYMANAGER->isOnceKeyDown('C'))
-			{
-				if ((*_viNPC)->getMusicStart()) {
-					SOUNDMANAGER->stop(oldMusicName);
-					crrentMusicName = (*_viNPC)->getMusicname();
-					SOUNDMANAGER->play(crrentMusicName, 1.0);
-					oldMusicName = crrentMusicName;
-				}
-			}
-			if (KEYMANAGER->isOnceKeyDown('X'))
-			{
-				(*_viNPC)->setcoversationCount(1);
-				if ((*_viNPC)->getcoversationCount() == 1) {
-					_CCount = 0;
-				}
-				if (!(*_viNPC)->getisSaller())
-				{
-					
-					if ((*_viNPC)->getisMusicSheet()) {
-						if ((*_viNPC)->getcoversationCount() >= 3) {
-							(*_viNPC)->setisTolk(false);
-							(*_viNPC)->setcoversationCount(-3);
-						}
-					}
-					else
-					{
-						if ((*_viNPC)->getcoversationCount() == 2) {
-							(*_viNPC)->setisTolk(false);
-							(*_viNPC)->setcoversationCount(-2);
-						}
-					}
-				}
-			
-			}
-			if (KEYMANAGER->isOnceKeyDown('Z'))
-			{
-				if (!(*_viNPC)->getisTiket())(*_viNPC)->setisgetTiket(true);
-				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
-				if (!(*_viNPC)->getisMusicSheet())(*_viNPC)->setisMusicSheet(true);
-			}
-			if (_CCount >= (*_viNPC)->gettxtSizeMax()) {
-				_CCount = (*_viNPC)->gettxtSizeMax();
-			}
-		
-		}
-		else
-		{
-			(*_viNPC)->setisTolk(false);
-			
-		}
-
-	}
-	if (IntersectRect(&temp, &_table, _p->getPlayerRect()))
-	{
-	//	isCollisionReaction(_table, _p->getPlayerRect());
-	}
-}
+//void NPCManager::collision()
+//{
+//	
+//	
+//	RECT temp;
+//
+//	for (_viNPC = _vNPC.begin(); _viNPC != _vNPC.end();++_viNPC )
+//	{
+//		if (IntersectRect(&temp ,&(*_viNPC)->getimgRC(), &rc))
+//		{
+//			
+//			if (!(*_viNPC)->getisTolk()) 
+//			{
+//				if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
+//				{
+//					(*_viNPC)->setisTolk(true);
+//					
+//				}
+//			}
+//			if ((*_viNPC)->getisTolk()) {
+//				_CCount++;
+//				(*_viNPC)->Converstion(_CCount);
+//			}
+//			if (!(*_viNPC)->getisTolk()) {
+//				_CCount = 0;
+//				
+//			}
+//			if (KEYMANAGER->isOnceKeyDown('C'))
+//			{
+//				if ((*_viNPC)->getMusicStart()) {
+//					SOUNDMANAGER->stop(oldMusicName);
+//					crrentMusicName = (*_viNPC)->getMusicname();
+//					SOUNDMANAGER->play(crrentMusicName, 1.0);
+//					oldMusicName = crrentMusicName;
+//				}
+//			}
+//			if (KEYMANAGER->isOnceKeyDown('X'))
+//			{
+//				(*_viNPC)->setcoversationCount(1);
+//				if ((*_viNPC)->getcoversationCount() == 1) {
+//					_CCount = 0;
+//				}
+//				if (!(*_viNPC)->getisSaller())
+//				{
+//					
+//					if ((*_viNPC)->getisMusicSheet()) {
+//						if ((*_viNPC)->getcoversationCount() >= 3) {
+//							(*_viNPC)->setisTolk(false);
+//							(*_viNPC)->setcoversationCount(-3);
+//						}
+//					}
+//					else
+//					{
+//						if ((*_viNPC)->getcoversationCount() == 2) {
+//							(*_viNPC)->setisTolk(false);
+//							(*_viNPC)->setcoversationCount(-2);
+//						}
+//					}
+//				}
+//			
+//			}
+//			if (KEYMANAGER->isOnceKeyDown('Z'))
+//			{
+//				if (!(*_viNPC)->getisTiket())(*_viNPC)->setisgetTiket(true);
+//				if(!(*_viNPC)->getisfirelod())(*_viNPC)->setisfirelod(true);
+//				if (!(*_viNPC)->getisMusicSheet())(*_viNPC)->setisMusicSheet(true);
+//			}
+//			if (_CCount >= (*_viNPC)->gettxtSizeMax()) {
+//				_CCount = (*_viNPC)->gettxtSizeMax();
+//			}
+//		
+//		}
+//		else
+//		{
+//			(*_viNPC)->setisTolk(false);
+//			
+//		}
+//
+//	}
+//	if (IntersectRect(&temp, &_table, _p->getPlayerRect()))
+//	{
+//	//	isCollisionReaction(_table, _p->getPlayerRect());
+//	}
+//}
 
 LPCOLLISION_INFO NPCManager::player_npc_collision()
 {
@@ -266,38 +251,39 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 
 			}
 			//체스터 유물파는놈
-			if (i == 8) {
+			if (i == 9) {
 				if (_vNPC[i]->getisBuyYes())
 				{
 					if (_vNPC[i]->getisfirelod())
 					{
+						_vNPC[5]->setisfirelod(true);
 						_p->setEquipRelic(0);
 					}
 					if (_vNPC[i]->getisMusicSheet())
 					{
+						_vNPC[2]->setisMusicSheet(true);
 						//악보 어떻게 넣냐?
 					}
 				}
 			}
 			// 유물이 있으면 
-			else if (i == 4)
+			else if (i == 5)
 			{
 				if (_p->getEquipRelic() == 0)
 				{
 					if (_vNPC[i]->getisBuyYes())
 					{
-						if (_p->getPlayerCurrentMP() != _p->getPlayerMaxMP()) {
-							_p->setPlayerCurrentMP(20);
-						}
+							_p->setPlayerMaxMP(50);
+						
 					}
 				}
 			}
 			//염소
-			else if (i == 3)
+			else if (i == 4)
 			{
 				if (_vNPC[i]->getisBuyYes())
 				{
-					_vNPC[i]->setisgetTiket(true);
+					_vNPC[6]->setisgetTiket(true);
 				}
 			}
 			if (KEYMANAGER->isOnceKeyDown('C'))
@@ -317,14 +303,17 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				}
 				if (!_vNPC[i]->getisSaller())
 				{
-					if (_vNPC[i]->getcoversationCount() == 2) {
-						_vNPC[i]->setisTolk(false);
-						_vNPC[i]->setcoversationCount(-2);
-					}
 					if (_vNPC[i]->getisMusicSheet()) {
-						if (_vNPC[i]->getcoversationCount() == 3) {
+						if (_vNPC[i]->getcoversationCount() >= 3) {
 							_vNPC[i]->setisTolk(false);
 							_vNPC[i]->setcoversationCount(-3);
+						}
+					}
+					else
+					{
+						if (_vNPC[i]->getcoversationCount() == 2) {
+							_vNPC[i]->setisTolk(false);
+							_vNPC[i]->setcoversationCount(-2);
 						}
 					}
 				}
@@ -338,14 +327,14 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 			if (_CCount >= _vNPC[i]->gettxtSizeMax()) {
 				_CCount = _vNPC[i]->gettxtSizeMax();
 			}
-
+		
 		}
 		else
 		{
 			_vNPC[i]->setisTolk(false);
 
 		}
-		
+		sprintf_s(str, "is MAXMP:%d", _p->getPlayerMaxMP());
 	}
 	// 테이블 충돌시
 	if (IntersectRect(&temp, &_table, _p->getPlayerRect())) 

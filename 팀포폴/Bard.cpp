@@ -25,10 +25,11 @@ void Bard::tolkdrow()
 		{
 			if (conversationCount == 0)
 			{
+				_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());
 				TXTDATA->NPCrender(fileName, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 				_conversaion->render(getMemDC());
 			}
-			else if (conversationCount >= 1)
+			else if (conversationCount == 1)
 			{
 				_tolkMaxsize = TXTDATA->textSize(fileName2, getMemDC());
 				TXTDATA->NPCrender(fileName2, getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
@@ -89,7 +90,7 @@ void Bard::tolkdrow()
 					}
 					else if (selectbox == selectNum2)
 					{
-						_tolkMaxsize = TXTDATA->textSize("./text/NPC/bard5.txt", getMemDC());
+						_tolkMaxsize = TXTDATA->textSize("./text/NPC/bard6.txt", getMemDC());
 						TXTDATA->render("./text/NPC/bard6.txt", getMemDC(), _tolkX, _tolkY, _tolkboxX, _tolkboxY, _tolkCout, 40);
 						_selectBox->render(getMemDC(), _selectBoxX, _selectBoxY);
 						_noBox->render(getMemDC(), 1100, 270);
@@ -252,31 +253,7 @@ void Bard::Converstion(int tolkCount)
 			}
 		}
 	}
-	/*if (_isgetMusicSheet && conversationCount == 0)
-	{
-		
-		if (KEYMANAGER->isOnceKeyDown('J'))
-		{
-			_selectBoxX = 650;
-			_selectBoxY = 125;
-		}
-		if (KEYMANAGER->isOnceKeyDown('L'))
-		{
-			_selectBoxX = 1085;
-			_selectBoxY = 125;
-		}
-
-		if (KEYMANAGER->isOnceKeyDown('C'))
-		{
-			if (!_selectBoxX == 1085) {
-			
-				_istolk = false;
-				conversationCount = 0;
-
-			}
-			
-		}
-	}*/
+	
 	
 	if (conversationCount == 0)			//조절해야됨;
 	{
@@ -285,7 +262,7 @@ void Bard::Converstion(int tolkCount)
 		_tolkboxY = 384;																												//토크박스y
 		_tolkX = 235;																													//대화위치 x
 		_tolkY = 50;																													//대화위치 y
-		if (_isgetMusicSheet)_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());																																//토크출력시간;
+																																		//토크출력시간;
 		//else _tolkMaxsize = TXTDATA->textSize("./text/NPC/위자드2.txt", getMemDC());
 	}
 	else if (_isgetMusicSheet && conversationCount == 1)
@@ -295,7 +272,7 @@ void Bard::Converstion(int tolkCount)
 		_tolkboxY = 384;																												//토크박스y
 		_tolkX = 235;																													//대화위치 x
 		_tolkY = 50;																													//대화위치 y
-		if (_isgetMusicSheet)_tolkMaxsize = TXTDATA->textSize(fileName, getMemDC());																																//토크출력시간;
+																																	//토크출력시간;
 		//else _tolkMaxsize = TXTDATA->textSize("./text/NPC/위자드2.txt", getMemDC());
 	}
 	else if (_isgetMusicSheet && conversationCount == 2)			//조절해야됨;

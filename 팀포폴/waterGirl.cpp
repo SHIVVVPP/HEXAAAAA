@@ -45,7 +45,7 @@ void waterGirl::Move()
 		_isRight = true;
 	}
 	RC =RectMake(_imgrc.left , _imgrc.top + 45, _Npcimage->getFrameWidth(), 5);
-	sprintf_s(str, "crrentx : %d", crrentx);
+	
 }
 
 void waterGirl::render()
@@ -53,7 +53,7 @@ void waterGirl::render()
 	
 	IMAGEMANAGER->findImage(_imgName)->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_imgrc).x, CAMERAMANAGER->CameraRelativePoint(_imgrc).y , crrentx, crrenty);
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(RC).x, CAMERAMANAGER->CameraRelativePoint(RC).y, _Npcimage->getFrameWidth(), 5);
-	TextOut(getMemDC(), 500, 500, str, strlen(str));
+	
 	
 }
 
