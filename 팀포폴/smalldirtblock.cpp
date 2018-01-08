@@ -16,7 +16,7 @@ HRESULT smalldirtblock::init(int x, int y)
 {
 	_leftX = x;
 	_topY = y;
-
+	_speedY = 0;
 	_speedX = 0;
 	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("dirtblocksmall")->getWidth(), IMAGEMANAGER->findImage("dirtblocksmall")->getHeight());
 

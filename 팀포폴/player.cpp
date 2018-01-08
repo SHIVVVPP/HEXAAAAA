@@ -433,7 +433,8 @@ void player::update()
 
 	if (_objectLanding)
 	{
-		_x += *_landingObjectSpeed;
+		_x += *_landingObjectSpeedX;
+		_y += *_landingObjectSpeedY;
 		if (_x + 75 < _landingObject->left || _x - 75 > _landingObject->right)
 		{
 			_objectLanding = false;
@@ -818,7 +819,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 
 						if (_tempRC.bottom == _playerRC.bottom && _tempRC.top == temp->getRc()->top && !_objectLanding)
 						{
-							_landingObjectSpeed = temp->getSpeedX();
+							_landingObjectSpeedY = temp->getSpeedY();
+							_landingObjectSpeedX = temp->getSpeedX();
 							_landingObject = temp->getRc();
 							_objectLanding = true;
 							_offPicxel = true;
@@ -914,7 +916,8 @@ void player::getColMessage(LPCOLLISION_INFO message)
 
 						if (_tempRC.bottom == _playerRC.bottom && _tempRC.top == temp->getRc()->top && !_objectLanding)
 						{
-							_landingObjectSpeed = temp->getSpeedX();
+							_landingObjectSpeedY = temp->getSpeedY();
+							_landingObjectSpeedX = temp->getSpeedX();
 							_landingObject = temp->getRc();
 							_objectLanding = true;
 							_offPicxel = true;
