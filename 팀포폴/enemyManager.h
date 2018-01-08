@@ -41,6 +41,7 @@ public:
 	void LinkPlayer(player* p) { _player = p; }
 	void eraseMonster(vector<int> v);
 	void LinkObjM(objectManager* obj) { objM = obj; }
+	void monsterSetting(int roomNumber);
 	enemyManager();
 	~enemyManager();
 };
