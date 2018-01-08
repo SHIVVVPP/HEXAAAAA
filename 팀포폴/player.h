@@ -70,6 +70,9 @@ class player : public gameNode
 	int prevCondition1;
 	int prevCondition2;
 
+	bool _objectLanding;
+	RECT* _landingObject;
+
 	bullet* _Relic;
 	int _currentRelic;
 	float _bulletAngle;

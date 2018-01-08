@@ -47,8 +47,8 @@ HRESULT stage::init()
 	_changeSceneRc = RectMake(27008, 240, 20, 700);
 	//_changeSceneRc = RectMake(5000, 2800, 20, 700);
 
-	Tool = new settingTool;
-	Tool->init();
+	/*Tool = new settingTool;
+	Tool->init();*/
 
 	setCameraObject();
 	return S_OK;
@@ -85,7 +85,11 @@ void stage::update()
 	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
 	if (c_col != "empty")
 	{
+		if (_currentRoom.myKey != _mRoom.find(c_col)->second.myKey)
+		{
 			_currentRoom = _mRoom.find(c_col)->second;
+			_enemyManager->monsterSetting(_currentRoom._index);
+		}
 	}
 	_player->update();
 	_objectManager->update();
@@ -99,7 +103,7 @@ void stage::update()
 		pixelCollison();
 	}
 	
-	Tool->update();
+	/*Tool->update();*/
 	_objectManager->player_object_collision();
 
 	RECT temp;
@@ -148,11 +152,11 @@ void stage::render()
 	TextOut(getMemDC(), WINSIZEX / 2, 0, str, strlen(str));
 	sprintf(str, "rc lt %d %d, rb %d %d", _rc.left, _rc.top, _rc.right, _rc.bottom);
 	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top - 20), str, strlen(str));
-	sprintf(str, "current Room lt %d %d rb %d %d", _currentRoom._leftX, _currentRoom._topY, _currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height);
+	sprintf(str, "current Room lt %d %d rb %d %d  NUMBER %d", _currentRoom._leftX, _currentRoom._topY, _currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height, _currentRoom._index);
 	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	CAMERAMANAGER->cameraObjectRender(getMemDC());
-	Tool->render();
+	/*Tool->render();*/
 }
 
 
@@ -169,6 +173,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "2" };
+	temp._index = 1;
 	temp.myKey = "1";
 	_mRoom.insert(make_pair("1", temp));
 
@@ -179,6 +184,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = {"1","3"};
+	temp._index = 2;
 	temp.myKey = "2";
 	_mRoom.insert(make_pair("2", temp));
 
@@ -189,6 +195,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "2","4" };
+	temp._index = 3;
 	temp.myKey = "3";
 	_mRoom.insert(make_pair("3", temp));
 
@@ -201,6 +208,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "3","5" };
+	temp._index = 4;
 	temp.myKey = "4";
 	_mRoom.insert(make_pair("4", temp));
 
@@ -211,6 +219,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "4","6" };
+	temp._index = 5;
 	temp.myKey = "5";
 	_mRoom.insert(make_pair("5", temp));
 
@@ -221,6 +230,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "5","7" };
+	temp._index = 6;
 	temp.myKey = "6";
 	_mRoom.insert(make_pair("6", temp));
 
@@ -235,6 +245,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "6","8" };
+	temp._index = 7;
 	temp.myKey = "7";
 	_mRoom.insert(make_pair("7", temp));
 
@@ -245,6 +256,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "7","801","9" };
+	temp._index = 8;
 	temp.myKey = "8";
 	_mRoom.insert(make_pair("8", temp));
 
@@ -257,6 +269,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "8" };
+	temp._index = 801;
 	temp.myKey = "801";
 	_mRoom.insert(make_pair("801", temp));
 
@@ -268,6 +281,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "8","9" };
+	temp._index = 9;
 	temp.myKey = "9";
 	_mRoom.insert(make_pair("9", temp));
 
@@ -278,6 +292,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "9","10" };
+	temp._index = 10;
 	temp.myKey = "10";
 	_mRoom.insert(make_pair("10", temp));
 
@@ -292,6 +307,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "10","12" };
+	temp._index = 11;
 	temp.myKey = "11";
 	_mRoom.insert(make_pair("11", temp));
 
@@ -302,6 +318,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "11","1101","13" };
+	temp._index = 12;
 	temp.myKey = "12";
 	_mRoom.insert(make_pair("12", temp));
 
@@ -313,6 +330,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "12","14" };
+	temp._index = 13;
 	temp.myKey = "13";
 	_mRoom.insert(make_pair("13", temp));
 
@@ -323,6 +341,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "13","15" };
+	temp._index = 14;
 	temp.myKey = "14";
 	_mRoom.insert(make_pair("14", temp));
 
@@ -335,6 +354,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "11" };
+	temp._index = 1101;
 	temp.myKey = "1101";
 	_mRoom.insert(make_pair("1101", temp));
 
@@ -348,6 +368,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "14","1501","16" };
+	temp._index = 15;
 	temp.myKey = "15";
 	_mRoom.insert(make_pair("15", temp));
 
@@ -357,6 +378,7 @@ void stage::setStageBackgroundInfo()
 	temp._topY = 169;
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
+	temp._index = 1501;
 	temp.myKey = "1501";
 	_mRoom.insert(make_pair("1501", temp));
 
@@ -367,6 +389,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "15","17" };
+	temp._index = 16;
 	temp.myKey = "16";
 	_mRoom.insert(make_pair("16", temp));
 
@@ -377,6 +400,7 @@ void stage::setStageBackgroundInfo()
 	temp._width = temp._roomImage->getWidth();
 	temp._height = temp._roomImage->getHeight();
 	temp._vConnectedRoom = { "16" };
+	temp._index = 17;
 	temp.myKey = "17";
 	_mRoom.insert(make_pair("17", temp));
 }
@@ -559,6 +583,36 @@ void stage::pixelCollison()
 					a++;
 				}
 			}
+
+			
+
+			if ((_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 > _currentRoom._leftX + _currentRoom._width - 100||
+				(_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 < _currentRoom._leftX+ 100)
+			{
+				
+				for (int k = 0; k < _currentRoom._vConnectedRoom.size(); k++)
+				{
+					tagRoomInfo temp = findRoomInfo(_currentRoom._vConnectedRoom[k]);
+					int probeY = _player->getPlayerRect()->bottom - temp._topY;
+					for (int i = probeY + 10; i > probeY - 10; --i)
+					{
+						color = GetPixel(temp._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - temp._leftX, i);
+
+						r = GetRValue(color);
+						g = GetGValue(color);
+						b = GetBValue(color);
+
+
+						if (r == 0 && g == 255 && b == 0)
+						{
+							k = true;
+							_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + temp._topY);
+							a++;
+						}
+					}
+				}
+			}
+
 
 			if (k)
 			{

@@ -5,6 +5,7 @@
 
 
 
+
 enemyManager::enemyManager()
 {
 }
@@ -118,3 +119,99 @@ void enemyManager::eraseMonster(vector<int> v)
 }
 
 
+
+void enemyManager::monsterSetting(int roomNumber)
+{
+	enemy* temp;
+	/*enemy* temp = new redBeetle;
+	temp->init(MON_REDBITTLE, { 3289,3419 });
+	_vEnemy.push_back(temp);*/
+
+	/*temp = new skeleton;
+	temp->init(MON_SKELETON, { 877,3259 });
+	temp->setPlayerRc(_player->getPlayerRect());
+	_vEnemy.push_back(temp);*/
+	_vEnemy.clear();
+	switch (roomNumber)
+	{
+	case 1:
+		temp = new redBeetle;
+		temp->init(MON_REDBITTLE, { 3134,3467 });
+		_vEnemy.push_back(temp);
+		break;
+	case 2:
+
+		break;
+	case 3:
+
+		break;
+	case 4:
+
+		break;
+	case 5:
+
+		break;
+	case 6:
+		temp = new skeleton;
+		temp->init(MON_SKELETON, { 11812,2518 });
+		temp->setPlayerRc(_player->getPlayerRect());
+		_vEnemy.push_back(temp);
+		break;
+	case 7:
+		temp = new skeleton;
+		temp->init(MON_SKELETON, { 11625,3171 });
+		temp->setPlayerRc(_player->getPlayerRect());
+		_vEnemy.push_back(temp);
+		break;
+	case 8:
+		temp = new skeleton;
+		temp->init(MON_SKELETON, { 11474,4955 });
+		temp->setPlayerRc(_player->getPlayerRect());
+		_vEnemy.push_back(temp);
+
+		break;
+	case 801:
+
+		break;
+	case 9:
+		temp = new redBeetle;
+		temp->init(MON_REDBITTLE, { 13543,5000 });
+		_vEnemy.push_back(temp);
+		break;
+	case 10:
+		temp = new redBeetle;
+		temp->init(MON_REDBITTLE, { 14689,5000 });
+		_vEnemy.push_back(temp);
+		break;
+	case 11:
+
+		break;
+	case 1101:
+
+		break;
+	case 12:
+
+		break;
+	case 13:
+
+		break;
+	case 14:
+
+		break;
+	case 15:
+		temp = new skeleton;
+		temp->init(MON_SKELETON, { 23063,2420 });
+		temp->setPlayerRc(_player->getPlayerRect());
+		_vEnemy.push_back(temp);
+		break;
+	case 1501:
+
+		break;
+	case 16:
+
+		break;
+	case 17:
+
+		break;
+	}
+}
