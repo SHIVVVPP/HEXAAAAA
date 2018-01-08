@@ -51,7 +51,7 @@ HRESULT player::init()
 	_equipmentRelic = NULL;
 	_speed = 10.0f;
 	_jumpPower = 8.00f;
-	_gravity = 0.95f;
+	_gravity = 3.95f;
 	_dir = 1;
 	_probeY = 0;
 	_repulsivePower = 3.0f;     // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
@@ -162,8 +162,8 @@ void player::update()
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
 			_isJump = true;
-			_jumpPower = 15.0f;
-			_gravity = 0.35f;
+			_jumpPower = 15.00f;
+			_gravity = 0.65f;
 			switch (_playerMainCondition)
 			{
 			case PLAYER_RIGHT_IDLE:
@@ -240,6 +240,8 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
+			//_y -= 3;
+			//_playerRC = RectMakeCenter(_x, _y, 150, 160);
 			switch (_dir)
 			{
 			case 1:
@@ -767,28 +769,28 @@ void player::getColMessage(LPCOLLISION_INFO message)
 						float _pwidth = _playerRC.right - _playerRC.left;
 						if (_tempRC.top == temp->getRc().top)
 						{
+							setIsJump(false);
 							_offPicxel = true;
 							_isLand = true;
 							//_isJump = false;
-							setIsJump(false);
 						}
 						if (_isLand)
 						{
 							//OffsetRect(&_playerRC, 0, _height);
 							//_playerRC = RectMakeCenter(_x, _y, 150, 160);
-							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 5;
-							//_y += _jumpPower + 1;
+							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 1 ;
+							//_y -= _jumpPower;
 						}
 						if (_playerRC.right <= _templeft + _tempWidth || _playerRC.left >= _tempright - _tempWidth
-							|| _playerRC.right <= _templeft + _tempWidth && _isJump == true || _playerRC.left >= _tempright - _tempWidth && _isJump == true)
+							|| _playerRC.right <= _templeft + _tempWidth && _isLand == true || _playerRC.left >= _tempright - _tempWidth && _isLand == true)
 						{
-							_isLand = false;
-							_offPicxel = false;
-							//_isJump = true;
 							setIsJump(true);
+							_offPicxel = false;
+							_isLand = false;
+							//_isJump = true;
 						}
 					}
-				
+						
 					if (_height > _width)
 					{
 						if (_tempRC.left == temp->getRc().left)
@@ -849,18 +851,18 @@ void player::getColMessage(LPCOLLISION_INFO message)
 							setIsJump(false);
 							if (!temp->getDirection() && temp->getisRight()) 
 							{
-								_x += 2;
+								_x += 1;
 							}
 							else if (!temp->getDirection() && !temp->getisRight())
 							{
-								_x -= 2;
+								_x -= 1;
 							}
 						}
 						if (_isLand)
 						{
+							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 1;
 							//OffsetRect(&_playerRC, 0, -_height);
 							//_y += _jumpPower;
-							_y = temp->getRc().top - (_playerRC.bottom - _playerRC.top) / 2 + 5;
 						}
 						if (_playerRC.right <= _templeft + _tempWidth || _playerRC.left >= _tempright - _tempWidth
 							|| _playerRC.right <= _templeft + _tempWidth && _isJump == true || _playerRC.left >= _tempright - _tempWidth && _isJump == true)

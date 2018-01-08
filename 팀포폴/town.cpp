@@ -64,7 +64,7 @@ void town::update()
 		_isvisible = false;
 	}
 	
-	/*if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_rc.left += 15;
 		_rc.right += 15;
