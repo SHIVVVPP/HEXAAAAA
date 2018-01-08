@@ -29,7 +29,7 @@ HRESULT stage::init()
 	_rc = RectMakeCenter(_currentRoom._leftX + _currentRoom._width / 2, _currentRoom._topY + _currentRoom._height / 2, 50, 50);
 	CAMERAMANAGER->setCameraCondition(false, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
-	CAMERAMANAGER->setCameraAim(&_rc);
+	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
 	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
@@ -81,7 +81,7 @@ void stage::update()
 	//	_rc.bottom -= 15;
 	//}
 	
-	string c_col = CAMERAMANAGER->cameraOCollision(_rc,_currentRoom.myKey);
+	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
 	if (c_col != "empty")
 	{
 		if (_currentRoom.myKey != _mRoom.find(c_col)->second.myKey)
@@ -413,7 +413,7 @@ tagRoomInfo stage::findRoomInfo(string strkey)
 
 void stage::setCameraObject()
 {
-	RECT* rc = &_rc;
+	RECT* rc = _player->getPlayerRect();
 	//1->2
 	CAMERAMANAGER->addCameraObject(false, false, C_OBJECT_MOVE, CAMERA_AIMING, RectMake(6215, 2980, 20, 480),
 	{ 0,6219 }, { 6219,6219 + WINSIZEX }, rc, true, "2");
@@ -582,6 +582,36 @@ void stage::pixelCollison()
 					a++;
 				}
 			}
+
+			
+
+			if ((_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 > _currentRoom._leftX + _currentRoom._width - 100||
+				(_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 < _currentRoom._leftX+ 100)
+			{
+				
+				for (int k = 0; k < _currentRoom._vConnectedRoom.size(); k++)
+				{
+					tagRoomInfo temp = findRoomInfo(_currentRoom._vConnectedRoom[k]);
+					int probeY = _player->getPlayerRect()->bottom - temp._topY;
+					for (int i = probeY + 10; i > probeY - 10; --i)
+					{
+						color = GetPixel(temp._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - temp._leftX, i);
+
+						r = GetRValue(color);
+						g = GetGValue(color);
+						b = GetBValue(color);
+
+
+						if (r == 0 && g == 255 && b == 0)
+						{
+							k = true;
+							_player->setPlayerY(i - getHeight(*_player->getPlayerRect()) / 2 + temp._topY);
+							a++;
+						}
+					}
+				}
+			}
+
 
 			if (k)
 			{
