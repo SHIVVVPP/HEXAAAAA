@@ -19,6 +19,7 @@ HRESULT stage::init()
 	setStageBackgroundInfo();
 	_ui = new ui;
 	_ui->init(UI_STAGE);
+	SOUNDMANAGER->play("Stage", 1.0f);
 
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
@@ -528,16 +529,17 @@ void stage::pixelCollison()
 
 	// 머리 충돌판정
 	
+
 	if (_player->getJumpPower() > 0)
 	{
 		_player->setProbeY(_player->getPlayerRect()->top - _currentRoom._topY);
-	
-		color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, _player->getPlayerRect()->top-_currentRoom._topY);
-	
+
+		color = GetPixel(_currentRoom._pixelColImage->getMemDC(), _player->getPlayerRect()->left - _currentRoom._leftX, _player->getPlayerRect()->top - _currentRoom._topY);
+
 		r = GetRValue(color);
 		g = GetGValue(color);
 		b = GetBValue(color);
-	
+
 		for (int i = _player->getprobeY() + 10; i > _player->getprobeY() - 10; --i)
 		{
 			color = GetPixel(_currentRoom._pixelColImage->getMemDC(), (_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 - _currentRoom._leftX, i);
@@ -550,11 +552,11 @@ void stage::pixelCollison()
 			if (r == 0 && g == 255 && b == 0)
 			{
 				_player->setJumpPower(0.0f);
-				_player->setPlayerY(i + getHeight(*_player->getPlayerRect()) / 2  + _currentRoom._topY);
-				
+				_player->setPlayerY(i + getHeight(*_player->getPlayerRect()) / 2 + _currentRoom._topY);
+
 			}
 		}
-		//	if ()
+		//   if ()
 	}
 	
 	if (_player->getOffPicxel() == false)

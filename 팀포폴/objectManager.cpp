@@ -145,6 +145,10 @@ void objectManager::setPosition()
 	_obj->init(3200, 3200);
 	_vUse.push_back(_obj);
 
+	_obj = new moveblock;
+	_obj->init(1700, 3350, 100, false, true, false);
+	_vmoveblock.push_back(_obj);
+
 	//****·¹¾Æ·ç ÁÂÇ¥//
 	_obj = new dirtblock;
 	_obj->init(2127, 3378);
