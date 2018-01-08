@@ -138,11 +138,11 @@ void objectManager::render()
 void objectManager::setPosition()
 {
 	_obj = new gem;
-	_obj->init(50, 100, 3450, 3300, 3450, 2.0f, PI);
+	_obj->init(50, 100, 50, 100, 50, 2.0f, PI);
 	_vgem.push_back(_obj);
 	
 	_obj = new meal;
-	_obj->init(3200, 3200);
+	_obj->init(3200, 3170);
 	_vUse.push_back(_obj);
 
 	_obj = new moveblock;

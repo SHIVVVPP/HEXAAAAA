@@ -966,6 +966,36 @@ void player::getColMessage(LPCOLLISION_INFO message)
 			case 19: //Á¢½Ã
 				break;
 			case 20: //°¡Â¥ º®
+			{
+				static_cast<objects*>(message->object);
+				temp = static_cast<objects*>(message->object);
+
+				if (IntersectRect(&_tempRC, temp->getRc(), &_playerRC))
+				{
+					//setPlayerCondition();
+
+					float _width = _tempRC.right - _tempRC.left;
+					float _height = _tempRC.bottom - _tempRC.top;
+					float _tempWidth = (temp->getRc()->right - temp->getRc()->left) / 2;
+					float _templeft = temp->getRc()->left;
+					float _tempright = temp->getRc()->right;
+
+					if (_height > _width)
+					{
+						if (_tempRC.left == temp->getRc()->left)
+						{
+							OffsetRect(&_playerRC, -_width, 0);
+							//_x = temp->getRc()->left - (_playerRC.right - _playerRC.left) / 2;
+						}
+						else
+						{
+							OffsetRect(&_playerRC, _width, 0);
+							//_x = temp->getRc()->right + (_playerRC.right - _playerRC.left) / 2;
+						}
+					}
+
+				}
+			}
 				break;
 			case 21: //±¤¸Æ
 				break;

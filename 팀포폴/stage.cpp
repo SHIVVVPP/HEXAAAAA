@@ -62,11 +62,7 @@ void stage::release()
 
 void stage::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-	{
-		_player->setPlayerX(_currentRoom._leftX + _ptMouse.x);
-		_player->setPlayerY(_currentRoom._topY + _ptMouse.y);
-	}
+
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//	_rc.left += 15;

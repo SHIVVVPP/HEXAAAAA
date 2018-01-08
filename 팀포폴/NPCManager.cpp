@@ -69,7 +69,7 @@ void NPCManager::setNpc()
 	
 	NPC* bard;
 	bard = new Bard;
-	bard->init("bardnomal","", PointMake(1865, 650), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", false, false, true, false);
+	bard->init("bardnomal","", PointMake(1865, 660), "./text/NPC/bard.txt", "./text/NPC/bard1-1.txt", false, false, true, false);
 
 	NPC* molly;
 	molly = new Molly;
@@ -97,7 +97,7 @@ void NPCManager::setNpc()
 
 	NPC* _crown;
 	_crown = new Crown;
-	_crown->init("±¤´ë", "", PointMake(3470, 750), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
+	_crown->init("±¤´ë", "", PointMake(3470, 650), "./text/NPC/Merchant.txt", "./text/NPC/Merchant1.txt", false, false, true, true);
 	
 	_vNPC.push_back(watergirl);
 	_vNPC.push_back(bard);			//À½¾Ç½ÃÆ®
@@ -115,7 +115,7 @@ void NPCManager::setLeftNpc(bool _isRight)
 {
 	NPC* _bagFella;
 	_bagFella = new bagFella;
-	_bagFella->init("Áüµç ³²ÀÚ", "", PointMake(100, WINSIZEY - 250), "./text/NPC/Áü²Û.txt", "..", true, _isRight, false, false );
+	_bagFella->init("Áüµç ³²ÀÚ", "", PointMake(8200, 650), "./text/NPC/Áü²Û.txt", "..", true, _isRight, false, false );
 
 	_vNPC.push_back(_bagFella);
 
@@ -124,8 +124,8 @@ void NPCManager::setLeftNpc(bool _isRight)
 void NPCManager::setRightNpc(bool _isRight)
 {
 	NPC* _deerlady;
-	_deerlady = new maiden;
-	_deerlady->init("deerLadyMove", "", PointMake(100, WINSIZEY - 330), "./text/NPC/»ç½¿¿©ÀÎ.txt", "..", true, _isRight, false, false);
+	_deerlady = new deerLady;
+	_deerlady->init("deerLadyMove", "", PointMake(-10, 600), "./text/NPC/»ç½¿¿©ÀÎ.txt", "..", true, _isRight, false, false);
 
 	_vNPC.push_back(_deerlady);
 }
