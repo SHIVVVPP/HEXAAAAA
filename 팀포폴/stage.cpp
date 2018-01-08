@@ -19,8 +19,8 @@ HRESULT stage::init()
 	setStageBackgroundInfo();
 	_ui = new ui;
 	_ui->init(UI_STAGE);
-	SOUNDMANAGER->play("Stage", 1.0f);
-
+	SOUNDMANAGER->addSound("stage", "./Music/StageBGM2.mp3", true, false);
+	
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
 	CAMERAMANAGER->setStartBackground(0, _currentRoom._topY);
@@ -61,7 +61,7 @@ void stage::release()
 
 void stage::update()
 {
-	
+
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//	_rc.left += 15;
