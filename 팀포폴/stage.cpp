@@ -589,9 +589,9 @@ void stage::pixelCollison()
 				(_player->getPlayerRect()->left + _player->getPlayerRect()->right) / 2 < _currentRoom._leftX+ 100)
 			{
 				
-				for (int k = 0; k < _currentRoom._vConnectedRoom.size(); k++)
+				for (int j = 0; j < _currentRoom._vConnectedRoom.size(); j++)
 				{
-					tagRoomInfo temp = findRoomInfo(_currentRoom._vConnectedRoom[k]);
+					tagRoomInfo temp = findRoomInfo(_currentRoom._vConnectedRoom[j]);
 					int probeY = _player->getPlayerRect()->bottom - temp._topY;
 					for (int i = probeY + 10; i > probeY - 10; --i)
 					{

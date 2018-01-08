@@ -83,7 +83,7 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}*/
+	}
 	pixelCollison();
 	_player->update();
 	_NPCM->update();
