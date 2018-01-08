@@ -65,7 +65,7 @@ void NPCManager::setNpc()
 {
 	NPC* watergirl;
 	watergirl = new waterGirl;
-	watergirl->init("watergirl","" ,PointMake(6400, 650), "./text/NPC/waterGirl.txt", "..", true, false, false, false);
+	watergirl->init("watergirl","watergirlColpix" ,PointMake(6400, 650), "./text/NPC/waterGirl.txt", "..", true, false, false, false);
 	
 	NPC* bard;
 	bard = new Bard;
@@ -251,23 +251,23 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 
 			}
 			//체스터 유물파는놈
-			if (i == 9) {
+			if (i == 10) {
 				if (_vNPC[i]->getisBuyYes())
 				{
 					if (_vNPC[i]->getisfirelod())
 					{
-						_vNPC[5]->setisfirelod(true);
+						_vNPC[6]->setisfirelod(true);
 						_p->setEquipRelic(0);
 					}
 					if (_vNPC[i]->getisMusicSheet())
 					{
-						_vNPC[2]->setisMusicSheet(true);
+						_vNPC[3]->setisMusicSheet(true);
 						//악보 어떻게 넣냐?
 					}
 				}
 			}
 			// 유물이 있으면 
-			else if (i == 5)
+			else if (i == 6)
 			{
 				if (_p->getEquipRelic() == 0)
 				{
@@ -279,11 +279,11 @@ LPCOLLISION_INFO NPCManager::player_npc_collision()
 				}
 			}
 			//염소
-			else if (i == 4)
+			else if (i == 5)
 			{
 				if (_vNPC[i]->getisBuyYes())
 				{
-					_vNPC[6]->setisgetTiket(true);
+					_vNPC[7]->setisgetTiket(true);
 				}
 			}
 			if (KEYMANAGER->isOnceKeyDown('C'))
