@@ -19,6 +19,7 @@ HRESULT stage::init()
 	setStageBackgroundInfo();
 	_ui = new ui;
 	_ui->init(UI_STAGE);
+	SOUNDMANAGER->play("Stage", 1.0f);
 
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
@@ -43,8 +44,8 @@ HRESULT stage::init()
 	_enemyManager->LinkObjM(_objectManager);
 	_enemyManager->init();
 
-	//_changeSceneRc = RectMake(27008, 240, 20, 700);
-	_changeSceneRc = RectMake(5000, 2800, 20, 700);
+	_changeSceneRc = RectMake(27008, 240, 20, 700);
+	//_changeSceneRc = RectMake(5000, 2800, 20, 700);
 
 	Tool = new settingTool;
 	Tool->init();
