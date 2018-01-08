@@ -63,6 +63,7 @@ private:
 	bool _iscrush;
 	bool _istouched;
 	bool _isHit;
+	bool _istown;
 	int addY;
 	player* _p;
 	effect* _pickeffect;

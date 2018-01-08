@@ -908,7 +908,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 							_y = temp->getRc().bottom - (_playerRC.top - _playerRC.bottom) / 2 + 25;
 						}*/
 
-						if (_tempRC.bottom == _playerRC.bottom && _tempRC.top == temp->getRc()->top && !_objectLanding)
+						if (_tempRC.top == temp->getRc()->top && !_objectLanding)
 						{
 							_landingObject = temp->getRc();
 							_objectLanding = true;
@@ -916,6 +916,19 @@ void player::getColMessage(LPCOLLISION_INFO message)
 							_isLand = true;
 							setIsJump(false);
 							_y -= _height;
+
+							if (!temp->getDirection() && temp->getisRight())
+							{
+								_x += 1;
+							}
+							else if (!temp->getDirection() && !temp->getisRight())
+							{
+								_x -= 1;
+							}
+						}
+						else if (_tempRC.bottom == _playerRC.bottom && _tempRC.top == temp->getRc()->top && !_objectLanding)
+						{
+							
 						}
 					}
 

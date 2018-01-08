@@ -85,7 +85,7 @@ void town::update()
 		_rc.bottom -= 15;
 	}
 	pixelCollison();
-	_player->update();
+	//_player->update();
 	_NPCM->update();
 	_objectManager->update();
 

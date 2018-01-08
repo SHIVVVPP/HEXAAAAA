@@ -47,8 +47,8 @@ HRESULT stage::init()
 	_changeSceneRc = RectMake(27008, 240, 20, 700);
 	//_changeSceneRc = RectMake(5000, 2800, 20, 700);
 
-	/*Tool = new settingTool;
-	Tool->init();*/
+	Tool = new settingTool;
+	Tool->init();
 
 	setCameraObject();
 	return S_OK;
@@ -103,7 +103,7 @@ void stage::update()
 		pixelCollison();
 	}
 	
-	/*Tool->update();*/
+	Tool->update();
 	_objectManager->player_object_collision();
 
 	RECT temp;
@@ -156,7 +156,7 @@ void stage::render()
 	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	CAMERAMANAGER->cameraObjectRender(getMemDC());
-	/*Tool->render();*/
+	Tool->render();
 }
 
 
