@@ -91,5 +91,6 @@ public:
 	int getGemType() { return _gemType; }
 	int getInitY() { return _initY; }
 	float* getSpeedX() { return &_speedX; }
+	float* getSpeedY() { return &_speedY; }
 };
 

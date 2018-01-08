@@ -47,6 +47,7 @@ void moveblock::update()
 
 	if (!_direction)
 	{
+		_speedY = 0;
 		_leftX += _speedX;
 		if (_range <= getDistance(_leftX, _topY, _startX, _startY))
 		{
@@ -61,6 +62,7 @@ void moveblock::update()
 	}
 	else if(_direction)
 	{
+		_speedX = 0;
 		_topY += _speedY;
 		if (_range <= getDistance(_leftX, _topY, _startX, _startY))
 		{
