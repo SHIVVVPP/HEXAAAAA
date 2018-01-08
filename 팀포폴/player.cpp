@@ -27,6 +27,9 @@ HRESULT player::init()
 	/*_Relic = new bullet;
 	_Relic->init("파볼", 100, 800);*/
 	
+	SOUNDMANAGER->addSound("공격", "./Music/삽공격.wav", false, false);
+	SOUNDMANAGER->addSound("광맥", "./Music/광맥히트.wav", false, false);
+	SOUNDMANAGER->addSound("큰벽", "./Music/큰벽.wav", false, false);
 
 	_currentRelic = FIRELOD;
 	_bulletAngle = PI;
@@ -51,7 +54,7 @@ HRESULT player::init()
 	_equipmentRelic = NULL;
 	_speed = 10.0f;
 	_jumpPower = 8.00f;
-	_gravity = 3.95f;
+	_gravity = 3.00f;
 	_dir = 1;
 	_probeY = 0;
 	_repulsivePower = 3.0f;     // 타격 시 플레이어를 뒤로 자연스럽게 밀어내기 위한 반발력
@@ -199,6 +202,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
+			SOUNDMANAGER->play("공격");
 			_canAtk = true;
 			switch (_dir)
 			{
@@ -292,6 +296,7 @@ void player::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('A'))
 		{
+			SOUNDMANAGER->play("공격");
 			_canAtk = true;
 			switch (_dir)
 			{
@@ -980,6 +985,7 @@ void player::getColMessage(LPCOLLISION_INFO message)
 					collisonAttack();
 					break;
 				case 21:
+					SOUNDMANAGER->play("광맥");
 					switch (_playerMainCondition)
 					{
 					case 10:

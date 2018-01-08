@@ -19,6 +19,7 @@ HRESULT stage::init()
 	setStageBackgroundInfo();
 	_ui = new ui;
 	_ui->init(UI_STAGE);
+	SOUNDMANAGER->play("Stage", 1.0f);
 
 	_currentRoom = findRoomInfo("1");
 	_prevRoom = findRoomInfo("1");
