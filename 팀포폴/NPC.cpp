@@ -96,7 +96,7 @@ void NPC::aniMove()
 		}
 		else
 		{
-			int arrAni2[] = { 3, 2 };
+			int arrAni2[] = { 2, 3 };
 			_aniNpc->setPlayFrame(arrAni2, 2, true);
 		}
 	}

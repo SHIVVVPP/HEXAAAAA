@@ -19,6 +19,7 @@ HRESULT stage::init()
 	setStageBackgroundInfo();
 	_ui = new ui;
 	_ui->init(UI_STAGE);
+	SOUNDMANAGER->addSound("Stage", "./Music/StageBGM.mp3", true, true);
 	SOUNDMANAGER->play("Stage", 1.0f);
 
 	_currentRoom = findRoomInfo("1");
@@ -48,8 +49,8 @@ HRESULT stage::init()
 	_changeSceneRc = RectMake(27008, 240, 20, 700);
 	//_changeSceneRc = RectMake(5000, 2800, 20, 700);
 
-	/*Tool = new settingTool;
-	Tool->init();*/
+	Tool = new settingTool;
+	Tool->init();
 
 	setCameraObject();
 	return S_OK;
@@ -61,7 +62,7 @@ void stage::release()
 
 void stage::update()
 {
-	
+
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//	_rc.left += 15;
@@ -107,7 +108,7 @@ void stage::update()
 		pixelCollison();
 	}
 	
-	/*Tool->update();*/
+	Tool->update();
 	_objectManager->player_object_collision();
 
 	RECT temp;

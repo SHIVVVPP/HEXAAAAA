@@ -110,6 +110,7 @@ void mainGame::setImages()
 	IMAGEMANAGER->addFrameImage("genericKnight", "./image/town/genericKnightNoMove.bmp", 0, 0, 66, 39, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("¸ô¸®", "./image/town/¸ô¸®.bmp", 0, 0, 307, 372, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Áüµç ³²ÀÚ", "./image/town/bagFellaMove.bmp", 0, 0, 427, 360, 2, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("deerLadyMove", "./image/town/deerLadyMove.bmp", 0, 0, 333, 500, 2, 2, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addFrameImage("¿°¼Ò", "./image/town/goatician_test.bmp", 6016, 180, 32, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("¸¶¹ý»ç", "./image/town/¸¶¹ý»ç¾Æ°¡¾¾¹Í½º.bmp", 7668, 225, 46, 1, true, RGB(255, 0, 255));
