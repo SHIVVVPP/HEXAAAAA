@@ -110,7 +110,7 @@ void enemyManager::eraseMonster(vector<int> v)
 			int i = v.size() - 1;
 			for (int k = 0; k < 3; k++)
 			{
-				objM->createGem(40, _vEnemy[v[i]]->getPOINT().x, _vEnemy[v[i]]->getPOINT().y, _vEnemy[v[i]]->getPOINT().x, _vEnemy[v[i]]->getPOINT().y);
+				objM->createGem(10, _vEnemy[v[i]]->getPOINT().x, _vEnemy[v[i]]->getPOINT().y, _vEnemy[v[i]]->getPOINT().x, _vEnemy[v[i]]->getPOINT().y);
 			}
 			_vEnemy.erase(_vEnemy.begin() + v[i]);
 			v.pop_back();

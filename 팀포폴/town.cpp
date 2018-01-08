@@ -55,8 +55,8 @@ void town::release()
 
 void town::update()
 {
-	
-	
+
+
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) {
 		_isvisible = true;
 	}
@@ -85,28 +85,28 @@ void town::update()
 		_rc.bottom -= 15;
 	}
 	pixelCollison();
-	_player->update();
+	//_player->update();
 	_NPCM->update();
 	_objectManager->update();
 
 	_ui->update();
 
-	
+
 
 }
 
 void town::render()
 {
-	
-	
+
+
 	if (!_isvisible) {
-		
+
 		townPix->render(getMemDC(),0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 		backsideimg->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 		townimage->render(getMemDC(),0,0,CAMERAMANAGER->getCameraPoint().x,CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	else {
-		
+
 		//townPix->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	_ui->render();
@@ -116,7 +116,7 @@ void town::render()
 	_objectManager->render();
 
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top), 50, 50);
-	
+
 }
 
 void town::pixelCollison()
@@ -161,4 +161,6 @@ void town::pixelCollison()
 
 	}
 }
+
+
 

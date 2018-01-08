@@ -145,6 +145,25 @@ void objectManager::setPosition()
 	_obj->init(3200, 3200);
 	_vUse.push_back(_obj);
 
+	_obj = new moveblock;
+	_obj->init(1700, 3350, 100, false, true, false);
+	_vmoveblock.push_back(_obj);
+
+	_obj = new platters;
+	_obj->init(2610, 510);
+	_vplatter.push_back(_obj);
+
+	_obj = new dirtpile;
+	_obj->init(1249, 3445);
+	_vdirtpile.push_back(_obj);
+
+	_obj = new dirtpile;
+	_obj->init(11922, 3245);
+	_vdirtpile.push_back(_obj);
+
+	_obj = new dirtpile;
+	_obj->init(16976, 4902);
+	_vdirtpile.push_back(_obj);
 	//****레아루 좌표//
 	_obj = new dirtblock;
 	_obj->init(2127, 3378);
@@ -639,6 +658,7 @@ void objectManager::player_object_collision()
 			_p->getColMessage(tempInfo);
 			_vplatter.erase(_vplatter.begin() + i);
 			_isOpen = true;
+			if (_vplatter[i]->_topY < 500)_istown = true;
 			//_obj = new part;
 			//_obj->init(_x, _y);
 			//_vpart.push_back(_obj);
@@ -663,7 +683,21 @@ void objectManager::player_object_collision()
 		_vUse.push_back(_obj);
 		_isOpen = false;
 	}
-	
+	if (_isOpen && _istown)
+	{
+		_obj = new part;
+		_obj->init(_x, _y);
+		_vpart.push_back(_obj);
+
+		_obj = new part2;
+		_obj->init(_x + 50, _y);
+		_vpart.push_back(_obj);
+
+		_obj = new meal;
+		_obj->init(_x, _y);
+		_vUse.push_back(_obj);
+		_isOpen = false;
+	}
 
 	for (int i = 0; i < _vfakedirt.size(); i++) //가짜 벽은 충돌시 플레이어에게 주는 영향이 없음.
 	{

@@ -80,7 +80,7 @@ public:
 	animation* getAni() { return _objAni; }
 	int getX() { return _leftX; }
 	int getY() { return _topY; }
-	RECT getRc() { return _rc; }
+	RECT* getRc() { return &_rc; }
 	void setRC(RECT rc) { _rc = rc; }
 	const char* getImage() { return _imageName; }
 	bool getisRight() { return _isRight; }
@@ -90,5 +90,7 @@ public:
 	bool getDirection() { return _direction; }
 	int getGemType() { return _gemType; }
 	int getInitY() { return _initY; }
+	float* getSpeedX() { return &_speedX; }
+	float* getSpeedY() { return &_speedY; }
 };
 
