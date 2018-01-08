@@ -82,15 +82,18 @@ void stage::update()
 	//	_rc.top -= 15;
 	//	_rc.bottom -= 15;
 	//}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		_player->setPlayerX(CAMERAMANAGER->getCameraPoint().x + _ptMouse.x);
+		_player->setPlayerY(CAMERAMANAGER->getCameraPoint().y + _ptMouse.y);
+	}
 	
 	string c_col = CAMERAMANAGER->cameraOCollision(*_player->getPlayerRect(),_currentRoom.myKey);
 	if (c_col != "empty")
 	{
-		if (_currentRoom.myKey != _mRoom.find(c_col)->second.myKey)
-		{
 			_currentRoom = _mRoom.find(c_col)->second;
 			_enemyManager->monsterSetting(_currentRoom._index);
-		}
 	}
 	_player->update();
 	_objectManager->update();
@@ -125,7 +128,7 @@ void stage::render()
 	
 	_prevRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_prevRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_prevRoom._topY));
 	_currentRoom._roomImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
-	_currentRoom._pixelColImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
+	//_currentRoom._pixelColImage->render(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_currentRoom._leftX), CAMERAMANAGER->CameraRelativePointY(_currentRoom._topY));
 	_player->render();
 
 	_objectManager->render();
@@ -135,7 +138,7 @@ void stage::render()
 
 
 
-	HPEN hPen, hOldPen;
+	/*HPEN hPen, hOldPen;
 	HBRUSH hBrush, hOldBrush;
 	hBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	hPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
@@ -145,18 +148,18 @@ void stage::render()
 	SelectObject(getMemDC(), hOldPen);
 	SelectObject(getMemDC(), hOldBrush);
 	DeleteObject(hBrush);
-	DeleteObject(hPen);
+	DeleteObject(hPen);*/
 
-	char str[128];
-	
-	sprintf(str, "mouse point X %d, Y %d", _ptMouse.x + CAMERAMANAGER->getCameraPoint().x, _ptMouse.y + CAMERAMANAGER->getCameraPoint().y);
-	TextOut(getMemDC(), WINSIZEX / 2, 0, str, strlen(str));
-	sprintf(str, "rc lt %d %d, rb %d %d", _rc.left, _rc.top, _rc.right, _rc.bottom);
-	TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top - 20), str, strlen(str));
-	sprintf(str, "current Room lt %d %d rb %d %d  NUMBER %d", _currentRoom._leftX, _currentRoom._topY, _currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height, _currentRoom._index);
-	TextOut(getMemDC(), 0, 0, str, strlen(str));
+	//char str[128];
+	//
+	//sprintf(str, "mouse point X %d, Y %d", _ptMouse.x + CAMERAMANAGER->getCameraPoint().x, _ptMouse.y + CAMERAMANAGER->getCameraPoint().y);
+	//TextOut(getMemDC(), WINSIZEX / 2, 0, str, strlen(str));
+	//sprintf(str, "rc lt %d %d, rb %d %d", _rc.left, _rc.top, _rc.right, _rc.bottom);
+	//TextOut(getMemDC(), CAMERAMANAGER->CameraRelativePointX(_rc.left), CAMERAMANAGER->CameraRelativePointY(_rc.top - 20), str, strlen(str));
+	//sprintf(str, "current Room lt %d %d rb %d %d  NUMBER %d", _currentRoom._leftX, _currentRoom._topY, _currentRoom._leftX + _currentRoom._width, _currentRoom._topY + _currentRoom._height, _currentRoom._index);
+	//TextOut(getMemDC(), 0, 0, str, strlen(str));
 
-	CAMERAMANAGER->cameraObjectRender(getMemDC());
+	//CAMERAMANAGER->cameraObjectRender(getMemDC());
 	/*Tool->render();*/
 }
 

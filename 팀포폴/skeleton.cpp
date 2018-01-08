@@ -66,6 +66,10 @@ void skeleton::release()
 }
 void skeleton::update()
 {
+	if (_mainCondition != DIE && _mainCondition != DYINGOUT)
+	{
+
+	
 	float d = getDistance( (_playerC->left + _playerC->right) / 2, (_playerC->top + _playerC->bottom) / 2, _collisionRc.left + _width / 2, _collisionRc.top + _height / 2);
 	float angle = getAngle((_playerC->left + _playerC->right) / 2, (_playerC->top + _playerC->bottom) / 2, _collisionRc.left + _width / 2, _collisionRc.top + _height / 2);
 
@@ -149,7 +153,7 @@ void skeleton::update()
 		_collisionRc = RectMake(_leftX, _topY, _width, _height);
 	}
 
-
+	}
 	_ani->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
 }
 void skeleton::render()												 
@@ -168,15 +172,18 @@ void skeleton::render()
 
 void skeleton::CollisionReact()
 {
-	_hp--;
-	if (_hp <= 0)
+	if (_mainCondition != HITTED)
 	{
-		_mainCondition = DIE;
-		setCondition();
-	}
-	else
-	{
-		setMainCondition(HITTED);
+		_hp--;
+		if (_hp <= 0)
+		{
+			_mainCondition = DIE;
+			setCondition();
+		}
+		else
+		{
+			setMainCondition(HITTED);
+		}
 	}
 }
 
