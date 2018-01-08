@@ -66,13 +66,13 @@ void town::update()
 	
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		_rc.left += 15;
-		_rc.right += 15;
+		_rc.left += 10;
+		_rc.right += 10;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		_rc.left -= 15;
-		_rc.right -= 15;
+		_rc.left -= 10;
+		_rc.right -= 10;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
@@ -83,7 +83,7 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}
+	}*/
 	pixelCollison();
 	_player->update();
 	_NPCM->update();
