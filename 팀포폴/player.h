@@ -72,6 +72,7 @@ class player : public gameNode
 
 	bool _objectLanding;
 	RECT* _landingObject;
+	float* _landingObjectSpeed;
 
 	bullet* _Relic;
 	int _currentRelic;

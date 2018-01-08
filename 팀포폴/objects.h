@@ -90,5 +90,6 @@ public:
 	bool getDirection() { return _direction; }
 	int getGemType() { return _gemType; }
 	int getInitY() { return _initY; }
+	float* getSpeedX() { return &_speedX; }
 };
 

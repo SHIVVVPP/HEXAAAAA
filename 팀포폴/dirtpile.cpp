@@ -27,7 +27,6 @@ HRESULT dirtpile::init(int x, int y)
 	_objAni->setFPS(1);
 	_leftX = x;
 	_topY = y;
-
 	_rc = RectMake(_leftX, _topY, IMAGEMANAGER->findImage("dirtpile")->getFrameWidth(), IMAGEMANAGER->findImage("dirtpile")->getFrameHeight());
 
 	return S_OK;
