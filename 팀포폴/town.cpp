@@ -37,7 +37,7 @@ HRESULT town::init()
 	_objectManager = new objectManager;
 	_objectManager->connectPlayer(_player);
 	_objectManager->init();
-
+	_NPCM->setRightNpc(true);
 	_NPCM->setLeftNpc(false);
 	_NPCM->setNpc();
 	
@@ -83,7 +83,7 @@ void town::update()
 	{
 		_rc.top -= 15;
 		_rc.bottom -= 15;
-	}*/
+	}
 	pixelCollison();
 	_player->update();
 	_NPCM->update();

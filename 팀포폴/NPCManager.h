@@ -2,7 +2,7 @@
 #include "gameNode.h"
 // MoveNPC
 #include"waterGirl.h"
-#include"maiden.h"
+#include"deerLady.h"
 #include"hedgeFarmer.h"
 #include"bagFella.h"
 #include"genericKnight.h"
