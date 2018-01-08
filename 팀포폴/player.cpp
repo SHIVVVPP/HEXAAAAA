@@ -41,7 +41,7 @@ HRESULT player::init()
 	enemyRC = RectMakeCenter(900, WINSIZEY / 2, 100, 100);
 
 
-	_x = 2800;
+	_x = 2000;
 	_y = 3800;
 
 	_playerRC = RectMakeCenter(_x, _y, 130, 160);

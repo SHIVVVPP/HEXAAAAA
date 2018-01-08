@@ -32,8 +32,9 @@ HRESULT stage::init()
 	CAMERAMANAGER->setCameraCondition(true, CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(_player->getPlayerRect());
 
-	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2);
+	_player->setPlayerX(_currentRoom._leftX + _currentRoom._width / 2 - 1500);
 	_player->setPlayerY(_currentRoom._topY + _currentRoom._height / 2);
+	
 
 	_objectManager = new objectManager;
 	_objectManager->connectPlayer(_player);
